@@ -1,11 +1,12 @@
 import { useContext, useState, useEffect, createContext, type ReactNode } from 'react';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import { type User, onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
 
 interface AuthContextType {
     currentUser: User | null;
     loading: boolean;
-    isAdmin: boolean; // Placeholder for admin role check
+    userRole: 'student' | 'admin' | null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -16,8 +17,8 @@ export function useAuth() {
 
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [currentUser, setCurrentUser] = useState<User | null>(null);
+    const [userRole, setUserRole] = useState<'student' | 'admin' | null>(null);
     const [loading, setLoading] = useState(true);
-    const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
         if (!auth) {
@@ -26,11 +27,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             return;
         }
 
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
             setCurrentUser(user);
-            // Here you would typically check user claims or a database document to determine if they are an admin
-            // For now, we'll default to false
-            setIsAdmin(false);
+
+            if (user) {
+                try {
+                    const userDoc = await getDoc(doc(db, 'users', user.uid));
+                    if (userDoc.exists()) {
+                        const data = userDoc.data();
+                        setUserRole(data.role as 'student' | 'admin');
+                    } else {
+                        // Default to student if document doesn't exist but user is auth'd
+                        setUserRole('student');
+                    }
+                } catch (error) {
+                    console.error("Error fetching user role:", error);
+                    setUserRole('student'); // Fail safe
+                }
+            } else {
+                setUserRole(null);
+            }
+
             setLoading(false);
         });
 
@@ -40,7 +57,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const value = {
         currentUser,
         loading,
-        isAdmin
+        userRole
     };
 
     return (
