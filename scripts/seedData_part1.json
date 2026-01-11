@@ -1,0 +1,382 @@
+{
+  "chapters": [
+    {
+      "name": "Physical World and Measurement",
+      "subject": "Physics",
+      "unit": "Class 11 - Unit 1",
+      "description": "Introduction to physics, scope and excitement of physics, nature of physical laws, physics and technology. Units and measurements including SI units, fundamental and derived units, dimensional analysis and its applications.",
+      "topics": [
+        "Scope of Physics",
+        "Units and Dimensions",
+        "Dimensional Analysis",
+        "Significant Figures",
+        "Errors in Measurement"
+      ],
+      "difficulty": "Easy",
+      "status": "active"
+    },
+    {
+      "name": "Kinematics",
+      "subject": "Physics",
+      "unit": "Class 11 - Unit 2",
+      "description": "Motion in a straight line, motion in a plane including projectile motion and circular motion. Concepts of position, path length, displacement, speed, velocity, acceleration, and their relationships.",
+      "topics": [
+        "Motion in Straight Line",
+        "Motion in Plane",
+        "Projectile Motion",
+        "Circular Motion",
+        "Relative Velocity"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Laws of Motion",
+      "subject": "Physics",
+      "unit": "Class 11 - Unit 3",
+      "description": "Newton's laws of motion, inertia, momentum, impulse, conservation of momentum. Concepts of force, equilibrium, friction, and circular motion dynamics.",
+      "topics": [
+        "Newton's First Law",
+        "Newton's Second Law",
+        "Newton's Third Law",
+        "Conservation of Momentum",
+        "Friction",
+        "Circular Motion Dynamics"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Work, Energy and Power",
+      "subject": "Physics",
+      "unit": "Class 11 - Unit 4",
+      "description": "Work done by constant and variable forces, kinetic and potential energy, work-energy theorem, power, conservative and non-conservative forces, conservation of mechanical energy, elastic and inelastic collisions.",
+      "topics": [
+        "Work Done",
+        "Kinetic Energy",
+        "Potential Energy",
+        "Work-Energy Theorem",
+        "Power",
+        "Conservation of Energy",
+        "Collisions"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Motion of System of Particles and Rigid Body",
+      "subject": "Physics",
+      "unit": "Class 11 - Unit 5",
+      "description": "Center of mass of a two-particle system, momentum conservation, rigid body rotation, moment of inertia, radius of gyration, torque, angular momentum, conservation of angular momentum.",
+      "topics": [
+        "Center of Mass",
+        "Linear Momentum",
+        "Rotational Motion",
+        "Moment of Inertia",
+        "Torque",
+        "Angular Momentum"
+      ],
+      "difficulty": "Hard",
+      "status": "active"
+    },
+    {
+      "name": "Gravitation",
+      "subject": "Physics",
+      "unit": "Class 11 - Unit 6",
+      "description": "Universal law of gravitation, acceleration due to gravity, gravitational potential energy, escape velocity, orbital velocity, satellite motion, Kepler's laws of planetary motion.",
+      "topics": [
+        "Universal Law of Gravitation",
+        "Acceleration due to Gravity",
+        "Gravitational Potential",
+        "Escape Velocity",
+        "Satellite Motion",
+        "Kepler's Laws"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Properties of Bulk Matter",
+      "subject": "Physics",
+      "unit": "Class 11 - Unit 7",
+      "description": "Elastic behavior of materials, stress-strain relationship, Hooke's law, Young's modulus. Pressure in fluids, Pascal's law, Archimedes' principle, surface energy and surface tension, viscosity, Bernoulli's theorem.",
+      "topics": [
+        "Elasticity",
+        "Hooke's Law",
+        "Fluid Pressure",
+        "Pascal's Law",
+        "Archimedes Principle",
+        "Surface Tension",
+        "Viscosity",
+        "Bernoulli's Theorem"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Thermodynamics",
+      "subject": "Physics",
+      "unit": "Class 11 - Unit 8",
+      "description": "Thermal equilibrium, zeroth law of thermodynamics, heat, work and internal energy, first law of thermodynamics, second law of thermodynamics, reversible and irreversible processes, Carnot engine and its efficiency.",
+      "topics": [
+        "Zeroth Law",
+        "First Law of Thermodynamics",
+        "Second Law of Thermodynamics",
+        "Heat Engines",
+        "Carnot Cycle",
+        "Entropy"
+      ],
+      "difficulty": "Hard",
+      "status": "active"
+    },
+    {
+      "name": "Kinetic Theory of Gases",
+      "subject": "Physics",
+      "unit": "Class 11 - Unit 9",
+      "description": "Equation of state of a perfect gas, kinetic theory of gases, assumptions, concept of pressure, kinetic energy and temperature, degrees of freedom, law of equipartition of energy, mean free path.",
+      "topics": [
+        "Ideal Gas Equation",
+        "Kinetic Theory",
+        "Molecular Speeds",
+        "Degrees of Freedom",
+        "Equipartition of Energy",
+        "Mean Free Path"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Oscillations and Waves",
+      "subject": "Physics",
+      "unit": "Class 11 - Unit 10",
+      "description": "Periodic motion, simple harmonic motion (SHM), oscillations of a spring, energy in SHM, wave motion, types of waves, wave equation, speed of wave, superposition principle, reflection and transmission of waves.",
+      "topics": [
+        "Simple Harmonic Motion",
+        "Spring Oscillations",
+        "Pendulum",
+        "Wave Motion",
+        "Wave Equation",
+        "Superposition",
+        "Standing Waves"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Electric Charges and Fields",
+      "subject": "Physics",
+      "unit": "Class 12 - Unit 1",
+      "description": "Electric charge, conservation of charge, Coulomb's law, electric field, electric field lines, electric dipole, electric flux, Gauss's theorem and its applications.",
+      "topics": [
+        "Electric Charge",
+        "Coulomb's Law",
+        "Electric Field",
+        "Electric Dipole",
+        "Gauss's Law"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Electrostatic Potential and Capacitance",
+      "subject": "Physics",
+      "unit": "Class 12 - Unit 2",
+      "description": "Electric potential, potential difference, relation between field and potential, equipotential surfaces, capacitors and capacitance, combination of capacitors, energy stored in a capacitor.",
+      "topics": [
+        "Electric Potential",
+        "Equipotential Surfaces",
+        "Capacitance",
+        "Capacitor Combinations",
+        "Energy in Capacitor"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Current Electricity",
+      "subject": "Physics",
+      "unit": "Class 12 - Unit 3",
+      "description": "Electric current, Ohm's law, resistance and resistivity, series and parallel combinations, Kirchhoff's laws, Wheatstone bridge, potentiometer, cells and their combinations.",
+      "topics": [
+        "Electric Current",
+        "Ohm's Law",
+        "Resistor Combinations",
+        "Kirchhoff's Laws",
+        "Wheatstone Bridge",
+        "Potentiometer"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Moving Charges and Magnetism",
+      "subject": "Physics",
+      "unit": "Class 12 - Unit 4",
+      "description": "Magnetic force on moving charge, magnetic field due to current, Biot-Savart law, Ampere's law, force between current-carrying conductors, torque on current loop, moving coil galvanometer.",
+      "topics": [
+        "Magnetic Force",
+        "Biot-Savart Law",
+        "Ampere's Law",
+        "Force on Conductor",
+        "Torque on Loop",
+        "Galvanometer"
+      ],
+      "difficulty": "Hard",
+      "status": "active"
+    },
+    {
+      "name": "Magnetism and Matter",
+      "subject": "Physics",
+      "unit": "Class 12 - Unit 5",
+      "description": "Bar magnet, magnetic field lines, Earth's magnetism, magnetic properties of materials, para, dia and ferromagnetism.",
+      "topics": [
+        "Bar Magnet",
+        "Earth's Magnetism",
+        "Magnetic Materials",
+        "Paramagnetism",
+        "Diamagnetism",
+        "Ferromagnetism"
+      ],
+      "difficulty": "Easy",
+      "status": "active"
+    },
+    {
+      "name": "Electromagnetic Induction",
+      "subject": "Physics",
+      "unit": "Class 12 - Unit 6",
+      "description": "Faraday's laws of electromagnetic induction, Lenz's law, eddy currents, self and mutual inductance, AC generator.",
+      "topics": [
+        "Faraday's Law",
+        "Lenz's Law",
+        "Eddy Currents",
+        "Self Inductance",
+        "Mutual Inductance",
+        "AC Generator"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Alternating Current",
+      "subject": "Physics",
+      "unit": "Class 12 - Unit 7",
+      "description": "AC voltage applied to resistor, inductor, capacitor, series LCR circuit, resonance, power in AC circuits, transformer.",
+      "topics": [
+        "AC Circuits",
+        "LCR Circuit",
+        "Resonance",
+        "Power Factor",
+        "Transformer"
+      ],
+      "difficulty": "Hard",
+      "status": "active"
+    },
+    {
+      "name": "Electromagnetic Waves",
+      "subject": "Physics",
+      "unit": "Class 12 - Unit 8",
+      "description": "Electromagnetic waves, their characteristics, transverse nature, electromagnetic spectrum.",
+      "topics": [
+        "EM Waves",
+        "EM Spectrum",
+        "Properties of EM Waves"
+      ],
+      "difficulty": "Easy",
+      "status": "active"
+    },
+    {
+      "name": "Ray Optics and Optical Instruments",
+      "subject": "Physics",
+      "unit": "Class 12 - Unit 9",
+      "description": "Reflection and refraction of light, total internal reflection, lenses, lens formula, magnification, optical instruments like microscope and telescope.",
+      "topics": [
+        "Reflection",
+        "Refraction",
+        "Total Internal Reflection",
+        "Lenses",
+        "Lens Formula",
+        "Microscope",
+        "Telescope"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Wave Optics",
+      "subject": "Physics",
+      "unit": "Class 12 - Unit 10",
+      "description": "Wavefront and Huygens principle, interference, Young's double slit experiment, diffraction, polarization.",
+      "topics": [
+        "Huygens Principle",
+        "Interference",
+        "Young's Experiment",
+        "Diffraction",
+        "Polarization"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Dual Nature of Radiation and Matter",
+      "subject": "Physics",
+      "unit": "Class 12 - Unit 11",
+      "description": "Photoelectric effect, Einstein's photoelectric equation, particle nature of light, wave nature of matter, de Broglie relation, Davisson-Germer experiment.",
+      "topics": [
+        "Photoelectric Effect",
+        "Einstein's Equation",
+        "de Broglie Wavelength",
+        "Davisson-Germer Experiment"
+      ],
+      "difficulty": "Hard",
+      "status": "active"
+    },
+    {
+      "name": "Atoms and Nuclei",
+      "subject": "Physics",
+      "unit": "Class 12 - Unit 12",
+      "description": "Alpha particle scattering, Rutherford's model, Bohr model, hydrogen spectrum, composition of nucleus, radioactivity, nuclear reactions.",
+      "topics": [
+        "Rutherford Model",
+        "Bohr Model",
+        "Hydrogen Spectrum",
+        "Radioactivity",
+        "Nuclear Reactions"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Semiconductor Electronics",
+      "subject": "Physics",
+      "unit": "Class 12 - Unit 13",
+      "description": "Energy bands in conductors, semiconductors and insulators, p-n junction diode, diode as rectifier, transistor, logic gates.",
+      "topics": [
+        "Energy Bands",
+        "PN Junction",
+        "Diode",
+        "Rectifier",
+        "Transistor",
+        "Logic Gates"
+      ],
+      "difficulty": "Medium",
+      "status": "active"
+    },
+    {
+      "name": "Communication Systems",
+      "subject": "Physics",
+      "unit": "Class 12 - Unit 14",
+      "description": "Elements of communication system, bandwidth, propagation of electromagnetic waves, modulation and demodulation, amplitude modulation.",
+      "topics": [
+        "Communication Elements",
+        "Bandwidth",
+        "Wave Propagation",
+        "Modulation",
+        "AM",
+        "Demodulation"
+      ],
+      "difficulty": "Easy",
+      "status": "active"
+    }
+  ],
+  "questions": []
+}

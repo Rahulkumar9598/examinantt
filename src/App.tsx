@@ -23,6 +23,7 @@ const StudentAnalyticsPage = React.lazy(() => import('./pages/student/StudentAna
 const StudentTestAttemptPage = React.lazy(() => import('./pages/student/StudentTestAttemptPage'));
 const StudentPYQsPage = React.lazy(() => import('./pages/student/StudentPYQsPage'));
 const StudentResourcesPage = React.lazy(() => import('./pages/student/StudentResourcesPage'));
+const StudentTestResultsPage = React.lazy(() => import('./pages/student/StudentTestResultsPage'));
 
 const AdminDashboard = React.lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminTestsPage = React.lazy(() => import('./pages/admin/AdminTestsPage'));
@@ -30,6 +31,9 @@ const AdminPYQsPage = React.lazy(() => import('./pages/admin/AdminPYQsPage'));
 const AdminResourcesPage = React.lazy(() => import('./pages/admin/AdminResourcesPage'));
 const AdminStudentsPage = React.lazy(() => import('./pages/admin/AdminStudentsPage'));
 const AdminSettingsPage = React.lazy(() => import('./pages/admin/AdminSettingsPage'));
+const QuestionBank = React.lazy(() => import('./pages/admin/QuestionBank'));
+const AdminChaptersPage = React.lazy(() => import('./pages/admin/AdminChaptersPage'));
+
 
 import './App.css';
 
@@ -81,7 +85,6 @@ function App() {
               <Route path="/results" element={<ResultPage />} />
               <Route path="/about" element={<AboutPage />} />
 
-              {/* Student Routes */}
               <Route element={<ProtectedRoute allowedRoles={['student']} />}>
                 {/* Dashboard Layout Routes */}
                 <Route element={<DashboardLayout role="student"><Outlet /></DashboardLayout>}>
@@ -91,22 +94,25 @@ function App() {
                   <Route path="/dashboard/pyqs" element={<StudentPYQsPage />} />
                   <Route path="/dashboard/resources" element={<StudentResourcesPage />} />
                   <Route path="/dashboard/analytics" element={<StudentAnalyticsPage />} />
+                  <Route path="/dashboard/results" element={<StudentTestResultsPage />} />
                 </Route>
                 {/* Full Screen Test Route */}
                 <Route path="/dashboard/attempt/:testId" element={<StudentTestAttemptPage />} />
               </Route>
 
-              {/* Admin Routes */}
               <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
                 <Route element={<DashboardLayout role="admin"><Outlet /></DashboardLayout>}>
                   <Route path="/admin-dashboard" element={<AdminDashboard />} />
                   <Route path="/admin-dashboard/tests" element={<AdminTestsPage />} />
+                  <Route path="/admin-dashboard/question-bank" element={<QuestionBank />} />
+                  <Route path="/admin-dashboard/chapters" element={<AdminChaptersPage />} />
                   <Route path="/admin-dashboard/pyqs" element={<AdminPYQsPage />} />
                   <Route path="/admin-dashboard/resources" element={<AdminResourcesPage />} />
                   <Route path="/admin-dashboard/students" element={<AdminStudentsPage />} />
                   <Route path="/admin-dashboard/settings" element={<AdminSettingsPage />} />
                 </Route>
               </Route>
+
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />

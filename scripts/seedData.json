@@ -1,0 +1,1732 @@
+{
+  "chapters": [
+    {
+      "name": "Physical World and Measurement",
+      "unit": "Class 11 - Unit 1",
+      "description": "Introduction to physics, scope and excitement of physics, nature of physical laws. Units and measurements including SI units, dimensional analysis.",
+      "topics": [
+        "Scope of Physics",
+        "Units and Dimensions",
+        "Dimensional Analysis",
+        "Significant Figures",
+        "Errors in Measurement"
+      ],
+      "difficulty": "Easy",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Kinematics",
+      "unit": "Class 11 - Unit 2",
+      "description": "Motion in straight line and plane, projectile and circular motion. Position, displacement, velocity, acceleration concepts.",
+      "topics": [
+        "Motion in Straight Line",
+        "Motion in Plane",
+        "Projectile Motion",
+        "Circular Motion",
+        "Relative Velocity"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Laws of Motion",
+      "unit": "Class 11 - Unit 3",
+      "description": "Newton's laws of motion, inertia, momentum, impulse, conservation of momentum. Force, equilibrium, friction.",
+      "topics": [
+        "Newton's First Law",
+        "Newton's Second Law",
+        "Newton's Third Law",
+        "Conservation of Momentum",
+        "Friction",
+        "Circular Motion Dynamics"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Work, Energy and Power",
+      "unit": "Class 11 - Unit 4",
+      "description": "Work by constant and variable forces, kinetic and potential energy, work-energy theorem, conservation of energy, collisions.",
+      "topics": [
+        "Work Done",
+        "Kinetic Energy",
+        "Potential Energy",
+        "Work-Energy Theorem",
+        "Power",
+        "Conservation of Energy",
+        "Collisions"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Motion of System of Particles and Rigid Body",
+      "unit": "Class 11 - Unit 5",
+      "description": "Center of mass, momentum conservation, rigid body rotation, moment of inertia, torque, angular momentum.",
+      "topics": [
+        "Center of Mass",
+        "Linear Momentum",
+        "Rotational Motion",
+        "Moment of Inertia",
+        "Torque",
+        "Angular Momentum"
+      ],
+      "difficulty": "Hard",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Gravitation",
+      "unit": "Class 11 - Unit 6",
+      "description": "Universal law of gravitation, gravitational potential energy, escape velocity, satellite motion, Kepler's laws.",
+      "topics": [
+        "Universal Law of Gravitation",
+        "Acceleration due to Gravity",
+        "Gravitational Potential",
+        "Escape Velocity",
+        "Satellite Motion",
+        "Kepler's Laws"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Properties of Bulk Matter",
+      "unit": "Class 11 - Unit 7",
+      "description": "Elastic behavior, stress-strain, pressure in fluids, Pascal's law, Archimedes principle, surface tension, viscosity, Bernoulli's theorem.",
+      "topics": [
+        "Elasticity",
+        "Hooke's Law",
+        "Fluid Pressure",
+        "Pascal's Law",
+        "Archimedes Principle",
+        "Surface Tension",
+        "Viscosity",
+        "Bernoulli's Theorem"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Thermodynamics",
+      "unit": "Class 11 - Unit 8",
+      "description": "Thermal equilibrium, laws of thermodynamics, heat engines, Carnot cycle, reversible and irreversible processes.",
+      "topics": [
+        "Zeroth Law",
+        "First Law of Thermodynamics",
+        "Second Law of Thermodynamics",
+        "Heat Engines",
+        "Carnot Cycle",
+        "Entropy"
+      ],
+      "difficulty": "Hard",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Kinetic Theory of Gases",
+      "unit": "Class 11 - Unit 9",
+      "description": "Equation of state, kinetic theory assumptions, pressure and temperature concepts, degrees of freedom, mean free path.",
+      "topics": [
+        "Ideal Gas Equation",
+        "Kinetic Theory",
+        "Molecular Speeds",
+        "Degrees of Freedom",
+        "Equipartition of Energy",
+        "Mean Free Path"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Oscillations and Waves",
+      "unit": "Class 11 - Unit 10",
+      "description": "Periodic motion, SHM, oscillations of spring and pendulum, wave motion, wave equation, superposition, standing waves.",
+      "topics": [
+        "Simple Harmonic Motion",
+        "Spring Oscillations",
+        "Pendulum",
+        "Wave Motion",
+        "Wave Equation",
+        "Superposition",
+        "Standing Waves"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Electric Charges and Fields",
+      "unit": "Class 12 - Unit 1",
+      "description": "Electric charge, Coulomb's law, electric field, electric dipole, electric flux, Gauss's theorem.",
+      "topics": [
+        "Electric Charge",
+        "Coulomb's Law",
+        "Electric Field",
+        "Electric Dipole",
+        "Gauss's Law"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Electrostatic Potential and Capacitance",
+      "unit": "Class 12 - Unit 2",
+      "description": "Electric potential, equipotential surfaces, capacitors, combination of capacitors, energy stored in capacitor.",
+      "topics": [
+        "Electric Potential",
+        "Equipotential Surfaces",
+        "Capacitance",
+        "Capacitor Combinations",
+        "Energy in Capacitor"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Current Electricity",
+      "unit": "Class 12 - Unit 3",
+      "description": "Electric current, Ohm's law, resistance, Kirchhoff's laws, Wheatstone bridge, potentiometer.",
+      "topics": [
+        "Electric Current",
+        "Ohm's Law",
+        "Resistor Combinations",
+        "Kirchhoff's Laws",
+        "Wheatstone Bridge",
+        "Potentiometer"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Moving Charges and Magnetism",
+      "unit": "Class 12 - Unit 4",
+      "description": "Magnetic force, Biot-Savart law, Ampere's law, force between conductors, torque on current loop, galvanometer.",
+      "topics": [
+        "Magnetic Force",
+        "Biot-Savart Law",
+        "Ampere's Law",
+        "Force on Conductor",
+        "Torque on Loop",
+        "Galvanometer"
+      ],
+      "difficulty": "Hard",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Magnetism and Matter",
+      "unit": "Class 12 - Unit 5",
+      "description": "Bar magnet, Earth's magnetism, magnetic properties of materials, para, dia and ferromagnetism.",
+      "topics": [
+        "Bar Magnet",
+        "Earth's Magnetism",
+        "Magnetic Materials",
+        "Paramagnetism",
+        "Diamagnetism",
+        "Ferromagnetism"
+      ],
+      "difficulty": "Easy",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Electromagnetic Induction",
+      "unit": "Class 12 - Unit 6",
+      "description": "Faraday's laws, Lenz's law, eddy currents, self and mutual inductance, AC generator.",
+      "topics": [
+        "Faraday's Law",
+        "Lenz's Law",
+        "Eddy Currents",
+        "Self Inductance",
+        "Mutual Inductance",
+        "AC Generator"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Alternating Current",
+      "unit": "Class 12 - Unit 7",
+      "description": "AC voltage in circuits, L CR series circuit, resonance, power in AC circuits, transformer.",
+      "topics": [
+        "AC Circuits",
+        "LCR Circuit",
+        "Resonance",
+        "Power Factor",
+        "Transformer"
+      ],
+      "difficulty": "Hard",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Electromagnetic Waves",
+      "unit": "Class 12 - Unit 8",
+      "description": "EM waves characteristics, transverse nature, electromagnetic spectrum.",
+      "topics": [
+        "EM Waves",
+        "EM Spectrum",
+        "Properties of EM Waves"
+      ],
+      "difficulty": "Easy",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Ray Optics and Optical Instruments",
+      "unit": "Class 12 - Unit 9",
+      "description": "Reflection, refraction, total internal reflection, lenses, microscope and telescope.",
+      "topics": [
+        "Reflection",
+        "Refraction",
+        "Total Internal Reflection",
+        "Lenses",
+        "Lens Formula",
+        "Microscope",
+        "Telescope"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Wave Optics",
+      "unit": "Class 12 - Unit 10",
+      "description": "Wavefront, Huygens principle, interference, Young's double slit experiment, diffraction, polarization.",
+      "topics": [
+        "Huygens Principle",
+        "Interference",
+        "Young's Experiment",
+        "Diffraction",
+        "Polarization"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Dual Nature of Radiation and Matter",
+      "unit": "Class 12 - Unit 11",
+      "description": "Photoelectric effect, Einstein's equation, wave nature of matter, de Broglie wavelength, Davisson-Germer experiment.",
+      "topics": [
+        "Photoelectric Effect",
+        "Einstein's Equation",
+        "de Broglie Wavelength",
+        "Davisson-Germer Experiment"
+      ],
+      "difficulty": "Hard",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Atoms and Nuclei",
+      "unit": "Class 12 - Unit 12",
+      "description": "Rutherford and Bohr models, hydrogen spectrum, nuclear composition, radioactivity, nuclear reactions.",
+      "topics": [
+        "Rutherford Model",
+        "Bohr Model",
+        "Hydrogen Spectrum",
+        "Radioactivity",
+        "Nuclear Reactions"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Semiconductor Electronics",
+      "unit": "Class 12 - Unit 13",
+      "description": "Energy bands, p-n junction diode, rectifier, transistor, logic gates.",
+      "topics": [
+        "Energy Bands",
+        "PN Junction",
+        "Diode",
+        "Rectifier",
+        "Transistor",
+        "Logic Gates"
+      ],
+      "difficulty": "Medium",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Communication Systems",
+      "unit": "Class 12 - Unit 14",
+      "description": "Communication elements, bandwidth, wave propagation, modulation and demodulation.",
+      "topics": [
+        "Communication Elements",
+        "Bandwidth",
+        "Wave Propagation",
+        "Modulation",
+        "AM",
+        "Demodulation"
+      ],
+      "difficulty": "Easy",
+      "subject": "Physics",
+      "status": "active"
+    },
+    {
+      "name": "Some Basic Concepts of Chemistry",
+      "unit": "Class 11 - Unit 1",
+      "description": "Matter and its nature, Dalton's atomic theory, mole concept, stoichiometry, concentration terms, laws of chemical combination.",
+      "topics": [
+        "Matter",
+        "Dalton's Theory",
+        "Mole Concept",
+        "Stoichiometry",
+        "Chemical Laws"
+      ],
+      "difficulty": "Easy",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Structure of Atom",
+      "unit": "Class 11 - Unit 2",
+      "description": "Discovery of electron, proton and neutron, atomic models, quantum numbers, electronic configuration, Aufbau principle.",
+      "topics": [
+        "Atomic Models",
+        "Quantum Numbers",
+        "Electronic Configuration",
+        "Aufbau Principle",
+        "Pauli Exclusion"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Classification of Elements and Periodicity",
+      "unit": "Class 11 - Unit 3",
+      "description": "Modern periodic law, periodic table, periodic trends in properties like atomic radius, ionization energy, electron affinity.",
+      "topics": [
+        "Periodic Table",
+        "Periodic Trends",
+        "Atomic Radius",
+        "Ionization Energy",
+        "Electron Affinity"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Chemical Bonding and Molecular Structure",
+      "unit": "Class 11 - Unit 4",
+      "description": "Ionic and covalent bonding, Lewis structures, VSEPR theory, hybridization, molecular orbital theory, hydrogen bonding.",
+      "topics": [
+        "Ionic Bonding",
+        "Covalent Bonding",
+        "VSEPR Theory",
+        "Hybridization",
+        "MOT",
+        "Hydrogen Bonding"
+      ],
+      "difficulty": "Hard",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "States of Matter",
+      "unit": "Class 11 - Unit 5",
+      "description": "Three states of matter, intermolecular forces, ideal gas equation, kinetic theory, liquefaction of gases.",
+      "topics": [
+        "Gas Laws",
+        "Ideal Gas Equation",
+        "Kinetic Theory",
+        "Liquefaction",
+        "Critical Temperature"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Thermodynamics",
+      "unit": "Class 11 - Unit 6",
+      "description": "System and surroundings, internal energy, first law of thermodynamics, enthalpy, Hess's law, spontaneity and entropy.",
+      "topics": [
+        "First Law",
+        "Enthalpy",
+        "Hess's Law",
+        "Entropy",
+        "Gibbs Energy"
+      ],
+      "difficulty": "Hard",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Equilibrium",
+      "unit": "Class 11 - Unit 7",
+      "description": "Equilibrium in physical and chemical processes, law of mass action, Le Chatelier's principle, ionic equilibrium, pH scale.",
+      "topics": [
+        "Chemical Equilibrium",
+        "Equilibrium Constant",
+        "Le Chatelier's Principle",
+        "Ionic Equilibrium",
+        "pH and pOH"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Redox Reactions",
+      "unit": "Class 11 - Unit 8",
+      "description": "Oxidation and reduction, oxidation number, balancing redox reactions, electrochemical cells.",
+      "topics": [
+        "Oxidation Number",
+        "Balancing Redox",
+        "Electrochemical Cells"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Hydrogen",
+      "unit": "Class 11 - Unit 9",
+      "description": "Position of hydrogen in periodic table, isotopes, preparation and properties, hydrides, water, hydrogen peroxide.",
+      "topics": [
+        "Hydrogen Isotopes",
+        "Hydrides",
+        "Water",
+        "Hydrogen Peroxide"
+      ],
+      "difficulty": "Easy",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "s-Block Elements",
+      "unit": "Class 11 - Unit 10",
+      "description": "Group 1 and 2 elements, alkali and alkaline earth metals, general  properties, biological importance.",
+      "topics": [
+        "Alkali Metals",
+        "Alkaline Earth Metals",
+        "Preparation",
+        "Properties"
+      ],
+      "difficulty": "Easy",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "p-Block Elements",
+      "unit": "Class 11 - Unit 11",
+      "description": "Group 13-18 elements, boron, carbon, nitrogen families, general properties and reactions.",
+      "topics": [
+        "Boron Family",
+        "Carbon Family",
+        "Nitrogen Family",
+        "Halogens",
+        "Noble Gases"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Organic Chemistry - Basic Principles",
+      "unit": "Class 11 - Unit 12",
+      "description": "Purification methods, classification of organic compounds, nomenclature, isomerism, electronic effects, reaction mechanisms.",
+      "topics": [
+        "IUPAC Nomenclature",
+        "Isomerism",
+        "Electronic Effects",
+        "Reaction Mechanisms"
+      ],
+      "difficulty": "Hard",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Hydrocarbons",
+      "unit": "Class 11 - Unit 13",
+      "description": "Classification, alkanes, alkenes, alkynes, aromatic hydrocarbons, preparation, properties and reactions.",
+      "topics": [
+        "Alkanes",
+        "Alkenes",
+        "Alkynes",
+        "Aromatic Compounds",
+        "Reactions"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Solid State",
+      "unit": "Class 12 - Unit 1",
+      "description": "Classification of solids, crystal lattices, unit cells, packing efficiency, imperfections in solids, electrical and magnetic properties.",
+      "topics": [
+        "Crystal Lattice",
+        "Unit Cells",
+        "Packing",
+        "Defects",
+        "Properties"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Solutions",
+      "unit": "Class 12 - Unit 2",
+      "description": "Types of solutions, concentration terms, solubility, vapor pressure, Raoult's law, colligative properties, abnormal molar mass.",
+      "topics": [
+        "Concentration",
+        "Raoult's Law",
+        "Colligative Properties",
+        "Osmosis"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Electrochemistry",
+      "unit": "Class 12 - Unit 3",
+      "description": "Electrochemical cells, Nernst equation, conductance, electrolytic cells, batteries, fuel cells, corrosion.",
+      "topics": [
+        "Electrochemical Cells",
+        "Nernst Equation",
+        "Conductance",
+        "Batteries",
+        "Corrosion"
+      ],
+      "difficulty": "Hard",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Chemical Kinetics",
+      "unit": "Class 12 - Unit 4",
+      "description": "Rate of reaction, factors affecting rate, order and molecularity, integrated rate equations, Arrhenius equation, collision theory.",
+      "topics": [
+        "Reaction Rate",
+        "Rate Law",
+        "Integrated Equations",
+        "Arrhenius Equation",
+        "Collision Theory"
+      ],
+      "difficulty": "Hard",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Surface Chemistry",
+      "unit": "Class 12 - Unit 5",
+      "description": "Adsorption, catalysis, colloids and their classification, emulsions, properties of colloids.",
+      "topics": [
+        "Adsorption",
+        "Catalysis",
+        "Colloids",
+        "Emulsions"
+      ],
+      "difficulty": "Easy",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "General Principles of Extraction of Metals",
+      "unit": "Class 12 - Unit 6",
+      "description": "Occurrence of metals, concentration, extraction, refining, thermodynamic and electrochemical principles.",
+      "topics": [
+        "Metallurgy",
+        "Concentration",
+        "Extraction",
+        "Refining"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "p-Block Elements",
+      "unit": "Class 12 - Unit 7",
+      "description": "Group 15-18 elements, oxides, oxoacids, properties and reactions of nitrogen, phosphorus, oxygen, sulfur, halogens family.",
+      "topics": [
+        "Group 15",
+        "Group 16",
+        "Group 17",
+        "Group 18"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "d and f Block Elements",
+      "unit": "Class 12 - Unit 8",
+      "description": "Electronic configuration, oxidation states, ionic radii, color, magnetic properties, interstitial compounds, alloys, lanthanoids and actinoids.",
+      "topics": [
+        "d-Block",
+        "f-Block",
+        "Transition Metals",
+        "Lanthanoids",
+        "Actinoids"
+      ],
+      "difficulty": "Hard",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Coordination Compounds",
+      "unit": "Class 12 - Unit 9",
+      "description": "Werner's theory, nomenclature, isomerism, bonding, crystal field theory, stability of complexes.",
+      "topics": [
+        "Werner's Theory",
+        "Nomenclature",
+        "Isomerism",
+        "Bonding",
+        "CFT"
+      ],
+      "difficulty": "Hard",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Haloalkanes and Haloarenes",
+      "unit": "Class 12 - Unit 10",
+      "description": "Nomenclature, preparation, properties, reactions and uses of haloalkanes and haloarenes.",
+      "topics": [
+        "Haloalkanes",
+        "Haloarenes",
+        "Preparation",
+        "Reactions"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Alcohols, Phenols and Ethers",
+      "unit": "Class 12 - Unit 11",
+      "description": "Nomenclature, methods of preparation, physical and chemical properties, uses of alcohols, phenols and ethers.",
+      "topics": [
+        "Alcohols",
+        "Phenols",
+        "Ethers",
+        "Preparation",
+        "Reactions"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Aldehydes, Ketones and Carboxylic Acids",
+      "unit": "Class 12 - Unit 12",
+      "description": "Nomenclature, structure, preparation, properties and reactions of aldehydes, ketones and carboxylic acids.",
+      "topics": [
+        "Aldehydes",
+        "Ketones",
+        "Carboxylic Acids",
+        "Reactions"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Organic Compounds Containing Nitrogen",
+      "unit": "Class 12 - Unit 13",
+      "description": "Amines, diazonium salts, cyanides and isocyanides - preparation, properties and reactions.",
+      "topics": [
+        "Amines",
+        "Diazonium Salts",
+        "Cyanides"
+      ],
+      "difficulty": "Medium",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Biomolecules",
+      "unit": "Class 12 - Unit 14",
+      "description": "Carbohydrates, proteins, enzymes, vitamins, nucleic acids - classification, structure and functions.",
+      "topics": [
+        "Carbohydrates",
+        "Proteins",
+        "Enzymes",
+        "Vitamins",
+        "Nucleic Acids"
+      ],
+      "difficulty": "Easy",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Polymers",
+      "unit": "Class 12 - Unit 15",
+      "description": "Types of polymerization, synthetic and natural polymers, important polymers and their uses.",
+      "topics": [
+        "Polymerization",
+        "Synthetic Polymers",
+        "Natural Polymers"
+      ],
+      "difficulty": "Easy",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Chemistry in Everyday Life",
+      "unit": "Class 12 - Unit 16",
+      "description": "Drugs and their classification, chemicals in food, cleansing agents.",
+      "topics": [
+        "Drugs",
+        "Food Chemicals",
+        "Detergents"
+      ],
+      "difficulty": "Easy",
+      "subject": "Chemistry",
+      "status": "active"
+    },
+    {
+      "name": "Sets",
+      "unit": "Class 11 - Unit 1",
+      "description": "Sets and their representation, types of sets, operations on sets, Venn diagrams, De Morgan's laws.",
+      "topics": [
+        "Set Representation",
+        "Set Operations",
+        "Venn Diagrams",
+        "De Morgan's Laws"
+      ],
+      "difficulty": "Easy",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Relations and Functions",
+      "unit": "Class 11 - Unit 2",
+      "description": "Ordered pairs, Cartesian product, relations, functions, domain, range and co-domain, types of functions.",
+      "topics": [
+        "Relations",
+        "Functions",
+        "Domain and Range",
+        "Types of Functions"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Trigonometric Functions",
+      "unit": "Class 11 - Unit 3",
+      "description": "Angles, trigonometric functions, trigonometric equations, identities.",
+      "topics": [
+        "Trigonometric Ratios",
+        "Identities",
+        "Trigonometric Equations"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Principle of Mathematical Induction",
+      "unit": "Class 11 - Unit 4",
+      "description": "Process of proof by induction, applications of induction.",
+      "topics": [
+        "Mathematical Induction",
+        "Proof Techniques"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Complex Numbers and Quadratic Equations",
+      "unit": "Class 11 - Unit 5",
+      "description": "Complex numbers, algebraic properties, Argand plane, polar representation, quadratic equations.",
+      "topics": [
+        "Complex Numbers",
+        "Argand Plane",
+        "Polar Form",
+        "Quadratic Equations"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Linear Inequalities",
+      "unit": "Class 11 - Unit 6",
+      "description": "Linear inequalities, algebraic and graphical solutions, system of linear inequalities in two variables.",
+      "topics": [
+        "Inequalities",
+        "Graphical Solution",
+        "Linear Programming"
+      ],
+      "difficulty": "Easy",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Permutations and Combinations",
+      "unit": "Class 11 - Unit 7",
+      "description": "Fundamental principle of counting, permutations, combinations.",
+      "topics": [
+        "Counting Principle",
+        "Permutations",
+        "Combinations"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Binomial Theorem",
+      "unit": "Class 11 - Unit 8",
+      "description": "Binomial theorem for positive integral indices, general and middle terms, properties.",
+      "topics": [
+        "Binomial Expansion",
+        "General Term",
+        "Middle Term"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Sequences and Series",
+      "unit": "Class 11 - Unit 9",
+      "description": "Arithmetic progression, geometric progression, harmonic progression, arithmetic and geometric means, sum to n terms.",
+      "topics": [
+        "AP",
+        "GP",
+        "HP",
+        "AM and GM"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Straight Lines",
+      "unit": "Class 11 - Unit 10",
+      "description": "Slope, various forms of equations of a line, angle between two lines, distance from a point to a line.",
+      "topics": [
+        "Slope",
+        "Line Equations",
+        "Angle Between Lines",
+        "Distance Formula"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Conic Sections",
+      "unit": "Class 11 - Unit 11",
+      "description": "Sections of a cone, circle, parabola, ellipse, hyperbola - standard equations and properties.",
+      "topics": [
+        "Circle",
+        "Parabola",
+        "Ellipse",
+        "Hyperbola"
+      ],
+      "difficulty": "Hard",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Introduction to Three Dimensional Geometry",
+      "unit": "Class 11 - Unit 12",
+      "description": "Coordinate axes and planes in 3D, coordinates of a point, distance between points, section formula.",
+      "topics": [
+        "3D Coordinates",
+        "Distance Formula",
+        "Section Formula"
+      ],
+      "difficulty": "Easy",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Limits and Derivatives",
+      "unit": "Class 11 - Unit 13",
+      "description": "Limits, algebra of limits, derivatives, differentiation rules.",
+      "topics": [
+        "Limits",
+        "Derivatives",
+        "Differentiation Rules"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Mathematical Reasoning",
+      "unit": "Class 11 - Unit 14",
+      "description": "Statements, logical connectives, validity of statements, contrapositive and converse.",
+      "topics": [
+        "Statements",
+        "Logical Connectives",
+        "Validity"
+      ],
+      "difficulty": "Easy",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Statistics",
+      "unit": "Class 11 - Unit 15",
+      "description": "Measures of dispersion, range, mean deviation, variance, standard deviation.",
+      "topics": [
+        "Mean",
+        "Variance",
+        "Standard Deviation"
+      ],
+      "difficulty": "Easy",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Probability",
+      "unit": "Class 11 - Unit 16",
+      "description": "Random experiments, sample space, events, probability, addition and multiplication theorems.",
+      "topics": [
+        "Sample Space",
+        "Probability",
+        "Addition Theorem",
+        "Multiplication Theorem"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Relations and Functions",
+      "unit": "Class 12 - Unit 1",
+      "description": "Types of relations, equivalence relations, one-one and onto functions, composition, invertible functions, binary operations.",
+      "topics": [
+        "Relations",
+        "Functions",
+        "Composition",
+        "Inverse"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Inverse Trigonometric Functions",
+      "unit": "Class 12 - Unit 2",
+      "description": "Definition, range, domain, principal value, properties of inverse trigonometric functions.",
+      "topics": [
+        "Inverse Trig Functions",
+        "Properties",
+        "Domain and Range"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Matrices",
+      "unit": "Class 12 - Unit 3",
+      "description": "Matrices, types, operations, transpose, symmetric and skew symmetric matrices, elementary row operations, invertible matrices.",
+      "topics": [
+        "Matrix Operations",
+        "Transpose",
+        "Inverse",
+        "Elementary Operations"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Determinants",
+      "unit": "Class 12 - Unit 4",
+      "description": "Determinant of a matrix, properties, minors, cofactors, adjoint, inverse using adjoint, applications in solving system of equations.",
+      "topics": [
+        "Determinants",
+        "Properties",
+        "Adjoint",
+        "Cramer's Rule"
+      ],
+      "difficulty": "Hard",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Continuity and Differentiability",
+      "unit": "Class 12 - Unit 5",
+      "description": "Continuity, differentiability, chain rule, derivatives of inverse trigonometric, exponential and logarithmic functions, Rolle's and Lagrange's theorems.",
+      "topics": [
+        "Continuity",
+        "Differentiability",
+        "Chain Rule",
+        "Mean Value Theorems"
+      ],
+      "difficulty": "Hard",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Applications of Derivatives",
+      "unit": "Class 12 - Unit 6",
+      "description": "Rate of change, increasing and decreasing functions, tangents and normals, maxima and minima, approximations.",
+      "topics": [
+        "Rate of Change",
+        "Maxima and Minima",
+        "Tangents and Normals"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Integrals",
+      "unit": "Class 12 - Unit 7",
+      "description": "Integration as inverse of differentiation, methods of integration, definite integrals, fundamental theorem of calculus.",
+      "topics": [
+        "Integration",
+        "Integration Methods",
+        "Definite Integrals"
+      ],
+      "difficulty": "Hard",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Applications of Integrals",
+      "unit": "Class 12 - Unit 8",
+      "description": "Area under curves, area between curves, volumes of solids of revolution.",
+      "topics": [
+        "Area Under Curves",
+        "Area Between Curves",
+        "Volumes"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Differential Equations",
+      "unit": "Class 12 - Unit 9",
+      "description": "Order and degree, formation, solution of first order differential equations, homogeneous differential equations.",
+      "topics": [
+        "Differential Equations",
+        "First Order DE",
+        "Homogeneous DE"
+      ],
+      "difficulty": "Hard",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Vector Algebra",
+      "unit": "Class 12 - Unit 10",
+      "description": "Vectors, addition, multiplication by scalar, dot and cross products, scalar triple product.",
+      "topics": [
+        "Vectors",
+        "Dot Product",
+        "Cross Product",
+        "Scalar Triple Product"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Three Dimensional Geometry",
+      "unit": "Class 12 - Unit 11",
+      "description": "Direction cosines and ratios, equation of a line and plane in space, angle between lines, planes, shortest distance.",
+      "topics": [
+        "Direction Cosines",
+        "Line Equations",
+        "Plane Equations",
+        "Shortest Distance"
+      ],
+      "difficulty": "Hard",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Linear Programming",
+      "unit": "Class 12 - Unit 12",
+      "description": "Introduction to linear programming, mathematical formulation, graphical method, feasible and optimal solutions.",
+      "topics": [
+        "Linear Programming",
+        "Formulation",
+        "Graphical Method"
+      ],
+      "difficulty": "Medium",
+      "subject": "Mathematics",
+      "status": "active"
+    },
+    {
+      "name": "Probability",
+      "unit": "Class 12 - Unit 13",
+      "description": "Conditional probability, multiplication theorem, independent events, Bayes' theorem, random variables, probability distributions, binomial distribution.",
+      "topics": [
+        "Conditional Probability",
+        "Bayes Theorem",
+        "Random Variables",
+        "Binomial Distribution"
+      ],
+      "difficulty": "Hard",
+      "subject": "Mathematics",
+      "status": "active"
+    }
+  ],
+  "questions": [
+    {
+      "text": "A body of mass 2 kg is moving with velocity 10 m/s. What is its kinetic energy?",
+      "subject": "Physics",
+      "chapter": "Work, Energy and Power",
+      "topic": "Kinetic Energy",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "50 J",
+        "100 J",
+        "200 J",
+        "25 J"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Kinetic Energy = (1/2)mv\u00b2 = (1/2)(2)(10)\u00b2 = 100 J"
+    },
+    {
+      "text": "Which law states that an object at rest stays at rest unless acted upon by an external force?",
+      "subject": "Physics",
+      "chapter": "Laws of Motion",
+      "topic": "Newton's First Law",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "Newton's First Law",
+        "Newton's Second Law",
+        "Newton's Third Law",
+        "Law of Gravitation"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Newton's First Law, also known as the law of inertia, states that an object at rest stays at rest and an object in motion stays in motion unless acted upon by an external force."
+    },
+    {
+      "text": "The dimensional formula of force is:",
+      "subject": "Physics",
+      "chapter": "Physical World and Measurement",
+      "topic": "Dimensional Analysis",
+      "type": "MCQ",
+      "difficulty": "Medium",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "MLT\u207b\u00b9",
+        "MLT\u207b\u00b2",
+        "ML\u00b2T\u207b\u00b2",
+        "ML\u207b\u00b9T\u207b\u00b2"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Force = mass \u00d7 acceleration. [F] = [M][LT\u207b\u00b2] = MLT\u207b\u00b2"
+    },
+    {
+      "text": "A projectile is fired at an angle of 45\u00b0 with horizontal. What is the range if initial velocity is 20 m/s? (g = 10 m/s\u00b2)",
+      "subject": "Physics",
+      "chapter": "Kinematics",
+      "topic": "Projectile Motion",
+      "type": "MCQ",
+      "difficulty": "Medium",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "20 m",
+        "30 m",
+        "40 m",
+        "50 m"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Range R = (u\u00b2sin2\u03b8)/g = (20\u00b2\u00d7sin90\u00b0)/10 = 400/10 = 40 m"
+    },
+    {
+      "text": "The escape velocity from Earth's surface is approximately:",
+      "subject": "Physics",
+      "chapter": "Gravitation",
+      "topic": "Escape Velocity",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "7.9 km/s",
+        "9.8 km/s",
+        "11.2 km/s",
+        "15.0 km/s"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The escape velocity from Earth is approximately 11.2 km/s, calculated using v_e = \u221a(2gR) where R is Earth's radius."
+    },
+    {
+      "text": "What is the charge on a proton?",
+      "subject": "Physics",
+      "chapter": "Electric Charges and Fields",
+      "topic": "Electric Charge",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "-1.6 \u00d7 10\u207b\u00b9\u2079 C",
+        "+1.6 \u00d7 10\u207b\u00b9\u2079 C",
+        "0 C",
+        "+3.2 \u00d7 10\u207b\u00b9\u2079 C"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A proton carries a positive charge of +1.6 \u00d7 10\u207b\u00b9\u2079 coulombs, which is the fundamental unit of charge."
+    },
+    {
+      "text": "Ohm's law states that V = IR. If resistance is doubled and current is halved, what happens to voltage?",
+      "subject": "Physics",
+      "chapter": "Current Electricity",
+      "topic": "Ohm's Law",
+      "type": "MCQ",
+      "difficulty": "Medium",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "Remains same",
+        "Doubles",
+        "Halves",
+        "Becomes zero"
+      ],
+      "correctAnswer": 0,
+      "explanation": "V = IR. New V = (I/2)(2R) = IR. Therefore voltage remains the same."
+    },
+    {
+      "text": "The SI unit of magnetic field is:",
+      "subject": "Physics",
+      "chapter": "Moving Charges and Magnetism",
+      "topic": "Magnetic Force",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "Weber",
+        "Tesla",
+        "Henry",
+        "Gauss"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The SI unit of magnetic field (B) is Tesla (T), named after Nikola Tesla. 1 Tesla = 1 Weber/m\u00b2."
+    },
+    {
+      "text": "Faraday's law of electromagnetic induction relates to:",
+      "subject": "Physics",
+      "chapter": "Electromagnetic Induction",
+      "topic": "Faraday's Law",
+      "type": "MCQ",
+      "difficulty": "Medium",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "Change in magnetic flux",
+        "Static magnetic field",
+        "Electric charge",
+        "None of these"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Faraday's law states that induced EMF is equal to the negative rate of change of magnetic flux through a coil."
+    },
+    {
+      "text": "The refractive index of water is approximately:",
+      "subject": "Physics",
+      "chapter": "Ray Optics and Optical Instruments",
+      "topic": "Refraction",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "1.0",
+        "1.33",
+        "1.5",
+        "2.42"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The refractive index of water is approximately 1.33, meaning light travels 1.33 times slower in water than in vacuum."
+    },
+    {
+      "text": "What is the atomic number of carbon?",
+      "subject": "Chemistry",
+      "chapter": "Structure of Atom",
+      "topic": "Atomic Models",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "4",
+        "6",
+        "8",
+        "12"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Carbon has atomic number 6, meaning it has 6 protons in its nucleus."
+    },
+    {
+      "text": "The number of moles in22.4 L of any gas at STP is:",
+      "subject": "Chemistry",
+      "chapter": "Some Basic Concepts of Chemistry",
+      "topic": "Mole Concept",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "0.5 mole",
+        "1 mole",
+        "2 moles",
+        "4 moles"
+      ],
+      "correctAnswer": 1,
+      "explanation": "At STP (Standard Temperature and Pressure), 22.4 L of any ideal gas contains 1 mole of gas molecules (Avogadro's law)."
+    },
+    {
+      "text": "Which of the following has maximum ionization energy?",
+      "subject": "Chemistry",
+      "chapter": "Classification of Elements and Periodicity",
+      "topic": "Ionization Energy",
+      "type": "MCQ",
+      "difficulty": "Medium",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "Li",
+        "Na",
+        "K",
+        "Rb"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Ionization energy decreases down a group. Li is at the top of Group 1, so it has the highest ionization energy among these elements."
+    },
+    {
+      "text": "The shape of NH\u2083 molecule is:",
+      "subject": "Chemistry",
+      "chapter": "Chemical Bonding and Molecular Structure",
+      "topic": "VSEPR Theory",
+      "type": "MCQ",
+      "difficulty": "Medium",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "Trigonal planar",
+        "Trigonal pyramidal",
+        "Tetrahedral",
+        "Linear"
+      ],
+      "correctAnswer": 1,
+      "explanation": "NH\u2083 has one lone pair and three bond pairs. According to VSEPR theory, this gives a trigonal pyramidal shape."
+    },
+    {
+      "text": "Which gas law states PV = nRT?",
+      "subject": "Chemistry",
+      "chapter": "States of Matter",
+      "topic": "Ideal Gas Equation",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "Boyle's Law",
+        "Charles' Law",
+        "Ideal Gas Law",
+        "Avogadro's Law"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The ideal gas equation PV = nRT combines Boyle's, Charles', and Avogadro's laws."
+    },
+    {
+      "text": "Hess's law is based on:",
+      "subject": "Chemistry",
+      "chapter": "Thermodynamics",
+      "topic": "Hess's Law",
+      "type": "MCQ",
+      "difficulty": "Medium",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "Law of conservation of energy",
+        "Law of mass action",
+        "Le Chatelier's principle",
+        "Raoult's law"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Hess's law states that total enthalpy change is independent of path, based on conservation of energy."
+    },
+    {
+      "text": "pH of pure water at 25\u00b0C is:",
+      "subject": "Chemistry",
+      "chapter": "Equilibrium",
+      "topic": "pH and pOH",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "0",
+        "7",
+        "14",
+        "1"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Pure water at 25\u00b0C has pH = 7, which is neutral. [H\u207a] = [OH\u207b] = 10\u207b\u2077 M."
+    },
+    {
+      "text": "The oxidation state of Cr in K\u2082Cr\u2082O\u2087 is:",
+      "subject": "Chemistry",
+      "chapter": "Redox Reactions",
+      "topic": "Oxidation Number",
+      "type": "MCQ",
+      "difficulty": "Medium",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "+3",
+        "+4",
+        "+5",
+        "+6"
+      ],
+      "correctAnswer": 3,
+      "explanation": "In K\u2082Cr\u2082O\u2087: 2(+1) + 2x + 7(-2) = 0, solving gives x = +6."
+    },
+    {
+      "text": "Which is the lightest halogen?",
+      "subject": "Chemistry",
+      "chapter": "p-Block Elements",
+      "topic": "Halogens",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "Fluorine",
+        "Chlorine",
+        "Bromine",
+        "Iodine"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Fluorine (F) is the lightest halogen with atomic mass of approximately 19 amu."
+    },
+    {
+      "text": "Colligative properties depend on:",
+      "subject": "Chemistry",
+      "chapter": "Solutions",
+      "topic": "Colligative Properties",
+      "type": "MCQ",
+      "difficulty": "Medium",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "Nature of solute",
+        "Number of solute particles",
+        "Nature of solvent",
+        "Temperature only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Colligative properties (osmotic pressure, boiling point elevation, freezing point depression, vapor pressure lowering) depend only on the number (concentration) of solute particles, not their nature."
+    },
+    {
+      "text": "If A = {1, 2, 3} and B = {2, 3, 4}, then A \u2229 B is:",
+      "subject": "Mathematics",
+      "chapter": "Sets",
+      "topic": "Set Operations",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "{1, 2, 3, 4}",
+        "{2, 3}",
+        "{1, 4}",
+        "\u2205"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Intersection A \u2229 B contains elements common to both sets: {2, 3}."
+    },
+    {
+      "text": "The value of sin\u00b2\u03b8 + cos\u00b2\u03b8 is:",
+      "subject": "Mathematics",
+      "chapter": "Trigonometric Functions",
+      "topic": "Identities",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "0",
+        "1",
+        "2",
+        "-1"
+      ],
+      "correctAnswer": 1,
+      "explanation": "This is the fundamental trigonometric identity: sin\u00b2\u03b8 + cos\u00b2\u03b8 = 1 for all values of \u03b8."
+    },
+    {
+      "text": "The modulus of complex number 3 + 4i is:",
+      "subject": "Mathematics",
+      "chapter": "Complex Numbers and Quadratic Equations",
+      "topic": "Complex Numbers",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "3",
+        "4",
+        "5",
+        "7"
+      ],
+      "correctAnswer": 2,
+      "explanation": "|z| = \u221a(3\u00b2 + 4\u00b2) = \u221a(9 + 16) = \u221a25 = 5"
+    },
+    {
+      "text": "The number of ways to arrange 5 people in a row is:",
+      "subject": "Mathematics",
+      "chapter": "Permutations and Combinations",
+      "topic": "Permutations",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "20",
+        "60",
+        "120",
+        "240"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Number of arrangements = 5! = 5 \u00d7 4 \u00d7 3 \u00d7 2 \u00d7 1 = 120"
+    },
+    {
+      "text": "In binomial expansion of (x + y)\u207f, the number of terms is:",
+      "subject": "Mathematics",
+      "chapter": "Binomial Theorem",
+      "topic": "Binomial Expansion",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "n",
+        "n+1",
+        "n-1",
+        "2n"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The binomial expansion (x + y)\u207f has (n + 1) terms."
+    },
+    {
+      "text": "The sum of first n natural numbers is:",
+      "subject": "Mathematics",
+      "chapter": "Sequences and Series",
+      "topic": "AP",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "n(n+1)",
+        "n(n+1)/2",
+        "n(n-1)/2",
+        "n\u00b2"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Sum = n(n+1)/2. This is the formula for sum of arithmetic progression 1, 2, 3, ... n."
+    },
+    {
+      "text": "The slope of line perpendicular to y = 2x + 3 is:",
+      "subject": "Mathematics",
+      "chapter": "Straight Lines",
+      "topic": "Slope",
+      "type": "MCQ",
+      "difficulty": "Medium",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "2",
+        "-2",
+        "1/2",
+        "-1/2"
+      ],
+      "correctAnswer": 3,
+      "explanation": "If slope of line is m, perpendicular line has slope -1/m. Here m = 2, so perpendicular slope = -1/2."
+    },
+    {
+      "text": "The eccentricity of a circle is:",
+      "subject": "Mathematics",
+      "chapter": "Conic Sections",
+      "topic": "Circle",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "0",
+        "1",
+        "< 1",
+        "> 1"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A circle has eccentricity e = 0, as it has no elongation."
+    },
+    {
+      "text": "The derivative of x\u00b2 is:",
+      "subject": "Mathematics",
+      "chapter": "Limits and Derivatives",
+      "topic": "Derivatives",
+      "type": "MCQ",
+      "difficulty": "Easy",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "x",
+        "2x",
+        "x\u00b2/2",
+        "2"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Using power rule: d/dx(x\u207f) = nx\u207f\u207b\u00b9. So d/dx(x\u00b2) = 2x."
+    },
+    {
+      "text": "If A is a 2\u00d72 matrix with det(A) = 5, then det(2A) is:",
+      "subject": "Mathematics",
+      "chapter": "Determinants",
+      "topic": "Properties",
+      "type": "MCQ",
+      "difficulty": "Medium",
+      "marks": 4,
+      "negativeMarks": -1,
+      "options": [
+        "5",
+        "10",
+        "20",
+        "25"
+      ],
+      "correctAnswer": 2,
+      "explanation": "For n\u00d7n matrix, det(kA) = k\u207f\u00d7det(A). Here n=2, so det(2A) = 2\u00b2 \u00d7 5 = 20."
+    }
+  ]
+}

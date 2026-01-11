@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Search, Trash2, X, Save, Loader2, List } from 'lucide-react';
+import { Plus, Search, Trash2, X, Save, Loader2, List, Sparkles, Layers } from 'lucide-react';
 import { db } from '../../firebase';
-import { collection, addDoc, deleteDoc, updateDoc, doc, onSnapshot, query, orderBy, serverTimestamp, arrayUnion } from 'firebase/firestore';
+import { collection, addDoc, deleteDoc, updateDoc, doc, onSnapshot, query, orderBy, serverTimestamp, arrayUnion, getDocs } from 'firebase/firestore';
+import { generateJEEMainsTest } from '../../services/testGenerationService';
+import { generateTestFromTopics } from '../../services/topicTestService';
 
 interface Question {
     id: string;
@@ -19,6 +21,8 @@ interface TestSeries {
     description: string;
     questions: Question[];
     status: 'draft' | 'published';
+    testPattern?: 'JEE_MAINS' | 'NEET' | 'CUSTOM';
+    duration?: number; // in minutes
     createdAt: any;
 }
 
@@ -42,8 +46,21 @@ const AdminTestsPage = () => {
         category: 'NEET',
         price: '',
         description: '',
-        status: 'draft' as const
+        status: 'draft' as const,
+        testPattern: 'CUSTOM' as 'JEE_MAINS' | 'NEET' | 'CUSTOM',
+        duration: 180 // 3 hours default
     });
+
+    const [isGenerating, setIsGenerating] = useState(false);
+    const [showPreview, setShowPreview] = useState(false);
+    const [generatedQuestions, setGeneratedQuestions] = useState<any[]>([]);
+
+    // Topic-based test creation state
+    const [topics, setTopics] = useState<any[]>([]);
+    const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
+    const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
+    const [customQuestionCount, setCustomQuestionCount] = useState(30);
+    const [mcqPercentage, setMcqPercentage] = useState(70);
 
     useEffect(() => {
         const q = query(collection(db, 'testSeries'), orderBy('createdAt', 'desc'));
@@ -59,6 +76,20 @@ const AdminTestsPage = () => {
         return () => unsubscribe();
     }, []);
 
+    // Fetch topics for topic-based test creation
+    useEffect(() => {
+        const fetchTopics = async () => {
+            const topicsSnapshot = await getDocs(collection(db, 'topics'));
+            const topicsData = topicsSnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            setTopics(topicsData);
+        };
+        fetchTopics();
+    }, []);
+
+
     const handleCreate = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
@@ -69,9 +100,104 @@ const AdminTestsPage = () => {
                 createdAt: serverTimestamp()
             });
             setIsCreating(false);
-            setFormData({ title: '', category: 'NEET', price: '', description: '', status: 'draft' });
+            setFormData({
+                title: '',
+                category: 'NEET',
+                price: '',
+                description: '',
+                status: 'draft',
+                testPattern: 'CUSTOM',
+                duration: 180
+            });
         } catch (error) {
             console.error("Error creating test:", error);
+        }
+    };
+
+    const handleAutoGenerate = async () => {
+        if (formData.testPattern !== 'JEE_MAINS') {
+            alert('Auto-generate is currently only available for JEE Mains pattern');
+            return;
+        }
+
+        setIsGenerating(true);
+        try {
+            const result = await generateJEEMainsTest();
+            setGeneratedQuestions(result.questions);
+
+            if (result.warnings.length > 0) {
+                alert(`Test generated with warnings:\n${result.warnings.join('\n')}`);
+            }
+
+            setShowPreview(true);
+        } catch (error) {
+            console.error('Error generating test:', error);
+            alert('Failed to generate test. Please ensure you have uploaded sufficient questions in the Question Bank.');
+        } finally {
+            setIsGenerating(false);
+        }
+    };
+
+    const handleConfirmGenerated = async () => {
+        try {
+            await addDoc(collection(db, 'testSeries'), {
+                ...formData,
+                price: Number(formData.price),
+                questions: generatedQuestions,
+                testPattern: 'JEE_MAINS',
+                createdAt: serverTimestamp()
+            });
+            setShowPreview(false);
+            setIsCreating(false);
+            setFormData({
+                title: '',
+                category: 'NEET',
+                price: '',
+                description: '',
+                status: 'draft',
+                testPattern: 'CUSTOM',
+                duration: 180
+            });
+            setGeneratedQuestions([]);
+            alert('JEE Mains test created successfully with 90 questions!');
+        } catch (error) {
+            console.error("Error saving generated test:", error);
+            alert("Failed to save test. Please try again.");
+        }
+    };
+
+    const handleGenerateFromTopics = async () => {
+        if (selectedSubjects.length === 0) {
+            alert('Please select at least one subject');
+            return;
+        }
+
+        if (customQuestionCount < 1 || customQuestionCount > 200) {
+            alert('Please enter a valid question count (1-200)');
+            return;
+        }
+
+        setIsGenerating(true);
+        try {
+            const result = await generateTestFromTopics({
+                subjects: selectedSubjects,
+                topics: selectedTopics,
+                questionCount: customQuestionCount,
+                mcqPercentage: mcqPercentage
+            });
+
+            setGeneratedQuestions(result.questions);
+
+            if (result.warnings.length > 0) {
+                alert(`Test generated with warnings:\n${result.warnings.join('\n')}`);
+            }
+
+            setShowPreview(true);
+        } catch (error) {
+            console.error('Error generating test from topics:', error);
+            alert('Failed to generate test. Please ensure you have uploaded sufficient questions.');
+        } finally {
+            setIsGenerating(false);
         }
     };
 
@@ -252,16 +378,16 @@ const AdminTestsPage = () => {
                             initial={{ scale: 0.95, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.95, opacity: 0 }}
-                            className="bg-white w-full max-w-lg rounded-2xl shadow-xl overflow-hidden"
+                            className="bg-white w-full max-w-3xl rounded-2xl shadow-xl overflow-hidden max-h-[90vh] flex flex-col"
                             onClick={e => e.stopPropagation()}
                         >
-                            <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+                            <div className="p-6 border-b border-slate-100 flex justify-between items-center sticky top-0 bg-white z-10">
                                 <h2 className="text-xl font-bold text-slate-800">Create New Test Series</h2>
                                 <button onClick={() => setIsCreating(false)} className="text-slate-400 hover:text-slate-600">
                                     <X size={24} />
                                 </button>
                             </div>
-                            <form onSubmit={handleCreate} className="p-6 space-y-4">
+                            <form onSubmit={handleCreate} className="flex-1 overflow-y-auto p-6 space-y-4">
                                 <div>
                                     <label className="block text-sm font-semibold text-slate-700 mb-1">Title</label>
                                     <input
@@ -321,6 +447,203 @@ const AdminTestsPage = () => {
                                         className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 h-24 resize-none"
                                         placeholder="Describe what's included in this test series..."
                                     ></textarea>
+                                </div>
+
+                                {/* Test Pattern Selection */}
+                                <div className="border-t pt-4 space-y-4">
+                                    <h3 className="text-md font-bold text-slate-800">Test Generation Options</h3>
+
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <button
+                                            type="button"
+                                            onClick={() => setFormData({ ...formData, testPattern: 'JEE_MAINS' })}
+                                            className={`p-4 border-2 rounded-xl transition-all ${formData.testPattern === 'JEE_MAINS'
+                                                ? 'border-blue-500 bg-blue-50 ring-2 ring-blue-500/20'
+                                                : 'border-slate-200 hover:border-blue-300'
+                                                }`}
+                                        >
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <div className={`w-4 h-4 rounded-full border-2 ${formData.testPattern === 'JEE_MAINS' ? 'border-blue-500 bg-blue-500' : 'border-slate-300'
+                                                    }`}>
+                                                    {formData.testPattern === 'JEE_MAINS' && (
+                                                        <div className="w-full h-full rounded-full bg-white scale-50"></div>
+                                                    )}
+                                                </div>
+                                                <span className="font-semibold text-sm">Auto JEE Mains</span>
+                                            </div>
+                                            <p className="text-xs text-slate-500 text-left">90 Qs from NTA weightage</p>
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            onClick={() => setFormData({ ...formData, testPattern: 'CUSTOM' })}
+                                            className={`p-4 border-2 rounded-xl transition-all ${formData.testPattern === 'CUSTOM'
+                                                ? 'border-blue-500 bg-blue-50 ring-2 ring-blue-500/20'
+                                                : 'border-slate-200 hover:border-blue-300'
+                                                }`}
+                                        >
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <div className={`w-4 h-4 rounded-full border-2 ${formData.testPattern === 'CUSTOM' ? 'border-blue-500 bg-blue-500' : 'border-slate-300'
+                                                    }`}>
+                                                    {formData.testPattern === 'CUSTOM' && (
+                                                        <div className="w-full h-full rounded-full bg-white scale-50"></div>
+                                                    )}
+                                                </div>
+                                                <span className="font-semibold text-sm">Custom Topics</span>
+                                            </div>
+                                            <p className="text-xs text-slate-500 text-left">Select subjects & topics</p>
+                                        </button>
+                                    </div>
+
+                                    {/* Custom Test Configuration */}
+                                    {formData.testPattern === 'CUSTOM' && topics.length > 0 && (
+                                        <motion.div
+                                            initial={{ opacity: 0, height: 0 }}
+                                            animate={{ opacity: 1, height: 'auto' }}
+                                            className="space-y-4 bg-slate-50 p-4 rounded-xl"
+                                        >
+                                            {/* Subject Selection */}
+                                            <div>
+                                                <label className="block text-sm font-semibold text-slate-700 mb-2">Select Subjects</label>
+                                                <div className="flex gap-2">
+                                                    {['Physics', 'Chemistry', 'Mathematics'].map(subject => (
+                                                        <button
+                                                            key={subject}
+                                                            type="button"
+                                                            onClick={() => {
+                                                                setSelectedSubjects(prev =>
+                                                                    prev.includes(subject)
+                                                                        ? prev.filter(s => s !== subject)
+                                                                        : [...prev, subject]
+                                                                );
+                                                            }}
+                                                            className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${selectedSubjects.includes(subject)
+                                                                ? 'bg-blue-600 text-white'
+                                                                : 'bg-white border border-slate-200 text-slate-600 hover:border-blue-300'
+                                                                }`}
+                                                        >
+                                                            {subject}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            {/* Topic Selection */}
+                                            {selectedSubjects.length > 0 && (
+                                                <div>
+                                                    <label className="block text-sm font-semibold text-slate-700 mb-2">
+                                                        Select Topics (Optional - leave empty for all topics)
+                                                    </label>
+                                                    <select
+                                                        multiple
+                                                        value={selectedTopics}
+                                                        onChange={e => {
+                                                            const selected = Array.from(e.target.selectedOptions, option => option.value);
+                                                            setSelectedTopics(selected);
+                                                        }}
+                                                        className="w-full px-3 py-2 border border-slate-200 rounded-lg bg-white max-h-32"
+                                                    >
+                                                        {topics
+                                                            .filter(t => selectedSubjects.includes(t.subject))
+                                                            .map(topic => (
+                                                                <option key={topic.id} value={topic.id}>
+                                                                    {topic.name} ({topic.subject})
+                                                                </option>
+                                                            ))}
+                                                    </select>
+                                                    <p className="text-xs text-slate-500 mt-1">Hold Ctrl/Cmd to select multiple</p>
+                                                </div>
+                                            )}
+
+                                            {/* Question Count */}
+                                            <div>
+                                                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                                                    Total Questions: {customQuestionCount}
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    min="10"
+                                                    max="100"
+                                                    value={customQuestionCount}
+                                                    onChange={e => setCustomQuestionCount(Number(e.target.value))}
+                                                    className="w-full"
+                                                />
+                                                <div className="flex justify-between text-xs text-slate-500 mt-1">
+                                                    <span>10</span>
+                                                    <span>100</span>
+                                                </div>
+                                            </div>
+
+                                            {/* MCQ Percentage */}
+                                            <div>
+                                                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                                                    MCQ Percentage: {mcqPercentage}%
+                                                </label>
+                                                <input
+                                                    type="range"
+                                                    min="0"
+                                                    max="100"
+                                                    step="10"
+                                                    value={mcqPercentage}
+                                                    onChange={e => setMcqPercentage(Number(e.target.value))}
+                                                    className="w-full"
+                                                />
+                                                <div className="flex justify-between text-xs text-slate-500 mt-1">
+                                                    <span>All Numerical</span>
+                                                    <span>All MCQ</span>
+                                                </div>
+                                            </div>
+
+                                            {/* Generate Button */}
+                                            <button
+                                                type="button"
+                                                onClick={handleGenerateFromTopics}
+                                                disabled={selectedSubjects.length === 0 || isGenerating}
+                                                className="w-full py-2.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold rounded-lg hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                            >
+                                                {isGenerating ? (
+                                                    <>
+                                                        <Loader2 className="animate-spin" size={18} />
+                                                        Generating...
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        Generate Questions
+                                                    </>
+                                                )}
+                                            </button>
+                                        </motion.div>
+                                    )}
+
+                                    {/* JEE Mains Generate Button */}
+                                    {formData.testPattern === 'JEE_MAINS' && (
+                                        <motion.div
+                                            initial={{ opacity: 0, height: 0 }}
+                                            animate={{ opacity: 1, height: 'auto' }}
+                                            className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-100"
+                                        >
+                                            <p className="text-sm text-slate-600 mb-3">
+                                                This will automatically generate 90 questions (30 per subject) based on JEE Mains 2024 chapter weightage.
+                                            </p>
+                                            <button
+                                                type="button"
+                                                onClick={handleAutoGenerate}
+                                                disabled={isGenerating}
+                                                className="w-full py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-lg hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                            >
+                                                {isGenerating ? (
+                                                    <>
+                                                        <Loader2 className="animate-spin" size={18} />
+                                                        Generating...
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        Auto-Generate 90 Questions
+                                                    </>
+                                                )}
+                                            </button>
+                                        </motion.div>
+                                    )}
                                 </div>
                                 <div className="pt-4 flex justify-end gap-3">
                                     <button
