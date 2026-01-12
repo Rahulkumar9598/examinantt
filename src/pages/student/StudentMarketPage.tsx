@@ -62,9 +62,12 @@ const StudentMarketPage = () => {
 
             // Add purchase record
             await addDoc(collection(db, 'users', currentUser.uid, 'purchases'), {
-                testId: test.id,
-                testTitle: test.title,
-                category: test.category, // Save category
+                testId: test.id, // Keeping for potential legacy ref, but seriesId is the main one now
+                seriesId: test.id,
+                type: 'series',
+                seriesTitle: test.title, // Explicit series title
+                testTitle: test.title, // Backup
+                category: test.category,
                 price: test.price,
                 purchaseDate: serverTimestamp()
             });
