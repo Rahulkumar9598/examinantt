@@ -10,7 +10,8 @@ const Navbar = () => {
     const navItems = [
         { label: 'Home', path: '/' },
         { label: 'Test Series', path: '/test-series' },
-        { label: 'Free Resources', path: '/resources' },
+        { label: 'PYQs', path: '/pyqs' },
+        { label: 'Resources', path: '/resources' },
         { label: 'Result', path: '/results' },
         { label: 'About', path: '/about' },
     ];

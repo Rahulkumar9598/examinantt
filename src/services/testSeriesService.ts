@@ -8,11 +8,10 @@ import {
     getDocs,
     query,
     where,
-    orderBy,
     serverTimestamp
 } from 'firebase/firestore';
 import { db } from '../firebase';
-import type { TestSeries, TestSeriesFormData } from '../types/test.types';
+import type { TestSeries, TestSeriesFormData, Test } from '../types/test.types';
 
 const TEST_SERIES_COLLECTION = 'testSeries';
 
@@ -71,7 +70,8 @@ export const getAllTestSeries = async (filters?: {
     status?: string;
     createdBy?: string;
 }): Promise<TestSeries[]> => {
-    let q = query(collection(db, TEST_SERIES_COLLECTION), orderBy('createdAt', 'desc'));
+    // Note: Removed server-side sorting to prevent composite index errors when filtering
+    let q = query(collection(db, "testSeries"));
 
     if (filters?.examCategory) {
         q = query(q, where('examCategory', '==', filters.examCategory));
@@ -86,10 +86,17 @@ export const getAllTestSeries = async (filters?: {
     }
 
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({
+    const series = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
     })) as TestSeries[];
+
+    // Sort client-side
+    return series.sort((a, b) => {
+        const timeA = a.createdAt?.seconds || 0;
+        const timeB = b.createdAt?.seconds || 0;
+        return timeB - timeA;
+    });
 };
 
 // Add test to series
@@ -152,4 +159,16 @@ export const duplicateTestSeries = async (seriesId: string, newName: string, use
     };
 
     return createTestSeries(duplicateData, userId);
+};
+// Get all tests for a series
+export const getTestsBySeriesId = async (seriesId: string): Promise<Test[]> => {
+    const q = query(
+        collection(db, 'tests'),
+        where('seriesId', '==', seriesId)
+    );
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+    })) as Test[];
 };

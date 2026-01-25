@@ -10,6 +10,7 @@ import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import TestSeriesPage from './pages/TestSeriesPage';
+import TestSeriesDetailsPage from './pages/TestSeriesDetailsPage';
 import FreeResourcesPage from './pages/FreeResourcesPage';
 import ResultPage from './pages/ResultPage';
 import AboutPage from './pages/AboutPage';
@@ -23,12 +24,17 @@ const StudentAnalyticsPage = React.lazy(() => import('./pages/student/StudentAna
 const StudentTestAttemptPage = React.lazy(() => import('./pages/student/StudentTestAttemptPage'));
 const StudentPYQsPage = React.lazy(() => import('./pages/student/StudentPYQsPage'));
 const StudentResourcesPage = React.lazy(() => import('./pages/student/StudentResourcesPage'));
+const PYQsDiscoveryPage = React.lazy(() => import('./pages/PYQsDiscoveryPage'));
+const PYQDetailsPage = React.lazy(() => import('./pages/PYQDetailsPage'));
 const StudentTestResultsPage = React.lazy(() => import('./pages/student/StudentTestResultsPage'));
+const StudentTestResultDetailPage = React.lazy(() => import('./pages/student/StudentTestResultDetailPage'));
 
 const AdminDashboard = React.lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminTestsPage = React.lazy(() => import('./pages/admin/AdminTestsPage'));
 const AdminPYQsPage = React.lazy(() => import('./pages/admin/AdminPYQsPage'));
+const AdminAddPYQPage = React.lazy(() => import('./pages/admin/AdminAddPYQPage'));
 const AdminResourcesPage = React.lazy(() => import('./pages/admin/AdminResourcesPage'));
+const AdminAddResourcePage = React.lazy(() => import('./pages/admin/AdminAddResourcePage'));
 const AdminStudentsPage = React.lazy(() => import('./pages/admin/AdminStudentsPage'));
 const AdminSettingsPage = React.lazy(() => import('./pages/admin/AdminSettingsPage'));
 const QuestionBank = React.lazy(() => import('./pages/admin/QuestionBank'));
@@ -83,6 +89,9 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/test-series" element={<TestSeriesPage />} />
+              <Route path="/test-series/:id" element={<TestSeriesDetailsPage />} />
+              <Route path="/pyqs" element={<PYQsDiscoveryPage />} />
+              <Route path="/pyqs/:id" element={<PYQDetailsPage />} />
               <Route path="/resources" element={<FreeResourcesPage />} />
               <Route path="/results" element={<ResultPage />} />
               <Route path="/about" element={<AboutPage />} />
@@ -97,6 +106,7 @@ function App() {
                   <Route path="/dashboard/resources" element={<StudentResourcesPage />} />
                   <Route path="/dashboard/analytics" element={<StudentAnalyticsPage />} />
                   <Route path="/dashboard/results" element={<StudentTestResultsPage />} />
+                  <Route path="/dashboard/results/:attemptId" element={<StudentTestResultDetailPage />} />
                 </Route>
                 {/* Full Screen Test Route */}
                 <Route path="/dashboard/attempt/:testId" element={<StudentTestAttemptPage />} />
@@ -111,7 +121,9 @@ function App() {
                   <Route path="/admin-dashboard/question-bank" element={<QuestionBank />} />
                   <Route path="/admin-dashboard/chapters" element={<AdminChaptersPage />} />
                   <Route path="/admin-dashboard/pyqs" element={<AdminPYQsPage />} />
+                  <Route path="/admin-dashboard/pyqs/new" element={<AdminAddPYQPage />} />
                   <Route path="/admin-dashboard/resources" element={<AdminResourcesPage />} />
+                  <Route path="/admin-dashboard/resources/new" element={<AdminAddResourcePage />} />
                   <Route path="/admin-dashboard/students" element={<AdminStudentsPage />} />
                   <Route path="/admin-dashboard/settings" element={<AdminSettingsPage />} />
                 </Route>

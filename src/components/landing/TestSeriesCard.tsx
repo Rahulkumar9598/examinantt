@@ -1,17 +1,16 @@
-import { useNavigate } from 'react-router-dom';
 import { CheckCircle } from 'lucide-react';
 
 interface TestSeriesProps {
     title: string;
     isNew?: boolean;
     features: string[];
-    originalPrice: string;
-    price: string;
+    originalPrice: string | number;
+    price: string | number;
     colorTheme?: 'blue' | 'green';
+    onExplore: () => void;
 }
 
-const TestSeriesCard = ({ title, isNew, features, originalPrice, price, colorTheme = 'blue' }: TestSeriesProps) => {
-    const navigate = useNavigate();
+const TestSeriesCard = ({ title, isNew, features, originalPrice, price, colorTheme = 'blue', onExplore }: TestSeriesProps) => {
 
     return (
         <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full group">
@@ -49,13 +48,13 @@ const TestSeriesCard = ({ title, isNew, features, originalPrice, price, colorThe
                 </div>
 
                 <button
-                    onClick={() => navigate('/signup')}
+                    onClick={onExplore}
                     className={`w-full py-4 rounded-xl font-bold text-white shadow-md transition-all active:scale-95 ${colorTheme === 'green'
                         ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-green-200'
                         : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-blue-200'
                         }`}
                 >
-                    Explore (Buy)
+                    Explore Now
                 </button>
             </div>
         </div>

@@ -105,26 +105,38 @@ export const getStudentStats = async (userId: string): Promise<StudentStats> => 
 export const getRecommendedSeries = async (): Promise<RecommendedSeries[]> => {
     try {
         // Fetch published series
-        // In a real app, we'd filter out what user already bought.
-        // For now, just fetch latest 3 published.
+        // Note: Removed orderBy('createdAt') to avoid needing a composite index for now.
+        // We'll sort client-side.
         const q = query(
             collection(db, 'testSeries'),
             where('status', '==', 'published'),
-            limit(3)
+            limit(20) // Fetch a bit more to sort client side
         );
         const snapshot = await getDocs(q);
 
-        // Check user purchases to filter (optional optimization)
-        // const purchasesRef = collection(db, 'users', userId, 'purchases'); ...
-
-        return snapshot.docs.map(doc => {
+        const series = snapshot.docs.map(doc => {
             const data = doc.data();
             return {
                 id: doc.id,
-                ...data,
-                price: data.price ?? 0
+                title: data.name, // Map 'name' to 'title'
+                description: data.description,
+                price: data.pricing?.amount ?? 0, // Map nested pricing
+                category: data.examCategory, // Map 'examCategory' to 'category'
+                questionCount: data.stats?.totalTests, // Optional mapping
+                createdAt: data.createdAt, // Keep for sorting
+                stats: {
+                    totalTests: data.stats?.totalTests || 0
+                }
             } as RecommendedSeries;
         });
+
+        // Sort client-side by createdAt descending
+        return series.sort((a: any, b: any) => {
+            const timeA = a.createdAt?.seconds || 0;
+            const timeB = b.createdAt?.seconds || 0;
+            return timeB - timeA;
+        }).slice(0, 6); // Take top 6 after sort
+
     } catch (error) {
         console.error("Error fetching recommendations:", error);
         return [];

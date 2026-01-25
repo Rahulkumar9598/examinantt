@@ -1,19 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { PlayCircle, Clock, BookOpen, Search, ShoppingCart, Check, Loader2 } from 'lucide-react';
+import { Search, Loader2 } from 'lucide-react';
 import { db } from '../../firebase';
-import { collection, query, where, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useAuth } from '../../contexts/AuthContext';
-
-interface TestSeries {
-    id: string;
-    title: string;
-    category: string;
-    price: number;
-    description: string;
-    questions: any[];
-    status: 'draft' | 'published';
-}
+import type { TestSeries } from '../../types/test.types';
+import { getAllTestSeries } from '../../services/testSeriesService';
+import TestSeriesCard from '../../components/landing/TestSeriesCard';
 
 const StudentMarketPage = () => {
     const authContext = useAuth();
@@ -21,54 +14,56 @@ const StudentMarketPage = () => {
     const [tests, setTests] = useState<TestSeries[]>([]);
     const [purchasedTestIds, setPurchasedTestIds] = useState<Set<string>>(new Set());
     const [isLoading, setIsLoading] = useState(true);
-    const [buyingId, setBuyingId] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
 
+    // Fetch Tests (Real Data)
     useEffect(() => {
-        // Fetch User Purchases
+        const fetchTests = async () => {
+            try {
+                const data = await getAllTestSeries({ status: 'published' });
+                console.log(data);
+                setTests(data);
+            } catch (error) {
+                console.error("Error fetching test series:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchTests();
+    }, []);
+
+    // Fetch User Purchases
+    useEffect(() => {
         if (currentUser) {
             const purchasesRef = collection(db, 'users', currentUser.uid, 'purchases');
             const unsubscribePurchases = onSnapshot(purchasesRef, (snapshot) => {
-                const ids = new Set(snapshot.docs.map(doc => doc.data().testId));
+                const ids = new Set(snapshot.docs.map(doc => doc.data().seriesId || doc.data().testId));
                 setPurchasedTestIds(ids);
             });
-
-            // Fetch Published Tests
-            const testsQuery = query(collection(db, 'testSeries'), where('status', '==', 'published'));
-            const unsubscribeTests = onSnapshot(testsQuery, (snapshot) => {
-                const fetchedTests = snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                })) as TestSeries[];
-                setTests(fetchedTests);
-                setIsLoading(false);
-            });
-
-            return () => {
-                unsubscribePurchases();
-                unsubscribeTests();
-            };
+            return () => unsubscribePurchases();
         }
     }, [currentUser]);
 
-    const handleBuy = async (test: TestSeries) => {
+    const handleBuy = async (series: TestSeries) => {
         if (!currentUser) return;
-        setBuyingId(test.id);
+
+        // If already owned, maybe navigate to tests?
+        if (purchasedTestIds.has(series.id)) {
+            // navigate to tests
+            return;
+        }
 
         try {
-            // Simulate payment processing
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
-            // Add purchase record
             await addDoc(collection(db, 'users', currentUser.uid, 'purchases'), {
-                testId: test.id, // Keeping for potential legacy ref, but seriesId is the main one now
-                seriesId: test.id,
+                seriesId: series.id,
+                testId: series.id,
                 type: 'series',
-                seriesTitle: test.title, // Explicit series title
-                testTitle: test.title, // Backup
-                category: test.category,
-                price: test.price,
+                seriesTitle: series.name,
+                testTitle: series.name,
+                category: series.examCategory,
+                price: series.pricing.type === 'free' ? 0 : series.pricing.amount,
                 purchaseDate: serverTimestamp()
             });
 
@@ -76,38 +71,22 @@ const StudentMarketPage = () => {
         } catch (error) {
             console.error("Purchase failed", error);
             alert('Purchase failed. Please try again.');
-        } finally {
-            setBuyingId(null);
         }
-    };
-
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.1 }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: { y: 0, opacity: 1 }
     };
 
     const filteredTests = tests.filter(test => {
-        const matchesSearch = (test.title?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
-            (test.category?.toLowerCase() || '').includes(searchTerm.toLowerCase());
-        const matchesCategory = selectedCategory === 'All' || test.category === selectedCategory;
+        // Safe access to name/title
+        const seriesName = test.name || (test as any).title || '';
+        const category = test.examCategory || '';
+
+        const matchesSearch = seriesName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            category.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesCategory = selectedCategory === 'All' || category === selectedCategory;
         return matchesSearch && matchesCategory;
     });
 
     return (
-        <motion.div
-            className="p-4 md:p-6 lg:p-8 max-w-7xl mx-auto space-y-8"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-        >
+        <div className="p-4 md:p-6 lg:p-8 max-w-7xl mx-auto space-y-8">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
                     <h1 className="text-2xl font-bold text-slate-800">Test Series Market</h1>
@@ -146,80 +125,40 @@ const StudentMarketPage = () => {
                     No test series found matching your search.
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredTests.map((test) => {
-                        const isOwned = purchasedTestIds.has(test.id);
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {filteredTests.map((series) => {
+                        const isOwned = purchasedTestIds.has(series.id);
+                        // Safe Access to properties
+                        const title = series.name || (series as any).title || "Untitled Series";
+                        const features = (series as any).features && Array.isArray((series as any).features)
+                            ? (series as any).features
+                            : [series.description || "No description available"];
+
                         return (
-                            <motion.div
-                                key={test.id}
-                                variants={itemVariants}
-                                className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-blue-200 transition-all duration-300 flex flex-col"
-                            >
-                                <div className="h-40 bg-gradient-to-br from-slate-800 to-slate-900 relative p-6 flex flex-col justify-between">
-                                    <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                                        <BookOpen size={100} className="text-white" />
-                                    </div>
-                                    <div className="flex justify-between items-start z-10">
-                                        <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-medium text-white border border-white/20">
-                                            {test.category}
+                            <div key={series.id}>
+                                <TestSeriesCard
+                                    title={title}
+                                    isNew={!!(series as any).isNew}
+                                    features={features}
+                                    originalPrice={series.pricing?.type === 'paid' ? `${(series.pricing.amount || 0) * 1.5}` : '0'}
+                                    price={series.pricing?.type === 'paid' ? `${series.pricing.amount}` : 'Free'}
+                                    colorTheme={series.examCategory === 'NEET' ? 'green' : 'blue'}
+                                    onExplore={() => handleBuy(series)}
+                                />
+                                {isOwned && (
+                                    <div className="mt-2 text-center">
+                                        <span className="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">
+                                            Already Owned
                                         </span>
                                     </div>
-                                </div>
-                                <div className="p-5 flex-1 flex flex-col">
-                                    <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-600 transition-colors mb-2">
-                                        {test.title}
-                                    </h3>
-                                    <p className="text-sm text-slate-500 mb-4 line-clamp-2">
-                                        {test.description}
-                                    </p>
-
-                                    <div className="flex items-center gap-4 text-slate-500 text-sm mb-6 mt-auto">
-                                        <div className="flex items-center gap-1.5">
-                                            <Clock size={16} className="text-slate-400" />
-                                            <span>Variable</span>
-                                        </div>
-                                        <div className="flex items-center gap-1.5">
-                                            <PlayCircle size={16} className="text-slate-400" />
-                                            <span>{test.questions ? test.questions.length : 0} Qs</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                                        <div>
-                                            <div className="text-2xl font-bold text-slate-800">
-                                                {(test.price || 0) === 0 ? 'Free' : `₹${test.price}`}
-                                            </div>
-                                        </div>
-                                        {isOwned ? (
-                                            <button
-                                                disabled
-                                                className="px-4 py-2 bg-green-100 text-green-700 text-sm font-bold rounded-lg flex items-center gap-2 cursor-default"
-                                            >
-                                                <Check size={16} />
-                                                Owned
-                                            </button>
-                                        ) : (
-                                            <button
-                                                onClick={() => handleBuy(test)}
-                                                disabled={buyingId === test.id}
-                                                className="px-4 py-2 bg-slate-900 text-white text-sm font-bold rounded-lg hover:bg-blue-600 transition-colors shadow-lg shadow-slate-200 flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
-                                            >
-                                                {buyingId === test.id ? (
-                                                    <Loader2 className="animate-spin" size={16} />
-                                                ) : (
-                                                    <ShoppingCart size={16} />
-                                                )}
-                                                Buy Now
-                                            </button>
-                                        )}
-                                    </div>
-                                </div>
-                            </motion.div>
+                                )}
+                            </div>
                         );
                     })}
                 </div>
             )}
-        </motion.div>
+        </div>
     );
 };
 export default StudentMarketPage;
+

@@ -137,7 +137,7 @@ const TestCreationWizard = ({ seriesId, onComplete, onCancel }: TestCreationWiza
     const canProceed = () => {
         switch (currentStep) {
             case 0: // Basic Info
-                return formData.name && formData.testType;
+                return !!(formData.name && formData.testType && formData.seriesId);
             case 1: // Generation Method
                 if (formData.generationType === 'auto') {
                     return formData.autoConfig?.subjects && formData.autoConfig.subjects.length > 0;

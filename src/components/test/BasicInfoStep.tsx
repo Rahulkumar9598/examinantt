@@ -45,12 +45,14 @@ const BasicInfoStep = ({ formData, updateFormData }: BasicInfoStepProps) => {
             {/* Test Series Selection */}
             <div>
                 <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Test Series (Optional)
+                    Test Series *
                 </label>
                 <select
                     value={formData.seriesId || ''}
                     onChange={(e) => updateFormData({ seriesId: e.target.value })}
-                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                    className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white ${!formData.seriesId ? 'border-amber-300 bg-amber-50' : 'border-slate-300'
+                        }`}
+                    required
                 >
                     <option value="">Select a Test Series</option>
                     {seriesList.map((series) => (
@@ -60,7 +62,7 @@ const BasicInfoStep = ({ formData, updateFormData }: BasicInfoStepProps) => {
                     ))}
                 </select>
                 <p className="text-xs text-slate-500 mt-1">
-                    Link this test to an existing series
+                    Select the series this test belongs to (Required).
                 </p>
             </div>
 

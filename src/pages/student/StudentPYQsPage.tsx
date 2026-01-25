@@ -1,22 +1,27 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Download, Lock, Loader2, Search } from 'lucide-react';
+import { FileText, Download, Lock, Loader2, Search, PenTool, PlayCircle } from 'lucide-react';
 import { db } from '../../firebase';
-import { collection, query, orderBy, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, query, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useAuth } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { marketplaceService } from '../../services/marketplaceService';
 
 interface PYQ {
     id: string;
     title: string;
     category: string;
     year: string;
-    fileUrl: string;
+    type?: 'pdf' | 'test';
+    fileUrl?: string;
+    testId?: string;
     price: number;
 }
 
 const StudentPYQsPage = () => {
     const authContext = useAuth();
     const currentUser = authContext?.currentUser;
+    const navigate = useNavigate();
     const [pyqs, setPyqs] = useState<PYQ[]>([]);
     const [purchasedIds, setPurchasedIds] = useState<Set<string>>(new Set());
     const [isLoading, setIsLoading] = useState(true);
@@ -34,14 +39,19 @@ const StudentPYQsPage = () => {
             });
 
             // Fetch PYQs
-            const q = query(collection(db, 'pyqs'), orderBy('year', 'desc'));
+            const q = query(collection(db, 'pyqs')); // Removed orderBy to check for index issues
             const unsubscribePyqs = onSnapshot(q, (snapshot) => {
                 const fetched = snapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
                 })) as PYQ[];
+                console.log("Fetched PYQs:", fetched.length);
                 setPyqs(fetched);
                 setIsLoading(false);
+            }, (error) => {
+                console.error("PYQ subscription error:", error);
+                setIsLoading(false);
+                alert("Error loading PYQs: " + error.message);
             });
 
             return () => {
@@ -55,13 +65,11 @@ const StudentPYQsPage = () => {
         if (!currentUser) return;
         setBuyingId(pyq.id);
         try {
-            await new Promise(resolve => setTimeout(resolve, 800)); // Simulating payment
-            await addDoc(collection(db, 'users', currentUser.uid, 'purchases'), {
-                itemId: pyq.id,
+            await marketplaceService.enrollInItem(currentUser.uid, {
+                id: pyq.id,
                 title: pyq.title,
-                type: 'pyq',
                 price: pyq.price,
-                purchaseDate: serverTimestamp()
+                type: 'pyq'
             });
             alert('Unlocked successfully!');
         } catch (error) {
@@ -119,6 +127,8 @@ const StudentPYQsPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredPyqs.map((pyq) => {
                         const isUnlocked = pyq.price === 0 || purchasedIds.has(pyq.id);
+                        const isTest = pyq.type === 'test';
+
                         return (
                             <motion.div
                                 key={pyq.id}
@@ -127,26 +137,35 @@ const StudentPYQsPage = () => {
                             >
                                 <div className="flex justify-between items-start mb-4">
                                     <div className={`p-3 rounded-xl ${isUnlocked ? 'bg-green-100 text-green-600' : 'bg-orange-100 text-orange-600'}`}>
-                                        <FileText size={24} />
+                                        {isTest ? <PenTool size={24} /> : <FileText size={24} />}
                                     </div>
                                     <span className="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">{pyq.category}</span>
                                 </div>
                                 <h3 className="font-bold text-slate-800 mb-1">{pyq.title}</h3>
-                                <p className="text-sm text-slate-500 mb-4">{pyq.year}</p>
+                                <p className="text-sm text-slate-500 mb-4">{pyq.year} • {isTest ? 'Interactive Test' : 'PDF Document'}</p>
 
                                 <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
                                     <div className="font-bold text-slate-800">
                                         {pyq.price === 0 ? 'Free' : `₹${pyq.price}`}
                                     </div>
                                     {isUnlocked ? (
-                                        <a
-                                            href={pyq.fileUrl || "#"}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="px-4 py-2 bg-slate-900 text-white text-sm font-semibold rounded-lg hover:bg-slate-800 flex items-center gap-2"
-                                        >
-                                            <Download size={16} /> Download
-                                        </a>
+                                        isTest ? (
+                                            <button
+                                                onClick={() => navigate(`/dashboard/attempt/${pyq.testId}`)}
+                                                className="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 flex items-center gap-2"
+                                            >
+                                                <PlayCircle size={16} /> Attempt
+                                            </button>
+                                        ) : (
+                                            <a
+                                                href={pyq.fileUrl || "#"}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="px-4 py-2 bg-slate-900 text-white text-sm font-semibold rounded-lg hover:bg-slate-800 flex items-center gap-2"
+                                            >
+                                                <Download size={16} /> Download
+                                            </a>
+                                        )
                                     ) : (
                                         <button
                                             onClick={() => handleBuy(pyq)}
@@ -166,5 +185,4 @@ const StudentPYQsPage = () => {
         </motion.div>
     );
 };
-
 export default StudentPYQsPage;

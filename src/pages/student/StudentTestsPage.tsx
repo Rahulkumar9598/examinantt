@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, Calendar, Loader2, ChevronDown, ChevronUp, PlayCircle, BookOpen } from 'lucide-react';
+import { Clock, Loader2, ChevronDown, ChevronUp, PlayCircle, BookOpen, Award } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { db } from '../../firebase';
+// ... (imports)
 import { collection, onSnapshot, query, where, getDocs, orderBy } from 'firebase/firestore';
 
 interface PurchasedTest {
@@ -23,10 +24,18 @@ interface TestItem {
     settings: {
         duration: number;
     };
-    questions: any[];
+    questions?: any[];
+    questionIds?: string[];
 }
 
-const SeriesCard = ({ purchase }: { purchase: PurchasedTest }) => {
+interface Attempt {
+    id: string;
+    testId: string;
+    score: number;
+    attemptDate: any;
+}
+
+const SeriesCard = ({ purchase, attemptsMap }: { purchase: PurchasedTest, attemptsMap: Record<string, Attempt[]> }) => {
     const navigate = useNavigate();
     const [tests, setTests] = useState<TestItem[]>([]);
     const [loadingTests, setLoadingTests] = useState(false);
@@ -115,33 +124,65 @@ const SeriesCard = ({ purchase }: { purchase: PurchasedTest }) => {
                             </div>
                         ) : (
                             <div className="divide-y divide-slate-100">
-                                {tests.map((test) => (
-                                    <div key={test.id} className="p-4 flex items-center justify-between hover:bg-slate-50 transition-colors pl-20">
-                                        <div className="flex items-center gap-4">
-                                            <div className="p-2 bg-slate-100 rounded-lg text-slate-500">
-                                                <Clock size={18} />
+                                {tests.map((test) => {
+                                    const testAttempts = attemptsMap[test.id] || [];
+                                    const hasAttempted = testAttempts.length > 0;
+                                    const lastAttempt = hasAttempted ? testAttempts[0] : null; // Assuming ordered by desc date
+
+                                    return (
+                                        <div key={test.id} className="p-4 flex flex-col md:flex-row md:items-center justify-between hover:bg-slate-50 transition-colors pl-4 md:pl-20 gap-4">
+                                            <div className="flex items-center gap-4">
+                                                <div className={`p-2 rounded-lg ${hasAttempted ? 'bg-green-100 text-green-600' : 'bg-slate-100 text-slate-500'}`}>
+                                                    {hasAttempted ? <Award size={18} /> : <Clock size={18} />}
+                                                </div>
+                                                <div>
+                                                    <h4 className="font-semibold text-slate-800">{test.name}</h4>
+                                                    <div className="text-xs text-slate-500 flex flex-wrap items-center gap-2 mt-1">
+                                                        <span>{test.settings?.duration || 180} mins</span>
+                                                        <span>•</span>
+                                                        <span>{test.questionIds?.length || 0} Questions</span>
+                                                        {hasAttempted && (
+                                                            <>
+                                                                <span className="hidden md:inline">•</span>
+                                                                <span className="text-green-600 font-bold bg-green-50 px-2 py-0.5 rounded-full">
+                                                                    Best Score: {Math.max(...testAttempts.map(a => a.score))}
+                                                                </span>
+                                                            </>
+                                                        )}
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h4 className="font-semibold text-slate-800">{test.name}</h4>
-                                                <p className="text-xs text-slate-500 flex items-center gap-2">
-                                                    <span>{test.settings?.duration || 180} mins</span>
-                                                    <span>•</span>
-                                                    <span>{test.questions?.length || 0} Questions</span>
-                                                </p>
+
+                                            <div className="flex items-center gap-2 self-end md:self-auto">
+                                                {hasAttempted && (
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            navigate('/dashboard/results');
+                                                        }}
+                                                        className="px-4 py-2 border border-slate-300 text-slate-700 text-sm font-bold rounded-lg hover:bg-slate-100 transition-colors"
+                                                    >
+                                                        View Result
+                                                    </button>
+                                                )}
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        if (hasAttempted && !window.confirm("Do you want to re-attempt this test? A new attempt record will be created.")) return;
+                                                        navigate(`/dashboard/attempt/${test.id}`);
+                                                    }}
+                                                    className={`px-4 py-2 text-white text-sm font-bold rounded-lg transition-colors flex items-center gap-2 shadow-sm ${hasAttempted
+                                                        ? 'bg-slate-800 hover:bg-slate-900 shadow-slate-500/20'
+                                                        : 'bg-blue-600 hover:bg-blue-700 shadow-blue-500/20'
+                                                        }`}
+                                                >
+                                                    <PlayCircle size={16} />
+                                                    {hasAttempted ? 'Re-Attempt' : 'Start Test'}
+                                                </button>
                                             </div>
                                         </div>
-                                        <button
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                navigate(`/dashboard/attempt/${test.id}`);
-                                            }}
-                                            className="px-4 py-2 bg-blue-600 text-white text-sm font-bold rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-sm shadow-blue-500/20"
-                                        >
-                                            <PlayCircle size={16} />
-                                            Start Test
-                                        </button>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         )}
                     </motion.div>
@@ -156,11 +197,13 @@ const StudentTestsPage = () => {
     const authContext = useAuth();
     const currentUser = authContext?.currentUser;
     const [purchasedTests, setPurchasedTests] = useState<PurchasedTest[]>([]);
+    const [attemptsMap, setAttemptsMap] = useState<Record<string, Attempt[]>>({});
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         if (currentUser) {
-            const unsubscribe = onSnapshot(collection(db, 'users', currentUser.uid, 'purchases'), (snapshot) => {
+            // Fetch Purchases
+            const unsubscribePurchases = onSnapshot(collection(db, 'users', currentUser.uid, 'purchases'), (snapshot) => {
                 const tests = snapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
@@ -168,7 +211,30 @@ const StudentTestsPage = () => {
                 setPurchasedTests(tests);
                 setIsLoading(false);
             });
-            return () => unsubscribe();
+
+            // Fetch Attempts
+            const unsubscribeAttempts = onSnapshot(
+                query(collection(db, 'users', currentUser.uid, 'attempts'), orderBy('attemptDate', 'desc')),
+                (snapshot) => {
+                    const attempts = snapshot.docs.map(doc => ({
+                        id: doc.id,
+                        ...doc.data()
+                    })) as Attempt[];
+
+                    // Group by testId
+                    const map: Record<string, Attempt[]> = {};
+                    attempts.forEach(attempt => {
+                        if (!map[attempt.testId]) map[attempt.testId] = [];
+                        map[attempt.testId].push(attempt);
+                    });
+                    setAttemptsMap(map);
+                }
+            );
+
+            return () => {
+                unsubscribePurchases();
+                unsubscribeAttempts();
+            };
         }
     }, [currentUser]);
 
@@ -224,7 +290,7 @@ const StudentTestsPage = () => {
                     </div>
                 ) : (
                     purchasedTests.map((purchase) => (
-                        <SeriesCard key={purchase.id} purchase={purchase} />
+                        <SeriesCard key={purchase.id} purchase={purchase} attemptsMap={attemptsMap} />
                     ))
                 )}
             </div>

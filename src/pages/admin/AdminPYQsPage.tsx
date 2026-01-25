@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Search, Trash2, X, Save, Loader2, FileText, Link as LinkIcon } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Plus, Search, Trash2, Loader2, FileText, PenTool } from 'lucide-react';
 import { db } from '../../firebase';
-import { collection, addDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp } from 'firebase/firestore';
-// test
+import { collection, deleteDoc, doc, onSnapshot, query, orderBy } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+
 interface PYQ {
     id: string;
     title: string;
     category: string;
     year: string;
-    fileUrl: string;
+    type: 'pdf' | 'test';
+    fileUrl?: string;
+    testId?: string;
     price: number;
     createdAt: any;
 }
@@ -17,16 +20,8 @@ interface PYQ {
 const AdminPYQsPage = () => {
     const [pyqs, setPyqs] = useState<PYQ[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [isCreating, setIsCreating] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-
-    const [formData, setFormData] = useState({
-        title: '',
-        category: 'NEET',
-        year: new Date().getFullYear().toString(),
-        fileUrl: '',
-        price: '0' // Default to free
-    });
+    const navigate = useNavigate();
 
     useEffect(() => {
         const q = query(collection(db, 'pyqs'), orderBy('createdAt', 'desc'));
@@ -40,21 +35,6 @@ const AdminPYQsPage = () => {
         });
         return () => unsubscribe();
     }, []);
-
-    const handleCreate = async (e: React.FormEvent) => {
-        e.preventDefault();
-        try {
-            await addDoc(collection(db, 'pyqs'), {
-                ...formData,
-                price: Number(formData.price),
-                createdAt: serverTimestamp()
-            });
-            setIsCreating(false);
-            setFormData({ title: '', category: 'NEET', year: new Date().getFullYear().toString(), fileUrl: '', price: '0' });
-        } catch (error) {
-            console.error("Error creating PYQ:", error);
-        }
-    };
 
     const handleDelete = async (id: string) => {
         if (window.confirm('Are you sure?')) {
@@ -83,7 +63,7 @@ const AdminPYQsPage = () => {
                     <p className="text-slate-500 mt-1">Upload and manage Previous Year Questions.</p>
                 </div>
                 <button
-                    onClick={() => setIsCreating(true)}
+                    onClick={() => navigate('/admin-dashboard/pyqs/new')}
                     className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
                 >
                     <Plus size={20} /> Add PYQ
@@ -112,24 +92,33 @@ const AdminPYQsPage = () => {
                                 <th className="px-6 py-4">Category</th>
                                 <th className="px-6 py-4">Year</th>
                                 <th className="px-6 py-4">Type</th>
+                                <th className="px-6 py-4">Source</th>
                                 <th className="px-6 py-4">Price</th>
                                 <th className="px-6 py-4 text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">
                             {isLoading ? (
-                                <tr><td colSpan={6} className="text-center py-8"><Loader2 className="animate-spin inline" /></td></tr>
+                                <tr><td colSpan={7} className="text-center py-8"><Loader2 className="animate-spin inline" /></td></tr>
                             ) : filteredPyqs.length === 0 ? (
-                                <tr><td colSpan={6} className="text-center py-8 text-slate-500">No PYQs found.</td></tr>
+                                <tr><td colSpan={7} className="text-center py-8 text-slate-500">No PYQs found.</td></tr>
                             ) : (
                                 filteredPyqs.map((pyq) => (
                                     <tr key={pyq.id} className="hover:bg-slate-50/50">
                                         <td className="px-6 py-4 font-medium text-slate-700 flex items-center gap-2">
-                                            <FileText size={16} className="text-blue-500" /> {pyq.title}
+                                            {pyq.type === 'test' ? <PenTool size={16} className="text-purple-500" /> : <FileText size={16} className="text-blue-500" />}
+                                            {pyq.title}
                                         </td>
                                         <td className="px-6 py-4">{pyq.category}</td>
                                         <td className="px-6 py-4">{pyq.year}</td>
-                                        <td className="px-6 py-4 text-xs font-mono text-slate-500 truncate max-w-[150px]">{pyq.fileUrl ? 'Link/File' : 'None'}</td>
+                                        <td className="px-6 py-4">
+                                            <span className={`px-2 py-1 rounded-md text-xs font-bold ${pyq.type === 'test' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'}`}>
+                                                {pyq.type === 'test' ? 'Interactive' : 'PDF'}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4 text-xs font-mono text-slate-500 truncate max-w-[150px]">
+                                            {pyq.type === 'test' ? `ID: ${pyq.testId}` : 'File Link'}
+                                        </td>
                                         <td className="px-6 py-4 font-bold text-slate-700">
                                             {pyq.price === 0 ? <span className="text-green-600">Free</span> : `₹${pyq.price}`}
                                         </td>
@@ -144,61 +133,8 @@ const AdminPYQsPage = () => {
                 </div>
             </div>
 
-            <AnimatePresence>
-                {isCreating && (
-                    <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setIsCreating(false)}>
-                        <motion.div
-                            initial={{ scale: 0.95, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.95, opacity: 0 }}
-                            className="bg-white w-full max-w-lg rounded-2xl shadow-xl overflow-hidden"
-                            onClick={e => e.stopPropagation()}
-                        >
-                            <div className="p-6 border-b border-slate-100 flex justify-between items-center">
-                                <h2 className="text-xl font-bold text-slate-800">Add New PYQ</h2>
-                                <button onClick={() => setIsCreating(false)}><X size={24} className="text-slate-400" /></button>
-                            </div>
-                            <form onSubmit={handleCreate} className="p-6 space-y-4">
-                                <div>
-                                    <label className="block text-sm font-semibold text-slate-700 mb-1">Title</label>
-                                    <input type="text" required value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} className="w-full px-4 py-2 border rounded-lg" placeholder="e.g. JEE Mains 2023 Shift 1" />
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <label className="block text-sm font-semibold text-slate-700 mb-1">Category</label>
-                                        <select value={formData.category} onChange={e => setFormData({ ...formData, category: e.target.value })} className="w-full px-4 py-2 border rounded-lg bg-white">
-                                            <option>NEET</option><option>JEE</option><option>SSC</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-semibold text-slate-700 mb-1">Year</label>
-                                        <input type="number" required value={formData.year} onChange={e => setFormData({ ...formData, year: e.target.value })} className="w-full px-4 py-2 border rounded-lg" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-semibold text-slate-700 mb-1">File URL / Link</label>
-                                    <div className="relative">
-                                        <LinkIcon size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                                        <input type="url" required value={formData.fileUrl} onChange={e => setFormData({ ...formData, fileUrl: e.target.value })} className="w-full pl-10 pr-4 py-2 border rounded-lg" placeholder="https://..." />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <input type="checkbox" id="isFreePyq" checked={formData.price === '0'} onChange={e => setFormData({ ...formData, price: e.target.checked ? '0' : '' })} className="w-4 h-4 text-blue-600 rounded" />
-                                        <label htmlFor="isFreePyq" className="text-sm font-medium text-slate-700">Free Resource</label>
-                                    </div>
-                                    <input type="number" disabled={formData.price === '0'} value={formData.price} onChange={e => setFormData({ ...formData, price: e.target.value })} className="w-full px-4 py-2 border rounded-lg disabled:bg-slate-100" placeholder="Price (₹)" />
-                                </div>
-                                <button type="submit" className="w-full py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2">
-                                    <Save size={18} /> Save PYQ
-                                </button>
-                            </form>
-                        </motion.div>
-                    </div>
-                )}
-            </AnimatePresence>
+
         </motion.div>
     );
 };
-
 export default AdminPYQsPage;

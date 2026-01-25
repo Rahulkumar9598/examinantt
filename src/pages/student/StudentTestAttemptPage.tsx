@@ -65,13 +65,48 @@ const StudentTestAttemptPage = () => {
         const fetchTest = async () => {
             if (testId) {
                 try {
-                    const docRef = doc(db, 'testSeries', testId);
+                    // Fetch Test Document
+                    const docRef = doc(db, 'tests', testId);
                     const docSnap = await getDoc(docRef);
+
                     if (docSnap.exists()) {
-                        const data = { id: docSnap.id, ...docSnap.data() } as TestData;
+                        const rawData = { id: docSnap.id, ...docSnap.data() } as any;
+
+                        // Fetch actual questions
+                        const questionIds = rawData.questionIds || [];
+                        let fullQuestions: Question[] = [];
+
+                        if (questionIds.length > 0) {
+                            // Fetch all questions in parallel
+                            // Note: For large tests, we might want to batch this or use a compound query if possible
+                            // But individual lookups are okay for typical test sizes (<100) given resolving from IDs
+                            const questionPromises = questionIds.map((id: string) => getDoc(doc(db, 'questions', id)));
+                            const questionSnaps = await Promise.all(questionPromises);
+
+                            fullQuestions = questionSnaps
+                                .filter(snap => snap.exists())
+                                .map(snap => {
+                                    const qData = snap.data() as any;
+                                    return {
+                                        id: snap.id,
+                                        ...qData,
+                                        // Auto-assign section if missing, based on type for JEE Main compatibility
+                                        section: qData.section || (qData.type === 'MCQ' ? 'A' : 'B')
+                                    } as Question;
+                                });
+                        }
+
+                        const data: TestData = {
+                            id: rawData.id,
+                            title: rawData.name, // Map 'name' to 'title'
+                            questions: fullQuestions,
+                            duration: rawData.settings?.duration || rawData.duration || 180,
+                            testPattern: rawData.testPattern || (fullQuestions.some(q => q.type === 'Numerical') ? 'JEE_MAINS' : 'STANDARD')
+                        };
+
                         setTestData(data);
 
-                        // Set timer from test duration
+                        // Set timer
                         if (data.duration) {
                             setTimeRemaining(data.duration * 60);
                         }
@@ -81,6 +116,7 @@ const StudentTestAttemptPage = () => {
                     }
                 } catch (error) {
                     console.error("Error fetching test:", error);
+                    alert("Error loading test content");
                 } finally {
                     setIsLoading(false);
                 }
@@ -257,7 +293,7 @@ const StudentTestAttemptPage = () => {
                 correctAnswers: correctCount,
                 attemptedQuestions: attemptedCount,
                 attemptDate: serverTimestamp(),
-                duration: (3 * 60 * 60) - timeRemaining,
+                duration: (testData.duration ? testData.duration * 60 : 180 * 60) - timeRemaining,
                 answers: answers,
                 markedForReview: Array.from(markedForReview),
                 sectionBSelections: {
@@ -316,7 +352,9 @@ const StudentTestAttemptPage = () => {
                                     <div className="text-sm text-slate-600">Total Questions</div>
                                 </div>
                                 <div className="bg-slate-50 p-4 rounded-lg">
-                                    <div className="text-2xl font-bold text-green-600">{formatTime(timeRemaining)}</div>
+                                    <div className="text-2xl font-bold text-green-600">
+                                        {testData.duration ? `${testData.duration} Mins` : formatTime(timeRemaining)}
+                                    </div>
                                     <div className="text-sm text-slate-600">Duration</div>
                                 </div>
                                 <div className="bg-slate-50 p-4 rounded-lg">

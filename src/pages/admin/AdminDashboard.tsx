@@ -123,7 +123,7 @@ const AdminDashboard = () => {
                         </h1>
                         <p className="text-slate-500 mt-1">Here's what's happening with your platform today.</p>
                     </div>
-                    <div className="px-4 py-2 bg-white rounded-full border border-slate-200 text-sm text-slate-600 shadow-sm">
+                    <div className="px-4 py-2 bg-white rounded-xl border border-slate-200 text-sm font-bold text-slate-600 shadow-sm">
                         {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                     </div>
                 </div>
