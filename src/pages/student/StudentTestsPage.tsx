@@ -127,7 +127,6 @@ const SeriesCard = ({ purchase, attemptsMap }: { purchase: PurchasedTest, attemp
                                 {tests.map((test) => {
                                     const testAttempts = attemptsMap[test.id] || [];
                                     const hasAttempted = testAttempts.length > 0;
-                                    const _lastAttempt = hasAttempted ? testAttempts[0] : null; // Assuming ordered by desc date
 
                                     return (
                                         <div key={test.id} className="p-4 flex flex-col md:flex-row md:items-center justify-between hover:bg-slate-50 transition-colors pl-4 md:pl-20 gap-4">
