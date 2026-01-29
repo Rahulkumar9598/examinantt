@@ -1,11 +1,22 @@
-import { useNavigate } from 'react-router-dom';
-import { Menu } from 'lucide-react';
-import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import logo from '../../assets/logo.png';
 
 const Navbar = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    // Handle scroll effect
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const navItems = [
         { label: 'Home', path: '/' },
@@ -15,55 +26,77 @@ const Navbar = () => {
         { label: 'Result', path: '/results' },
         { label: 'About', path: '/about' },
     ];
-
+    const isActive = (path: string) => location.pathname === path;
     return (
-        <nav className="fixed top-0 w-full z-50 glass-nav shadow-sm transition-all duration-300">
+        <nav
+            className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled
+                ? 'bg-[#F0F6FF]/95 backdrop-blur-md shadow-sm border-b border-blue-100 py-2'
+                : 'bg-[#F0F6FF] py-4'
+                }`}
+        >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-16">
-                    {/* Logo */}
-                    <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
+                <div className="flex justify-between items-center relative">
+                    {/* Logo (Left) */}
+                    <div className="flex items-center gap-3 cursor-pointer z-10" onClick={() => navigate('/')}>
                         <img src={logo} alt="Examinantt Logo" className="h-10 w-auto rounded-lg" />
-                        <span className="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-500 tracking-tight">
+                        <span className="text-2xl font-bold text-[#0B4F97] tracking-tight font-display">
                             Examinantt
                         </span>
                     </div>
 
-                    {/* Desktop Links */}
-                    <div className="hidden md:flex items-center gap-8">
+                    {/* Desktop Links (Centered) */}
+                    <div className="hidden md:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
                         {navItems.map((item) => (
                             <button
                                 key={item.label}
                                 onClick={() => navigate(item.path)}
-                                className="text-gray-600 font-medium hover:text-blue-600 transition-colors relative group"
+                                className={`text-[15px] font-semibold transition-all duration-200 relative py-1 ${isActive(item.path)
+                                    ? 'text-[#1D64D0]'
+                                    : 'text-[#334155] hover:text-[#1D64D0]'
+                                    }`}
                             >
                                 {item.label}
-                                <span className="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                {isActive(item.path) && (
+                                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#1D64D0] rounded-full"></span>
+                                )}
                             </button>
                         ))}
                     </div>
 
-                    {/* Auth Button */}
-                    <div className="hidden md:block">
+                    {/* Auth Buttons (Right) */}
+                    <div className="hidden md:flex items-center gap-4 z-10">
                         <button
                             onClick={() => navigate('/login')}
-                            className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-2.5 rounded-full font-bold shadow-lg shadow-orange-500/30 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl"
+                            className="bg-white text-[#1D64D0] border border-[#1D64D0] hover:bg-blue-50 px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200 shadow-sm"
                         >
-                            Login / Register
+                            Login
+                        </button>
+                        <button
+                            onClick={() => navigate('/signup')}
+                            className="bg-[#1D64D0] hover:bg-blue-700 text-white border border-[#1D64D0] px-6 py-2 rounded-full text-sm font-semibold shadow-sm transition-all duration-200 hover:shadow-md"
+                        >
+                            Sign up
                         </button>
                     </div>
 
                     {/* Mobile Menu Button */}
-                    <div className="md:hidden">
-                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-gray-700 hover:text-blue-600">
-                            <Menu size={28} />
+                    <div className="md:hidden z-10">
+                        <button
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            className="text-slate-700 hover:text-blue-600 p-2"
+                        >
+                            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
                     </div>
                 </div>
             </div>
 
             {/* Mobile Menu Dropdown */}
-            <div className={`md:hidden absolute top-16 left-0 w-full bg-white border-t border-gray-100 shadow-lg transition-all duration-300 ease-in-out transform origin-top ${mobileMenuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'}`}>
-                <div className="px-4 pt-2 pb-6 space-y-2">
+            <div
+                className={`md:hidden absolute top-full left-0 w-full bg-[#F0F6FF] border-b border-blue-100 shadow-lg transition-all duration-300 ease-in-out transform origin-top ${mobileMenuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'
+                    }`}
+            >
+                <div className="px-4 py-6 space-y-3">
                     {navItems.map((item) => (
                         <button
                             key={item.label}
@@ -71,17 +104,28 @@ const Navbar = () => {
                                 navigate(item.path);
                                 setMobileMenuOpen(false);
                             }}
-                            className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors"
+                            className={`block w-full text-left px-4 py-3 rounded-lg text-base font-semibold transition-colors ${isActive(item.path)
+                                ? 'bg-blue-100 text-[#1D64D0]'
+                                : 'text-slate-600 hover:text-[#1D64D0] hover:bg-blue-50'
+                                }`}
                         >
                             {item.label}
                         </button>
                     ))}
-                    <button
-                        onClick={() => navigate('/login')}
-                        className="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-3 rounded-lg font-bold shadow-md hover:shadow-lg transition-all"
-                    >
-                        Login / Register
-                    </button>
+                    <div className="pt-4 mt-2 border-t border-blue-200 flex flex-col gap-3">
+                        <button
+                            onClick={() => navigate('/login')}
+                            className="w-full bg-white text-[#1D64D0] border border-[#1D64D0] font-semibold py-2.5 rounded-full transition-colors"
+                        >
+                            Login
+                        </button>
+                        <button
+                            onClick={() => navigate('/signup')}
+                            className="w-full bg-[#1D64D0] text-white font-semibold py-2.5 rounded-full shadow-sm hover:bg-blue-700 transition-all"
+                        >
+                            Sign up
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>

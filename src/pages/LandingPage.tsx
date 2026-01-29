@@ -4,11 +4,13 @@ import { getAllTestSeries } from '../services/testSeriesService';
 import type { TestSeries } from '../types/test.types';
 import Navbar from '../components/landing/Navbar';
 import HeroSection from '../components/landing/HeroSection';
-import FeatureSliderLike from '../components/landing/FeatureSliderLike';
+import AISimulationSection from '../components/landing/AISimulationSection';
 import TestSeriesCard from '../components/landing/TestSeriesCard';
 import PYQSection from '../components/landing/PYQSection';
+import TestDevDept from '../components/landing/TestDevDept';
+import SocialProof from '../components/landing/SocialProof';
 import Footer from '../components/landing/Footer';
-// test
+
 const LandingPage = () => {
     const navigate = useNavigate();
     const [testSeries, setTestSeries] = useState<TestSeries[]>([]);
@@ -30,42 +32,45 @@ const LandingPage = () => {
     }, []);
 
     const handleBuy = (seriesId: string) => {
-        // Navigate to details page for everyone (guest or logged in)
         navigate(`/test-series/${seriesId}`);
     };
 
     return (
-        <div className="font-sans antialiased bg-white text-gray-900 selection:bg-blue-100 selection:text-blue-900">
+        <div className="font-sans antialiased bg-white text-slate-900 selection:bg-[#1D64D0] selection:text-white">
             <Navbar />
+
+            {/* 1 & 2. Hero & Banner Section */}
             <HeroSection />
 
-            {/* Slider / Key Features Section */}
-            <FeatureSliderLike />
+            {/* 4. AI Analysis and Real Exam Simulation Demo */}
+            <AISimulationSection />
+
+            {/* 3. Trending Test series / PYQs (Resources) */}
+            <PYQSection />
 
             {/* Trending Series */}
-            <section id="test-series" className="py-20 bg-blue-50/50">
+            <section id="test-series" className="py-24 bg-[#F8FAFC]">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="text-sm font-bold text-green-600 tracking-widest uppercase mb-2">Exam Categories</h2>
-                        <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900">Choose Your Exam</h3>
-                        <div className="w-20 h-1.5 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+                        <span className="text-xs font-bold text-[#1D64D0] tracking-widest uppercase mb-2 block">Trending Products</span>
+                        <h3 className="text-3xl md:text-5xl font-extrabold text-[#0B4F97]">Test Series</h3>
+                        <div className="w-20 h-1.5 bg-[#1D64D0] mx-auto mt-6 rounded-full"></div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {loading ? (
                             <div className="col-span-full flex justify-center py-12">
-                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D64D0]"></div>
                             </div>
                         ) : testSeries.length > 0 ? (
                             testSeries.map((series) => (
                                 <TestSeriesCard
                                     key={series.id}
                                     title={series.name}
-                                    isNew={true} // You might want to derive this from createdAt
+                                    isNew={true}
                                     originalPrice={series.pricing.type === 'paid' ? `${(series.pricing.amount || 0) * 1.5}` : '0'}
                                     price={series.pricing.type === 'paid' ? `${series.pricing.amount}` : 'Free'}
                                     features={series.description ? [series.description] : []}
-                                    colorTheme={series.examCategory === 'NEET' ? 'green' : 'blue'}
                                     onExplore={() => handleBuy(series.id)}
                                 />
                             ))
@@ -78,11 +83,13 @@ const LandingPage = () => {
                 </div>
             </section>
 
-            {/* Explore PYQs */}
-            <PYQSection />
+            {/* 5. Test development Dept */}
+            <TestDevDept />
 
-            {/* Footer */}
-            {/* Footer */}
+            {/* 6. Social Proof & Final CTA */}
+            <SocialProof />
+
+            {/* 7. Footer */}
             <Footer />
         </div>
     );

@@ -1,99 +1,125 @@
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Star, Users, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, Star } from 'lucide-react';
 
 const HeroSection = () => {
     const navigate = useNavigate();
 
     return (
-        <section className="relative pt-24 pb-16 md:pt-32 md:pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-white">
-            {/* Background Decor */}
-            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-50/50 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 z-0"></div>
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-orange-50/30 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 z-0"></div>
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
-
-                    {/* Left Content (7 Cols) */}
-                    <div className="text-center lg:text-left lg:col-span-7 mb-12 lg:mb-0">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-slate-50 border border-slate-100 shadow-sm mb-6 md:mb-8 transition-transform hover:scale-105 cursor-default">
-                            <span className="flex text-yellow-400">
-                                {[1, 2, 3, 4, 5].map(i => <Star key={i} size={14} fill="currentColor" />)}
-                            </span>
-                            <span className="text-xs md:text-sm font-semibold text-slate-600">Loved by 10,000+ Students</span>
-                        </div>
-
-                        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] mb-6 tracking-tight">
-                            Master Your Exams <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">With Confidence.</span>
-                        </h1>
-
-                        <p className="text-lg md:text-xl text-slate-500 mb-8 md:mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed px-2 lg:px-0">
-                            India's most advanced AI-powered mock test platform for <span className="font-semibold text-slate-800">JEE, NEET, and SSC</span>. Get real-time analysis and boost your rank.
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-4 mb-12 px-4 sm:px-0">
-                            <button
-                                onClick={() => navigate('/signup')}
-                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-bold text-lg shadow-xl shadow-blue-500/30 hover:shadow-blue-500/40 hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group"
-                            >
-                                Start Free Mock Test
-                                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                            </button>
-
-                            <button
-                                className="w-full sm:w-auto px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-xl font-bold text-lg hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center justify-center"
-                            >
-                                View Test Series
-                            </button>
-                        </div>
-
-                        {/* Trust Signals */}
-                        <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-8 text-slate-400 grayscale opacity-70 text-sm md:text-base">
-                            <div className="flex items-center gap-2"><CheckCircle size={16} /> Verified Content</div>
-                            <div className="flex items-center gap-2"><Users size={16} /> 24/7 Support</div>
-                            <div className="flex items-center gap-2"><Star size={16} /> 4.9/5 Rating</div>
-                        </div>
+        <section className="relative min-h-screen flex flex-col lg:block overflow-hidden bg-white pt-16 lg:pt-20">
+            {/* Background Split Decor - Only for Desktop */}
+            <div className="absolute inset-0 hidden lg:flex flex-row">
+                <div className="w-[42%] bg-[#0B4F97] relative h-full">
+                    <div className="absolute inset-0 opacity-10 pointer-events-none overflow-hidden">
+                        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[600px] h-[600px] border-[40px] border-white rounded-full blur-[100px]"></div>
                     </div>
+                </div>
+                <div className="w-[58%] bg-white h-full"></div>
+            </div>
 
-                    {/* Right Visuals (5 Cols) */}
-                    <div className="lg:col-span-5 relative">
-                        <div className="relative z-10 bg-white p-2 rounded-[2.5rem] shadow-2xl shadow-slate-200/50 border border-slate-100 rotate-2 hover:rotate-0 transition-transform duration-500">
-                            <div className="bg-slate-50 rounded-[2rem] p-8 text-center pb-12 overflow-hidden relative">
-                                {/* Abstract UI representation */}
-                                <div className="w-16 h-16 bg-blue-100 rounded-2xl mx-auto mb-6 flex items-center justify-center text-3xl">🚀</div>
-                                <h3 className="text-2xl font-bold text-slate-800 mb-2">Performance Analytics</h3>
-                                <p className="text-slate-500 mb-8">Detailed insights to help you improve.</p>
+            <div className="max-w-7xl mx-auto lg:px-8 relative z-10 w-full flex-grow flex flex-col lg:block">
+                <div className="grid lg:grid-cols-12 flex-grow">
 
-                                {/* Fake Graph Bars */}
-                                <div className="flex items-end justify-center gap-3 h-32 opacity-80">
-                                    <div className="w-8 bg-blue-200 rounded-t-lg h-[40%] animate-pulse"></div>
-                                    <div className="w-8 bg-blue-300 rounded-t-lg h-[60%]"></div>
-                                    <div className="w-8 bg-blue-400 rounded-t-lg h-[30%]"></div>
-                                    <div className="w-8 bg-blue-500 rounded-t-lg h-[80%]"></div>
-                                    <div className="w-8 bg-indigo-600 rounded-t-lg h-[100%]"></div>
+                    {/* Left Banner Content (Navy on Mobile, Overlay on Desktop) */}
+                    <div className="lg:col-span-5 bg-[#0B4F97] lg:bg-transparent text-white px-4 sm:px-6 py-12 lg:py-20 lg:pr-12">
+                        {/* Redundant Logo removed on mobile, kept on desktop for split layout feel */}
+
+
+                        <div className="space-y-6 lg:space-y-8">
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-[1.1] tracking-tight">
+                                An AI-Powered <br />
+                                <span className="text-blue-300">Semi-Offline</span> <br />
+                                Mock Test Platform
+                            </h2>
+
+                            <p className="text-blue-100/80 text-base lg:text-lg max-w-sm leading-relaxed">
+                                Practice online. Mark on real OMR sheets. <br className="hidden sm:block" />
+                                <span className="text-white font-semibold">Get AI-driven performance analysis.</span>
+                            </p>
+
+                            <ul className="space-y-3 lg:space-y-4 pt-2 lg:pt-4">
+                                {[
+                                    "Real Exam-Like OMR Practice",
+                                    "Time-Scheduled Mock Tests",
+                                    "Expert-Curated Question Papers",
+                                    "Smart Performance & Mistake Analysis"
+                                ].map((item, i) => (
+                                    <li key={i} className="flex items-start gap-3 text-sm font-medium group text-blue-50/90">
+                                        <div className="bg-blue-400/20 p-1 rounded-full group-hover:bg-blue-400/40 transition-colors">
+                                            <CheckCircle size={14} className="text-blue-300 shrink-0" />
+                                        </div>
+                                        <span className="pt-0.5">{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div className="pt-6 lg:pt-10">
+                                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-300 mb-4 opacity-70">Prepared for:</p>
+                                <div className="flex gap-3 sm:gap-4">
+                                    {['NEET', 'JEE', 'SSC'].map(cat => (
+                                        <span key={cat} className="px-4 lg:px-5 py-2 bg-white/10 rounded-xl text-[10px] sm:text-xs font-black backdrop-blur-md border border-white/10 tracking-widest uppercase hover:bg-white/20 hover:scale-105 transition-all cursor-default">
+                                            {cat}
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
                         </div>
-
-                        {/* Floating Badges */}
-                        <div className="absolute -top-6 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce duration-[3000ms]">
-                            <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold">A+</div>
-                            <div>
-                                <div className="text-xs text-slate-400 font-bold uppercase">Result</div>
-                                <div className="font-bold text-slate-800">Excellent</div>
-                            </div>
-                        </div>
-
-                        <div className="absolute -bottom-8 -left-8 bg-white p-4 rounded-2xl shadow-xl border border-slate-50 flex items-center gap-3">
-                            <div className="flex -space-x-2">
-                                {[1, 2, 3].map(i => (
-                                    <div key={i} className={`w - 8 h - 8 rounded - full border - 2 border - white bg - slate - 200 flex items - center justify - center text - xs font - bold text - slate - 500 z - ${i} `}>U{i}</div>
-                                ))}
-                            </div>
-                            <div className="text-sm font-bold text-slate-700">1k+ Online</div>
-                        </div>
                     </div>
 
+                    {/* Right Content Area (White background) */}
+                    <div className="lg:col-span-7 bg-white px-4 sm:px-6 py-12 lg:py-20 lg:pl-10">
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 border border-blue-100 rounded-full text-[10px] font-black text-[#1D64D0] uppercase tracking-[0.2em] mb-6 lg:mb-8">
+                            Next Gen Testing Environment
+                        </div>
+
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-black text-[#0B4F97] leading-[1.1] mb-6 lg:mb-8 tracking-tighter">
+                            Practice That <br className="hidden sm:block" />
+                            Makes You <br className="hidden sm:block" />
+                            <span className="text-[#1D64D0] relative inline-block">
+                                Exam-Ready.
+                                <div className="absolute -bottom-1 lg:-bottom-2 left-0 w-full h-1.5 lg:h-2 bg-blue-100 -z-10 rounded-full"></div>
+                            </span>
+                        </h1>
+
+                        <p className="text-lg lg:text-xl text-slate-500 mb-8 lg:mb-10 max-w-xl font-medium leading-relaxed">
+                            Not Just Test-Ready. We bridge the gap between simple practice and the high-pressure environment of the real exam.
+                        </p>
+
+                        <div className="flex flex-col sm:flex-row gap-4 lg:gap-5 mb-12 lg:mb-16">
+                            <button
+                                onClick={() => navigate('/signup')}
+                                className="px-8 lg:px-10 py-4 lg:py-5 bg-[#1D64D0] hover:bg-blue-700 text-white rounded-[15px] lg:rounded-[20px] font-black text-lg lg:text-xl shadow-2xl shadow-blue-500/30 transition-all flex items-center justify-center gap-3 active:scale-95 group"
+                            >
+                                Get Started
+                                <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                            </button>
+                            <button
+                                className="px-8 lg:px-10 py-4 lg:py-5 bg-white text-[#1D64D0] border-2 border-[#1D64D0] rounded-[15px] lg:rounded-[20px] font-black text-lg lg:text-xl hover:bg-blue-50 transition-all flex items-center justify-center active:scale-95"
+                            >
+                                Try Demo Test (Free)
+                            </button>
+                        </div>
+
+                        <div className="flex items-center gap-6 lg:gap-8 pt-8 lg:pt-10 border-t border-slate-100 flex-wrap">
+                            <div className="flex -space-x-3 lg:-space-x-4">
+                                {[1, 2, 3, 4, 5].map(i => (
+                                    <div key={i} className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border-[2px] lg:border-[3px] border-white bg-slate-100 shadow-lg overflow-hidden ring-1 ring-slate-100 transition-transform hover:-translate-y-1 hover:z-10 cursor-pointer">
+                                        <img src={`https://i.pravatar.cc/100?u=${i}`} alt="user" className="w-full h-full object-cover" />
+                                    </div>
+                                ))}
+                                <div className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border-[2px] lg:border-[3px] border-white bg-[#1D64D0] flex items-center justify-center text-[10px] lg:text-xs font-bold text-white shadow-lg">
+                                    +10k
+                                </div>
+                            </div>
+                            <div>
+                                <div className="flex text-yellow-400 mb-0.5 lg:mb-1">
+                                    {[1, 2, 3, 4, 5].map(i => <Star key={i} size={14} className="lg:size-[18px]" fill="currentColor" />)}
+                                </div>
+                                <p className="text-[10px] lg:text-sm text-slate-500 font-bold uppercase tracking-wider">
+                                    Trusted by <span className="text-[#0B4F97] font-black">10,000+</span> Aspirants
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

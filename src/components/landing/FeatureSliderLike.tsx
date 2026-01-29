@@ -10,12 +10,12 @@ const FeatureSliderLike = () => {
 
                     {/* Content Left */}
                     <div>
-                        <div className="inline-block px-4 py-2 bg-orange-100 text-orange-600 rounded-lg text-sm font-bold mb-6">
+                        <div className="inline-block px-4 py-2 bg-[#F0F6FF] text-[#1D64D0] rounded-full text-sm font-bold mb-6 border border-blue-100">
                             Why Students Trust Us?
                         </div>
-                        <h2 className="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">
+                        <h2 className="text-4xl lg:text-5xl font-extrabold text-[#0B4F97] mb-6 leading-tight">
                             We Help You <br />
-                            <span className="text-blue-600">Crack The Exam Code.</span>
+                            <span className="text-[#1D64D0]">Crack The Exam Code.</span>
                         </h2>
                         <p className="text-lg text-slate-600 mb-10 leading-relaxed">
                             Examinantt isn't just a test platform; it's your personal performance coach. We analyze every keystroke to tell you exactly where you're losing marks.
@@ -23,41 +23,41 @@ const FeatureSliderLike = () => {
 
                         <div className="grid sm:grid-cols-2 gap-8">
                             <div className="flex gap-4">
-                                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 shrink-0">
+                                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-[#1D64D0] shrink-0 border border-blue-100">
                                     <Trophy size={24} />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-slate-900 text-lg mb-1">95% Success Rate</h3>
+                                    <h3 className="font-bold text-[#0B4F97] text-lg mb-1">95% Success Rate</h3>
                                     <p className="text-slate-500 text-sm">Students improving scores</p>
                                 </div>
                             </div>
 
                             <div className="flex gap-4">
-                                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-600 shrink-0">
+                                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-[#1D64D0] shrink-0 border border-blue-100">
                                     <Clock size={24} />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-slate-900 text-lg mb-1">Real-Time Sync</h3>
+                                    <h3 className="font-bold text-[#0B4F97] text-lg mb-1">Real-Time Sync</h3>
                                     <p className="text-slate-500 text-sm">Exam-like environment</p>
                                 </div>
                             </div>
 
                             <div className="flex gap-4">
-                                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 shrink-0">
+                                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-[#1D64D0] shrink-0 border border-blue-100">
                                     <Target size={24} />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-slate-900 text-lg mb-1">Targeted Prep</h3>
+                                    <h3 className="font-bold text-[#0B4F97] text-lg mb-1">Targeted Prep</h3>
                                     <p className="text-slate-500 text-sm">Focus on weak areas</p>
                                 </div>
                             </div>
 
                             <div className="flex gap-4">
-                                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 shrink-0">
+                                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-[#1D64D0] shrink-0 border border-blue-100">
                                     <BarChart2 size={24} />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-slate-900 text-lg mb-1">AI Insights</h3>
+                                    <h3 className="font-bold text-[#0B4F97] text-lg mb-1">AI Insights</h3>
                                     <p className="text-slate-500 text-sm">Detailed performance reports</p>
                                 </div>
                             </div>
@@ -66,20 +66,20 @@ const FeatureSliderLike = () => {
 
                     {/* Image Right */}
                     <div className="relative">
-                        <div className="absolute inset-0 bg-blue-600 rounded-[2rem] rotate-6 opacity-10 blur-xl scale-95"></div>
+                        <div className="absolute inset-0 bg-[#0B4F97] rounded-[2rem] rotate-6 opacity-5 blur-xl scale-95"></div>
                         <img
                             src={studentBanner}
                             alt="Student Learning"
-                            className="relative w-full rounded-[2rem] shadow-2xl object-cover aspect-[4/3] border-[6px] border-white"
+                            className="relative w-full rounded-[2rem] shadow-2xl object-cover aspect-[4/3] border-[6px] border-white ring-1 ring-slate-100"
                         />
 
                         {/* Floating Stat Card */}
-                        <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl flex items-center gap-4 max-w-xs animate-bounce" style={{ animationDuration: '4s' }}>
-                            <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                        <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl border border-slate-100 flex items-center gap-4 max-w-xs animate-bounce" style={{ animationDuration: '4s' }}>
+                            <div className="w-12 h-12 bg-[#1D64D0] rounded-lg flex items-center justify-center text-white font-bold text-xl">
                                 4.9
                             </div>
                             <div>
-                                <div className="font-bold text-slate-900">Top Rated Platform</div>
+                                <div className="font-bold text-[#0B4F97]">Top Rated Platform</div>
                                 <div className="text-xs text-slate-500">Based on 5000+ reviews</div>
                             </div>
                         </div>
