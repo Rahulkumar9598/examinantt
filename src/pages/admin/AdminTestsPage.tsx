@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Search, Trash2, X, Save, Loader2, List } from 'lucide-react';
+import { Plus, Search, Trash2, X, Save, Loader2, List, FileText } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
 import { collection, addDoc, deleteDoc, updateDoc, doc, onSnapshot, query, orderBy, serverTimestamp, arrayUnion, getDocs } from 'firebase/firestore';
 import { generateJEEMainsTest } from '../../services/testGenerationService';
@@ -27,6 +28,7 @@ interface TestSeries {
 }
 
 const AdminTestsPage = () => {
+    const navigate = useNavigate();
     const [tests, setTests] = useState<TestSeries[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isCreating, setIsCreating] = useState(false);
@@ -292,13 +294,23 @@ const AdminTestsPage = () => {
                     <h1 className="text-2xl font-bold text-slate-800">Manage Tests</h1>
                     <p className="text-slate-500 mt-1">Create, edit, and publish test series.</p>
                 </div>
-                <button
-                    onClick={() => setIsCreating(true)}
-                    className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
-                >
-                    <Plus size={20} />
-                    Create New Test
-                </button>
+                <div className="flex items-center gap-3">
+                    {/* ── NEW: OMR Test Button ── */}
+                    <button
+                        onClick={() => navigate('/admin-dashboard/create-omr-test')}
+                        className="flex items-center gap-2 px-5 py-2.5 bg-amber-500 text-white font-bold rounded-xl hover:bg-amber-600 transition-colors shadow-lg shadow-amber-500/20"
+                    >
+                        <FileText size={18} />
+                        Create OMR Test
+                    </button>
+                    <button
+                        onClick={() => setIsCreating(true)}
+                        className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
+                    >
+                        <Plus size={20} />
+                        Create New Test
+                    </button>
+                </div>
             </div>
 
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">

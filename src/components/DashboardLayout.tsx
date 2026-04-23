@@ -13,6 +13,8 @@ import {
     Bell,
     BookMarked,
     FolderTree,
+    Award,
+    Database,
     ListChecks
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
@@ -42,9 +44,10 @@ const DashboardLayout = ({ children, role }: DashboardLayoutProps) => {
     const studentLinks = [
         { icon: <LayoutDashboard size={20} />, label: 'Overview', path: '/dashboard' },
         { icon: <BookOpen size={20} />, label: 'My Tests', path: '/dashboard/tests' },
+        { icon: <Award size={20} />, label: 'Test Results', path: '/dashboard/results' },
         { icon: <FileText size={20} />, label: 'Buy Series', path: '/dashboard/market' },
-        { icon: <FileText size={20} />, label: 'PYQs', path: '/dashboard/pyqs' },
-        { icon: <BookOpen size={20} />, label: 'Resources', path: '/dashboard/resources' },
+        // { icon: <Database size={20} />, label: 'PYQs', path: '/dashboard/pyqs' },
+        // { icon: <BookOpen size={20} />, label: 'Resources', path: '/dashboard/resources' },
         { icon: <TrendingUp size={20} />, label: 'Analytics', path: '/dashboard/analytics' },
     ];
 
@@ -84,7 +87,7 @@ const DashboardLayout = ({ children, role }: DashboardLayoutProps) => {
                     ${isDarkTheme ? 'bg-[#111827] border-slate-800' : 'bg-white border-slate-200'}
                     border-r z-50 transition-transform duration-300 ease-in-out
                     ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
-                    flex flex-col shadow-2xl md:shadow-none
+                    flex flex-col shadow-2xl md:shadow-none print:hidden
                 `}
             >
                 {/* Logo Area */}
@@ -166,7 +169,7 @@ const DashboardLayout = ({ children, role }: DashboardLayoutProps) => {
             {/* Main Content Area */}
             <div className="flex-1 flex flex-col min-w-0">
                 {/* Header */}
-                <header className={`sticky top-0 z-30 px-6 py-4 flex items-center justify-between border-b ${isDarkTheme ? 'bg-[#0B0F19]/80 border-slate-800 backdrop-blur-md' : 'bg-white border-slate-200'}`}>
+                <header className={`sticky top-0 z-30 px-6 py-4 flex items-center justify-between border-b ${isDarkTheme ? 'bg-[#0B0F19]/80 border-slate-800 backdrop-blur-md' : 'bg-white border-slate-200'} print:hidden`}>
                     <div className="flex items-center gap-4">
                         <button
                             onClick={() => setIsSidebarOpen(true)}

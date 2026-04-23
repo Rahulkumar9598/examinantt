@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Search, Trash2, Loader2, FileText, PenTool } from 'lucide-react';
+import { Plus, Search, Trash2, Eye, Loader2, FileText, PenTool } from 'lucide-react';
 import { db } from '../../firebase';
 import { collection, deleteDoc, doc, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
@@ -24,15 +24,33 @@ const AdminPYQsPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const q = query(collection(db, 'pyqs'), orderBy('createdAt', 'desc'));
-        const unsubscribe = onSnapshot(q, (snapshot) => {
-            const fetchedPyqs = snapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            })) as PYQ[];
+        let q = query(collection(db, 'pyqs'), orderBy('createdAt', 'desc'));
+        
+        const handleSnapshot = (snapshot: any) => {
+            const fetchedPyqs = snapshot.docs.map((doc: any) => {
+                const data = doc.data();
+                return {
+                    id: doc.id,
+                    ...data,
+                    title: data.title || data.name || data.testName || 'Untitled PYQ',
+                    category: data.category || data.exam || 'General',
+                    year: data.year || 'N/A'
+                };
+            }) as PYQ[];
             setPyqs(fetchedPyqs);
             setIsLoading(false);
+        };
+
+        const unsubscribe = onSnapshot(q, handleSnapshot, (err) => {
+            console.warn("PYQ OrderBy query failed, falling back to simple query:", err);
+            // Fallback: Simple query without orderBy (avoids index issues)
+            const fallbackQ = query(collection(db, 'pyqs'));
+            onSnapshot(fallbackQ, handleSnapshot, (error) => {
+                console.error("PYQ Fallback query also failed:", error);
+                setIsLoading(false);
+            });
         });
+        
         return () => unsubscribe();
     }, []);
 
@@ -123,7 +141,22 @@ const AdminPYQsPage = () => {
                                             {pyq.price === 0 ? <span className="text-green-600">Free</span> : `₹${pyq.price}`}
                                         </td>
                                         <td className="px-6 py-4 text-right">
-                                            <button onClick={() => handleDelete(pyq.id)} className="text-slate-400 hover:text-red-600"><Trash2 size={18} /></button>
+                                            <div className="flex justify-end gap-2">
+                                                <button 
+                                                    onClick={() => navigate(`/pyqs/${pyq.id}`)} 
+                                                    className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                                                    title="View Details"
+                                                >
+                                                    <Eye size={18} />
+                                                </button>
+                                                <button 
+                                                    onClick={() => handleDelete(pyq.id)} 
+                                                    className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                                    title="Delete"
+                                                >
+                                                    <Trash2 size={18} />
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 ))

@@ -108,6 +108,7 @@ const TestSeriesDetailsPage = () => {
                         color: '#3399cc'
                     }
                 };
+                
 
                 const paymentObject = new (window as any).Razorpay(options);
                 paymentObject.open();

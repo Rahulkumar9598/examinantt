@@ -41,11 +41,21 @@ const StudentPYQsPage = () => {
             // Fetch PYQs
             const q = query(collection(db, 'pyqs')); // Removed orderBy to check for index issues
             const unsubscribePyqs = onSnapshot(q, (snapshot) => {
-                const fetched = snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                })) as PYQ[];
-                console.log("Fetched PYQs:", fetched.length);
+                const fetched = snapshot.docs.map(doc => {
+                    const data = doc.data();
+                    return {
+                        id: doc.id,
+                        ...data,
+                        title: data.title || data.name || data.testName || 'Untitled PYQ',
+                        category: data.category || data.exam || 'General',
+                        year: data.year || 'N/A',
+                        price: data.price ?? 0
+                    };
+                }) as PYQ[];
+                console.log("PYQs Subscription Data:", fetched);
+                if (fetched.length === 0) {
+                    console.warn("PYQs collection is empty in Firestore.");
+                }
                 setPyqs(fetched);
                 setIsLoading(false);
             }, (error) => {
@@ -80,10 +90,13 @@ const StudentPYQsPage = () => {
         }
     };
 
-    const filteredPyqs = pyqs.filter(item =>
-        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.category.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filteredPyqs = pyqs.filter(item => {
+        const search = searchTerm.toLowerCase();
+        const titleMatch = item.title?.toLowerCase().includes(search);
+        const categoryMatch = item.category?.toLowerCase().includes(search);
+        const yearMatch = item.year?.toString().toLowerCase().includes(search);
+        return titleMatch || categoryMatch || yearMatch;
+    });
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -151,7 +164,15 @@ const StudentPYQsPage = () => {
                                     {isUnlocked ? (
                                         isTest ? (
                                             <button
-                                                onClick={() => navigate(`/dashboard/attempt/${pyq.testId}`)}
+                                                onClick={() => {
+                                                    const message = `Are you sure you want to attempt "${pyq.title}"? The timer will start immediately.`;
+                                                    if (window.confirm(message)) {
+                                                        const path = (pyq as any).isOMR
+                                                            ? `/dashboard/omr-attempt/${pyq.testId}`
+                                                            : `/dashboard/attempt/${pyq.testId}`;
+                                                        navigate(path);
+                                                    }
+                                                }}
                                                 className="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 flex items-center gap-2"
                                             >
                                                 <PlayCircle size={16} /> Attempt

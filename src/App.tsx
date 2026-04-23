@@ -45,6 +45,12 @@ const QuestionBank = React.lazy(() => import('./pages/admin/QuestionBank'));
 const AdminChaptersPage = React.lazy(() => import('./pages/admin/AdminChaptersPage'));
 const TestSeriesManagement = React.lazy(() => import('./pages/admin/TestSeriesManagement'));
 const TestCreationWizard = React.lazy(() => import('./pages/admin/TestCreationWizard'));
+// ── OMR Feature (New Additions) ──────────────────────────────────────────────
+const OMRTestCreationWizard = React.lazy(() => import('./pages/admin/OMRTestCreationWizard'));
+const StudentTestModeSelect = React.lazy(() => import('./pages/student/StudentTestModeSelect'));
+const StudentOMRAttemptPage = React.lazy(() => import('./pages/student/StudentOMRAttemptPage'));
+const StudentOMRPrintPage = React.lazy(() => import('./pages/student/StudentOMRPrintPage'));
+const StudentOMRUploadPage = React.lazy(() => import('./pages/student/StudentOMRUploadPage'));
 
 
 import './App.css';
@@ -118,6 +124,11 @@ function App() {
                 </Route>
                 {/* Full Screen Test Route */}
                 <Route path="/dashboard/attempt/:testId" element={<StudentTestAttemptPage />} />
+                {/* OMR Feature Routes (New) */}
+                <Route path="/dashboard/attempt/:testId/mode" element={<StudentTestModeSelect />} />
+                <Route path="/dashboard/omr-attempt/:testId" element={<StudentOMRAttemptPage />} />
+                <Route path="/dashboard/print-omr/:testId" element={<StudentOMRPrintPage />} />
+                <Route path="/dashboard/omr-scan" element={<StudentOMRUploadPage />} />
               </Route>
 
               <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
@@ -134,6 +145,8 @@ function App() {
                   <Route path="/admin-dashboard/resources/new" element={<AdminAddResourcePage />} />
                   <Route path="/admin-dashboard/students" element={<AdminStudentsPage />} />
                   <Route path="/admin-dashboard/settings" element={<AdminSettingsPage />} />
+                  {/* OMR Test Creation Route (New) */}
+                  <Route path="/admin-dashboard/create-omr-test" element={<OMRTestCreationWizard />} />
                 </Route>
               </Route>
 

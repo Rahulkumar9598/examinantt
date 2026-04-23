@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, Loader2, ChevronDown, ChevronUp, PlayCircle, BookOpen, Award } from 'lucide-react';
+import { Clock, Loader2, ChevronDown, ChevronUp, PlayCircle, BookOpen, Award, FileText, Camera } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { db } from '../../firebase';
@@ -26,6 +26,7 @@ interface TestItem {
     };
     questions?: any[];
     questionIds?: string[];
+    omrTemplate?: { totalQuestions: number };
 }
 
 interface Attempt {
@@ -35,11 +36,92 @@ interface Attempt {
     attemptDate: any;
 }
 
+const AttemptModeModal = ({ isOpen, onClose, onConfirm, testName }: { 
+    isOpen: boolean, 
+    onClose: () => void, 
+    onConfirm: (mode: 'digital' | 'omr') => void,
+    testName: string
+}) => {
+    return (
+        <AnimatePresence>
+            {isOpen && (
+                <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+                    <motion.div
+                        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                        className="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden"
+                    >
+                        <div className="bg-gradient-to-r from-orange-600 to-amber-500 p-8 text-white relative">
+                            <button 
+                                onClick={onClose}
+                                className="absolute top-6 right-6 p-2 bg-white/20 hover:bg-white/30 rounded-full transition-colors"
+                            >
+                                <ChevronUp className="rotate-180" size={20} />
+                            </button>
+                            <div className="flex flex-col items-center text-center">
+                                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center text-3xl mb-4 backdrop-blur-sm shadow-xl">
+                                    🚀
+                                </div>
+                                <h2 className="text-2xl font-bold mb-1">Choose Attempt Mode</h2>
+                                <p className="text-orange-100 opacity-90 text-sm">{testName}</p>
+                            </div>
+                        </div>
+
+                        <div className="p-8 space-y-4">
+                            <button
+                                onClick={() => onConfirm('digital')}
+                                className="w-full group p-5 border-2 border-slate-100 rounded-2xl flex items-center gap-5 hover:border-orange-500 hover:bg-orange-50 transition-all text-left"
+                            >
+                                <div className="w-14 h-14 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                                    <BookOpen size={28} />
+                                </div>
+                                <div className="flex-1">
+                                    <h3 className="font-bold text-slate-800 text-lg">Interactive Digital Mode</h3>
+                                    <p className="text-slate-500 text-sm">Real-time interface with question timer and navigation.</p>
+                                </div>
+                                <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-orange-500 group-hover:text-white transition-all">
+                                    <ChevronUp className="rotate-90" size={16} />
+                                </div>
+                            </button>
+
+                            <button
+                                onClick={() => onConfirm('omr')}
+                                className="w-full group p-5 border-2 border-slate-100 rounded-2xl flex items-center gap-5 hover:border-amber-500 hover:bg-amber-50 transition-all text-left"
+                            >
+                                <div className="w-14 h-14 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                                    <FileText size={28} />
+                                </div>
+                                <div className="flex-1">
+                                    <h3 className="font-bold text-slate-800 text-lg">OMR Sheet Simulation</h3>
+                                    <p className="text-slate-500 text-sm">Bubble sheet simulation with PDF question paper support.</p>
+                                </div>
+                                <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-amber-500 group-hover:text-white transition-all">
+                                    <ChevronUp className="rotate-90" size={16} />
+                                </div>
+                            </button>
+
+                            <p className="text-center text-[11px] text-slate-400 mt-4 uppercase tracking-[0.15em] font-bold">
+                                You can attempt the same test in both modes
+                            </p>
+                        </div>
+                    </motion.div>
+                </div>
+            )}
+        </AnimatePresence>
+    );
+};
+
 const SeriesCard = ({ purchase, attemptsMap }: { purchase: PurchasedTest, attemptsMap: Record<string, Attempt[]> }) => {
     const navigate = useNavigate();
     const [tests, setTests] = useState<TestItem[]>([]);
     const [loadingTests, setLoadingTests] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
+    
+    // Modal State
+    const [isModeModalOpen, setIsModeModalOpen] = useState(false);
+    const [selectedTest, setSelectedTest] = useState<TestItem | null>(null);
+
 
     // Identify the series ID
     const seriesId = purchase.seriesId || purchase.testId;
@@ -139,20 +221,54 @@ const SeriesCard = ({ purchase, attemptsMap }: { purchase: PurchasedTest, attemp
                                                     <div className="text-xs text-slate-500 flex flex-wrap items-center gap-2 mt-1">
                                                         <span>{test.settings?.duration || 180} mins</span>
                                                         <span>•</span>
-                                                        <span>{test.questionIds?.length || 0} Questions</span>
+                                                        <span>{test.questionIds?.length || test.omrTemplate?.totalQuestions || 0} Questions</span>
+                                                        {(test as any).isOMR && (
+                                                            <>
+                                                                <span className="hidden md:inline">•</span>
+                                                                <span className="bg-amber-100 text-amber-700 px-2 py-0.5 rounded-md font-bold text-[10px] uppercase">📄 OMR</span>
+                                                            </>
+                                                        )}
                                                         {hasAttempted && (
                                                             <>
                                                                 <span className="hidden md:inline">•</span>
-                                                                <span className="text-green-600 font-bold bg-green-50 px-2 py-0.5 rounded-full">
-                                                                    Best Score: {Math.max(...testAttempts.map(a => a.score))}
-                                                                </span>
+                                                                {Math.max(...testAttempts.map(a => a.score)) > 0 ? (
+                                                                    <span className="text-green-600 font-bold bg-green-50 px-2 py-0.5 rounded-full">
+                                                                        Best Score: {Math.max(...testAttempts.map(a => a.score))}
+                                                                    </span>
+                                                                ) : (
+                                                                    <span className="text-slate-500 font-bold bg-slate-100 px-2 py-0.5 rounded-full">
+                                                                        Attempted
+                                                                    </span>
+                                                                )}
                                                             </>
                                                         )}
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div className="flex items-center gap-2 self-end md:self-auto">
+                                            <div className="flex items-center gap-2 self-end md:self-auto flex-wrap justify-end">
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        window.open(`/dashboard/print-omr/${test.id}`, '_blank');
+                                                    }}
+                                                    className="px-4 py-2 border border-blue-200 text-blue-600 text-sm font-bold rounded-lg hover:bg-blue-50 transition-colors flex items-center gap-2"
+                                                    title="Download Blank OMR Sheet"
+                                                >
+                                                    <FileText size={16} />
+                                                    Download
+                                                </button>
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        navigate('/dashboard/omr-scan');
+                                                    }}
+                                                    className="px-4 py-2 border border-amber-200 text-amber-600 text-sm font-bold rounded-lg hover:bg-amber-50 transition-colors flex items-center gap-2"
+                                                    title="Upload Filled OMR"
+                                                >
+                                                    <Camera size={16} />
+                                                    Scan OMR
+                                                </button>
                                                 {hasAttempted && (
                                                     <button
                                                         onClick={(e) => {
@@ -167,8 +283,8 @@ const SeriesCard = ({ purchase, attemptsMap }: { purchase: PurchasedTest, attemp
                                                 <button
                                                     onClick={(e) => {
                                                         e.stopPropagation();
-                                                        if (hasAttempted && !window.confirm("Do you want to re-attempt this test? A new attempt record will be created.")) return;
-                                                        navigate(`/dashboard/attempt/${test.id}`);
+                                                        setSelectedTest(test);
+                                                        setIsModeModalOpen(true);
                                                     }}
                                                     className={`px-4 py-2 text-white text-sm font-bold rounded-lg transition-colors flex items-center gap-2 shadow-sm ${hasAttempted
                                                         ? 'bg-slate-800 hover:bg-slate-900 shadow-slate-500/20'
@@ -186,6 +302,20 @@ const SeriesCard = ({ purchase, attemptsMap }: { purchase: PurchasedTest, attemp
                         )}
                     </motion.div>
                 )}
+
+                <AttemptModeModal 
+                    isOpen={isModeModalOpen}
+                    onClose={() => setIsModeModalOpen(false)}
+                    testName={selectedTest?.name || ''}
+                    onConfirm={(mode) => {
+                        if (!selectedTest) return;
+                        setIsModeModalOpen(false);
+                        const path = mode === 'omr' 
+                            ? `/dashboard/omr-attempt/${selectedTest.id}` 
+                            : `/dashboard/attempt/${selectedTest.id}`;
+                        navigate(path);
+                    }}
+                />
             </AnimatePresence>
         </motion.div>
     );

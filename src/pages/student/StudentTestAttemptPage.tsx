@@ -74,12 +74,11 @@ const StudentTestAttemptPage = () => {
 
                         // Fetch actual questions
                         const questionIds = rawData.questionIds || [];
+                        const questionMappings = rawData.questionMappings || [];
                         let fullQuestions: Question[] = [];
 
                         if (questionIds.length > 0) {
-                            // Fetch all questions in parallel
-                            // Note: For large tests, we might want to batch this or use a compound query if possible
-                            // But individual lookups are okay for typical test sizes (<100) given resolving from IDs
+                            // Fetch all questions from the database
                             const questionPromises = questionIds.map((id: string) => getDoc(doc(db, 'questions', id)));
                             const questionSnaps = await Promise.all(questionPromises);
 
@@ -90,15 +89,26 @@ const StudentTestAttemptPage = () => {
                                     return {
                                         id: snap.id,
                                         ...qData,
-                                        // Auto-assign section if missing, based on type for JEE Main compatibility
                                         section: qData.section || (qData.type === 'MCQ' ? 'A' : 'B')
                                     } as Question;
                                 });
+                        } else if (questionMappings.length > 0) {
+                            // Convert OMR Mappings to Interactive Questions
+                            fullQuestions = questionMappings.map((m: any) => ({
+                                id: `omr-${m.serialNumber}`,
+                                text: m.questionText || `Question ${m.serialNumber}`,
+                                options: m.options || ['Option A', 'Option B', 'Option C', 'Option D'],
+                                correctAnswer: m.correctAnswer || 'A',
+                                subject: m.subject || 'General',
+                                chapter: m.chapter || 'OMR Test',
+                                type: 'MCQ',
+                                section: m.sectionId || 'A'
+                            } as Question));
                         }
 
                         const data: TestData = {
                             id: rawData.id,
-                            title: rawData.name, // Map 'name' to 'title'
+                            title: rawData.name,
                             questions: fullQuestions,
                             duration: rawData.settings?.duration || rawData.duration || 180,
                             testPattern: rawData.testPattern || (fullQuestions.some(q => q.type === 'Numerical') ? 'JEE_MAINS' : 'STANDARD')
@@ -173,11 +183,15 @@ const StudentTestAttemptPage = () => {
     const handleAnswer = (answer: number | string) => {
         setAnswers(prev => ({ ...prev, [currentQuestionIndex]: answer }));
 
-        // Handle Section B selection tracking
-        if (testData?.questions[currentQuestionIndex]?.section === 'B') {
-            const subject = testData.questions[currentQuestionIndex].subject;
+        const currentQ = testData?.questions[currentQuestionIndex];
+        if (currentQ?.section === 'B' && currentQ.subject) {
+            const subject = currentQ.subject;
             setSectionBSelections(prev => {
                 const newSelections = { ...prev };
+                // Safety: initialize subject set if it doesn't exist (cases like 'General' or misc subjects)
+                if (!newSelections[subject]) {
+                    (newSelections as any)[subject] = new Set();
+                }
                 newSelections[subject] = new Set(newSelections[subject]);
                 newSelections[subject].add(currentQuestionIndex);
                 return newSelections;
@@ -192,13 +206,15 @@ const StudentTestAttemptPage = () => {
             return newAnswers;
         });
 
-        // Clear from Section B selections if applicable
-        if (testData?.questions[currentQuestionIndex]?.section === 'B') {
-            const subject = testData.questions[currentQuestionIndex].subject;
+        const currentQ = testData?.questions[currentQuestionIndex];
+        if (currentQ?.section === 'B' && currentQ.subject) {
+            const subject = currentQ.subject;
             setSectionBSelections(prev => {
                 const newSelections = { ...prev };
-                newSelections[subject] = new Set(newSelections[subject]);
-                newSelections[subject].delete(currentQuestionIndex);
+                if (newSelections[subject]) {
+                    newSelections[subject] = new Set(newSelections[subject]);
+                    newSelections[subject].delete(currentQuestionIndex);
+                }
                 return newSelections;
             });
         }
@@ -414,7 +430,7 @@ const StudentTestAttemptPage = () => {
 
     const currentQuestion = testData.questions[currentQuestionIndex];
     const subjectQuestions = testData.questions.filter(q => q.subject === activeSubject);
-    const sectionBCount = sectionBSelections[activeSubject].size;
+    const sectionBCount = sectionBSelections[activeSubject]?.size || 0;
 
     return (
         <div className="min-h-screen bg-slate-50 flex flex-col">
@@ -626,7 +642,7 @@ const StudentTestAttemptPage = () => {
                     {testData.testPattern === 'JEE_MAINS' && (
                         <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                             <p className="text-sm font-semibold text-blue-900">
-                                Section B ({activeSubject}): {sectionBCount}/5 selected
+                                Section B ({activeSubject}): {sectionBSelections[activeSubject]?.size || 0}/5 selected
                             </p>
                         </div>
                     )}

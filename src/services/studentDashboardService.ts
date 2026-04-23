@@ -105,25 +105,30 @@ export const getStudentStats = async (userId: string): Promise<StudentStats> => 
 export const getRecommendedSeries = async (): Promise<RecommendedSeries[]> => {
     try {
         // Fetch published series
-        // Note: Removed orderBy('createdAt') to avoid needing a composite index for now.
-        // We'll sort client-side.
-        const q = query(
+        let q = query(
             collection(db, 'testSeries'),
             where('status', '==', 'published'),
-            limit(20) // Fetch a bit more to sort client side
+            limit(20)
         );
-        const snapshot = await getDocs(q);
+        let snapshot = await getDocs(q);
+
+        // Fallback: If no published items, get some (any) for the user to see
+        if (snapshot.empty) {
+            console.log("No published series found, fetching latest series as fallback.");
+            const fallbackQ = query(collection(db, 'testSeries'), limit(20));
+            snapshot = await getDocs(fallbackQ);
+        }
 
         const series = snapshot.docs.map(doc => {
             const data = doc.data();
             return {
                 id: doc.id,
-                title: data.name, // Map 'name' to 'title'
-                description: data.description,
-                price: data.pricing?.amount ?? 0, // Map nested pricing
-                category: data.examCategory, // Map 'examCategory' to 'category'
-                questionCount: data.stats?.totalTests, // Optional mapping
-                createdAt: data.createdAt, // Keep for sorting
+                title: data.name || data.title || data.testName || 'Untitled Series',
+                description: data.description || 'Practice test series',
+                price: data.pricing?.amount ?? data.price ?? 0,
+                category: data.examCategory || data.category || 'General',
+                questionCount: data.stats?.totalTests || 0,
+                createdAt: data.createdAt,
                 stats: {
                     totalTests: data.stats?.totalTests || 0
                 }
@@ -132,10 +137,10 @@ export const getRecommendedSeries = async (): Promise<RecommendedSeries[]> => {
 
         // Sort client-side by createdAt descending
         return series.sort((a: any, b: any) => {
-            const timeA = a.createdAt?.seconds || 0;
-            const timeB = b.createdAt?.seconds || 0;
-            return timeB - timeA;
-        }).slice(0, 6); // Take top 6 after sort
+            const timeA = a.createdAt?.seconds || a.createdAt || 0;
+            const timeB = b.createdAt?.seconds || b.createdAt || 0;
+            return (timeB as number) - (timeA as number);
+        }).slice(0, 6);
 
     } catch (error) {
         console.error("Error fetching recommendations:", error);

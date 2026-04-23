@@ -11,6 +11,7 @@ interface TestAttempt {
     testTitle: string;
     score: number;
     totalQuestions: number;
+    maxScore: number;
     correctAnswers: number;
     attemptDate: any;
     duration?: number;
@@ -39,10 +40,22 @@ const StudentTestResultsPage = () => {
                 const q = query(attemptsRef, orderBy('attemptDate', 'desc'), limit(50));
                 const snapshot = await getDocs(q);
 
-                const fetchedAttempts = snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                })) as TestAttempt[];
+                const fetchedAttempts = snapshot.docs.map(doc => {
+                    const data = doc.data();
+                    const totalQs = data.totalQuestions ?? (data.correctCount + data.wrongCount + data.unattemptedCount) ?? 0;
+                    const maxScore = data.totalMarks ?? (totalQs * 4);
+                    
+                    return {
+                        id: doc.id,
+                        testTitle: data.testTitle || data.testName || 'Unknown Test',
+                        score: data.score || 0,
+                        totalQuestions: totalQs,
+                        maxScore: maxScore,
+                        correctAnswers: data.correctAnswers ?? data.correctCount ?? 0,
+                        attemptDate: data.attemptDate,
+                        duration: data.duration ?? data.timeTakenSeconds ?? 0
+                    };
+                }) as TestAttempt[];
 
                 setAttempts(fetchedAttempts);
 
@@ -208,8 +221,8 @@ const StudentTestResultsPage = () => {
                             </thead>
                             <tbody className="divide-y divide-slate-100">
                                 {attempts.map((attempt) => {
-                                    const maxScore = attempt.totalQuestions * 4;
-                                    const accuracy = ((attempt.correctAnswers / attempt.totalQuestions) * 100).toFixed(1);
+                                    const maxScore = attempt.maxScore;
+                                    const accuracy = attempt.totalQuestions > 0 ? ((attempt.correctAnswers / attempt.totalQuestions) * 100).toFixed(1) : '0.0';
 
                                     return (
                                         <tr key={attempt.id} className="hover:bg-slate-50 transition-colors">

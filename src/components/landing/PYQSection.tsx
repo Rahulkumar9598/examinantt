@@ -43,7 +43,7 @@ const PYQSection = () => {
     const categories = Object.keys(groupedPyqs);
 
     return (
-        <section id="resources" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <section id="resources" className="py-8 px-4 sm:px-6 lg:px-8 bg-white">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-12 sm:mb-16">
                     <span className="inline-block py-1 px-3 rounded-full bg-[#F0F6FF] text-[#1D64D0] text-sm font-bold uppercase tracking-wide mb-4 border border-blue-100">Resources</span>

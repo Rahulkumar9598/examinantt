@@ -105,7 +105,7 @@ export const addTestToSeries = async (seriesId: string, testId: string): Promise
     const series = await getTestSeries(seriesId);
 
     if (series) {
-        const updatedTestIds = [...series.testIds, testId];
+        const updatedTestIds = [...(series.testIds || []), testId];
         await updateDoc(seriesRef, {
             testIds: updatedTestIds,
             'stats.totalTests': updatedTestIds.length,
@@ -120,7 +120,7 @@ export const removeTestFromSeries = async (seriesId: string, testId: string): Pr
     const series = await getTestSeries(seriesId);
 
     if (series) {
-        const updatedTestIds = series.testIds.filter(id => id !== testId);
+        const updatedTestIds = (series.testIds || []).filter(id => id !== testId);
         await updateDoc(seriesRef, {
             testIds: updatedTestIds,
             'stats.totalTests': updatedTestIds.length,

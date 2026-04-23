@@ -215,7 +215,18 @@ const StudentDashboard = () => {
                         {activeTests.map((test) => (
                             <div
                                 key={test.id}
-                                onClick={() => navigate('/dashboard/tests')}
+                                onClick={() => {
+                                    const message = `Do you want to continue "${test.title}"? Your timer will resume/start.`;
+                                    if (window.confirm(message)) {
+                                        // We need to know if it's OMR. The ActiveTest interface might need isOMR.
+                                        // For now, most series-based tests use the default route.
+                                        // But we can check for OMR specifically if provided in data.
+                                        const path = (test as any).isOMR 
+                                            ? `/dashboard/omr-attempt/${test.testId}` 
+                                            : `/dashboard/attempt/${test.testId}`;
+                                        navigate(path);
+                                    }
+                                }}
                                 className="bg-white p-5 rounded-2xl border border-slate-200 hover:shadow-md transition-all cursor-pointer flex items-center justify-between group"
                             >
                                 <div className="flex items-center gap-4">
