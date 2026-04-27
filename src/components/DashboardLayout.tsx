@@ -58,6 +58,7 @@ const DashboardLayout = ({ children, role }: DashboardLayoutProps) => {
         { icon: <FolderTree size={20} />, label: 'Chapters', path: '/admin-dashboard/chapters' },
         // { icon: <BookOpen size={20} />, label: 'Manage Tests', path: '/admin-dashboard/tests' },
         { icon: <FileText size={20} />, label: 'Manage PYQs', path: '/admin-dashboard/pyqs' },
+        { icon: <Award size={20} />, label: 'Subjects', path: '/admin-dashboard/subjects' },
         { icon: <BookOpen size={20} />, label: 'Resources', path: '/admin-dashboard/resources' },
         { icon: <Users size={20} />, label: 'Students', path: '/admin-dashboard/students' },
         { icon: <Settings size={20} />, label: 'Settings', path: '/admin-dashboard/settings' },

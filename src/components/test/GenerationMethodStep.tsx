@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { TestFormData } from '../../types/test.types';
 import { Zap, Sliders, ChevronDown, ChevronRight, CheckSquare, Square, Search } from 'lucide-react';
 import { JEE_MAINS_2024_WEIGHTAGE } from '../../data/jeeMainsWeightage2024';
 import QuestionPicker from './QuestionPicker';
+import { useSubjectList } from '../../hooks/useSubjectList';
 
 interface GenerationMethodStepProps {
     formData: Partial<TestFormData>;
@@ -16,11 +17,22 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
     const [activeSubjectTab, setActiveSubjectTab] = useState<string>(selectedSubjects[0] || '');
     const [expandedUnits, setExpandedUnits] = useState<Record<string, boolean>>({});
     const [isQuestionPickerOpen, setIsQuestionPickerOpen] = useState(false);
+    const availableSubjects = useSubjectList();
 
-    // Initial load of active tab
-    if (selectedSubjects.length > 0 && !activeSubjectTab && selectedSubjects.includes(activeSubjectTab)) {
-        setActiveSubjectTab(selectedSubjects[0]);
-    }
+    useEffect(() => {
+        if (availableSubjects.length === 0) {
+            return;
+        }
+
+        const validSubjects = selectedSubjects.filter(subject => availableSubjects.includes(subject));
+        if (validSubjects.length !== selectedSubjects.length) {
+            setSelectedSubjects(validSubjects);
+        }
+
+        if (!availableSubjects.includes(activeSubjectTab)) {
+            setActiveSubjectTab(availableSubjects[0]);
+        }
+    }, [availableSubjects]);
 
     const toggleSubject = (subject: string) => {
         const updated = selectedSubjects.includes(subject)
@@ -339,7 +351,7 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
                     Select Subjects *
                 </label>
                 <div className="grid grid-cols-3 gap-4">
-                    {['Physics', 'Chemistry', 'Mathematics'].map((subject) => (
+                    {availableSubjects.map((subject) => (
                         <label
                             key={subject}
                             className={`flex items-center justify-center p-4 border-2 rounded-lg cursor-pointer transition-all ${selectedSubjects.includes(subject)

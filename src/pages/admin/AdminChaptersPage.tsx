@@ -3,13 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Search, Trash2, X, Save, Loader2, FolderPlus, BookOpen, Edit2, Upload, Download } from 'lucide-react';
 import { db } from '../../firebase';
 import { collection, addDoc, deleteDoc, updateDoc, doc, onSnapshot, query, orderBy, serverTimestamp } from 'firebase/firestore';
+import { useSubjectList } from '../../hooks/useSubjectList';
 import { parseChaptersCSV, validateChapter, batchUploadChapters, downloadTemplate } from '../../utils/csvImporter';
 import type { ChapterCSVRow, ValidationResult } from '../../utils/csvImporter';
 
 interface Chapter {
     id: string;
     name: string;
-    subject: 'Physics' | 'Chemistry' | 'Mathematics' | 'All';
+    subject: string;
     unit?: string; // Unit name/number (e.g., "Unit 1", "Mechanics")
     description: string;
     topics: string[]; // Topics within this chapter
@@ -36,10 +37,11 @@ const AdminChaptersPage = () => {
     const [validationResults, setValidationResults] = useState<Map<number, ValidationResult>>(new Map());
     const [uploadProgress, setUploadProgress] = useState(0);
     const [isUploading, setIsUploading] = useState(false);
+    const subjects = useSubjectList();
 
     const [formData, setFormData] = useState({
         name: '',
-        subject: 'Physics' as 'Physics' | 'Chemistry' | 'Mathematics' | 'All',
+        subject: 'Physics',
         unit: '',
         description: '',
         topics: [''],
@@ -325,9 +327,9 @@ const AdminChaptersPage = () => {
                         className="px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 bg-white"
                     >
                         <option value="all">All Subjects</option>
-                        <option value="Physics">Physics</option>
-                        <option value="Chemistry">Chemistry</option>
-                        <option value="Mathematics">Mathematics</option>
+                        {subjects.map(subject => (
+                            <option key={subject} value={subject}>{subject}</option>
+                        ))}
                     </select>
                 </div>
             </div>
@@ -484,9 +486,9 @@ const AdminChaptersPage = () => {
                                             onChange={e => setFormData({ ...formData, subject: e.target.value as any })}
                                             className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                                         >
-                                            <option value="Physics">Physics</option>
-                                            <option value="Chemistry">Chemistry</option>
-                                            <option value="Mathematics">Mathematics</option>
+                                            {subjects.map(subject => (
+                                                <option key={subject} value={subject}>{subject}</option>
+                                            ))}
                                             <option value="All">All Subjects</option>
                                         </select>
                                     </div>
@@ -659,9 +661,9 @@ const AdminChaptersPage = () => {
                                             onChange={e => setFormData({ ...formData, subject: e.target.value as any })}
                                             className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                                         >
-                                            <option value="Physics">Physics</option>
-                                            <option value="Chemistry">Chemistry</option>
-                                            <option value="Mathematics">Mathematics</option>
+                                            {subjects.map(subject => (
+                                                <option key={subject} value={subject}>{subject}</option>
+                                            ))}
                                             <option value="All">All Subjects</option>
                                         </select>
                                     </div>

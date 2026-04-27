@@ -45,6 +45,7 @@ const QuestionBank = React.lazy(() => import('./pages/admin/QuestionBank'));
 const AdminChaptersPage = React.lazy(() => import('./pages/admin/AdminChaptersPage'));
 const TestSeriesManagement = React.lazy(() => import('./pages/admin/TestSeriesManagement'));
 const TestCreationWizard = React.lazy(() => import('./pages/admin/TestCreationWizard'));
+const AdminSubjectsPage = React.lazy(() => import('./pages/admin/AdminSubjectsPage'));
 // ── OMR Feature (New Additions) ──────────────────────────────────────────────
 const OMRTestCreationWizard = React.lazy(() => import('./pages/admin/OMRTestCreationWizard'));
 const StudentTestModeSelect = React.lazy(() => import('./pages/student/StudentTestModeSelect'));
@@ -139,6 +140,7 @@ function App() {
                   <Route path="/admin-dashboard/tests" element={<AdminTestsPage />} />
                   <Route path="/admin-dashboard/question-bank" element={<QuestionBank />} />
                   <Route path="/admin-dashboard/chapters" element={<AdminChaptersPage />} />
+                  <Route path="/admin-dashboard/subjects" element={<AdminSubjectsPage />} />
                   <Route path="/admin-dashboard/pyqs" element={<AdminPYQsPage />} />
                   <Route path="/admin-dashboard/pyqs/new" element={<AdminAddPYQPage />} />
                   <Route path="/admin-dashboard/resources" element={<AdminResourcesPage />} />

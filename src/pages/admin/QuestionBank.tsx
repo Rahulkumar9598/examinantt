@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Search, Trash2, X, Save, Loader2, Download, BarChart3, Edit2, Upload, AlertTriangle } from 'lucide-react';
-import { db } from '../../firebase';
+import { db, storage } from '../../firebase';
+import { useSubjectList } from '../../hooks/useSubjectList';
 import { collection, addDoc, deleteDoc, updateDoc, doc, onSnapshot, query, orderBy, serverTimestamp, writeBatch } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { parseQuestionsCSV, validateQuestion, batchUploadQuestions, downloadTemplate } from '../../utils/csvImporter';
 import { JEE_MAINS_2024_WEIGHTAGE } from '../../data/jeeMainsWeightage2024';
 import type { QuestionCSVRow, ValidationResult } from '../../utils/csvImporter';
@@ -10,16 +12,20 @@ import type { QuestionCSVRow, ValidationResult } from '../../utils/csvImporter';
 interface Question {
     id: string;
     text: string;
+    textHindi?: string;
     options: string[]; // For MCQ, empty for numerical
+    optionsHindi?: string[];
     correctAnswer: number | string; // index for MCQ, value for numerical
-    subject: 'Physics' | 'Chemistry' | 'Mathematics';
+    subject: string;
     chapter: string; // Chapter name
     topic?: string; // Topic from selected chapter
+    examCategory?: string;
     type: 'MCQ' | 'Numerical';
     difficulty: 'Easy' | 'Medium' | 'Hard';
     marks?: number; // Default marks for this question (default: 4)
     negativeMarks?: number; // Negative marking (optional, default: -1 for MCQ)
     explanation?: string; // Solution/explanation text (optional)
+    imageUrls?: string[];
     createdAt: any;
 }
 
@@ -44,6 +50,7 @@ const AdminQuestionBank = () => {
     const [filterSubject, setFilterSubject] = useState<string>('all');
     const [filterType, setFilterType] = useState<string>('all');
     const [filterDifficulty, setFilterDifficulty] = useState<string>('all');
+    const [filterExam, setFilterExam] = useState<string>('all');
 
     // CSV Import states
     const [isImporting, setIsImporting] = useState(false);
@@ -52,19 +59,33 @@ const AdminQuestionBank = () => {
     const [validationResults, setValidationResults] = useState<Map<number, ValidationResult>>(new Map());
     const [uploadProgress, setUploadProgress] = useState(0);
     const [isUploading, setIsUploading] = useState(false);
+    const subjects = useSubjectList();
+
+    const [imageFiles, setImageFiles] = useState<File[]>([]);
+    const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+
+    useEffect(() => {
+        return () => {
+            imagePreviews.forEach(url => URL.revokeObjectURL(url));
+        };
+    }, [imagePreviews]);
 
     const [formData, setFormData] = useState({
         text: '',
+        textHindi: '',
         options: ['', '', '', ''],
+        optionsHindi: ['', '', '', ''],
         correctAnswer: '0',
-        subject: 'Physics' as 'Physics' | 'Chemistry' | 'Mathematics',
+        subject: 'Physics',
         chapter: '',
         topic: '',
+        examCategory: 'JEE',
         type: 'MCQ' as 'MCQ' | 'Numerical',
         difficulty: 'Medium' as 'Easy' | 'Medium' | 'Hard',
         marks: 4,
         negativeMarks: -1,
-        explanation: ''
+        explanation: '',
+        imageUrls: [] as string[]
     });
 
     // Get chapters for selected subject from chapters collection
@@ -106,47 +127,89 @@ const AdminQuestionBank = () => {
         };
     }, []);
 
+    const sanitizeFileName = (name: string) => {
+        return name
+            .trim()
+            .replace(/\s+/g, '_')
+            .replace(/[^\w.-]/g, '');
+    };
+
+    const uploadQuestionImages = async (files: File[]) => {
+        const urls: string[] = [];
+        for (const file of files) {
+            const safeName = sanitizeFileName(file.name);
+            const imageRef = ref(storage, `question-images/${Date.now()}_${safeName}`);
+            const snapshot = await uploadBytes(imageRef, file);
+            const downloadUrl = await getDownloadURL(snapshot.ref);
+            urls.push(downloadUrl);
+        }
+        return urls;
+    };
+
     const handleCreate = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
         try {
             await delay(1000); // Artificial delay
+
+            let uploadUrls: string[] = [];
+            if (imageFiles.length > 0) {
+                try {
+                    uploadUrls = await uploadQuestionImages(imageFiles);
+                } catch (imageError) {
+                    console.error('Image upload failed:', imageError);
+                    alert('Image upload failed. Question will still be created without images. Please check Firebase Storage CORS and bucket configuration.');
+                    uploadUrls = [];
+                }
+            }
+
             const questionData: any = {
                 text: formData.text,
+                textHindi: formData.textHindi || '',
                 subject: formData.subject,
                 chapter: formData.chapter,
                 topic: formData.topic || '',
+                examCategory: formData.examCategory || 'General',
                 type: formData.type,
                 difficulty: formData.difficulty,
                 marks: formData.marks,
                 negativeMarks: formData.type === 'MCQ' ? formData.negativeMarks : 0,
                 explanation: formData.explanation || '',
+                imageUrls: [...formData.imageUrls, ...uploadUrls],
                 createdAt: serverTimestamp()
             };
 
             if (formData.type === 'MCQ') {
                 questionData.options = formData.options.filter(o => o.trim() !== '');
+                questionData.optionsHindi = formData.optionsHindi;
                 questionData.correctAnswer = Number(formData.correctAnswer);
             } else {
                 questionData.options = [];
+                questionData.optionsHindi = formData.optionsHindi;
                 questionData.correctAnswer = formData.correctAnswer;
             }
 
             await addDoc(collection(db, 'questions'), questionData);
 
             setIsCreating(false);
+            setImageFiles([]);
+            setImagePreviews([]);
             setFormData({
                 text: '',
+                textHindi: '',
                 options: ['', '', '', ''],
+                optionsHindi: ['', '', '', ''],
                 correctAnswer: '0',
                 subject: 'Physics',
                 chapter: '',
                 topic: '',
+                examCategory: 'JEE',
                 type: 'MCQ',
                 difficulty: 'Medium',
                 marks: 4,
                 negativeMarks: -1,
-                explanation: ''
+                explanation: '',
+                imageUrls: []
             });
         } catch (error) {
             console.error("Error creating question:", error);
@@ -176,21 +239,40 @@ const AdminQuestionBank = () => {
         setFormData({ ...formData, options: newOptions });
     };
 
+    const handleOptionHindiChange = (index: number, value: string) => {
+        const newOptionsHindi = [...formData.optionsHindi];
+        newOptionsHindi[index] = value;
+        setFormData({ ...formData, optionsHindi: newOptionsHindi });
+    };
+
+    const handleImageSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files ? Array.from(event.target.files) : [];
+        setImageFiles(files);
+        const previews = files.map(file => URL.createObjectURL(file));
+        setImagePreviews(previews);
+    };
+
     const handleEdit = (question: Question) => {
         setEditingQuestion(question);
         setFormData({
             text: question.text,
+            textHindi: question.textHindi || '',
             options: question.options.length > 0 ? question.options : ['', '', '', ''],
+            optionsHindi: question.optionsHindi?.length === 4 ? question.optionsHindi : ['', '', '', ''],
             correctAnswer: typeof question.correctAnswer === 'number' ? String(question.correctAnswer) : question.correctAnswer,
             subject: question.subject,
             chapter: question.chapter,
             topic: question.topic || '',
+            examCategory: question.examCategory || 'JEE',
             type: question.type,
             difficulty: question.difficulty,
             marks: question.marks || 4,
             negativeMarks: question.negativeMarks || -1,
-            explanation: question.explanation || ''
+            explanation: question.explanation || '',
+            imageUrls: question.imageUrls || []
         });
+        setImageFiles([]);
+        setImagePreviews([]);
         setIsEditing(true);
     };
 
@@ -201,23 +283,40 @@ const AdminQuestionBank = () => {
         setIsSubmitting(true);
         try {
             await delay(1000); // Artificial delay
+
+            let uploadUrls: string[] = [];
+            if (imageFiles.length > 0) {
+                try {
+                    uploadUrls = await uploadQuestionImages(imageFiles);
+                } catch (imageError) {
+                    console.error('Image upload failed:', imageError);
+                    alert('Image upload failed. Question will still be updated without new images. Please check Firebase Storage CORS and bucket configuration.');
+                    uploadUrls = [];
+                }
+            }
+
             const questionData: any = {
                 text: formData.text,
+                textHindi: formData.textHindi || '',
                 subject: formData.subject,
                 chapter: formData.chapter,
                 topic: formData.topic || '',
+                examCategory: formData.examCategory || 'General',
                 type: formData.type,
                 difficulty: formData.difficulty,
                 marks: formData.marks,
                 negativeMarks: formData.type === 'MCQ' ? formData.negativeMarks : 0,
-                explanation: formData.explanation || ''
+                explanation: formData.explanation || '',
+                imageUrls: [...(formData.imageUrls || []), ...uploadUrls]
             };
 
             if (formData.type === 'MCQ') {
                 questionData.options = formData.options.filter(o => o.trim() !== '');
+                questionData.optionsHindi = formData.optionsHindi;
                 questionData.correctAnswer = Number(formData.correctAnswer);
             } else {
                 questionData.options = [];
+                questionData.optionsHindi = formData.optionsHindi;
                 questionData.correctAnswer = formData.correctAnswer;
             }
 
@@ -225,18 +324,24 @@ const AdminQuestionBank = () => {
 
             setIsEditing(false);
             setEditingQuestion(null);
+            setImageFiles([]);
+            setImagePreviews([]);
             setFormData({
                 text: '',
+                textHindi: '',
                 options: ['', '', '', ''],
+                optionsHindi: ['', '', '', ''],
                 correctAnswer: '0',
                 subject: 'Physics',
                 chapter: '',
                 topic: '',
+                examCategory: 'JEE',
                 type: 'MCQ',
                 difficulty: 'Medium',
                 marks: 4,
                 negativeMarks: -1,
-                explanation: ''
+                explanation: '',
+                imageUrls: []
             });
         } catch (error) {
             console.error("Error updating question:", error);
@@ -317,8 +422,9 @@ const AdminQuestionBank = () => {
         const matchesSubject = filterSubject === 'all' || q.subject === filterSubject;
         const matchesType = filterType === 'all' || q.type === filterType;
         const matchesDifficulty = filterDifficulty === 'all' || q.difficulty === filterDifficulty;
+        const matchesExam = filterExam === 'all' || q.examCategory === filterExam;
 
-        return matchesSearch && matchesSubject && matchesType && matchesDifficulty;
+        return matchesSearch && matchesSubject && matchesType && matchesDifficulty && matchesExam;
     });
 
     // Calculate statistics
@@ -526,6 +632,18 @@ const AdminQuestionBank = () => {
                         <option value="Medium">Medium</option>
                         <option value="Hard">Hard</option>
                     </select>
+                    <select
+                        value={filterExam}
+                        onChange={(e) => setFilterExam(e.target.value)}
+                        className="px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 bg-white"
+                    >
+                        <option value="all">All Exams</option>
+                        <option value="JEE">JEE</option>
+                        <option value="NEET">NEET</option>
+                        <option value="SSC">SSC</option>
+                        <option value="Boards">Boards</option>
+                        <option value="Other">Other</option>
+                    </select>
                 </div>
 
             </div>
@@ -540,6 +658,7 @@ const AdminQuestionBank = () => {
                                 <th className="px-6 py-4">Subject</th>
                                 <th className="px-6 py-4">Chapter</th>
                                 <th className="px-6 py-4">Topic</th>
+                                <th className="px-6 py-4">Exam</th>
                                 <th className="px-6 py-4">Type</th>
                                 <th className="px-6 py-4">Marks</th>
                                 <th className="px-6 py-4 text-right">Actions</th>
@@ -566,6 +685,7 @@ const AdminQuestionBank = () => {
                                         </td>
                                         <td className="px-6 py-4 text-sm text-slate-600">{q.chapter}</td>
                                         <td className="px-6 py-4 text-sm text-slate-600">{q.topic || '-'}</td>
+                                        <td className="px-6 py-4 text-sm text-slate-600">{q.examCategory || 'General'}</td>
                                         <td className="px-6 py-4">
                                             <span className={`px-2 py-1 rounded text-xs font-bold ${q.type === 'MCQ' ? 'bg-blue-100 text-blue-700' : 'bg-amber-100 text-amber-700'
                                                 }`}>
@@ -625,9 +745,9 @@ const AdminQuestionBank = () => {
                                             onChange={e => setFormData({ ...formData, subject: e.target.value as any, chapter: '', topic: '' })}
                                             className="w-full px-4 py-2 border rounded-lg bg-white"
                                         >
-                                            <option>Physics</option>
-                                            <option>Chemistry</option>
-                                            <option>Mathematics</option>
+                                            {subjects.map(subject => (
+                                                <option key={subject} value={subject}>{subject}</option>
+                                            ))}
                                         </select>
                                     </div>
                                     <div>
@@ -644,8 +764,8 @@ const AdminQuestionBank = () => {
                                     </div>
                                 </div>
 
-                                {/* Chapter and Difficulty */}
-                                <div className="grid grid-cols-2 gap-4">
+                                {/* Chapter, Difficulty and Exam */}
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                                     <div>
                                         <label className="block text-sm font-semibold text-slate-700 mb-1">Chapter *</label>
                                         <select
@@ -674,10 +794,25 @@ const AdminQuestionBank = () => {
                                             <option>Hard</option>
                                         </select>
                                     </div>
+                                    <div>
+                                        <label className="block text-sm font-semibold text-slate-700 mb-1">Exam Category *</label>
+                                        <select
+                                            required
+                                            value={formData.examCategory}
+                                            onChange={e => setFormData({ ...formData, examCategory: e.target.value })}
+                                            className="w-full px-4 py-2 border rounded-lg bg-white"
+                                        >
+                                            <option>JEE</option>
+                                            <option>NEET</option>
+                                            <option>SSC</option>
+                                            <option>Boards</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 {/* Topic and Marks */}
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                                     <div>
                                         <label className="block text-sm font-semibold text-slate-700 mb-1">Topic *</label>
                                         <select
@@ -706,10 +841,6 @@ const AdminQuestionBank = () => {
                                             max="10"
                                         />
                                     </div>
-                                </div>
-
-                                {/* Negative Marks (for MCQ only) */}
-                                {formData.type === 'MCQ' && (
                                     <div>
                                         <label className="block text-sm font-semibold text-slate-700 mb-1">Negative Marks</label>
                                         <input
@@ -720,9 +851,9 @@ const AdminQuestionBank = () => {
                                             placeholder="-1"
                                             step="0.25"
                                         />
-                                        <p className="text-xs text-slate-500 mt-1">Typically -1 for JEE Mains</p>
+                                        <p className="text-xs text-slate-500 mt-1">Typically -1 for JEE Mains (MCQ only)</p>
                                     </div>
-                                )}
+                                </div>
 
                                 {/* Question Text */}
                                 <div>
@@ -733,6 +864,16 @@ const AdminQuestionBank = () => {
                                         onChange={e => setFormData({ ...formData, text: e.target.value })}
                                         className="w-full px-4 py-2 border rounded-lg h-24 resize-none"
                                         placeholder="Enter the complete question text..."
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-semibold text-slate-700 mb-1">Question Text (Hindi)</label>
+                                    <textarea
+                                        value={formData.textHindi}
+                                        onChange={e => setFormData({ ...formData, textHindi: e.target.value })}
+                                        className="w-full px-4 py-2 border rounded-lg h-24 resize-none"
+                                        placeholder="हिंदी में प्रश्न लिखें (वैकल्पिक)"
                                     />
                                 </div>
 
@@ -767,6 +908,51 @@ const AdminQuestionBank = () => {
                                         <p className="text-xs text-slate-500 mt-1">Select the correct answer using the radio button</p>
                                     </div>
                                 )}
+
+                                {formData.type === 'MCQ' && (
+                                    <div>
+                                        <label className="block text-sm font-semibold text-slate-700 mb-2">Hindi Options (Optional)</label>
+                                        <div className="space-y-2">
+                                            {[0, 1, 2, 3].map((i) => (
+                                                <input
+                                                    key={i}
+                                                    type="text"
+                                                    value={formData.optionsHindi[i]}
+                                                    onChange={e => handleOptionHindiChange(i, e.target.value)}
+                                                    className="w-full px-3 py-2 border rounded-lg text-sm"
+                                                    placeholder={`Option ${String.fromCharCode(65 + i)} in Hindi`}
+                                                />
+                                            ))}
+                                        </div>
+                                        <p className="text-xs text-slate-500 mt-1">Hindi translations for the options are optional but helpful for bilingual uploads.</p>
+                                    </div>
+                                )}
+
+                                <div>
+                                    <label className="block text-sm font-semibold text-slate-700 mb-1">Upload Question Images</label>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        multiple
+                                        onChange={handleImageSelect}
+                                        className="w-full text-sm text-slate-500"
+                                    />
+                                    <p className="text-xs text-slate-500 mt-1">Add supporting images for the question. JPG/PNG files only.</p>
+                                    {(imagePreviews.length > 0 || formData.imageUrls.length > 0) && (
+                                        <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                            {formData.imageUrls.map((url, idx) => (
+                                                <a key={`existing-image-${idx}`} href={url} target="_blank" rel="noreferrer" className="block rounded-xl overflow-hidden border border-slate-200 bg-slate-50">
+                                                    <img src={url} alt={`existing image ${idx + 1}`} className="h-24 w-full object-cover" />
+                                                </a>
+                                            ))}
+                                            {imagePreviews.map((preview, idx) => (
+                                                <div key={`preview-${idx}`} className="block rounded-xl overflow-hidden border border-slate-200 bg-slate-50">
+                                                    <img src={preview} alt={`preview ${idx + 1}`} className="h-24 w-full object-cover" />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
 
                                 {/* Correct Answer (for Numerical) */}
                                 {formData.type === 'Numerical' && (
@@ -886,9 +1072,9 @@ const AdminQuestionBank = () => {
                                             onChange={e => setFormData({ ...formData, subject: e.target.value as any, chapter: '', topic: '' })}
                                             className="w-full px-4 py-2 border rounded-lg bg-white"
                                         >
-                                            <option>Physics</option>
-                                            <option>Chemistry</option>
-                                            <option>Mathematics</option>
+                                            {subjects.map(subject => (
+                                                <option key={subject} value={subject}>{subject}</option>
+                                            ))}
                                         </select>
                                     </div>
                                     <div>
@@ -905,8 +1091,8 @@ const AdminQuestionBank = () => {
                                     </div>
                                 </div>
 
-                                {/* Chapter and Difficulty */}
-                                <div className="grid grid-cols-2 gap-4">
+                                {/* Chapter, Difficulty and Exam */}
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                                     <div>
                                         <label className="block text-sm font-semibold text-slate-700 mb-1">Chapter *</label>
                                         <select
@@ -935,10 +1121,25 @@ const AdminQuestionBank = () => {
                                             <option>Hard</option>
                                         </select>
                                     </div>
+                                    <div>
+                                        <label className="block text-sm font-semibold text-slate-700 mb-1">Exam Category *</label>
+                                        <select
+                                            required
+                                            value={formData.examCategory}
+                                            onChange={e => setFormData({ ...formData, examCategory: e.target.value })}
+                                            className="w-full px-4 py-2 border rounded-lg bg-white"
+                                        >
+                                            <option>JEE</option>
+                                            <option>NEET</option>
+                                            <option>SSC</option>
+                                            <option>Boards</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
                                 </div>
 
-                                {/* Topic and Marks */}
-                                <div className="grid grid-cols-2 gap-4">
+                                {/* Topic, Marks and Negative Marks */}
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                                     <div>
                                         <label className="block text-sm font-semibold text-slate-700 mb-1">Topic *</label>
                                         <select
@@ -967,10 +1168,6 @@ const AdminQuestionBank = () => {
                                             max="10"
                                         />
                                     </div>
-                                </div>
-
-                                {/* Negative Marks (for MCQ only) */}
-                                {formData.type === 'MCQ' && (
                                     <div>
                                         <label className="block text-sm font-semibold text-slate-700 mb-1">Negative Marks</label>
                                         <input
@@ -981,9 +1178,9 @@ const AdminQuestionBank = () => {
                                             placeholder="-1"
                                             step="0.25"
                                         />
-                                        <p className="text-xs text-slate-500 mt-1">Typically -1 for JEE Mains</p>
+                                        <p className="text-xs text-slate-500 mt-1">Typically -1 for JEE Mains (MCQ only)</p>
                                     </div>
-                                )}
+                                </div>
 
                                 {/* Question Text */}
                                 <div>
@@ -994,6 +1191,16 @@ const AdminQuestionBank = () => {
                                         onChange={e => setFormData({ ...formData, text: e.target.value })}
                                         className="w-full px-4 py-2 border rounded-lg h-24 resize-none"
                                         placeholder="Enter the complete question text..."
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-semibold text-slate-700 mb-1">Question Text (Hindi)</label>
+                                    <textarea
+                                        value={formData.textHindi}
+                                        onChange={e => setFormData({ ...formData, textHindi: e.target.value })}
+                                        className="w-full px-4 py-2 border rounded-lg h-24 resize-none"
+                                        placeholder="हिंदी में प्रश्न लिखें (वैकल्पिक)"
                                     />
                                 </div>
 
@@ -1028,6 +1235,51 @@ const AdminQuestionBank = () => {
                                         <p className="text-xs text-slate-500 mt-1">Select the correct answer using the radio button</p>
                                     </div>
                                 )}
+
+                                {formData.type === 'MCQ' && (
+                                    <div>
+                                        <label className="block text-sm font-semibold text-slate-700 mb-2">Hindi Options (Optional)</label>
+                                        <div className="space-y-2">
+                                            {[0, 1, 2, 3].map((i) => (
+                                                <input
+                                                    key={i}
+                                                    type="text"
+                                                    value={formData.optionsHindi[i]}
+                                                    onChange={e => handleOptionHindiChange(i, e.target.value)}
+                                                    className="w-full px-3 py-2 border rounded-lg text-sm"
+                                                    placeholder={`Option ${String.fromCharCode(65 + i)} in Hindi`}
+                                                />
+                                            ))}
+                                        </div>
+                                        <p className="text-xs text-slate-500 mt-1">Hindi translations for the options are optional but helpful for bilingual uploads.</p>
+                                    </div>
+                                )}
+
+                                <div>
+                                    <label className="block text-sm font-semibold text-slate-700 mb-1">Upload Question Images</label>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        multiple
+                                        onChange={handleImageSelect}
+                                        className="w-full text-sm text-slate-500"
+                                    />
+                                    <p className="text-xs text-slate-500 mt-1">Add supporting images for the question. JPG/PNG files only.</p>
+                                    {(imagePreviews.length > 0 || formData.imageUrls.length > 0) && (
+                                        <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                            {formData.imageUrls.map((url, idx) => (
+                                                <a key={`existing-image-${idx}`} href={url} target="_blank" rel="noreferrer" className="block rounded-xl overflow-hidden border border-slate-200 bg-slate-50">
+                                                    <img src={url} alt={`existing image ${idx + 1}`} className="h-24 w-full object-cover" />
+                                                </a>
+                                            ))}
+                                            {imagePreviews.map((preview, idx) => (
+                                                <div key={`preview-${idx}`} className="block rounded-xl overflow-hidden border border-slate-200 bg-slate-50">
+                                                    <img src={preview} alt={`preview ${idx + 1}`} className="h-24 w-full object-cover" />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
 
                                 {/* Correct Answer (for Numerical) */}
                                 {formData.type === 'Numerical' && (
