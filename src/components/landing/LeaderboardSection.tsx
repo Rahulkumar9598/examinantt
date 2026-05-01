@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Crown, Sparkles, Trophy, Medal, Star, TrendingUp, Users, ScrollText, Target } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { Trophy, Medal } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 type LeaderboardEntry = {
   id: string;
@@ -22,10 +22,6 @@ const STUDENTS_POOL: LeaderboardEntry[] = [
   { id: 's8', name: 'Arjun Mehra', classLevel: '12', score: 90, exam: 'Commerce' },
 ];
 
-function pickRandomTopFive(pool: LeaderboardEntry[]) {
-  const shuffled = [...pool].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, 5).sort((a, b) => b.score - a.score);
-}
 
 export default function LeaderboardSection() {
   const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
@@ -46,14 +42,6 @@ export default function LeaderboardSection() {
     setEntries(getScrambledData());
   }, [activeTab]);
 
-  const topThree = entries.slice(0, 3);
-  const others = entries.slice(3);
-
-  // Podium order: 2, 1, 3
-  const podiumOrder = useMemo(() => {
-    if (topThree.length < 3) return topThree;
-    return [topThree[1], topThree[0], topThree[2]];
-  }, [topThree]);
 
   return (
     <section className="py-24 bg-white relative">
