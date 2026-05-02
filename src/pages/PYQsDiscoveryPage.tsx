@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Lock, Loader2, Search, PenTool, ExternalLink } from 'lucide-react';
+import { FileText, Loader2, Search, PenTool, ExternalLink } from 'lucide-react';
 import { db } from '../firebase';
 import { collection, query, onSnapshot } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
@@ -153,10 +153,10 @@ const PYQsDiscoveryPage = () => {
                                         </div>
                                         <button
                                             onClick={() => handleExplore(pyq.id)}
-                                            className="px-6 py-3 bg-white text-black text-sm font-black rounded-xl hover:bg-blue-500 hover:text-white transition-all transform active:scale-95 flex items-center gap-2 shadow-lg shadow-white/5"
+                                            className="px-6 py-3 bg-emerald-600 text-white text-sm font-black rounded-xl hover:bg-emerald-700 transition-all transform active:scale-95 flex items-center gap-2 shadow-lg shadow-emerald-500/20"
                                         >
-                                            {pyq.price === 0 ? <ExternalLink size={18} /> : <Lock size={18} />}
-                                            EXPLORE
+                                            <ExternalLink size={18} />
+                                            ACCESS NOW
                                         </button>
                                     </div>
                                 </motion.div>

@@ -14,7 +14,8 @@ import {
     BookMarked,
     FolderTree,
     Award,
-    ListChecks
+    ListChecks,
+    PenTool
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { auth } from '../firebase';
@@ -45,7 +46,7 @@ const DashboardLayout = ({ children, role }: DashboardLayoutProps) => {
         { icon: <BookOpen size={20} />, label: 'My Tests', path: '/dashboard/tests' },
         { icon: <Award size={20} />, label: 'Test Results', path: '/dashboard/results' },
         { icon: <FileText size={20} />, label: 'Buy Series', path: '/dashboard/market' },
-        // { icon: <Database size={20} />, label: 'PYQs', path: '/dashboard/pyqs' },
+        { icon: <PenTool size={20} />, label: 'PYQs', path: '/dashboard/pyqs' },
         // { icon: <BookOpen size={20} />, label: 'Resources', path: '/dashboard/resources' },
         { icon: <TrendingUp size={20} />, label: 'Analytics', path: '/dashboard/analytics' },
     ];

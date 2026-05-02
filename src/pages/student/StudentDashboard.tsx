@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { PlayCircle, Clock, Award, BarChart2, TrendingUp, ChevronRight, BookOpen, Loader2 } from 'lucide-react';
+import { PlayCircle, Clock, Award, BarChart2, TrendingUp, ChevronRight, BookOpen, Loader2, FileText } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { db } from '../../firebase';
+import { collection, query, orderBy, limit, onSnapshot as fsOnSnapshot } from 'firebase/firestore';
 import {
     getStudentStats,
     getRecommendedSeries,
-    getActiveTests,
     formatDurationHours,
     type StudentStats,
     type RecommendedSeries,
@@ -31,25 +32,59 @@ const StudentDashboard = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const loadDashboardData = async () => {
-            if (currentUser) {
-                try {
-                    const [statsData, recData, activeData] = await Promise.all([
-                        getStudentStats(currentUser.uid),
-                        getRecommendedSeries(),
-                        getActiveTests(currentUser.uid)
-                    ]);
-                    setStats(statsData);
-                    setRecommendations(recData);
-                    setActiveTests(activeData);
-                } catch (error) {
-                    console.error("Failed to load dashboard data", error);
-                } finally {
-                    setIsLoading(false);
-                }
+        if (!currentUser) return;
+
+        // 1. Fetch static data
+        const loadStats = async () => {
+            try {
+                const [statsData, recData] = await Promise.all([
+                    getStudentStats(currentUser.uid),
+                    getRecommendedSeries()
+                ]);
+                setStats(statsData);
+                setRecommendations(recData);
+            } catch (error) {
+                console.error("Failed to load stats", error);
+            } finally {
+                setIsLoading(false);
             }
         };
-        loadDashboardData();
+        loadStats();
+
+        // 2. Setup live listener for purchases/active tests
+        const purchasesRef = collection(db, 'users', currentUser.uid, 'purchases');
+        const q = query(purchasesRef, orderBy('purchaseDate', 'desc'), limit(10));
+        
+        const unsubscribe = fsOnSnapshot(q, (snapshot) => {
+            const activeData = snapshot.docs.map(doc => {
+                const data = doc.data();
+                const title = data.seriesTitle || data.testTitle || data.title || 'Untitled';
+                const category = data.category || 'Test Series';
+                
+                // Intelligent type detection for older data
+                let type = data.type;
+                if (!type) {
+                    if (category.toLowerCase().includes('pyq') || title.toLowerCase().includes('pyq')) {
+                        type = 'pyq';
+                    } else {
+                        type = 'testSeries';
+                    }
+                }
+
+                return {
+                    id: doc.id,
+                    testId: data.seriesId || data.testId,
+                    title: title,
+                    category: category,
+                    purchaseDate: data.purchaseDate,
+                    type: type
+                } as ActiveTest;
+            });
+            console.log("Dashboard Active Data Loaded:", activeData);
+            setActiveTests(activeData);
+        });
+
+        return () => unsubscribe();
     }, [currentUser]);
 
     const containerVariants = {
@@ -138,6 +173,56 @@ const StudentDashboard = () => {
                 ))}
             </div>
 
+
+
+            {/* My Purchased PYQs Section */}
+            <motion.section variants={itemVariants} className="space-y-4">
+                <div className="flex justify-between items-center">
+                    <h2 className="text-xl font-bold text-slate-800">My PYQs</h2>
+                    <button
+                        onClick={() => navigate('/dashboard/pyqs')}
+                        className="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center gap-1 transition-colors"
+                    >
+                        View All PYQs <ChevronRight size={16} />
+                    </button>
+                </div>
+
+                {activeTests.filter(t => t.category?.toLowerCase().includes('pyq') || (t as any).type === 'pyq' || t.title?.toLowerCase().includes('pyq')).length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {activeTests.filter(t => t.category?.toLowerCase().includes('pyq') || (t as any).type === 'pyq' || t.title?.toLowerCase().includes('pyq')).map((pyq) => (
+                            <div
+                                key={pyq.id}
+                                onClick={() => navigate('/dashboard/pyqs')}
+                                className="bg-white p-5 rounded-2xl border border-slate-200 hover:shadow-md transition-all cursor-pointer flex items-center justify-between group"
+                            >
+                                <div className="flex items-center gap-4">
+                                    <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl group-hover:bg-indigo-100 transition-colors">
+                                        <FileText size={24} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-slate-800 group-hover:text-indigo-700 transition-colors">{pyq.title}</h4>
+                                        <p className="text-xs text-slate-500">Unlocked: {pyq.purchaseDate?.toDate().toLocaleDateString()}</p>
+                                    </div>
+                                </div>
+                                <ChevronRight className="text-slate-300 group-hover:text-indigo-600 group-hover:translate-x-1 transition-all" />
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="bg-white rounded-2xl border border-dashed border-slate-300 p-8 flex flex-col items-center justify-center text-center">
+                        <FileText size={32} className="text-slate-400 mb-3" />
+                        <h3 className="text-sm font-semibold text-slate-700 mb-1">No PYQs Unlocked</h3>
+                        <p className="text-xs text-slate-500 mb-4">Start practicing with previous year questions.</p>
+                        <button
+                            onClick={() => navigate('/dashboard/pyqs')}
+                            className="px-4 py-2 bg-indigo-600 text-white text-xs font-semibold rounded-lg hover:bg-indigo-700 transition-all"
+                        >
+                            Browse PYQs
+                        </button>
+                    </div>
+                )}
+            </motion.section>
+
             {/* Recommended Tests Section */}
             <motion.section variants={itemVariants} className="space-y-4">
                 <div className="flex justify-between items-center">
@@ -156,7 +241,7 @@ const StudentDashboard = () => {
                             <motion.div
                                 key={series.id}
                                 whileHover={{ y: -4 }}
-                                onClick={() => navigate('/dashboard/market')} // Or detail page if exists
+                                onClick={() => navigate('/dashboard/market')} 
                                 className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-blue-200 transition-all duration-300 cursor-pointer"
                             >
                                 <div className="h-32 bg-gradient-to-br from-slate-800 to-slate-900 relative p-6 flex flex-col justify-between">
@@ -201,67 +286,6 @@ const StudentDashboard = () => {
                             className="text-blue-600 font-bold mt-2 hover:underline"
                         >
                             Browse all series
-                        </button>
-                    </div>
-                )}
-            </motion.section>
-
-            {/* Active Tests Section */}
-            <motion.section variants={itemVariants} className="space-y-4">
-                <h2 className="text-xl font-bold text-slate-800">Your Active Tests</h2>
-
-                {activeTests.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {activeTests.map((test) => (
-                            <div
-                                key={test.id}
-                                onClick={() => {
-                                    const message = `Do you want to continue "${test.title}"? Your timer will resume/start.`;
-                                    if (window.confirm(message)) {
-                                        // We need to know if it's OMR. The ActiveTest interface might need isOMR.
-                                        // For now, most series-based tests use the default route.
-                                        // But we can check for OMR specifically if provided in data.
-                                        const path = (test as any).isOMR 
-                                            ? `/dashboard/omr-attempt/${test.testId}` 
-                                            : `/dashboard/attempt/${test.testId}`;
-                                        navigate(path);
-                                    }
-                                }}
-                                className="bg-white p-5 rounded-2xl border border-slate-200 hover:shadow-md transition-all cursor-pointer flex items-center justify-between group"
-                            >
-                                <div className="flex items-center gap-4">
-                                    <div className="p-3 bg-green-50 text-green-600 rounded-xl group-hover:bg-green-100 transition-colors">
-                                        <PlayCircle size={24} />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-slate-800 group-hover:text-green-700 transition-colors">{test.title}</h4>
-                                        <p className="text-xs text-slate-500">Purchased: {test.purchaseDate?.toDate().toLocaleDateString()}</p>
-                                    </div>
-                                </div>
-                                <ChevronRight className="text-slate-300 group-hover:text-green-600 group-hover:translate-x-1 transition-all" />
-                            </div>
-                        ))}
-                        <div
-                            onClick={() => navigate('/dashboard/tests')}
-                            className="bg-slate-50 p-5 rounded-2xl border border-dashed border-slate-300 hover:bg-slate-100 transition-all cursor-pointer flex items-center justify-center text-slate-500 font-medium"
-                        >
-                            View all purchased tests
-                        </div>
-                    </div>
-                ) : (
-                    <div className="bg-white rounded-2xl border border-dashed border-slate-300 p-12 flex flex-col items-center justify-center text-center">
-                        <div className="bg-slate-50 p-4 rounded-full mb-4">
-                            <PlayCircle size={32} className="text-slate-400" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-slate-700 mb-1">No Active Tests</h3>
-                        <p className="text-slate-500 max-w-xs mx-auto mb-6">
-                            You haven't purchased any tests yet. Browse our marketplace to find the perfect test series for you.
-                        </p>
-                        <button
-                            onClick={() => navigate('/dashboard/market')}
-                            className="px-6 py-2.5 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/25"
-                        >
-                            Browse Tests
                         </button>
                     </div>
                 )}

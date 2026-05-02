@@ -6,7 +6,6 @@ import { useAuth } from '../../contexts/AuthContext';
 import type { TestSeries } from '../../types/test.types';
 import { getAllTestSeries } from '../../services/testSeriesService';
 import TestSeriesCard from '../../components/landing/TestSeriesCard';
-import { loadRazorpay } from '../../utils/razorpay';
 import { marketplaceService } from '../../services/marketplaceService';
 
 const StudentMarketPage = () => {
@@ -62,55 +61,20 @@ const StudentMarketPage = () => {
 
         setEnrollingId(series.id);
         try {
-            if (series.pricing?.type === 'paid' && (series.pricing.amount || 0) > 0) {
-                // --- PAID: Open Razorpay ---
-                const res = await loadRazorpay();
-                if (!res) {
-                    alert('Razorpay SDK failed to load. Are you online?');
-                    setEnrollingId(null);
-                    return;
-                }
-
-                const options = {
-                    key: 'rzp_test_S7lSvWtu89c6zD',
-                    amount: (series.pricing.amount || 0) * 100,
-                    currency: 'INR',
-                    name: 'DHItantra',
-                    description: `Purchase: ${series.name}`,
-                    image: 'https://DHItantra.web.app/logo192.png',
-                    handler: async function (_response: any) {
-                        try {
-                            await marketplaceService.enrollInItem(currentUser.uid, series);
-                            alert('Payment Successful! You are now enrolled.');
-                        } catch (err: any) {
-                            console.error("Enrollment error after payment:", err);
-                            alert(`Payment successful but enrollment failed: ${err.message || 'Unknown error'}. Please contact support.`);
-                        }
-                    },
-                    prefill: {
-                        name: currentUser.displayName || 'Student',
-                        email: currentUser.email || 'student@example.com',
-                        contact: ''
-                    },
-                    notes: { address: 'DHItantra' },
-                    theme: { color: '#3399cc' },
-                    modal: {
-                        ondismiss: () => setEnrollingId(null)
-                    }
-                };
-
-                const paymentObject = new (window as any).Razorpay(options);
-                paymentObject.open();
-                setEnrollingId(null); // reset — modal is open, handler takes over
-            } else {
-                // --- FREE: Direct Enroll ---
-                await marketplaceService.enrollInItem(currentUser.uid, series);
-                alert('Enrolled successfully! Go to My Tests to start.');
-                setEnrollingId(null);
-            }
-        } catch (error) {
+            await marketplaceService.processPayment(currentUser.uid, {
+                ...series,
+                id: series.id,
+                title: series.name,
+                price: series.pricing?.type === 'paid' ? series.pricing.amount : 0,
+                type: 'testSeries'
+            });
+            alert('Success! You are now enrolled.');
+            setEnrollingId(null);
+        } catch (error: any) {
             console.error("Enrollment failed", error);
-            alert('Failed. Please try again.');
+            if (error.message !== "Payment cancelled by user") {
+                alert('Failed: ' + error.message);
+            }
             setEnrollingId(null);
         }
     };
@@ -196,7 +160,7 @@ const StudentMarketPage = () => {
                             >
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite]" />
                                 <span className="relative z-10 flex items-center justify-center gap-2 text-white font-black text-xs uppercase tracking-[0.2em]">
-                                    {isFree ? 'Enroll for Free' : `Unlock for ₹${series.pricing.amount}`}
+                                    {isFree ? 'Enroll for Free' : `Access Now for ₹${series.pricing.amount}`}
                                     <ArrowRight size={20} className="group-hover/btn:translate-x-2 transition-transform duration-300" />
                                 </span>
                                 <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />

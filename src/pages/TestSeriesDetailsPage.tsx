@@ -16,7 +16,6 @@ import {
     HelpCircle,
     ArrowRight
 } from 'lucide-react';
-import { loadRazorpay } from '../utils/razorpay';
 import { useAuth } from '../contexts/AuthContext';
 import { getTestSeries } from '../services/testSeriesService';
 import { marketplaceService } from '../services/marketplaceService';
@@ -73,62 +72,22 @@ const TestSeriesDetailsPage = () => {
 
         setIsEnrolling(true);
         try {
-            if (series.pricing.type === 'paid') {
-                const res = await loadRazorpay();
-
-                if (!res) {
-                    alert('Razorpay SDK failed to load. Are you online?');
-                    setIsEnrolling(false);
-                    return;
-                }
-
-                const options = {
-                    key: 'rzp_test_S7lSvWtu89c6zD', // Enter the Key ID generated from the Dashboard
-                    amount: (series.pricing.amount || 0) * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-                    currency: 'INR',
-                    name: 'DHItantra',
-                    description: `Purchase ${series.name}`,
-                    image: 'https://DHItantra.web.app/logo192.png', // Optional logic for logo
-                    handler: async function (_response: any) {
-                        try {
-                            // In a real app, verify signature on backend: response.razorpay_payment_id, response.razorpay_order_id, response.razorpay_signature
-                            await marketplaceService.enrollInItem(currentUser.uid, series);
-                            setIsOwned(true);
-                            alert('Payment Successful!');
-                            navigate('/dashboard');
-                        } catch (err: any) {
-                            console.error("Enrollment error after payment:", err);
-                            alert(`Payment successful but enrollment failed: ${err.message || 'Unknown error'}. Please contact support.`);
-                        }
-                    },
-                    prefill: {
-                        name: currentUser.displayName || 'Student',
-                        email: currentUser.email || 'student@example.com',
-                        contact: '' // valid phone number could be added if available
-                    },
-                    notes: {
-                        address: 'DHItantra Corporate Office'
-                    },
-                    theme: {
-                        color: '#3399cc'
-                    }
-                };
-                
-
-                const paymentObject = new (window as any).Razorpay(options);
-                paymentObject.open();
-                setIsEnrolling(false); // Reset loading since modal is open
-                return; // Stop here, handler takes over
-            } else {
-                // Free Series
-                await marketplaceService.enrollInItem(currentUser.uid, series);
-                setIsOwned(true);
-                alert('Enrolled successfully!');
-                navigate('/dashboard');
-            }
-        } catch (error) {
+            await marketplaceService.processPayment(currentUser.uid, {
+                ...series,
+                id: series.id,
+                title: series.name,
+                price: series.pricing.type === 'paid' ? series.pricing.amount : 0,
+                type: 'testSeries'
+            });
+            setIsOwned(true);
+            alert('Success! You are now enrolled.');
+            navigate('/dashboard');
+        } catch (error: any) {
             console.error("Enrollment failed:", error);
-            alert("Failed to enroll. Please try again.");
+            if (error.message !== "Payment cancelled by user") {
+                alert("Failed to enroll: " + error.message);
+            }
+        } finally {
             setIsEnrolling(false);
         }
     };
@@ -298,7 +257,7 @@ const TestSeriesDetailsPage = () => {
                                     <button
                                         onClick={handleEnroll}
                                         disabled={isEnrolling}
-                                        className="w-full py-5 bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-black text-sm uppercase tracking-widest rounded-[24px] shadow-xl shadow-orange-500/20 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+                                        className="w-full py-5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-black text-sm uppercase tracking-widest rounded-[24px] shadow-xl shadow-emerald-500/20 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
                                     >
                                         {isEnrolling ? (
                                             <>
@@ -308,7 +267,7 @@ const TestSeriesDetailsPage = () => {
                                         ) : (
                                             <>
                                                 <ShoppingCart size={20} />
-                                                {series.pricing.type === 'free' ? 'Enroll for Free' : 'Unlock Now'}
+                                                {series.pricing.type === 'free' ? 'Enroll for Free' : 'Access Now'}
                                             </>
                                         )}
                                     </button>

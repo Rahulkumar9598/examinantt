@@ -75,7 +75,7 @@ const PYQDetailsPage = () => {
 
         setIsEnrolling(true);
         try {
-            await marketplaceService.enrollInItem(currentUser.uid, {
+            await marketplaceService.processPayment(currentUser.uid, {
                 id: pyq.id,
                 title: pyq.title,
                 price: pyq.price,
@@ -83,9 +83,12 @@ const PYQDetailsPage = () => {
             });
             setIsOwned(true);
             alert('Success! You can now access this paper in your dashboard.');
-            navigate('/dashboard/pyqs');
-        } catch (error) {
-            alert("Failed to unlock. Please try again.");
+            navigate('/dashboard');
+        } catch (error: any) {
+            console.error("Purchase failed", error);
+            if (error.message !== "Payment cancelled by user") {
+                alert('Failed to unlock: ' + error.message);
+            }
         } finally {
             setIsEnrolling(false);
         }
@@ -198,10 +201,19 @@ const PYQDetailsPage = () => {
                                 <button
                                     onClick={handleEnroll}
                                     disabled={isEnrolling}
-                                    className="w-full py-4 bg-slate-900 hover:bg-blue-600 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 transition-all disabled:opacity-70 flex items-center justify-center gap-2"
+                                    className="w-full py-5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-black text-sm uppercase tracking-widest rounded-[24px] shadow-xl shadow-emerald-500/20 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
-                                    {isEnrolling ? <Loader2 className="animate-spin" size={20} /> : <ShoppingCart size={20} />}
-                                    {pyq.price === 0 ? 'Enroll for Free' : 'Unlock Now'}
+                                    {isEnrolling ? (
+                                        <>
+                                            <Loader2 className="animate-spin" size={20} />
+                                            Processing...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <ShoppingCart size={20} />
+                                            {pyq.price === 0 ? 'Enroll for Free' : 'Access Now'}
+                                        </>
+                                    )}
                                 </button>
                             )}
                             <p className="text-center text-xs text-slate-400 mt-4">

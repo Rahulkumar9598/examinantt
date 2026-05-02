@@ -27,6 +27,7 @@ const StudentPYQsPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
     const [buyingId, setBuyingId] = useState<string | null>(null);
+    const [filterPurchased, setFilterPurchased] = useState(false);
 
     useEffect(() => {
         if (currentUser) {
@@ -75,16 +76,19 @@ const StudentPYQsPage = () => {
         if (!currentUser) return;
         setBuyingId(pyq.id);
         try {
-            await marketplaceService.enrollInItem(currentUser.uid, {
+            await marketplaceService.processPayment(currentUser.uid, {
                 id: pyq.id,
                 title: pyq.title,
                 price: pyq.price,
                 type: 'pyq'
             });
             alert('Unlocked successfully!');
-        } catch (error) {
+            navigate('/dashboard');
+        } catch (error: any) {
             console.error("Purchase failed", error);
-            alert('Failed to unlock.');
+            if (error.message !== "Payment cancelled by user") {
+                alert('Failed to unlock: ' + error.message);
+            }
         } finally {
             setBuyingId(null);
         }
@@ -95,7 +99,11 @@ const StudentPYQsPage = () => {
         const titleMatch = item.title?.toLowerCase().includes(search);
         const categoryMatch = item.category?.toLowerCase().includes(search);
         const yearMatch = item.year?.toString().toLowerCase().includes(search);
-        return titleMatch || categoryMatch || yearMatch;
+        
+        const isPurchased = item.price === 0 || purchasedIds.has(item.id);
+        const purchaseMatch = filterPurchased ? isPurchased : true;
+
+        return (titleMatch || categoryMatch || yearMatch) && purchaseMatch;
     });
 
     const containerVariants = {
@@ -120,15 +128,25 @@ const StudentPYQsPage = () => {
                     <h1 className="text-2xl font-bold text-slate-800">Previous Year Questions</h1>
                     <p className="text-slate-500 mt-1">Practice with authentic questions from past exams.</p>
                 </div>
-                <div className="relative w-full md:w-64">
-                    <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                    <input
-                        type="text"
-                        placeholder="Search PYQs..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
-                    />
+                <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                    <button
+                        onClick={() => setFilterPurchased(!filterPurchased)}
+                        className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${filterPurchased 
+                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25' 
+                            : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'}`}
+                    >
+                        {filterPurchased ? 'Showing Purchased' : 'Show All'}
+                    </button>
+                    <div className="relative flex-1 md:w-64">
+                        <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <input
+                            type="text"
+                            placeholder="Search PYQs..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -191,10 +209,10 @@ const StudentPYQsPage = () => {
                                         <button
                                             onClick={() => handleBuy(pyq)}
                                             disabled={buyingId === pyq.id}
-                                            className="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 flex items-center gap-2 disabled:opacity-70"
+                                            className="px-4 py-2 bg-emerald-600 text-white text-sm font-semibold rounded-lg hover:bg-emerald-700 flex items-center gap-2 disabled:opacity-70 shadow-md shadow-emerald-500/10"
                                         >
                                             {buyingId === pyq.id ? <Loader2 className="animate-spin" size={16} /> : <Lock size={16} />}
-                                            Unlock
+                                            Access Now
                                         </button>
                                     )}
                                 </div>

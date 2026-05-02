@@ -35,6 +35,7 @@ export interface ActiveTest {
     title: string;
     category: string;
     purchaseDate: any;
+    type?: string;
 }
 
 // Helper to format duration
@@ -152,7 +153,7 @@ export const getRecommendedSeries = async (): Promise<RecommendedSeries[]> => {
 export const getActiveTests = async (userId: string): Promise<ActiveTest[]> => {
     try {
         const purchasesRef = collection(db, 'users', userId, 'purchases');
-        const q = query(purchasesRef, orderBy('purchaseDate', 'desc'), limit(3));
+        const q = query(purchasesRef, orderBy('purchaseDate', 'desc'), limit(10)); // Increased limit to show more items on dashboard
         const snapshot = await getDocs(q);
 
         return snapshot.docs.map(doc => {
@@ -162,7 +163,8 @@ export const getActiveTests = async (userId: string): Promise<ActiveTest[]> => {
                 testId: data.seriesId || data.testId,
                 title: data.seriesTitle || data.testTitle,
                 category: data.category || 'Test Series',
-                purchaseDate: data.purchaseDate
+                purchaseDate: data.purchaseDate,
+                type: data.type || 'testSeries'
             };
         });
     } catch (error) {
