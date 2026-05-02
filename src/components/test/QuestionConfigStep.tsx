@@ -31,6 +31,7 @@ const QuestionConfigStep = ({ formData, updateFormData }: QuestionConfigStepProp
                         for (const chapterId of chapterIds) {
                             const selectedTopics = formData.customConfig?.selectedTopics?.[chapterId] || [];
                             
+                            
                             // Get chapter info for fallback
                             const chapterSnap = await getDoc(doc(db, 'chapters', chapterId));
                             const chapterName = chapterSnap.exists() ? chapterSnap.data().name : null;
