@@ -41,7 +41,7 @@ const TestDevDept = () => {
                             points: ["Structure & timing verification", "Question balance checks", "OMR compatibility validation"]
                         }
                     ].map((item, i) => (
-                        <div key={i} className="bg-white rounded-[2rem] lg:rounded-[2.5rem] p-6 lg:p-8 shadow-sm border border-slate-100 hover:shadow-xl transition-all relative overflow-hidden group">
+                        <div key={i} className="bg-white rounded-[2rem] lg:rounded-[2.5rem] p-6 lg:p-8 border border-slate-200 hover:border-slate-300 transition-all relative overflow-hidden group">
                             <div className="w-12 h-12 lg:w-14 lg:h-14 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                 {item.icon}
                             </div>

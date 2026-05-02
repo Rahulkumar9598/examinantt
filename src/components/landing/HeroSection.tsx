@@ -154,18 +154,6 @@ const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-transparent">
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-teal-100 rounded-full text-xs font-bold uppercase tracking-[0.15em] text-[#0D9488] mb-8 shadow-sm"
-                >
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
-                    </span>
-                    Next Generation Learning
-                </motion.div>
 
                 <motion.h1 
                     initial={{ opacity: 0, y: 20 }}

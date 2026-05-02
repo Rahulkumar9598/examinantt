@@ -62,7 +62,7 @@ const TestSeriesCard = ({
         <motion.div 
             whileHover={{ y: -12, scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="group relative h-full flex flex-col bg-white rounded-[2.5rem] border border-slate-200/60 shadow-xl shadow-slate-200/40 hover:shadow-2xl hover:shadow-slate-300/50 overflow-hidden transition-all duration-500"
+            className="group relative h-full flex flex-col bg-white rounded-[2.5rem] border border-slate-200 hover:border-slate-300 overflow-hidden transition-all duration-300"
         >
             {/* Top Pattern Overlay */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-transparent to-slate-100/50 rounded-bl-[100px] pointer-events-none" />
@@ -96,7 +96,7 @@ const TestSeriesCard = ({
 
                 {/* Stats Grid */}
                 <div className="grid grid-cols-2 gap-4 mb-8">
-                    <div className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-4 border border-slate-100 group-hover:bg-white group-hover:border-slate-200 transition-all duration-300 shadow-sm">
+                    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 group-hover:bg-white group-hover:border-slate-200 transition-all duration-300">
                         <div className="flex items-center gap-3">
                             <div className={`p-2 rounded-xl ${currentTheme.iconBg} ${currentTheme.text}`}>
                                 <ScrollText size={20} />
@@ -107,7 +107,7 @@ const TestSeriesCard = ({
                             </div>
                         </div>
                     </div>
-                    <div className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-4 border border-slate-100 group-hover:bg-white group-hover:border-slate-200 transition-all duration-300 shadow-sm">
+                    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 group-hover:bg-white group-hover:border-slate-200 transition-all duration-300">
                         <div className="flex items-center gap-3">
                             <div className="p-2 rounded-xl bg-teal-50 text-teal-600">
                                 <Users size={20} />
@@ -176,7 +176,7 @@ const TestSeriesCard = ({
                 ) : (
                     <button
                         onClick={onExplore}
-                        className="w-full relative group/btn h-16 rounded-[1.5rem] bg-slate-900 hover:bg-teal-600 shadow-2xl shadow-slate-900/10 active:scale-[0.98] transition-all duration-500 flex items-center justify-center gap-3 overflow-hidden"
+                        className="w-full relative group/btn h-16 rounded-[1.5rem] bg-slate-900 hover:bg-teal-600 active:scale-[0.98] transition-all duration-500 flex items-center justify-center gap-3 overflow-hidden"
                     >
                         {/* Shimmer Effect */}
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite]" />

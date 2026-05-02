@@ -86,7 +86,7 @@ export default function LeaderboardSection() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.05 }}
-                className="relative bg-white border border-transparent ring-2 ring-[#0D9488] rounded-3xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-teal-500/10 group"
+                className="relative bg-white border border-slate-200 hover:border-slate-300 rounded-3xl p-6 transition-all duration-300 group"
               >
                 {/* Rank Header */}
                 <div className="flex items-center justify-between mb-8">
@@ -98,7 +98,7 @@ export default function LeaderboardSection() {
 
                 {/* Profile Section */}
                 <div className="flex flex-col items-center mb-8">
-                  <div className="w-20 h-20 rounded-full flex items-center justify-center text-3xl font-black mb-4 border-4 border-teal-50 bg-teal-600 text-white shadow-lg">
+                  <div className="w-20 h-20 rounded-full flex items-center justify-center text-3xl font-black mb-4 border-4 border-teal-50 bg-teal-600 text-white">
                     {student.name.charAt(0)}
                   </div>
                   <h3 className="text-lg font-black text-slate-900 truncate w-full text-center">{student.name}</h3>
