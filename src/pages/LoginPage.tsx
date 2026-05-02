@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronRight, AlertCircle, Loader2, Mail, Lock, Smartphone, Globe } from 'lucide-react';
 const logo = "/logo.png";
@@ -13,6 +13,7 @@ const LoginPage = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -28,7 +29,8 @@ const LoginPage = () => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             // Don't block login on Firestore profile/role fetch; AuthContext handles role loading.
-            navigate('/dashboard', { replace: true });
+            const returnTo = location.state?.returnTo || '/dashboard';
+            navigate(returnTo, { replace: true });
         } catch (err: any) {
             console.error(err);
             const code = typeof err?.code === 'string' ? err.code : '';

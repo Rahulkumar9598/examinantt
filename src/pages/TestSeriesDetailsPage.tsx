@@ -64,7 +64,7 @@ const TestSeriesDetailsPage = () => {
 
     const handleEnroll = async () => {
         if (!currentUser) {
-            navigate('/login');
+            navigate('/login', { state: { returnTo: window.location.pathname } });
             return;
         }
 

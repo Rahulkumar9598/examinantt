@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronRight, AlertCircle, Loader2, User, Mail, Lock, MapPin, Star, CheckCircle } from 'lucide-react';
 const logo = "/logo.png";
@@ -26,6 +26,7 @@ const SignupPage = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const districts = STATES.find(s => s.name === state)?.districts || [];
 
@@ -66,7 +67,8 @@ const SignupPage = () => {
                 console.warn('Profile creation failed; check Firestore rules for users collection.', profileErr);
             }
 
-            navigate('/dashboard');
+            const returnTo = location.state?.returnTo || '/dashboard';
+            navigate(returnTo, { replace: true });
         } catch (err: any) {
             console.error(err);
             const code = typeof err?.code === 'string' ? err.code : '';
