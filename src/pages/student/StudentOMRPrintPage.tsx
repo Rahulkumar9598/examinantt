@@ -155,7 +155,7 @@ const StudentOMRPrintPage = () => {
                     <div className="space-y-4">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center text-white font-black text-2xl tracking-tighter">Ex</div>
-                            <h1 className="text-3xl font-black text-slate-900 tracking-tight">EXAMINANT</h1>
+                            <h1 className="text-3xl font-black text-slate-900 tracking-tight">DHItantra</h1>
                         </div>
                         <div className="space-y-1">
                             <h2 className="text-xl font-bold text-slate-800 uppercase leading-none">{testData.name}</h2>
@@ -248,7 +248,7 @@ const StudentOMRPrintPage = () => {
 
                 {/* Footer */}
                 <div className="mt-20 pt-8 border-t border-slate-100 text-center">
-                    <p className="text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase mb-2">Designed by Examinant Platform</p>
+                    <p className="text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase mb-2">Designed by DHItantra Platform</p>
                     <div className="flex justify-center items-center gap-10 grayscale opacity-30">
                         <div className="w-32 h-10 border-2 border-dashed border-slate-300 rounded flex items-center justify-center text-[8px] font-bold">Candidate Signature</div>
                         <div className="w-32 h-10 border-2 border-dashed border-slate-300 rounded flex items-center justify-center text-[8px] font-bold">Invigilator Signature</div>
@@ -288,3 +288,4 @@ const StudentOMRPrintPage = () => {
 };
 
 export default StudentOMRPrintPage;
+

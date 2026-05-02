@@ -10,7 +10,7 @@ export const seedData = async () => {
                 category: "JEE",
                 year: "2023",
                 type: "pdf",
-                fileUrl: "https://firebasestorage.googleapis.com/v0/b/examinant-99.appspot.com/o/sample.pdf?alt=media",
+                fileUrl: "https://firebasestorage.googleapis.com/v0/b/DHItantra-99.appspot.com/o/sample.pdf?alt=media",
                 price: 0,
                 createdAt: serverTimestamp()
             },
@@ -28,7 +28,7 @@ export const seedData = async () => {
                 category: "JEE",
                 year: "2023",
                 type: "pdf",
-                fileUrl: "https://firebasestorage.googleapis.com/v0/b/examinant-99.appspot.com/o/sample.pdf?alt=media",
+                fileUrl: "https://firebasestorage.googleapis.com/v0/b/DHItantra-99.appspot.com/o/sample.pdf?alt=media",
                 price: 49,
                 createdAt: serverTimestamp()
             },
@@ -37,7 +37,7 @@ export const seedData = async () => {
                 category: "SSC",
                 year: "2023",
                 type: "pdf",
-                fileUrl: "https://firebasestorage.googleapis.com/v0/b/examinant-99.appspot.com/o/sample.pdf?alt=media",
+                fileUrl: "https://firebasestorage.googleapis.com/v0/b/DHItantra-99.appspot.com/o/sample.pdf?alt=media",
                 price: 0,
                 createdAt: serverTimestamp()
             }
@@ -54,7 +54,7 @@ export const seedData = async () => {
                 description: "Complete notes for 12th Board and Competitive Exams.",
                 type: "pdf",
                 category: "Chemistry",
-                url: "https://firebasestorage.googleapis.com/v0/b/examinant-99.appspot.com/o/sample.pdf?alt=media",
+                url: "https://firebasestorage.googleapis.com/v0/b/DHItantra-99.appspot.com/o/sample.pdf?alt=media",
                 isFree: true,
                 price: 0,
                 createdAt: serverTimestamp()
@@ -74,7 +74,7 @@ export const seedData = async () => {
                 description: "Quick reference for all important math formulas.",
                 type: "pdf",
                 category: "Maths",
-                url: "https://firebasestorage.googleapis.com/v0/b/examinant-99.appspot.com/o/sample.pdf?alt=media",
+                url: "https://firebasestorage.googleapis.com/v0/b/DHItantra-99.appspot.com/o/sample.pdf?alt=media",
                 isFree: true,
                 price: 0,
                 createdAt: serverTimestamp()
@@ -101,3 +101,4 @@ export const seedData = async () => {
         throw error;
     }
 };
+

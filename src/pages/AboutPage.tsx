@@ -7,8 +7,8 @@ const AboutPage = () => {
             <div className="bg-white py-16">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <img src={logo} alt="Examinantt Logo" className="w-20 h-20 mx-auto rounded-xl mb-6 shadow-lg" />
-                        <h1 className="text-4xl font-extrabold text-gray-900 mb-6">About Examinantt</h1>
+                        <img src={logo} alt="DHItantra Logo" className="w-20 h-20 mx-auto rounded-xl mb-6 shadow-lg" />
+                        <h1 className="text-4xl font-extrabold text-gray-900 mb-6">About DHItantra</h1>
                         <p className="text-xl text-gray-600 leading-relaxed">
                             We are on a mission to democratize quality education and exam preparation through technology.
                         </p>
@@ -16,7 +16,7 @@ const AboutPage = () => {
 
                     <div className="prose prose-lg mx-auto text-gray-600">
                         <p className="mb-6">
-                            Examinantt was founded with a simple yet powerful idea: that every student deserves access to the best testing tools and analytics, regardless of their location or background.
+                            DHItantra was founded with a simple yet powerful idea: that every student deserves access to the best testing tools and analytics, regardless of their location or background.
                         </p>
                         <p className="mb-6">
                             Our platform combines state-of-the-art technology with high-quality content curated by industry experts. We simulate real exam environments to help students build confidence and improve their performance.

@@ -76,9 +76,9 @@ const StudentResourcesPage = () => {
                 key: 'rzp_test_S7lSvWtu89c6zD',
                 amount: (resource.price || 0) * 100,
                 currency: 'INR',
-                name: 'Examinant',
+                name: 'DHItantra',
                 description: `Unlock ${resource.title}`,
-                image: 'https://examinantt.web.app/logo192.png',
+                image: 'https://DHItantra.web.app/logo192.png',
                 handler: async function (_response: any) {
                     try {
                         await marketplaceService.enrollInItem(currentUser.uid, {
@@ -258,3 +258,4 @@ const StudentResourcesPage = () => {
 };
 
 export default StudentResourcesPage;
+

@@ -10,10 +10,10 @@ const PrivacyPolicyPage = () => {
                     <div className="prose prose-lg text-gray-600">
                         <p className="mb-2 font-semibold">Effective Date: 27 January 2026</p>
                         <p className="mb-6">
-                            Examinantt ("we", "our", "us") is committed to protecting the privacy and personal information of students, parents, and users ("you", "your"). This Privacy Policy explains how we collect, use, store, and protect your information when you use our website, apps, tests, and related services.
+                            DHItantra ("we", "our", "us") is committed to protecting the privacy and personal information of students, parents, and users ("you", "your"). This Privacy Policy explains how we collect, use, store, and protect your information when you use our website, apps, tests, and related services.
                         </p>
                         <p className="mb-6">
-                            By using Examinantt, you agree to the practices described in this policy.
+                            By using DHItantra, you agree to the practices described in this policy.
                         </p>
 
                         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">1. Information We Collect</h2>
@@ -73,7 +73,7 @@ const PrivacyPolicyPage = () => {
                         <ul className="list-disc pl-5 space-y-2 mb-6">
                             <li>With trusted service providers (hosting, analytics, messaging) strictly for platform operations</li>
                             <li>When required by law, court order, or government authority</li>
-                            <li>To protect the rights, safety, and security of Examinantt and its users</li>
+                            <li>To protect the rights, safety, and security of DHItantra and its users</li>
                         </ul>
                         <p className="mb-6">All partners are bound by confidentiality obligations.</p>
 
@@ -88,7 +88,7 @@ const PrivacyPolicyPage = () => {
 
                         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">6. Children’s Privacy</h2>
                         <ul className="list-disc pl-5 space-y-2 mb-6">
-                            <li>Examinantt is designed for students preparing for competitive and academic exams.</li>
+                            <li>DHItantra is designed for students preparing for competitive and academic exams.</li>
                             <li>If a user is under 18, we assume parental or guardian consent has been obtained for using our services.</li>
                             <li>We do not knowingly collect unnecessary personal information from minors.</li>
                         </ul>
@@ -115,18 +115,18 @@ const PrivacyPolicyPage = () => {
                         <ul className="list-disc pl-5 space-y-2 mb-6">
                             <li>We may update this Privacy Policy from time to time.</li>
                             <li>Any changes will be posted on this page with an updated effective date.</li>
-                            <li>Continued use of Examinantt after updates means you accept the revised policy.</li>
+                            <li>Continued use of DHItantra after updates means you accept the revised policy.</li>
                         </ul>
 
                         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">10. Contact Us</h2>
                         <p className="mb-4">If you have any questions, concerns, or data-related requests, please contact:</p>
                         <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                            <p className="font-bold text-gray-900 mb-2">Examinantt Support Team</p>
+                            <p className="font-bold text-gray-900 mb-2">DHItantra Support Team</p>
                             <p className="flex items-center gap-2 mb-2 text-gray-700">
-                                📧 Email: support@examinantt.com
+                                📧 Email: support@dhitantra.com
                             </p>
                             <p className="flex items-center gap-2 text-gray-700">
-                                🌐 Website: www.examinantt.com
+                                🌐 Website: www.dhitantra.com
                             </p>
                         </div>
                     </div>

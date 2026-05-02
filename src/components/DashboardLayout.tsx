@@ -99,7 +99,7 @@ const DashboardLayout = ({ children, role }: DashboardLayoutProps) => {
                     </div>
                     <div>
                         <h2 className={`text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${isDarkTheme ? 'from-white to-slate-400' : 'from-slate-800 to-slate-600'} tracking-tight`}>
-                            Examinantt
+                            DHItantra
                         </h2>
                         <p className={`text-[10px] uppercase tracking-widest font-bold ${isDarkTheme ? 'text-slate-500' : 'text-slate-400'}`}>
                             {role === 'admin' ? 'Admin Portal' : 'Student Portal'}

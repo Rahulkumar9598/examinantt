@@ -84,7 +84,7 @@ const LoginPage = () => {
                             </div>
                             <h2 className="text-4xl font-extrabold leading-tight mb-6">
                                 Welcome Back to <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300">Examinantt</span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300">DHItantra</span>
                             </h2>
                             <p className="text-indigo-100/80 text-lg leading-relaxed max-w-sm">
                                 Resume your preparation and track your progress with our detailed analytics.
@@ -99,10 +99,10 @@ const LoginPage = () => {
                         <div className="text-center mb-10">
                             <Link to="/" className="inline-flex items-center gap-2 mb-6 group">
                                 <span className="p-2 bg-blue-50 rounded-xl group-hover:bg-blue-100 transition-colors">
-                                    <img src={logo} alt="Examinantt" className="h-8 w-8 rounded-lg" />
+                                    <img src={logo} alt="DHItantra" className="h-8 w-8 rounded-lg" />
                                 </span>
                                 <span className="text-2xl font-extrabold text-slate-900 tracking-tight">
-                                    Examinantt
+                                    DHItantra
                                 </span>
                             </Link>
                             <h2 className="text-3xl font-bold text-slate-800 mb-2">Welcome Back!</h2>

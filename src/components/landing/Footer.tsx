@@ -9,8 +9,8 @@ const Footer = () => {
                     {/* Brand Section - Spans 4 columns */}
                     <div className="lg:col-span-4 space-y-6">
                         <Link to="/" className="flex items-center gap-3">
-                            <img src={logo} alt="Examinantt Logo" className="w-10 h-10 rounded-lg" />
-                            <span className="text-2xl font-bold text-white tracking-tight">Examinantt</span>
+                            <img src={logo} alt="DHItantra Logo" className="w-10 h-10 rounded-lg" />
+                            <span className="text-2xl font-bold text-white tracking-tight">DHItantra</span>
                         </Link>
                         <div className="space-y-4">
                             <h3 className="text-xl font-semibold text-white leading-snug">
@@ -75,7 +75,7 @@ const Footer = () => {
                 {/* Bottom Bar */}
                 <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-xs text-slate-500">
-                        © 2026 Examinantt (OPC) PVT. LTD. All rights reserved.
+                        © 2026 DHItantra (OPC) PVT. LTD. All rights reserved.
                     </p>
                     <div className="flex gap-6">
                         <Link to="/privacy" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">Privacy</Link>

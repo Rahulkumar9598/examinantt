@@ -41,7 +41,7 @@ const AdminSettingsPage = () => {
                         </div>
                         <div className="space-y-2">
                             <label className="text-sm font-semibold text-slate-700">Email Address</label>
-                            <input type="email" defaultValue="admin@examinantt.com" className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 bg-slate-50" readOnly />
+                            <input type="email" defaultValue="admin@DHItantra.com" className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 bg-slate-50" readOnly />
                         </div>
                     </div>
                 </div>
@@ -84,3 +84,4 @@ const AdminSettingsPage = () => {
 };
 
 export default AdminSettingsPage;
+

@@ -38,9 +38,9 @@ const Navbar = () => {
                 <div className="flex justify-between items-center relative">
                     {/* Logo (Left) */}
                     <div className="flex items-center gap-3 cursor-pointer z-10" onClick={() => navigate('/')}>
-                        <img src={logo} alt="Examinantt Logo" className="h-10 w-auto rounded-lg" />
+                        <img src={logo} alt="DHItantra Logo" className="h-10 w-auto rounded-lg" />
                         <span className="text-2xl font-bold text-[#0B4F97] tracking-tight font-display">
-                            Examinantt
+                            DHItantra
                         </span>
                     </div>
 

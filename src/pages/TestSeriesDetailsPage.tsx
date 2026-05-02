@@ -86,9 +86,9 @@ const TestSeriesDetailsPage = () => {
                     key: 'rzp_test_S7lSvWtu89c6zD', // Enter the Key ID generated from the Dashboard
                     amount: (series.pricing.amount || 0) * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                     currency: 'INR',
-                    name: 'Examinant',
+                    name: 'DHItantra',
                     description: `Purchase ${series.name}`,
-                    image: 'https://examinantt.web.app/logo192.png', // Optional logic for logo
+                    image: 'https://DHItantra.web.app/logo192.png', // Optional logic for logo
                     handler: async function (_response: any) {
                         try {
                             // In a real app, verify signature on backend: response.razorpay_payment_id, response.razorpay_order_id, response.razorpay_signature
@@ -107,7 +107,7 @@ const TestSeriesDetailsPage = () => {
                         contact: '' // valid phone number could be added if available
                     },
                     notes: {
-                        address: 'Examinant Corporate Office'
+                        address: 'DHItantra Corporate Office'
                     },
                     theme: {
                         color: '#3399cc'
@@ -332,3 +332,4 @@ const TestSeriesDetailsPage = () => {
 };
 
 export default TestSeriesDetailsPage;
+

@@ -144,10 +144,10 @@ const SignupPage = () => {
                         <div className="text-center mb-8">
                             <Link to="/" className="inline-flex items-center gap-2 mb-6 group">
                                 <span className="p-2 bg-blue-50 rounded-xl group-hover:bg-blue-100 transition-colors">
-                                    <img src={logo} alt="Examinantt" className="h-8 w-8 rounded-lg" />
+                                    <img src={logo} alt="DHItantra" className="h-8 w-8 rounded-lg" />
                                 </span>
                                 <span className="text-2xl font-extrabold text-slate-900 tracking-tight">
-                                    Examinantt
+                                    DHItantra
                                 </span>
                             </Link>
                             <h2 className="text-3xl font-bold text-slate-800 mb-2">Create Account</h2>
@@ -304,3 +304,4 @@ const SignupPage = () => {
 };
 
 export default SignupPage;
+

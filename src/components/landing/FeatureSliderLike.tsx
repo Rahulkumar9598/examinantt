@@ -18,7 +18,7 @@ const FeatureSliderLike = () => {
                             <span className="text-[#1D64D0]">Crack The Exam Code.</span>
                         </h2>
                         <p className="text-lg text-slate-600 mb-10 leading-relaxed">
-                            Examinantt isn't just a test platform; it's your personal performance coach. We analyze every keystroke to tell you exactly where you're losing marks.
+                            DHItantra isn't just a test platform; it's your personal performance coach. We analyze every keystroke to tell you exactly where you're losing marks.
                         </p>
 
                         <div className="grid sm:grid-cols-2 gap-8">

@@ -75,9 +75,9 @@ const StudentMarketPage = () => {
                     key: 'rzp_test_S7lSvWtu89c6zD',
                     amount: (series.pricing.amount || 0) * 100,
                     currency: 'INR',
-                    name: 'Examinant',
+                    name: 'DHItantra',
                     description: `Purchase: ${series.name}`,
-                    image: 'https://examinantt.web.app/logo192.png',
+                    image: 'https://DHItantra.web.app/logo192.png',
                     handler: async function (_response: any) {
                         try {
                             await marketplaceService.enrollInItem(currentUser.uid, series);
@@ -92,7 +92,7 @@ const StudentMarketPage = () => {
                         email: currentUser.email || 'student@example.com',
                         contact: ''
                     },
-                    notes: { address: 'Examinant' },
+                    notes: { address: 'DHItantra' },
                     theme: { color: '#3399cc' },
                     modal: {
                         ondismiss: () => setEnrollingId(null)
@@ -226,4 +226,5 @@ const StudentMarketPage = () => {
     );
 };
 export default StudentMarketPage;
+
 

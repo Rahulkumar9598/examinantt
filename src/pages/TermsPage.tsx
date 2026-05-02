@@ -10,14 +10,14 @@ const TermsPage = () => {
                     <div className="prose prose-lg text-gray-600">
                         <p className="mb-2 font-semibold">Last Updated: 27th Jan 2026</p>
                         <p className="mb-6">
-                            Welcome to Examinantt. By accessing, registering, purchasing, or using any service offered by Examinantt (“Platform”, “We”, “Us”, “Our”), you (“User”, “Student”, “Parent”) agree to be legally bound by the following Terms and Conditions.
+                            Welcome to DHItantra. By accessing, registering, purchasing, or using any service offered by DHItantra (“Platform”, “We”, “Us”, “Our”), you (“User”, “Student”, “Parent”) agree to be legally bound by the following Terms and Conditions.
                         </p>
                         <p className="mb-6 font-medium">
                             If you do not agree with these terms, please do not use our services.
                         </p>
 
                         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">1. Nature of Services</h2>
-                        <p className="mb-4">Examinantt provides academic and competitive examination preparation services, including but not limited to:</p>
+                        <p className="mb-4">DHItantra provides academic and competitive examination preparation services, including but not limited to:</p>
                         <ul className="list-disc pl-5 space-y-2 mb-6">
                             <li>Online & offline mock tests</li>
                             <li>Online & offline academic and competition exam coaching</li>
@@ -40,21 +40,21 @@ const TermsPage = () => {
                         <ul className="list-disc pl-5 space-y-2 mb-6">
                             <li>Users are responsible for maintaining the confidentiality of their login credentials.</li>
                             <li>Any activity performed through your account will be considered your responsibility.</li>
-                            <li>Examinantt is not liable for unauthorized access due to user negligence.</li>
+                            <li>DHItantra is not liable for unauthorized access due to user negligence.</li>
                         </ul>
 
                         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">4. Payments & Pricing</h2>
                         <ul className="list-disc pl-5 space-y-2 mb-6">
                             <li>All prices are displayed in Indian Rupees (INR) unless stated otherwise.</li>
                             <li>Payments must be made in full before accessing paid services.</li>
-                            <li>Examinantt reserves the right to change pricing at any time without prior notice.</li>
+                            <li>DHItantra reserves the right to change pricing at any time without prior notice.</li>
                         </ul>
 
                         <div className="border-l-4 border-red-500 bg-red-50 p-6 my-8 rounded-r-lg">
                             <h2 className="text-2xl font-bold text-red-700 mb-4">5. Strict No Refund Policy</h2>
                             <p className="font-bold text-red-600 mb-4">⚠️ IMPORTANT – PLEASE READ CAREFULLY</p>
                             <ul className="list-disc pl-5 space-y-2 mb-4 text-red-800 font-medium">
-                                <li>All payments made to Examinantt are NON-REFUNDABLE and NON-TRANSFERABLE.</li>
+                                <li>All payments made to DHItantra are NON-REFUNDABLE and NON-TRANSFERABLE.</li>
                             </ul>
                             <p className="mb-4 text-gray-800">No refunds will be provided under any circumstances, including but not limited to:</p>
                             <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-800">
@@ -70,7 +70,7 @@ const TermsPage = () => {
 
                         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">6. No Guarantee of Results</h2>
                         <ul className="list-disc pl-5 space-y-2 mb-6">
-                            <li>Examinantt does not guarantee selection, rank, marks, percentile, or exam success.</li>
+                            <li>DHItantra does not guarantee selection, rank, marks, percentile, or exam success.</li>
                             <li>Performance depends on multiple factors including:
                                 <ul className="list-[circle] pl-5 mt-2 space-y-1">
                                     <li>Student effort & consistency</li>
@@ -89,7 +89,7 @@ const TermsPage = () => {
                             <li>AI reports & analytics</li>
                             <li>Website/app design</li>
                         </ul>
-                        <p className="mb-6">are the exclusive intellectual property of Examinantt.</p>
+                        <p className="mb-6">are the exclusive intellectual property of DHItantra.</p>
                         <p className="font-bold text-red-600 mb-2">🚫 Users may NOT:</p>
                         <ul className="list-disc pl-5 space-y-2 mb-6">
                             <li>Copy, share, resell, record, distribute, or reproduce content</li>
@@ -105,10 +105,10 @@ const TermsPage = () => {
                             <li>Share exam questions publicly</li>
                             <li>Use automated tools or bots</li>
                         </ul>
-                        <p className="mb-6">Examinantt reserves the right to suspend or terminate accounts without refund if misconduct is detected.</p>
+                        <p className="mb-6">DHItantra reserves the right to suspend or terminate accounts without refund if misconduct is detected.</p>
 
                         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">9. Technical Limitations</h2>
-                        <p className="mb-4">Examinantt is not responsible for issues caused by:</p>
+                        <p className="mb-4">DHItantra is not responsible for issues caused by:</p>
                         <ul className="list-disc pl-5 space-y-2 mb-6">
                             <li>Poor internet connection</li>
                             <li>Device incompatibility</li>
@@ -118,7 +118,7 @@ const TermsPage = () => {
                         <p className="mb-6">Temporary service interruptions do not qualify for refunds or compensation.</p>
 
                         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">10. Modifications to Services</h2>
-                        <p className="mb-4">Examinantt may:</p>
+                        <p className="mb-4">DHItantra may:</p>
                         <ul className="list-disc pl-5 space-y-2 mb-6">
                             <li>Modify test patterns</li>
                             <li>Add/remove features</li>
@@ -128,7 +128,7 @@ const TermsPage = () => {
 
                         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">11. Third-Party Links & Tools</h2>
                         <p className="mb-6">
-                            The platform may contain links or integrations with third-party tools. Examinantt is not responsible for their content, accuracy, or policies.
+                            The platform may contain links or integrations with third-party tools. DHItantra is not responsible for their content, accuracy, or policies.
                         </p>
 
                         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">12. Privacy & Data Usage</h2>
@@ -144,7 +144,7 @@ const TermsPage = () => {
                         </ul>
 
                         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">13. Limitation of Liability</h2>
-                        <p className="mb-4">To the maximum extent permitted by law, Examinantt shall not be liable for:</p>
+                        <p className="mb-4">To the maximum extent permitted by law, DHItantra shall not be liable for:</p>
                         <ul className="list-disc pl-5 space-y-2 mb-6">
                             <li>Academic losses</li>
                             <li>Emotional distress</li>
@@ -155,7 +155,7 @@ const TermsPage = () => {
                         <p className="mb-6">Use of services is at the user’s own risk.</p>
 
                         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">14. Termination of Access</h2>
-                        <p className="mb-4">Examinantt reserves the right to:</p>
+                        <p className="mb-4">DHItantra reserves the right to:</p>
                         <ul className="list-disc pl-5 space-y-2 mb-6">
                             <li>Suspend or terminate access</li>
                             <li>Block accounts</li>
@@ -170,7 +170,7 @@ const TermsPage = () => {
                         </ul>
 
                         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">16. Acceptance of Terms</h2>
-                        <p className="mb-4">By registering, purchasing, or using Examinantt services, you confirm that:</p>
+                        <p className="mb-4">By registering, purchasing, or using DHItantra services, you confirm that:</p>
                         <ul className="list-disc pl-5 space-y-2 mb-6">
                             <li>You have read and understood these Terms</li>
                             <li>You agree to the No Refund Policy</li>
@@ -181,10 +181,10 @@ const TermsPage = () => {
                         <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
                             <p className="mb-2">For official communication:</p>
                             <p className="flex items-center gap-2 mb-2 font-medium text-gray-900">
-                                📧 Email: support@examinantt.com
+                                📧 Email: support@dhitantra.com
                             </p>
                             <p className="font-medium text-gray-900">
-                                Platform: Examinantt
+                                Platform: DHItantra
                             </p>
                         </div>
                     </div>
