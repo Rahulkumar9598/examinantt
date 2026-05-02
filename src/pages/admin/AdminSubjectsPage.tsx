@@ -175,13 +175,13 @@ const AdminSubjectsPage = () => {
                                 value={newSubject}
                                 onChange={e => setNewSubject(e.target.value)}
                                 placeholder="e.g. Biology"
-                                className="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                                className="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500"
                             />
                         </div>
                         <button
                             type="submit"
                             disabled={isSaving}
-                            className="inline-flex items-center justify-center w-full gap-2 rounded-2xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition"
+                            className="inline-flex items-center justify-center w-full gap-2 rounded-2xl bg-teal-600 px-4 py-3 text-sm font-semibold text-white hover:bg-teal-700 transition"
                         >
                             <Plus size={18} />
                             {isSaving ? 'Saving...' : 'Add Subject'}
@@ -216,7 +216,7 @@ const AdminSubjectsPage = () => {
                             type="text"
                             value={editName}
                             onChange={e => setEditName(e.target.value)}
-                            className="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                            className="w-full px-4 py-3 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500"
                         />
                         <button
                             type="submit"

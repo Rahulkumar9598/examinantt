@@ -41,11 +41,11 @@ const OMRBasicInfoStep = ({ formData, updateFormData }: OMRBasicInfoStepProps) =
             </div>
 
             {/* OMR Badge */}
-            <div className="flex items-center gap-3 bg-amber-50 border border-amber-200 rounded-xl p-4">
-                <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center text-xl">📄</div>
+            <div className="flex items-center gap-3 bg-teal-50 border border-teal-200 rounded-xl p-4">
+                <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center text-xl">📄</div>
                 <div>
-                    <p className="font-bold text-amber-900 text-sm">OMR-Based Test</p>
-                    <p className="text-amber-700 text-xs mt-0.5">Students will fill a bubble sheet (OMR) style interface — simulating real pen-paper exams</p>
+                    <p className="font-bold text-teal-900 text-sm">OMR-Based Test</p>
+                    <p className="text-teal-700 text-xs mt-0.5">Students will fill a bubble sheet (OMR) style interface — simulating real pen-paper exams</p>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@ const OMRBasicInfoStep = ({ formData, updateFormData }: OMRBasicInfoStepProps) =
                     value={formData.name || ''}
                     onChange={(e) => updateFormData({ name: e.target.value })}
                     placeholder="e.g., JEE Mains OMR Mock Test #1"
-                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all text-slate-800"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all text-slate-800"
                 />
             </div>
 
@@ -73,7 +73,7 @@ const OMRBasicInfoStep = ({ formData, updateFormData }: OMRBasicInfoStepProps) =
                     value={formData.seriesId || ''}
                     onChange={(e) => updateFormData({ seriesId: e.target.value })}
                     disabled={loadingSeries}
-                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none bg-white transition-all ${!formData.seriesId ? 'border-amber-300 bg-amber-50' : 'border-slate-300'
+                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none bg-white transition-all ${!formData.seriesId ? 'border-teal-300 bg-teal-50' : 'border-slate-300'
                         }`}
                 >
                     <option value="">{loadingSeries ? 'Loading series...' : 'Select a Test Series'}</option>
@@ -93,12 +93,12 @@ const OMRBasicInfoStep = ({ formData, updateFormData }: OMRBasicInfoStepProps) =
                     {TEST_TYPE_OPTIONS.map(({ value, label, desc, icon: Icon, color }) => {
                         const isSelected = formData.testType === value;
                         const colorMap: Record<string, string> = {
-                            blue: isSelected ? 'border-blue-600 bg-blue-50' : 'border-slate-200 hover:border-slate-300',
+                            blue: isSelected ? 'border-teal-600 bg-teal-50' : 'border-slate-200 hover:border-slate-300',
                             purple: isSelected ? 'border-purple-600 bg-purple-50' : 'border-slate-200 hover:border-slate-300',
                             green: isSelected ? 'border-green-600 bg-green-50' : 'border-slate-200 hover:border-slate-300',
                         };
                         const iconColorMap: Record<string, string> = {
-                            blue: 'text-blue-600',
+                            blue: 'text-teal-600',
                             purple: 'text-purple-600',
                             green: 'text-green-600',
                         };

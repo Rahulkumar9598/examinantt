@@ -191,7 +191,7 @@ const QuestionPicker = ({
                             <div>
                                 <h2 className="text-xl font-bold text-slate-800">Pick Specific Questions</h2>
                                 <p className="text-sm text-slate-500">
-                                    Selected: <span className="font-bold text-blue-600">{selectedIds.length}</span>
+                                    Selected: <span className="font-bold text-teal-600">{selectedIds.length}</span>
                                     {maxSelection && <span className="text-slate-400"> / {maxSelection}</span>}
                                 </p>
                             </div>
@@ -212,7 +212,7 @@ const QuestionPicker = ({
                                         key={subject}
                                         onClick={() => setActiveSubject(subject)}
                                         className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${activeSubject === subject
-                                            ? 'bg-blue-600 text-white shadow-md'
+                                            ? 'bg-teal-600 text-white shadow-md'
                                             : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                                             }`}
                                     >
@@ -244,7 +244,7 @@ const QuestionPicker = ({
                                         placeholder="Search question text..."
                                         value={searchTerm}
                                         onChange={e => setSearchTerm(e.target.value)}
-                                        className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm"
+                                        className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-teal-500 outline-none text-sm"
                                     />
                                 </div>
 
@@ -275,7 +275,7 @@ const QuestionPicker = ({
                         <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50">
                             {isLoading ? (
                                 <div className="flex justify-center py-12">
-                                    <Loader2 className="animate-spin text-blue-600" size={32} />
+                                    <Loader2 className="animate-spin text-teal-600" size={32} />
                                 </div>
                             ) : filteredQuestions.length > 0 ? (
                                 filteredQuestions.map(question => (
@@ -283,13 +283,13 @@ const QuestionPicker = ({
                                         key={question.id}
                                         onClick={() => toggleSelection(question.id)}
                                         className={`p-4 rounded-xl border-2 cursor-pointer transition-all hover:shadow-md ${selectedIds.includes(question.id)
-                                            ? 'border-blue-500 bg-blue-50/50'
-                                            : 'border-white bg-white hover:border-blue-200'
+                                            ? 'border-teal-500 bg-teal-50/50'
+                                            : 'border-white bg-white hover:border-teal-200'
                                             }`}
                                     >
                                         <div className="flex items-start gap-4">
                                             <div className={`mt-1 w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 transition-colors ${selectedIds.includes(question.id)
-                                                ? 'bg-blue-600 border-blue-600'
+                                                ? 'bg-teal-600 border-teal-600'
                                                 : 'border-slate-300 bg-white'
                                                 }`}>
                                                 {selectedIds.includes(question.id) && <Check size={12} className="text-white" strokeWidth={3} />}
@@ -297,7 +297,7 @@ const QuestionPicker = ({
 
                                             <div className="flex-1 space-y-2 min-w-0">
                                                 <div className="flex items-center gap-2 flex-wrap">
-                                                    <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded ${question.type === 'MCQ' ? 'bg-purple-100 text-purple-700' : 'bg-orange-100 text-orange-700'}`}>
+                                                    <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded ${question.type === 'MCQ' ? 'bg-purple-100 text-purple-700' : 'bg-teal-100 text-teal-700'}`}>
                                                         {question.type}
                                                     </span>
                                                     <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded ${question.difficulty === 'Easy' ? 'bg-green-100 text-green-700' :
@@ -342,7 +342,7 @@ const QuestionPicker = ({
                                 </button>
                                 <button
                                     onClick={handleConfirm}
-                                    className="px-6 py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-200 transition-colors"
+                                    className="px-6 py-2.5 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 shadow-lg shadow-teal-200 transition-colors"
                                 >
                                     Confirm ({selectedIds.length})
                                 </button>

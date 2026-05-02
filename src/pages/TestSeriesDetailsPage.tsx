@@ -95,7 +95,7 @@ const TestSeriesDetailsPage = () => {
     if (isLoading) {
         return (
             <div className="flex items-center justify-center min-h-screen">
-                <Loader2 className="animate-spin text-blue-600" size={40} />
+                <Loader2 className="animate-spin text-teal-600" size={40} />
             </div>
         );
     }
@@ -107,7 +107,7 @@ const TestSeriesDetailsPage = () => {
                 <h2 className="text-2xl font-bold text-gray-800">Test Series Not Found</h2>
                 <button
                     onClick={() => navigate('/')}
-                    className="text-blue-600 hover:underline font-medium"
+                    className="text-teal-600 hover:underline font-medium"
                 >
                     Back to Home
                 </button>
@@ -141,7 +141,7 @@ const TestSeriesDetailsPage = () => {
                         <div className="relative">
                             <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border ${
                                 series.examCategory === 'NEET' ? 'bg-green-50 text-green-600 border-green-100' :
-                                series.examCategory === 'JEE' ? 'bg-blue-50 text-blue-600 border-blue-100' :
+                                series.examCategory === 'JEE' ? 'bg-teal-50 text-teal-600 border-teal-100' :
                                 'bg-purple-50 text-purple-600 border-purple-100'
                             }`}>
                                 <Zap size={12} fill="currentColor" />
@@ -158,8 +158,8 @@ const TestSeriesDetailsPage = () => {
                         {/* Stats Summary */}
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 py-8 border-y border-slate-100">
                             {[
-                                { label: 'Total Tests', value: series.stats?.totalTests || series.testIds?.length || '10+', icon: PlayCircle, color: 'text-orange-500' },
-                                { label: 'Language', value: 'English/Hindi', icon: BookOpen, color: 'text-blue-500' },
+                                { label: 'Total Tests', value: series.stats?.totalTests || series.testIds?.length || '10+', icon: PlayCircle, color: 'text-teal-500' },
+                                { label: 'Language', value: 'English/Hindi', icon: BookOpen, color: 'text-teal-500' },
                                 { label: 'Validity', value: '1 Year', icon: Clock, color: 'text-purple-500' },
                                 { label: 'Success Rate', value: '98%', icon: CheckCircle, color: 'text-emerald-500' },
                             ].map((stat, i) => (
@@ -176,17 +176,17 @@ const TestSeriesDetailsPage = () => {
                         {/* Features / Details */}
                         <div className="space-y-8">
                             <h3 className="text-2xl font-black text-slate-900 flex items-center gap-3">
-                                <Sparkles className="text-amber-500" />
+                                <Sparkles className="text-teal-500" />
                                 What You'll Get
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {[
-                                    { title: 'Detailed Analytics', desc: 'Real-time performance tracking with heatmaps.', icon: TrendingUp, bg: 'bg-orange-50', text: 'text-orange-600' },
-                                    { title: 'Video Solutions', desc: 'Step-by-step video explanations for tricky Qs.', icon: PlayCircle, bg: 'bg-blue-50', text: 'text-blue-600' },
+                                    { title: 'Detailed Analytics', desc: 'Real-time performance tracking with heatmaps.', icon: TrendingUp, bg: 'bg-teal-50', text: 'text-teal-600' },
+                                    { title: 'Video Solutions', desc: 'Step-by-step video explanations for tricky Qs.', icon: PlayCircle, bg: 'bg-teal-50', text: 'text-teal-600' },
                                     { title: 'Mock Interface', desc: 'Identical to real exam NTA/MCC interfaces.', icon: BookOpen, bg: 'bg-purple-50', text: 'text-purple-600' },
                                     { title: 'Doubt Support', desc: '24/7 priority support for your queries.', icon: HelpCircle, bg: 'bg-emerald-50', text: 'text-emerald-600' },
                                 ].map((feature, i) => (
-                                    <div key={i} className="group flex items-start gap-5 p-6 bg-white border border-slate-100 rounded-[32px] hover:border-orange-200 transition-all shadow-sm hover:shadow-xl">
+                                    <div key={i} className="group flex items-start gap-5 p-6 bg-white border border-slate-100 rounded-[32px] hover:border-teal-200 transition-all shadow-sm hover:shadow-xl">
                                         <div className={`p-4 rounded-2xl ${feature.bg} ${feature.text} group-hover:scale-110 transition-transform`}>
                                             <feature.icon size={28} />
                                         </div>
@@ -209,7 +209,7 @@ const TestSeriesDetailsPage = () => {
                     >
                         <div className="bg-white rounded-[40px] shadow-2xl shadow-slate-200 border border-slate-100 p-8 sticky top-32 overflow-hidden group">
                             {/* Decorative Glow */}
-                            <div className="absolute -right-20 -bottom-20 w-40 h-40 bg-orange-100/50 blur-[80px] rounded-full group-hover:bg-orange-200/50 transition-colors" />
+                            <div className="absolute -right-20 -bottom-20 w-40 h-40 bg-teal-100/50 blur-[80px] rounded-full group-hover:bg-teal-200/50 transition-colors" />
 
                             <div className="relative z-10">
                                 <div className="text-center mb-10">

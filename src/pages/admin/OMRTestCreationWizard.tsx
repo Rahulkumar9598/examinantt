@@ -116,15 +116,15 @@ const OMRTestCreationWizard = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50 p-6">
+        <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-teal-50 p-6">
             <div className="max-w-5xl mx-auto">
 
                 {/* Header */}
-                <div className="bg-white rounded-2xl shadow-md border border-amber-100 p-6 mb-6">
+                <div className="bg-white rounded-2xl shadow-md border border-teal-100 p-6 mb-6">
                     <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-3">
-                            <div className="w-11 h-11 bg-amber-100 rounded-xl flex items-center justify-center">
-                                <FileText className="text-amber-600" size={22} />
+                            <div className="w-11 h-11 bg-teal-100 rounded-xl flex items-center justify-center">
+                                <FileText className="text-teal-600" size={22} />
                             </div>
                             <div>
                                 <h1 className="text-2xl font-bold text-slate-800">Create OMR-Based Test</h1>
@@ -148,7 +148,7 @@ const OMRTestCreationWizard = () => {
                                         className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all ${index < currentStep
                                             ? 'bg-green-500 text-white shadow-lg shadow-green-200'
                                             : index === currentStep
-                                                ? 'bg-amber-500 text-white shadow-lg shadow-amber-200'
+                                                ? 'bg-teal-500 text-white shadow-lg shadow-teal-200'
                                                 : 'bg-slate-200 text-slate-500'
                                             }`}
                                     >
@@ -180,14 +180,14 @@ const OMRTestCreationWizard = () => {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -30 }}
                         transition={{ duration: 0.25 }}
-                        className="bg-white rounded-2xl shadow-md border border-amber-100 p-6 mb-6"
+                        className="bg-white rounded-2xl shadow-md border border-teal-100 p-6 mb-6"
                     >
                         <CurrentStepComponent formData={formData} updateFormData={updateFormData} />
                     </motion.div>
                 </AnimatePresence>
 
                 {/* Navigation */}
-                <div className="bg-white rounded-2xl shadow-md border border-amber-100 p-6 flex justify-between items-center">
+                <div className="bg-white rounded-2xl shadow-md border border-teal-100 p-6 flex justify-between items-center">
                     <button
                         onClick={handleBack}
                         disabled={currentStep === 0}
@@ -202,7 +202,7 @@ const OMRTestCreationWizard = () => {
                                 <button
                                     onClick={() => saveToFirestore('draft')}
                                     disabled={isSaving}
-                                    className="px-6 py-2.5 border-2 border-amber-500 text-amber-600 font-semibold rounded-xl hover:bg-amber-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                    className="px-6 py-2.5 border-2 border-teal-500 text-teal-600 font-semibold rounded-xl hover:bg-teal-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                                 >
                                     {isSaving ? <Loader2 className="animate-spin" size={18} /> : 'Save as Draft'}
                                 </button>
@@ -224,7 +224,7 @@ const OMRTestCreationWizard = () => {
                             <button
                                 onClick={handleNext}
                                 disabled={!canProceed()}
-                                className="flex items-center gap-2 px-6 py-2.5 bg-amber-500 text-white font-semibold rounded-xl hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-lg shadow-amber-200"
+                                className="flex items-center gap-2 px-6 py-2.5 bg-teal-500 text-white font-semibold rounded-xl hover:bg-teal-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-lg shadow-teal-200"
                             >
                                 Next <ArrowRight size={18} />
                             </button>

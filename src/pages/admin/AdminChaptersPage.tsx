@@ -242,7 +242,7 @@ const AdminChaptersPage = () => {
     if (isLoading) {
         return (
             <div className="flex items-center justify-center min-h-screen">
-                <Loader2 className="animate-spin text-blue-600" size={40} />
+                <Loader2 className="animate-spin text-teal-600" size={40} />
             </div>
         );
     }
@@ -274,7 +274,7 @@ const AdminChaptersPage = () => {
                     </button>
                     <button
                         onClick={() => setIsCreating(true)}
-                        className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
+                        className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition-colors shadow-lg shadow-teal-500/20"
                     >
                         <Plus size={20} />
                         Create Chapter
@@ -284,8 +284,8 @@ const AdminChaptersPage = () => {
 
             {/* Statistics */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-200">
-                    <div className="text-3xl font-bold text-blue-600">{chapters.length}</div>
+                <div className="bg-gradient-to-br from-teal-50 to-indigo-50 p-4 rounded-xl border border-teal-200">
+                    <div className="text-3xl font-bold text-teal-600">{chapters.length}</div>
                     <div className="text-sm text-slate-600 mt-1">Total Chapters</div>
                 </div>
                 <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-xl border border-green-200">
@@ -300,8 +300,8 @@ const AdminChaptersPage = () => {
                     </div>
                     <div className="text-sm text-slate-600 mt-1">Chemistry</div>
                 </div>
-                <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-4 rounded-xl border border-orange-200">
-                    <div className="text-3xl font-bold text-orange-600">
+                <div className="bg-gradient-to-br from-teal-50 to-teal-50 p-4 rounded-xl border border-teal-200">
+                    <div className="text-3xl font-bold text-teal-600">
                         {chapters.filter(t => t.subject === 'Mathematics').length}
                     </div>
                     <div className="text-sm text-slate-600 mt-1">Mathematics</div>
@@ -318,13 +318,13 @@ const AdminChaptersPage = () => {
                             placeholder="Search topics..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500"
+                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-teal-500"
                         />
                     </div>
                     <select
                         value={filterSubject}
                         onChange={(e) => setFilterSubject(e.target.value)}
-                        className="px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 bg-white"
+                        className="px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-teal-500 bg-white"
                     >
                         <option value="all">All Subjects</option>
                         {subjects.map(subject => (
@@ -343,7 +343,7 @@ const AdminChaptersPage = () => {
                         <p className="text-slate-500 mb-6">Create your first topic to organize questions</p>
                         <button
                             onClick={() => setIsCreating(true)}
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-500/20"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 shadow-lg shadow-teal-500/20"
                         >
                             <Plus size={20} />
                             Create Chapter
@@ -359,7 +359,7 @@ const AdminChaptersPage = () => {
                         >
                             <div className="flex items-start justify-between mb-3">
                                 <div className="flex items-center gap-2">
-                                    <BookOpen className="text-blue-600" size={24} />
+                                    <BookOpen className="text-teal-600" size={24} />
                                     <div>
                                         <h3 className="font-bold text-slate-800 text-lg">{chapter.name}</h3>
                                         {chapter.unit && (
@@ -370,7 +370,7 @@ const AdminChaptersPage = () => {
                                 <div className="flex gap-2">
                                     <button
                                         onClick={() => handleEdit(chapter)}
-                                        className="text-slate-400 hover:text-blue-600 transition-colors p-1.5 hover:bg-blue-50 rounded-lg"
+                                        className="text-slate-400 hover:text-teal-600 transition-colors p-1.5 hover:bg-teal-50 rounded-lg"
                                         title="Edit chapter"
                                     >
                                         <Edit2 size={18} />
@@ -390,15 +390,15 @@ const AdminChaptersPage = () => {
                             <div className="flex flex-wrap items-center gap-2 mb-3">
                                 <span className={`px-3 py-1 rounded-full text-xs font-bold ${chapter.subject === 'Physics' ? 'bg-green-100 text-green-700' :
                                     chapter.subject === 'Chemistry' ? 'bg-purple-100 text-purple-700' :
-                                        chapter.subject === 'Mathematics' ? 'bg-orange-100 text-orange-700' :
-                                            'bg-blue-100 text-blue-700'
+                                        chapter.subject === 'Mathematics' ? 'bg-teal-100 text-teal-700' :
+                                            'bg-teal-100 text-teal-700'
                                     }`}>
                                     {chapter.subject}
                                 </span>
 
                                 {chapter.difficulty && (
                                     <span className={`px-3 py-1 rounded-full text-xs font-bold ${chapter.difficulty === 'Easy' ? 'bg-emerald-100 text-emerald-700' :
-                                        chapter.difficulty === 'Medium' ? 'bg-amber-100 text-amber-700' :
+                                        chapter.difficulty === 'Medium' ? 'bg-teal-100 text-teal-700' :
                                             chapter.difficulty === 'Hard' ? 'bg-red-100 text-red-700' :
                                                 'bg-indigo-100 text-indigo-700'
                                         }`}>
@@ -469,7 +469,7 @@ const AdminChaptersPage = () => {
                                         required
                                         value={formData.name}
                                         onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                        className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                                         placeholder="e.g., Electromagnetic Induction"
                                     />
                                 </div>
@@ -484,7 +484,7 @@ const AdminChaptersPage = () => {
                                             required
                                             value={formData.subject}
                                             onChange={e => setFormData({ ...formData, subject: e.target.value as any })}
-                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white"
                                         >
                                             {subjects.map(subject => (
                                                 <option key={subject} value={subject}>{subject}</option>
@@ -501,7 +501,7 @@ const AdminChaptersPage = () => {
                                             type="text"
                                             value={formData.unit}
                                             onChange={e => setFormData({ ...formData, unit: e.target.value })}
-                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                                             placeholder="e.g., Unit 1, Mechanics"
                                         />
                                     </div>
@@ -516,7 +516,7 @@ const AdminChaptersPage = () => {
                                         <select
                                             value={formData.difficulty}
                                             onChange={e => setFormData({ ...formData, difficulty: e.target.value as any })}
-                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white"
                                         >
                                             <option value="Easy">Easy</option>
                                             <option value="Medium">Medium</option>
@@ -532,7 +532,7 @@ const AdminChaptersPage = () => {
                                         <select
                                             value={formData.status}
                                             onChange={e => setFormData({ ...formData, status: e.target.value as any })}
-                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white"
                                         >
                                             <option value="active">Active</option>
                                             <option value="draft">Draft</option>
@@ -549,7 +549,7 @@ const AdminChaptersPage = () => {
                                     <textarea
                                         value={formData.description}
                                         onChange={e => setFormData({ ...formData, description: e.target.value })}
-                                        className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent h-24 resize-none"
+                                        className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent h-24 resize-none"
                                         placeholder="Brief description of this topic..."
                                     />
                                 </div>
@@ -570,7 +570,7 @@ const AdminChaptersPage = () => {
                                                         type="text"
                                                         value={chapter}
                                                         onChange={e => handleTopicChange(idx, e.target.value)}
-                                                        className="flex-1 px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                        className="flex-1 px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                                                         placeholder={`Enter topic ${idx + 1} name`}
                                                     />
                                                 </div>
@@ -590,7 +590,7 @@ const AdminChaptersPage = () => {
                                     <button
                                         type="button"
                                         onClick={addTopicField}
-                                        className="mt-3 text-sm text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1"
+                                        className="mt-3 text-sm text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-1"
                                     >
                                         <Plus size={16} />
                                         Add Another Topic
@@ -601,7 +601,7 @@ const AdminChaptersPage = () => {
                                 <div className="pt-2">
                                     <button
                                         type="submit"
-                                        className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-lg hover:shadow-lg transition-shadow flex items-center justify-center gap-2"
+                                        className="w-full py-3 bg-gradient-to-r from-teal-600 to-indigo-600 text-white font-bold rounded-lg hover:shadow-lg transition-shadow flex items-center justify-center gap-2"
                                     >
                                         <Save size={18} />
                                         Create Chapter
@@ -645,7 +645,7 @@ const AdminChaptersPage = () => {
                                         required
                                         value={formData.name}
                                         onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                        className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                                         placeholder="e.g., Electromagnetic Induction"
                                     />
                                 </div>
@@ -659,7 +659,7 @@ const AdminChaptersPage = () => {
                                             required
                                             value={formData.subject}
                                             onChange={e => setFormData({ ...formData, subject: e.target.value as any })}
-                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white"
                                         >
                                             {subjects.map(subject => (
                                                 <option key={subject} value={subject}>{subject}</option>
@@ -676,7 +676,7 @@ const AdminChaptersPage = () => {
                                             type="text"
                                             value={formData.unit}
                                             onChange={e => setFormData({ ...formData, unit: e.target.value })}
-                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                                             placeholder="e.g., Unit 1, Mechanics"
                                         />
                                     </div>
@@ -690,7 +690,7 @@ const AdminChaptersPage = () => {
                                         <select
                                             value={formData.difficulty}
                                             onChange={e => setFormData({ ...formData, difficulty: e.target.value as any })}
-                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white"
                                         >
                                             <option value="Easy">Easy</option>
                                             <option value="Medium">Medium</option>
@@ -706,7 +706,7 @@ const AdminChaptersPage = () => {
                                         <select
                                             value={formData.status}
                                             onChange={e => setFormData({ ...formData, status: e.target.value as any })}
-                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                                            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white"
                                         >
                                             <option value="active">Active</option>
                                             <option value="draft">Draft</option>
@@ -722,7 +722,7 @@ const AdminChaptersPage = () => {
                                     <textarea
                                         value={formData.description}
                                         onChange={e => setFormData({ ...formData, description: e.target.value })}
-                                        className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent h-24 resize-none"
+                                        className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent h-24 resize-none"
                                         placeholder="Brief description of this topic..."
                                     />
                                 </div>
@@ -742,7 +742,7 @@ const AdminChaptersPage = () => {
                                                         type="text"
                                                         value={chapter}
                                                         onChange={e => handleTopicChange(idx, e.target.value)}
-                                                        className="flex-1 px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                        className="flex-1 px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                                                         placeholder={`Enter topic ${idx + 1} name`}
                                                     />
                                                 </div>
@@ -762,7 +762,7 @@ const AdminChaptersPage = () => {
                                     <button
                                         type="button"
                                         onClick={addTopicField}
-                                        className="mt-3 text-sm text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1"
+                                        className="mt-3 text-sm text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-1"
                                     >
                                         <Plus size={16} />
                                         Add Another Topic
@@ -772,7 +772,7 @@ const AdminChaptersPage = () => {
                                 <div className="pt-2">
                                     <button
                                         type="submit"
-                                        className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-lg hover:shadow-lg transition-shadow flex items-center justify-center gap-2"
+                                        className="w-full py-3 bg-gradient-to-r from-teal-600 to-indigo-600 text-white font-bold rounded-lg hover:shadow-lg transition-shadow flex items-center justify-center gap-2"
                                     >
                                         <Save size={18} />
                                         Update Chapter
@@ -879,7 +879,7 @@ const AdminChaptersPage = () => {
                                                 </div>
                                                 <div className="w-full bg-slate-200 rounded-full h-2">
                                                     <div
-                                                        className="bg-blue-600 h-2 rounded-full transition-all"
+                                                        className="bg-teal-600 h-2 rounded-full transition-all"
                                                         style={{ width: `${uploadProgress}%` }}
                                                     />
                                                 </div>

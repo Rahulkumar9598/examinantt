@@ -44,16 +44,16 @@ export default function LeaderboardSection() {
 
 
   return (
-    <section className="py-24 bg-white relative">
+    <section className="py-24 bg-transparent relative">
       {/* Clean, Professional Background */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row items-end justify-between gap-6 mb-16 border-b border-slate-100 pb-12">
           <div className="max-w-2xl text-left">
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
-              Leader<span className="text-[#1D64D0]">board</span>
+              Leader<span className="text-[#0D9488]">board</span>
             </h2>
             <p className="text-slate-500 font-medium text-lg">
               The highest performers across all categories this week.
@@ -65,11 +65,10 @@ export default function LeaderboardSection() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
-                  activeTab === tab 
-                  ? 'bg-white text-[#1D64D0] shadow-sm' 
-                  : 'text-slate-500 hover:text-slate-700'
-                }`}
+                className={`px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${activeTab === tab
+                    ? 'bg-white text-[#0D9488] shadow-sm'
+                    : 'text-slate-500 hover:text-slate-700'
+                  }`}
               >
                 {tab}
               </button>
@@ -87,19 +86,19 @@ export default function LeaderboardSection() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.05 }}
-                className="relative bg-white border border-transparent ring-2 ring-[#1D64D0] rounded-3xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 group"
+                className="relative bg-white border border-transparent ring-2 ring-[#0D9488] rounded-3xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-teal-500/10 group"
               >
                 {/* Rank Header */}
                 <div className="flex items-center justify-between mb-8">
-                  <span className="text-sm font-black w-8 h-8 rounded-full flex items-center justify-center bg-[#1D64D0] text-white">
+                  <span className="text-sm font-black w-8 h-8 rounded-full flex items-center justify-center bg-[#0D9488] text-white">
                     {index + 1}
                   </span>
-                  {isRank1 && <Trophy size={18} className="text-amber-500" />}
+                  {isRank1 && <Trophy size={18} className="text-teal-500" />}
                 </div>
 
                 {/* Profile Section */}
                 <div className="flex flex-col items-center mb-8">
-                  <div className="w-20 h-20 rounded-full flex items-center justify-center text-3xl font-black mb-4 border-4 border-blue-50 bg-blue-600 text-white shadow-lg">
+                  <div className="w-20 h-20 rounded-full flex items-center justify-center text-3xl font-black mb-4 border-4 border-teal-50 bg-teal-600 text-white shadow-lg">
                     {student.name.charAt(0)}
                   </div>
                   <h3 className="text-lg font-black text-slate-900 truncate w-full text-center">{student.name}</h3>
@@ -113,18 +112,18 @@ export default function LeaderboardSection() {
                     <span className="text-xl font-black text-slate-900">{student.score}%</span>
                   </div>
                   <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                    <motion.div 
+                    <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${student.score}%` }}
                       transition={{ duration: 1, delay: 0.2 }}
-                      className="h-full rounded-full bg-blue-600"
+                      className="h-full rounded-full bg-teal-600"
                     />
                   </div>
                 </div>
 
                 {/* Exam Label */}
                 <div className="mt-4 text-center">
-                  <span className="inline-block px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-[9px] font-black text-[#1D64D0] uppercase">
+                  <span className="inline-block px-3 py-1 bg-teal-50 border border-teal-100 rounded-full text-[9px] font-black text-[#0D9488] uppercase">
                     {student.exam}
                   </span>
                 </div>
@@ -139,7 +138,7 @@ export default function LeaderboardSection() {
             { label: 'Total Aspirants', value: '12,500+', color: 'text-slate-900' },
             { label: 'Avg. Accuracy', value: '74.2%', color: 'text-slate-900' },
             { label: 'Tests Conducted', value: '85K+', color: 'text-slate-900' },
-            { label: 'Active Today', value: '1,200+', color: 'text-[#1D64D0]' },
+            { label: 'Active Today', value: '1,200+', color: 'text-[#0D9488]' },
           ].map((stat, i) => (
             <div key={i} className="text-center sm:text-left">
               <div className={`text-2xl sm:text-3xl font-black ${stat.color}`}>{stat.value}</div>
@@ -163,12 +162,12 @@ export default function LeaderboardSection() {
               {STUDENTS_POOL.slice(5, 8).map((student, idx) => (
                 <div key={student.id} className="p-6 flex items-center justify-between hover:bg-slate-50/50 transition-all cursor-default group">
                   <div className="flex items-center gap-5">
-                    <span className="text-sm font-black text-slate-300 w-6 group-hover:text-blue-500 transition-colors">#{idx + 6}</span>
-                    <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center font-bold text-slate-600 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                    <span className="text-sm font-black text-slate-300 w-6 group-hover:text-teal-500 transition-colors">#{idx + 6}</span>
+                    <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center font-bold text-slate-600 group-hover:bg-teal-600 group-hover:text-white transition-all">
                       {student.name.charAt(0)}
                     </div>
                     <div>
-                      <div className="font-black text-slate-900 group-hover:text-blue-600 transition-colors text-sm">{student.name}</div>
+                      <div className="font-black text-slate-900 group-hover:text-teal-600 transition-colors text-sm">{student.name}</div>
                       <div className="text-[9px] font-bold text-slate-400 uppercase">Class {student.classLevel} • {student.exam}</div>
                     </div>
                   </div>
@@ -176,7 +175,7 @@ export default function LeaderboardSection() {
                     <div className="text-right">
                       <div className="text-lg font-black text-slate-900">{student.score}%</div>
                     </div>
-                    <Medal size={20} className="text-slate-200 group-hover:text-blue-200" />
+                    <Medal size={20} className="text-slate-200 group-hover:text-teal-200" />
                   </div>
                 </div>
               ))}

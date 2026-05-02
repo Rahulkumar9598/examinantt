@@ -80,7 +80,7 @@ const AdminAddResourcePage = () => {
                             required
                             value={formData.title}
                             onChange={e => setFormData({ ...formData, title: e.target.value })}
-                            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium"
+                            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all font-medium"
                             placeholder="e.g. Physics Formula Sheet"
                         />
                     </div>
@@ -90,7 +90,7 @@ const AdminAddResourcePage = () => {
                         <select
                             value={formData.category}
                             onChange={e => setFormData({ ...formData, category: e.target.value })}
-                            className="w-full px-4 py-3 border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                            className="w-full px-4 py-3 border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500"
                         >
                             <option>General</option>
                             <option>Physics</option>
@@ -134,7 +134,7 @@ const AdminAddResourcePage = () => {
                                 required
                                 value={formData.url}
                                 onChange={e => setFormData({ ...formData, url: e.target.value })}
-                                className="w-full pl-12 pr-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-mono text-sm"
+                                className="w-full pl-12 pr-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all font-mono text-sm"
                                 placeholder="https://..."
                             />
                         </div>
@@ -151,7 +151,7 @@ const AdminAddResourcePage = () => {
                         <textarea
                             value={formData.description}
                             onChange={e => setFormData({ ...formData, description: e.target.value })}
-                            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 h-24 resize-none"
+                            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 h-24 resize-none"
                             placeholder="Brief details about this resource..."
                         />
                     </div>
@@ -164,7 +164,7 @@ const AdminAddResourcePage = () => {
                                     type="checkbox"
                                     checked={formData.isFree}
                                     onChange={e => setFormData({ ...formData, isFree: e.target.checked, price: e.target.checked ? '0' : formData.price })}
-                                    className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
+                                    className="w-5 h-5 text-teal-600 rounded focus:ring-teal-500"
                                 />
                                 <div>
                                     <span className="block font-bold text-slate-700">Free Resource</span>
@@ -183,7 +183,7 @@ const AdminAddResourcePage = () => {
                                         type="number"
                                         value={formData.price}
                                         onChange={e => setFormData({ ...formData, price: e.target.value })}
-                                        className="w-full pl-8 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-500 font-bold text-slate-900"
+                                        className="w-full pl-8 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-teal-500 font-bold text-slate-900"
                                         placeholder="Enter Price"
                                     />
                                 </motion.div>
@@ -195,7 +195,7 @@ const AdminAddResourcePage = () => {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full py-4 bg-blue-600 text-white font-bold text-lg rounded-xl hover:bg-blue-700 shadow-xl shadow-blue-500/20 disabled:opacity-70 transition-all flex items-center justify-center gap-2"
+                            className="w-full py-4 bg-teal-600 text-white font-bold text-lg rounded-xl hover:bg-teal-700 shadow-xl shadow-teal-500/20 disabled:opacity-70 transition-all flex items-center justify-center gap-2"
                         >
                             <Save size={20} />
                             {isSubmitting ? 'Saving...' : 'Add Resource'}

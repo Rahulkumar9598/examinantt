@@ -120,7 +120,7 @@ const AdminAddPYQPage = () => {
                             required
                             value={formData.title}
                             onChange={e => setFormData({ ...formData, title: e.target.value })}
-                            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium"
+                            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all font-medium"
                             placeholder="e.g. JEE Mains 2023 Shift 1 Analysis"
                         />
                     </div>
@@ -132,7 +132,7 @@ const AdminAddPYQPage = () => {
                                 <select
                                     value={formData.category}
                                     onChange={e => setFormData({ ...formData, category: e.target.value })}
-                                    className="w-full px-4 py-3 border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all appearance-none"
+                                    className="w-full px-4 py-3 border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all appearance-none"
                                 >
                                     <option>NEET</option>
                                     <option>JEE</option>
@@ -150,7 +150,7 @@ const AdminAddPYQPage = () => {
                                 required
                                 value={formData.year}
                                 onChange={e => setFormData({ ...formData, year: e.target.value })}
-                                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
                             />
                         </div>
                     </div>
@@ -158,7 +158,7 @@ const AdminAddPYQPage = () => {
                     <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
                         <label className="block text-sm font-bold text-slate-700 mb-3">Resource Type</label>
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <label className={`flex-1 flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${formData.type === 'pdf' ? 'border-blue-500 bg-blue-50' : 'border-slate-200 hover:border-slate-300 bg-white'}`}>
+                            <label className={`flex-1 flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${formData.type === 'pdf' ? 'border-teal-500 bg-teal-50' : 'border-slate-200 hover:border-slate-300 bg-white'}`}>
                                 <input
                                     type="radio"
                                     name="type"
@@ -166,10 +166,10 @@ const AdminAddPYQPage = () => {
                                     onChange={() => setFormData({ ...formData, type: 'pdf' })}
                                     className="hidden"
                                 />
-                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${formData.type === 'pdf' ? 'border-blue-600' : 'border-slate-300'}`}>
-                                    {formData.type === 'pdf' && <div className="w-2.5 h-2.5 bg-blue-600 rounded-full" />}
+                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${formData.type === 'pdf' ? 'border-teal-600' : 'border-slate-300'}`}>
+                                    {formData.type === 'pdf' && <div className="w-2.5 h-2.5 bg-teal-600 rounded-full" />}
                                 </div>
-                                <span className={`font-bold ${formData.type === 'pdf' ? 'text-blue-700' : 'text-slate-600'}`}>PDF Document</span>
+                                <span className={`font-bold ${formData.type === 'pdf' ? 'text-teal-700' : 'text-slate-600'}`}>PDF Document</span>
                             </label>
                             <label className={`flex-1 flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${formData.type === 'test' ? 'border-purple-500 bg-purple-50' : 'border-slate-200 hover:border-slate-300 bg-white'}`}>
                                 <input
@@ -197,7 +197,7 @@ const AdminAddPYQPage = () => {
                                     required
                                     value={formData.fileUrl}
                                     onChange={e => setFormData({ ...formData, fileUrl: e.target.value })}
-                                    className="w-full pl-12 pr-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                                    className="w-full pl-12 pr-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
                                     placeholder="https://firebasestorage.googleapis.com/..."
                                 />
                             </div>
@@ -218,7 +218,7 @@ const AdminAddPYQPage = () => {
                                         required
                                         value={formData.testId}
                                         onChange={e => setFormData({ ...formData, testId: e.target.value })}
-                                        className="w-full pl-12 pr-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium appearance-none bg-white"
+                                        className="w-full pl-12 pr-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all font-medium appearance-none bg-white"
                                     >
                                         <option value="" className="text-slate-500">-- Select a Test --</option>
                                         <option value="debug" className="text-red-500 font-bold bg-slate-100">DEBUG: Hardcoded Option</option>
@@ -252,7 +252,7 @@ const AdminAddPYQPage = () => {
                                     type="checkbox"
                                     checked={formData.price === '0'}
                                     onChange={e => setFormData({ ...formData, price: e.target.checked ? '0' : '' })}
-                                    className="w-5 h-5 text-blue-600 rounded border-slate-300 focus:ring-blue-500"
+                                    className="w-5 h-5 text-teal-600 rounded border-slate-300 focus:ring-teal-500"
                                 />
                                 <span className="font-medium text-slate-700">Free Resource</span>
                             </label>
@@ -263,7 +263,7 @@ const AdminAddPYQPage = () => {
                                     disabled={formData.price === '0'}
                                     value={formData.price}
                                     onChange={e => setFormData({ ...formData, price: e.target.value })}
-                                    className="w-full pl-8 pr-4 py-3 border border-slate-200 rounded-xl disabled:bg-slate-100 disabled:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-bold"
+                                    className="w-full pl-8 pr-4 py-3 border border-slate-200 rounded-xl disabled:bg-slate-100 disabled:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all font-bold"
                                     placeholder="Price"
                                 />
                             </div>
@@ -274,7 +274,7 @@ const AdminAddPYQPage = () => {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full py-4 bg-blue-600 text-white font-bold text-lg rounded-xl hover:bg-blue-700 shadow-xl shadow-blue-500/20 disabled:opacity-70 transition-all flex items-center justify-center gap-2"
+                            className="w-full py-4 bg-teal-600 text-white font-bold text-lg rounded-xl hover:bg-teal-700 shadow-xl shadow-teal-500/20 disabled:opacity-70 transition-all flex items-center justify-center gap-2"
                         >
                             <Save size={20} />
                             {isSubmitting ? 'Creating...' : 'Create PYQ Resource'}

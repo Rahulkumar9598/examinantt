@@ -221,7 +221,7 @@ const TestSeriesManagement = () => {
 
                     <button
                         onClick={() => navigate('/admin-dashboard/create-test')}
-                        className="w-full sm:w-auto flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all duration-200 shadow-sm"
+                        className="w-full sm:w-auto flex items-center gap-2 px-6 py-2.5 bg-teal-600 text-white font-semibold rounded-xl hover:bg-teal-700 transition-all duration-200 shadow-sm"
                     >
                         <Plus size={18} /> New Digital Test
                     </button>
@@ -243,14 +243,14 @@ const TestSeriesManagement = () => {
                         placeholder="Search via name or description..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-blue-500 transition-all text-slate-700 placeholder:text-slate-400"
+                        className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-teal-500 transition-all text-slate-700 placeholder:text-slate-400"
                     />
                 </div>
                 <div className="flex flex-col gap-4 sm:flex-row w-full">
                     <select
                         value={filterStatus}
                         onChange={(e) => setFilterStatus(e.target.value)}
-                        className="w-full sm:w-auto px-4 py-2.5 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-blue-500 text-slate-700 font-medium cursor-pointer"
+                        className="w-full sm:w-auto px-4 py-2.5 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-teal-500 text-slate-700 font-medium cursor-pointer"
                     >
                         <option value="all">All Status</option>
                         <option value="draft">Draft</option>
@@ -263,7 +263,7 @@ const TestSeriesManagement = () => {
             {/* Test Series Grid */}
             {isLoading ? (
                 <div className="text-center py-20">
-                    <div className="inline-block w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                    <div className="inline-block w-10 h-10 border-4 border-teal-600 border-t-transparent rounded-full animate-spin"></div>
                     <p className="text-slate-500 mt-4 font-medium animate-pulse">Loading amazing content...</p>
                 </div>
             ) : filteredSeries.length === 0 ? (
@@ -290,14 +290,14 @@ const TestSeriesManagement = () => {
                                 <div className="grid grid-cols-3 gap-2 w-full">
                                     <button
                                         onClick={() => handleEdit(series)}
-                                        className="flex items-center justify-center gap-1.5 py-3 bg-blue-50 text-blue-700 rounded-xl hover:bg-blue-600 hover:text-white transition-all text-[10px] font-black uppercase tracking-widest border border-blue-100 shadow-sm"
+                                        className="flex items-center justify-center gap-1.5 py-3 bg-teal-50 text-teal-700 rounded-xl hover:bg-teal-600 hover:text-white transition-all text-[10px] font-black uppercase tracking-widest border border-teal-100 shadow-sm"
                                         title="Edit Series"
                                     >
                                         <Edit2 size={12} /> Edit
                                     </button>
                                     <button
                                         onClick={() => handleDuplicate(series)}
-                                        className="flex items-center justify-center gap-1.5 py-3 bg-amber-50 text-amber-700 rounded-xl hover:bg-amber-500 hover:text-white transition-all text-[10px] font-black uppercase tracking-widest border border-amber-100 shadow-sm"
+                                        className="flex items-center justify-center gap-1.5 py-3 bg-teal-50 text-teal-700 rounded-xl hover:bg-teal-500 hover:text-white transition-all text-[10px] font-black uppercase tracking-widest border border-teal-100 shadow-sm"
                                         title="Clone Series"
                                     >
                                         <Copy size={12} /> Clone
@@ -353,7 +353,7 @@ const TestSeriesManagement = () => {
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                         placeholder="e.g., JEE Mains 2024 Mock Tests"
-                                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
+                                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 shadow-sm"
                                     />
                                 </div>
 
@@ -366,7 +366,7 @@ const TestSeriesManagement = () => {
                                         <select
                                             value={formData.courseClass}
                                             onChange={(e) => setFormData({ ...formData, courseClass: e.target.value })}
-                                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white shadow-sm"
+                                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 bg-white shadow-sm"
                                         >
                                             <option value="">Select Class</option>
                                             {availableClasses.map(c => (
@@ -383,7 +383,7 @@ const TestSeriesManagement = () => {
                                         <select
                                             value={formData.subject}
                                             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white shadow-sm"
+                                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 bg-white shadow-sm"
                                         >
                                             <option value="">Select Subject</option>
                                             {availableSubjects.map(s => (
@@ -405,7 +405,7 @@ const TestSeriesManagement = () => {
                                                 type="radio"
                                                 checked={formData.pricing.type === 'free'}
                                                 onChange={() => setFormData({ ...formData, pricing: { type: 'free', amount: 0 } })}
-                                                className="w-4 h-4 text-blue-600"
+                                                className="w-4 h-4 text-teal-600"
                                             />
                                             <span className="font-medium text-slate-700">Free</span>
                                         </label>
@@ -414,7 +414,7 @@ const TestSeriesManagement = () => {
                                                 type="radio"
                                                 checked={formData.pricing.type === 'paid'}
                                                 onChange={() => setFormData({ ...formData, pricing: { type: 'paid', amount: 0 } })}
-                                                className="w-4 h-4 text-blue-600"
+                                                className="w-4 h-4 text-teal-600"
                                             />
                                             <span className="font-medium text-slate-700">Paid</span>
                                         </label>
@@ -430,7 +430,7 @@ const TestSeriesManagement = () => {
                                                     pricing: { ...formData.pricing, amount: Number(e.target.value) }
                                                 })}
                                                 placeholder="Enter amount"
-                                                className="w-full pl-10 pr-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 shadow-sm"
+                                                className="w-full pl-10 pr-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 shadow-sm"
                                             />
                                         </div>
                                     )}
@@ -446,7 +446,7 @@ const TestSeriesManagement = () => {
                                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                                         placeholder="Describe this test series..."
                                         rows={4}
-                                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none shadow-sm"
+                                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 resize-none shadow-sm"
                                     />
                                 </div>
 
@@ -458,7 +458,7 @@ const TestSeriesManagement = () => {
                                     <select
                                         value={formData.status}
                                         onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
-                                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white shadow-sm"
+                                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 bg-white shadow-sm"
                                     >
                                         <option value="draft">Draft</option>
                                         <option value="published">Published</option>
@@ -480,7 +480,7 @@ const TestSeriesManagement = () => {
                                     type="button"
                                     onClick={editingSeries ? handleUpdate : handleCreate}
                                     disabled={isSubmitting || !formData.name || !formData.description}
-                                    className="flex-1 px-6 py-2.5 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                                    className="flex-1 px-6 py-2.5 bg-teal-600 text-white font-bold rounded-lg hover:bg-teal-700 shadow-lg shadow-teal-500/20 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
                                     {isSubmitting ? (
                                         <>

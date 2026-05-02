@@ -30,7 +30,7 @@ const ScheduleStep = ({ formData, updateFormData }: ScheduleStepProps) => {
                     type="checkbox"
                     checked={schedule.isScheduled}
                     onChange={(e) => updateSchedule('isScheduled', e.target.checked)}
-                    className="w-5 h-5 text-blue-600 rounded"
+                    className="w-5 h-5 text-teal-600 rounded"
                 />
                 <div>
                     <span className="font-semibold text-slate-800">Enable Test Scheduling</span>
@@ -51,7 +51,7 @@ const ScheduleStep = ({ formData, updateFormData }: ScheduleStepProps) => {
                                 const date = new Date(e.target.value);
                                 updateSchedule('startDate', date);
                             }}
-                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500"
                         />
                     </div>
 
@@ -66,7 +66,7 @@ const ScheduleStep = ({ formData, updateFormData }: ScheduleStepProps) => {
                                 const date = new Date(e.target.value);
                                 updateSchedule('endDate', date);
                             }}
-                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500"
                         />
                     </div>
 
@@ -78,7 +78,7 @@ const ScheduleStep = ({ formData, updateFormData }: ScheduleStepProps) => {
                         <select
                             value={schedule.timezone || 'Asia/Kolkata'}
                             onChange={(e) => updateSchedule('timezone', e.target.value)}
-                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500"
                         >
                             <option value="Asia/Kolkata">IST (Asia/Kolkata)</option>
                             <option value="America/New_York">EST (America/New_York)</option>

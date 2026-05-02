@@ -16,8 +16,8 @@
 //                             <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-slate-50 border border-slate-100 rounded-full text-[10px] font-black text-slate-400 uppercase tracking-[0.25em] mb-6 lg:mb-8">
 //                                 Top Performers
 //                             </div>
-//                             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#0B4F97] tracking-tighter mb-6 lg:mb-8 leading-tight">
-//                                 Previous Year <br className="hidden sm:block" /> <span className="text-[#1D64D0]">Toppers.</span>
+//                             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#0F766E] tracking-tighter mb-6 lg:mb-8 leading-tight">
+//                                 Previous Year <br className="hidden sm:block" /> <span className="text-[#0D9488]">Toppers.</span>
 //                             </h2>
 //                             <p className="text-lg lg:text-xl text-slate-500 font-medium leading-relaxed max-w-sm mx-auto lg:mx-0">
 //                                 Our subject experts design questions strictly aligned with real exam difficulty.
@@ -27,8 +27,8 @@
 //                         <div className="grid grid-cols-3 gap-3 md:gap-10 mb-12 lg:mb-16 px-2 sm:px-0">
 //                             {[
 //                                 { name: "Mihir S.", rank: "218", exam: "NEET", color: "bg-rose-500" },
-//                                 { name: "Aditi V.", rank: "609", exam: "JEE", color: "bg-[#0B4F97]" },
-//                                 { name: "Rahul D.", rank: "129", exam: "SSC", color: "bg-orange-500" }
+//                                 { name: "Aditi V.", rank: "609", exam: "JEE", color: "bg-[#0F766E]" },
+//                                 { name: "Rahul D.", rank: "129", exam: "SSC", color: "bg-teal-500" }
 //                             ].map((topper, i) => (
 //                                 <div key={i} className="text-center group">
 //                                     <div className="relative mb-6">
@@ -40,7 +40,7 @@
 //                                             <p className="text-xs sm:text-lg font-black tracking-tighter">{topper.rank}</p>
 //                                         </div>
 //                                     </div>
-//                                     <h4 className="font-black text-[#0B4F97] text-sm sm:text-lg tracking-tight">{topper.name.split(' ')[0]}</h4>
+//                                     <h4 className="font-black text-[#0F766E] text-sm sm:text-lg tracking-tight">{topper.name.split(' ')[0]}</h4>
 //                                 </div>
 //                             ))}
 //                         </div>
@@ -50,7 +50,7 @@
 //                                 { label: "Syllabus-Aligned", icon: <CheckCircle /> },
 //                                 { label: "Pattern-Accurate", icon: <CheckCircle /> }
 //                             ].map((item, i) => (
-//                                 <div key={i} className="flex items-center gap-2 text-[10px] lg:text-xs font-black text-[#0B4F97] uppercase tracking-widest">
+//                                 <div key={i} className="flex items-center gap-2 text-[10px] lg:text-xs font-black text-[#0F766E] uppercase tracking-widest">
 //                                     <div className="text-green-500">{item.icon}</div>
 //                                     {item.label}
 //                                 </div>
@@ -61,18 +61,18 @@
 //                     {/* Right: Final CTA */}
 //                     <div className="mt-16 lg:mt-0 relative text-center lg:text-left">
 //                         {/* Decorative Background Aura */}
-//                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-50/60 rounded-full blur-[80px] lg:blur-[120px] -z-10"></div>
+//                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-teal-50/60 rounded-full blur-[80px] lg:blur-[120px] -z-10"></div>
 
 //                         <div className="relative space-y-8 lg:space-y-12">
 //                             <div>
-//                                 <h3 className="text-xl lg:text-2xl font-black text-[#1D64D0] mb-3 lg:mb-4 tracking-tighter uppercase tracking-[0.1em]">Don't Leave Your</h3>
-//                                 <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#0B4F97] tracking-[-0.05em] leading-[0.9] px-2 sm:px-0">
-//                                     Rank to <br /> <span className="text-[#1D64D0]">Chance.</span>
+//                                 <h3 className="text-xl lg:text-2xl font-black text-[#0D9488] mb-3 lg:mb-4 tracking-tighter uppercase tracking-[0.1em]">Don't Leave Your</h3>
+//                                 <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#0F766E] tracking-[-0.05em] leading-[0.9] px-2 sm:px-0">
+//                                     Rank to <br /> <span className="text-[#0D9488]">Chance.</span>
 //                                 </h2>
 //                             </div>
 
 //                             <div className="flex flex-col sm:flex-row items-center lg:items-start gap-6 max-w-md mx-auto lg:mx-0">
-//                                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#F0F6FF] rounded-[24px] sm:rounded-[30px] flex items-center justify-center text-[#1D64D0] shadow-xl shadow-blue-500/10 shrink-0">
+//                                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#F0F6FF] rounded-[24px] sm:rounded-[30px] flex items-center justify-center text-[#0D9488] shadow-xl shadow-teal-500/10 shrink-0">
 //                                     <Clock size={30} className="sm:size-9" strokeWidth={2.5} />
 //                                 </div>
 //                                 <p className="text-lg lg:text-xl text-slate-500 font-medium leading-normal">
@@ -83,13 +83,13 @@
 //                             <div className="flex flex-col gap-4 lg:gap-5 pt-4 max-w-sm ml-auto mr-auto lg:ml-0">
 //                                 <button
 //                                     onClick={() => navigate('/signup')}
-//                                     className="w-full py-5 lg:py-6 bg-orange-500 hover:bg-orange-600 text-white rounded-[20px] lg:rounded-[24px] font-black text-xl lg:text-2xl transition-all shadow-2xl shadow-orange-500/30 flex items-center justify-center gap-4 active:scale-95 group"
+//                                     className="w-full py-5 lg:py-6 bg-teal-500 hover:bg-teal-600 text-white rounded-[20px] lg:rounded-[24px] font-black text-xl lg:text-2xl transition-all shadow-2xl shadow-teal-500/30 flex items-center justify-center gap-4 active:scale-95 group"
 //                                 >
 //                                     Start Practice
 //                                     <ArrowRight size={24} className="sm:size-28 group-hover:translate-x-2 transition-transform" />
 //                                 </button>
 //                                 <button
-//                                     className="w-full py-5 lg:py-6 bg-white text-[#0B4F97] border-2 border-slate-100 rounded-[20px] lg:rounded-[24px] font-black text-xl lg:text-2xl hover:bg-blue-50 hover:border-blue-100 transition-all active:scale-95"
+//                                     className="w-full py-5 lg:py-6 bg-white text-[#0F766E] border-2 border-slate-100 rounded-[20px] lg:rounded-[24px] font-black text-xl lg:text-2xl hover:bg-teal-50 hover:border-teal-100 transition-all active:scale-95"
 //                                 >
 //                                     Try a Demo Test
 //                                 </button>
@@ -131,7 +131,7 @@ const SocialProof = () => {
       name: "Aditi V.",
       rank: "609",
       exam: "JEE",
-      color: "bg-[#0B4F97]",
+      color: "bg-[#0F766E]",
       image:
         "https://images.unsplash.com/photo-1595152772835-219674b2a8a6",
     },
@@ -139,27 +139,27 @@ const SocialProof = () => {
       name: "Rahul D.",
       rank: "129",
       exam: "SSC",
-      color: "bg-orange-500",
+      color: "bg-teal-500",
       image:
         "https://images.unsplash.com/photo-1615109398623-88346a601842",
     },
   ];
 
   return (
-    <section className="py-28 bg-[#F8FAFC] overflow-hidden">
+    <section className="py-28 bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
 
           {/* LEFT SIDE */}
           <div>
             <div className="text-center lg:text-left mb-14">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 rounded-full text-xs font-bold text-[#1D64D0] uppercase tracking-widest mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-teal-50 rounded-full text-xs font-bold text-[#0D9488] uppercase tracking-widest mb-6">
                 Top Performers
               </div>
 
-              <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B4F97] leading-tight mb-6">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-[#0F766E] leading-tight mb-6">
                 Previous Year <br />
-                <span className="text-[#1D64D0]">Toppers</span>
+                <span className="text-[#0D9488]">Toppers</span>
               </h2>
 
               <p className="text-lg text-slate-500 max-w-md mx-auto lg:mx-0">
@@ -190,7 +190,7 @@ const SocialProof = () => {
 
                   </div>
 
-                  <h4 className="mt-4 font-semibold text-[#0B4F97]">
+                  <h4 className="mt-4 font-semibold text-[#0F766E]">
                     {topper.name}
                   </h4>
                 </div>
@@ -205,7 +205,7 @@ const SocialProof = () => {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-2 text-sm font-semibold text-[#0B4F97]"
+                  className="flex items-center gap-2 text-sm font-semibold text-[#0F766E]"
                 >
                   <CheckCircle size={16} className="text-green-500" />
                   {item.label}
@@ -217,17 +217,17 @@ const SocialProof = () => {
           {/* RIGHT SIDE CTA */}
           <div className="text-center lg:text-left">
 
-            <h3 className="text-lg font-bold text-[#1D64D0] uppercase tracking-wider mb-3">
+            <h3 className="text-lg font-bold text-[#0D9488] uppercase tracking-wider mb-3">
               Don't Leave Your
             </h3>
 
-            <h2 className="text-5xl md:text-6xl font-extrabold text-[#0B4F97] leading-tight mb-8">
+            <h2 className="text-5xl md:text-6xl font-extrabold text-[#0F766E] leading-tight mb-8">
               Rank to <br />
-              <span className="text-[#1D64D0]">Chance</span>
+              <span className="text-[#0D9488]">Chance</span>
             </h2>
 
             <div className="flex flex-col sm:flex-row gap-6 items-center lg:items-start mb-10">
-              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-[#1D64D0]">
+              <div className="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center text-[#0D9488]">
                 <Clock size={28} />
               </div>
 
@@ -241,13 +241,13 @@ const SocialProof = () => {
 
               <button
                 onClick={() => navigate("/signup")}
-                className="w-full py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold text-lg flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transition"
+                className="w-full py-4 bg-teal-500 hover:bg-teal-600 text-white rounded-xl font-bold text-lg flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transition"
               >
                 Start Practice
                 <ArrowRight className="group-hover:translate-x-1 transition" />
               </button>
 
-              <button className="w-full py-4 bg-white border border-gray-200 text-[#0B4F97] rounded-xl font-bold text-lg hover:bg-blue-50 transition">
+              <button className="w-full py-4 bg-white border border-gray-200 text-[#0F766E] rounded-xl font-bold text-lg hover:bg-teal-50 transition">
                 Try a Demo Test
               </button>
 

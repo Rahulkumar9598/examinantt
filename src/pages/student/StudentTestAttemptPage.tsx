@@ -176,7 +176,7 @@ const StudentTestAttemptPage = () => {
             case 'notAnswered': return 'bg-red-50 border-red-300 text-red-700';
             case 'answered': return 'bg-green-50 border-green-500 text-green-700';
             case 'markedForReview': return 'bg-purple-50 border-purple-500 text-purple-700';
-            case 'answeredAndMarked': return 'bg-blue-50 border-blue-500 text-blue-700';
+            case 'answeredAndMarked': return 'bg-teal-50 border-teal-500 text-teal-700';
         }
     };
 
@@ -340,7 +340,7 @@ const StudentTestAttemptPage = () => {
         return (
             <div className="flex h-screen items-center justify-center bg-slate-50">
                 <div className="flex flex-col items-center gap-4">
-                    <Loader2 className="animate-spin text-blue-600" size={40} />
+                    <Loader2 className="animate-spin text-teal-600" size={40} />
                     <p className="text-slate-500 font-medium">Loading your test environment...</p>
                 </div>
             </div>
@@ -358,9 +358,9 @@ const StudentTestAttemptPage = () => {
                     animate={{ scale: 1, opacity: 1 }}
                     className="bg-white w-full max-w-3xl rounded-2xl shadow-xl overflow-hidden max-h-[90vh] overflow-y-auto"
                 >
-                    <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white">
+                    <div className="bg-gradient-to-r from-teal-600 to-indigo-600 p-6 text-white">
                         <h2 className="text-2xl font-bold">{testData.title}</h2>
-                        <p className="text-blue-100 mt-1">Please read the instructions carefully before starting</p>
+                        <p className="text-teal-100 mt-1">Please read the instructions carefully before starting</p>
                     </div>
 
                     <div className="p-6 space-y-6">
@@ -368,7 +368,7 @@ const StudentTestAttemptPage = () => {
                             <h3 className="text-lg font-bold text-slate-800 mb-3">Test Pattern</h3>
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="bg-slate-50 p-4 rounded-lg">
-                                    <div className="text-2xl font-bold text-blue-600">{testData.questions.length}</div>
+                                    <div className="text-2xl font-bold text-teal-600">{testData.questions.length}</div>
                                     <div className="text-sm text-slate-600">Total Questions</div>
                                 </div>
                                 <div className="bg-slate-50 p-4 rounded-lg">
@@ -382,7 +382,7 @@ const StudentTestAttemptPage = () => {
                                     <div className="text-sm text-slate-600">Marking Scheme</div>
                                 </div>
                                 <div className="bg-slate-50 p-4 rounded-lg">
-                                    <div className="text-2xl font-bold text-orange-600">{testData.questions.length * 4}</div>
+                                    <div className="text-2xl font-bold text-teal-600">{testData.questions.length * 4}</div>
                                     <div className="text-sm text-slate-600">Total Marks</div>
                                 </div>
                             </div>
@@ -402,19 +402,19 @@ const StudentTestAttemptPage = () => {
                             <h3 className="text-lg font-bold text-slate-800 mb-3">General Instructions</h3>
                             <ul className="space-y-2 text-sm text-slate-600">
                                 <li className="flex items-start gap-2">
-                                    <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2"></div>
+                                    <div className="w-1.5 h-1.5 bg-teal-600 rounded-full mt-2"></div>
                                     <span>The test will auto-submit when the timer reaches 00:00:00</span>
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2"></div>
+                                    <div className="w-1.5 h-1.5 bg-teal-600 rounded-full mt-2"></div>
                                     <span>You can navigate between questions using the question palette</span>
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2"></div>
+                                    <div className="w-1.5 h-1.5 bg-teal-600 rounded-full mt-2"></div>
                                     <span>Mark questions for review to revisit them later</span>
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2"></div>
+                                    <div className="w-1.5 h-1.5 bg-teal-600 rounded-full mt-2"></div>
                                     <span>Ensure stable internet connection throughout the test</span>
                                 </li>
                             </ul>
@@ -422,7 +422,7 @@ const StudentTestAttemptPage = () => {
 
                         <button
                             onClick={() => setShowInstructions(false)}
-                            className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
+                            className="w-full py-3 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition-colors shadow-lg shadow-teal-500/20"
                         >
                             I understand, Start Test
                         </button>
@@ -460,7 +460,7 @@ const StudentTestAttemptPage = () => {
 
                     <div className="flex items-center gap-3 md:gap-6">
                         <div className={`flex items-center gap-2 font-mono text-sm md:text-lg font-bold px-3 md:px-4 py-2 rounded-lg ${timeRemaining < 300 ? 'bg-red-50 text-red-600 animate-pulse' :
-                            timeRemaining < 600 ? 'bg-orange-50 text-orange-600' :
+                            timeRemaining < 600 ? 'bg-teal-50 text-teal-600' :
                                 'bg-slate-100 text-slate-700'
                             }`}>
                             <Timer size={18} />
@@ -489,7 +489,7 @@ const StudentTestAttemptPage = () => {
                                 if (firstQuestionOfSubject !== -1) goToQuestion(firstQuestionOfSubject);
                             }}
                             className={`px-4 py-2 rounded-lg font-semibold whitespace-nowrap transition-colors ${activeSubject === subject
-                                ? 'bg-blue-600 text-white shadow-md'
+                                ? 'bg-teal-600 text-white shadow-md'
                                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                                 }`}
                         >
@@ -514,7 +514,7 @@ const StudentTestAttemptPage = () => {
                             {/* Question Header */}
                             <div className="flex justify-between items-start mb-6">
                                 <div className="flex items-center gap-3">
-                                    <span className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 text-white font-bold rounded-xl flex items-center justify-center shadow-lg">
+                                    <span className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-teal-500 to-indigo-600 text-white font-bold rounded-xl flex items-center justify-center shadow-lg">
                                         {currentQuestionIndex + 1}
                                     </span>
                                     <div>
@@ -524,7 +524,7 @@ const StudentTestAttemptPage = () => {
                                         <p className="text-xs text-slate-400">{currentQuestion.chapter}</p>
                                     </div>
                                 </div>
-                                <span className={`px-3 py-1 rounded-full text-xs font-bold ${currentQuestion.type === 'MCQ' ? 'bg-blue-100 text-blue-700' : 'bg-amber-100 text-amber-700'
+                                <span className={`px-3 py-1 rounded-full text-xs font-bold ${currentQuestion.type === 'MCQ' ? 'bg-teal-100 text-teal-700' : 'bg-teal-100 text-teal-700'
                                     }`}>
                                     {currentQuestion.type}
                                 </span>
@@ -544,12 +544,12 @@ const StudentTestAttemptPage = () => {
                                         <label
                                             key={oIdx}
                                             className={`flex items-start gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${answers[currentQuestionIndex] === oIdx
-                                                ? 'bg-blue-50 border-blue-500 shadow-md shadow-blue-500/20'
+                                                ? 'bg-teal-50 border-teal-500 shadow-md shadow-teal-500/20'
                                                 : 'border-slate-200 hover:bg-slate-50 hover:border-slate-300'
                                                 }`}
                                         >
                                             <div className={`mt-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${answers[currentQuestionIndex] === oIdx
-                                                ? 'border-blue-600 bg-blue-600'
+                                                ? 'border-teal-600 bg-teal-600'
                                                 : 'border-slate-300 bg-white'
                                                 }`}>
                                                 {answers[currentQuestionIndex] === oIdx && (
@@ -583,11 +583,11 @@ const StudentTestAttemptPage = () => {
                                         type="text"
                                         value={answers[currentQuestionIndex] || ''}
                                         onChange={(e) => handleAnswer(e.target.value)}
-                                        className="w-full md:w-1/2 px-4 py-3 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 text-lg font-mono"
+                                        className="w-full md:w-1/2 px-4 py-3 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 text-lg font-mono"
                                         placeholder="e.g., 9.8 or 100"
                                     />
                                     {currentQuestion.section === 'B' && sectionBCount >= 5 && !sectionBSelections[activeSubject].has(currentQuestionIndex) && (
-                                        <p className="mt-2 text-sm text-orange-600 font-semibold">
+                                        <p className="mt-2 text-sm text-teal-600 font-semibold">
                                             ⚠️ You've already selected 5 questions in Section B. This answer won't be evaluated.
                                         </p>
                                     )}
@@ -630,7 +630,7 @@ const StudentTestAttemptPage = () => {
                         <button
                             onClick={saveAndNext}
                             disabled={currentQuestionIndex === testData.questions.length - 1}
-                            className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 shadow-lg shadow-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="flex items-center gap-2 px-6 py-2 bg-teal-600 text-white rounded-xl font-semibold hover:bg-teal-700 shadow-lg shadow-teal-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             Save & Next
                             <ChevronRight size={20} />
@@ -644,8 +644,8 @@ const StudentTestAttemptPage = () => {
 
                     {/* Section B Counter */}
                     {testData.testPattern === 'JEE_MAINS' && (
-                        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                            <p className="text-sm font-semibold text-blue-900">
+                        <div className="mb-4 p-3 bg-teal-50 border border-teal-200 rounded-lg">
+                            <p className="text-sm font-semibold text-teal-900">
                                 Section B ({activeSubject}): {sectionBSelections[activeSubject]?.size || 0}/5 selected
                             </p>
                         </div>
@@ -686,7 +686,7 @@ const StudentTestAttemptPage = () => {
                                                     key={globalIdx}
                                                     onClick={() => goToQuestion(globalIdx)}
                                                     className={`w-full aspect-square rounded-lg border-2 font-bold text-sm transition-all ${globalIdx === currentQuestionIndex
-                                                        ? 'ring-2 ring-blue-500 scale-110'
+                                                        ? 'ring-2 ring-teal-500 scale-110'
                                                         : ''
                                                         } ${getStatusColor(status)}`}
                                                 >
@@ -707,7 +707,7 @@ const StudentTestAttemptPage = () => {
                                                     key={globalIdx}
                                                     onClick={() => goToQuestion(globalIdx)}
                                                     className={`w-full aspect-square rounded-lg border-2 font-bold text-sm transition-all ${globalIdx === currentQuestionIndex
-                                                        ? 'ring-2 ring-blue-500 scale-110'
+                                                        ? 'ring-2 ring-teal-500 scale-110'
                                                         : ''
                                                         } ${getStatusColor(status)}`}
                                                 >
@@ -727,7 +727,7 @@ const StudentTestAttemptPage = () => {
                                             key={idx}
                                             onClick={() => goToQuestion(idx)}
                                             className={`w-full aspect-square rounded-lg border-2 font-bold text-sm transition-all ${idx === currentQuestionIndex
-                                                ? 'ring-2 ring-blue-500 scale-110'
+                                                ? 'ring-2 ring-teal-500 scale-110'
                                                 : ''
                                                 } ${getStatusColor(status)}`}
                                         >

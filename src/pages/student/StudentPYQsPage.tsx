@@ -132,7 +132,7 @@ const StudentPYQsPage = () => {
                     <button
                         onClick={() => setFilterPurchased(!filterPurchased)}
                         className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${filterPurchased 
-                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25' 
+                            ? 'bg-teal-600 text-white shadow-lg shadow-teal-500/25' 
                             : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'}`}
                     >
                         {filterPurchased ? 'Showing Purchased' : 'Show All'}
@@ -144,14 +144,14 @@ const StudentPYQsPage = () => {
                             placeholder="Search PYQs..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500"
                         />
                     </div>
                 </div>
             </div>
 
             {isLoading ? (
-                <div className="flex justify-center py-20"><Loader2 className="animate-spin text-blue-600" size={40} /></div>
+                <div className="flex justify-center py-20"><Loader2 className="animate-spin text-teal-600" size={40} /></div>
             ) : filteredPyqs.length === 0 ? (
                 <div className="text-center py-20 text-slate-500">No PYQs found matching your criteria.</div>
             ) : (
@@ -167,7 +167,7 @@ const StudentPYQsPage = () => {
                                 className="bg-white rounded-2xl border border-slate-200 p-5 hover:shadow-lg transition-shadow flex flex-col"
                             >
                                 <div className="flex justify-between items-start mb-4">
-                                    <div className={`p-3 rounded-xl ${isUnlocked ? 'bg-green-100 text-green-600' : 'bg-orange-100 text-orange-600'}`}>
+                                    <div className={`p-3 rounded-xl ${isUnlocked ? 'bg-green-100 text-green-600' : 'bg-teal-100 text-teal-600'}`}>
                                         {isTest ? <PenTool size={24} /> : <FileText size={24} />}
                                     </div>
                                     <span className="text-xs font-bold px-2 py-1 bg-slate-100 text-slate-600 rounded">{pyq.category}</span>
@@ -191,7 +191,7 @@ const StudentPYQsPage = () => {
                                                         navigate(path);
                                                     }
                                                 }}
-                                                className="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 flex items-center gap-2"
+                                                className="px-4 py-2 bg-teal-600 text-white text-sm font-semibold rounded-lg hover:bg-teal-700 flex items-center gap-2"
                                             >
                                                 <PlayCircle size={16} /> Attempt
                                             </button>

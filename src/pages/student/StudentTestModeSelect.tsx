@@ -47,7 +47,7 @@ const StudentTestModeSelect = () => {
         return (
             <div className="min-h-screen bg-slate-50 flex items-center justify-center">
                 <div className="flex flex-col items-center gap-4">
-                    <Loader2 className="animate-spin text-blue-600" size={40} />
+                    <Loader2 className="animate-spin text-teal-600" size={40} />
                     <p className="text-slate-500 font-medium">Loading test...</p>
                 </div>
             </div>
@@ -118,12 +118,12 @@ const StudentTestModeSelect = () => {
                             !hasDigital
                                 ? 'border-white/10 bg-white/5 opacity-50 cursor-not-allowed'
                                 : selected === 'digital'
-                                ? 'border-blue-400 bg-blue-500/20 shadow-xl shadow-blue-500/20'
+                                ? 'border-teal-400 bg-teal-500/20 shadow-xl shadow-teal-500/20'
                                 : 'border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/40'
                         }`}
                     >
                         {selected === 'digital' && (
-                            <div className="absolute top-4 right-4 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                            <div className="absolute top-4 right-4 w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center">
                                 <span className="text-white text-xs font-bold">✓</span>
                             </div>
                         )}
@@ -132,8 +132,8 @@ const StudentTestModeSelect = () => {
                                 Not Available
                             </div>
                         )}
-                        <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${hasDigital ? 'bg-blue-500/20 border border-blue-400/30' : 'bg-white/10 border border-white/10'}`}>
-                            <Monitor size={28} className={hasDigital ? 'text-blue-400' : 'text-slate-500'} />
+                        <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${hasDigital ? 'bg-teal-500/20 border border-teal-400/30' : 'bg-white/10 border border-white/10'}`}>
+                            <Monitor size={28} className={hasDigital ? 'text-teal-400' : 'text-slate-500'} />
                         </div>
                         <h3 className="text-lg font-bold text-white mb-2">Digital Mode</h3>
                         <p className="text-slate-400 text-sm leading-relaxed">
@@ -141,7 +141,7 @@ const StudentTestModeSelect = () => {
                         </p>
                         <div className="mt-4 flex flex-wrap gap-2">
                             {['Question Panel', 'Instant Submit', 'Mark for Review'].map(tag => (
-                                <span key={tag} className={`text-xs px-2 py-1 rounded-full font-medium ${hasDigital ? 'bg-blue-500/20 text-blue-300' : 'bg-white/10 text-slate-500'}`}>
+                                <span key={tag} className={`text-xs px-2 py-1 rounded-full font-medium ${hasDigital ? 'bg-teal-500/20 text-teal-300' : 'bg-white/10 text-slate-500'}`}>
                                     {tag}
                                 </span>
                             ))}
@@ -157,12 +157,12 @@ const StudentTestModeSelect = () => {
                             !hasOMR
                                 ? 'border-white/10 bg-white/5 opacity-50 cursor-not-allowed'
                                 : selected === 'omr'
-                                ? 'border-amber-400 bg-amber-500/20 shadow-xl shadow-amber-500/20'
+                                ? 'border-teal-400 bg-teal-500/20 shadow-xl shadow-teal-500/20'
                                 : 'border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/40'
                         }`}
                     >
                         {selected === 'omr' && (
-                            <div className="absolute top-4 right-4 w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center">
+                            <div className="absolute top-4 right-4 w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center">
                                 <span className="text-white text-xs font-bold">✓</span>
                             </div>
                         )}
@@ -171,8 +171,8 @@ const StudentTestModeSelect = () => {
                                 Not Available
                             </div>
                         )}
-                        <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${hasOMR ? 'bg-amber-500/20 border border-amber-400/30' : 'bg-white/10 border border-white/10'}`}>
-                            <FileText size={28} className={hasOMR ? 'text-amber-400' : 'text-slate-500'} />
+                        <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${hasOMR ? 'bg-teal-500/20 border border-teal-400/30' : 'bg-white/10 border border-white/10'}`}>
+                            <FileText size={28} className={hasOMR ? 'text-teal-400' : 'text-slate-500'} />
                         </div>
                         <h3 className="text-lg font-bold text-white mb-2">OMR Mode</h3>
                         <p className="text-slate-400 text-sm leading-relaxed">
@@ -180,7 +180,7 @@ const StudentTestModeSelect = () => {
                         </p>
                         <div className="mt-4 flex flex-wrap gap-2">
                             {['Bubble Sheet', 'Paper Feel', 'Answer Key'].map(tag => (
-                                <span key={tag} className={`text-xs px-2 py-1 rounded-full font-medium ${hasOMR ? 'bg-amber-500/20 text-amber-300' : 'bg-white/10 text-slate-500'}`}>
+                                <span key={tag} className={`text-xs px-2 py-1 rounded-full font-medium ${hasOMR ? 'bg-teal-500/20 text-teal-300' : 'bg-white/10 text-slate-500'}`}>
                                     {tag}
                                 </span>
                             ))}
@@ -197,8 +197,8 @@ const StudentTestModeSelect = () => {
                     className={`w-full py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all ${
                         selected
                             ? selected === 'digital'
-                                ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-2xl shadow-blue-500/30'
-                                : 'bg-amber-500 hover:bg-amber-600 text-white shadow-2xl shadow-amber-500/30'
+                                ? 'bg-teal-600 hover:bg-teal-700 text-white shadow-2xl shadow-teal-500/30'
+                                : 'bg-teal-500 hover:bg-teal-600 text-white shadow-2xl shadow-teal-500/30'
                             : 'bg-white/10 text-slate-500 cursor-not-allowed'
                     }`}
                 >

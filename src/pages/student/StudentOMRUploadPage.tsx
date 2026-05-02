@@ -245,7 +245,7 @@ const StudentOMRUploadPage = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className="bg-white border-2 border-dashed border-slate-200 rounded-3xl p-12 text-center"
                     >
-                        <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <div className="w-20 h-20 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                             <Upload size={40} />
                         </div>
                         <h2 className="text-xl font-bold text-slate-800 mb-2">Upload Your OMR Sheet</h2>
@@ -259,7 +259,7 @@ const StudentOMRUploadPage = () => {
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <button
                                 onClick={() => fileInputRef.current?.click()}
-                                className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20 flex items-center gap-2"
+                                className="px-8 py-3 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition-all shadow-lg shadow-teal-500/20 flex items-center gap-2"
                             >
                                 <Camera size={20} />
                                 Select Image / PDF
@@ -283,7 +283,7 @@ const StudentOMRUploadPage = () => {
                         className="bg-white rounded-3xl p-12 text-center border border-slate-200 shadow-sm"
                     >
                         <div className="relative w-24 h-24 mx-auto mb-6">
-                            <div className="w-24 h-24 rounded-full border-4 border-blue-100 border-t-blue-600 animate-spin" />
+                            <div className="w-24 h-24 rounded-full border-4 border-teal-100 border-t-teal-600 animate-spin" />
                             <div className="absolute inset-0 flex items-center justify-center text-3xl">
                                 {stage === 'converting' ? '📄' : '🔍'}
                             </div>
@@ -306,7 +306,7 @@ const StudentOMRUploadPage = () => {
                                             initial={{ top: '0%' }}
                                             animate={{ top: '100%' }}
                                             transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-                                            className="absolute left-0 right-0 h-1 bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.8)]"
+                                            className="absolute left-0 right-0 h-1 bg-teal-500 shadow-[0_0_15px_rgba(59,130,246,0.8)]"
                                         />
                                     )}
                                 </AnimatePresence>
@@ -343,7 +343,7 @@ const StudentOMRUploadPage = () => {
                                 {imageBlobRef.current && (
                                     <button
                                         onClick={() => runScan(imageBlobRef.current!)}
-                                        className="flex-1 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
+                                        className="flex-1 py-3 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition-all flex items-center justify-center gap-2"
                                     >
                                         <Loader2 size={16} />
                                         Retry Scan
@@ -397,7 +397,7 @@ const StudentOMRUploadPage = () => {
                                     </div>
                                     <div>
                                         <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">Bubbles Detected</p>
-                                        <p className="font-bold text-blue-600">{Object.keys(scanResult.answers).length}</p>
+                                        <p className="font-bold text-teal-600">{Object.keys(scanResult.answers).length}</p>
                                     </div>
                                 </div>
                             </div>
@@ -406,7 +406,7 @@ const StudentOMRUploadPage = () => {
                             <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex-1">
                                 <div className="flex items-center justify-between mb-4">
                                     <h3 className="font-bold text-slate-800 flex items-center gap-2">
-                                        <Edit3 size={16} className="text-blue-500" />
+                                        <Edit3 size={16} className="text-teal-500" />
                                         Verify &amp; Correct Answers
                                     </h3>
                                     <span className="text-[10px] font-bold text-slate-400 uppercase bg-slate-50 px-2 py-1 rounded-lg">
@@ -441,8 +441,8 @@ const StudentOMRUploadPage = () => {
                                                                         onClick={() => handleAnswerChange(qNum, opt)}
                                                                         className={`w-8 h-8 rounded-full text-xs font-bold transition-all ${
                                                                             ans === opt
-                                                                                ? 'bg-blue-600 text-white shadow-md scale-110'
-                                                                                : 'bg-white text-slate-400 border border-slate-200 hover:border-blue-300'
+                                                                                ? 'bg-teal-600 text-white shadow-md scale-110'
+                                                                                : 'bg-white text-slate-400 border border-slate-200 hover:border-teal-300'
                                                                         }`}
                                                                     >
                                                                         {opt}

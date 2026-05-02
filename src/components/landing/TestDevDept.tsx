@@ -2,18 +2,18 @@ import { ShieldCheck, TrendingUp, Search, UserCheck } from 'lucide-react';
 
 const TestDevDept = () => {
     return (
-        <section className="py-24 bg-[#F8FAFC]">
+        <section className="py-24 bg-transparent">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 <div className="text-center mb-20 px-4">
-                    <h2 className="text-3xl md:text-5xl font-extrabold text-[#0B4F97] mb-6">Meet the Minds Behind Every Test</h2>
+                    <h2 className="text-3xl md:text-5xl font-extrabold text-[#0F766E] mb-6">Meet the Minds Behind Every Test</h2>
                     <p className="text-lg text-slate-500 max-w-3xl mx-auto mb-8">
                         Engineered with precision. Reviewed with responsibility. Designed for real exams.
                     </p>
                     <div className="bg-white p-6 rounded-3xl inline-block shadow-sm border border-slate-100">
                         <p className="text-sm font-medium text-slate-600 leading-relaxed max-w-2xl">
                             Every DHItantra test is built by a dedicated development system — not random question selection.
-                            Our process combines subject expertise, exam trend analysis, multi-level review, and AI validation.
+                            Our process combines subject expertise, exam trend analysis, multi-level review, and data validation.
                         </p>
                     </div>
                 </div>
@@ -22,7 +22,7 @@ const TestDevDept = () => {
                     {[
                         {
                             title: "Subject Expert Team",
-                            icon: <Search className="text-blue-500" />,
+                            icon: <Search className="text-teal-500" />,
                             points: ["NCERT & syllabus alignment", "Concept-wise difficulty tagging", "Balanced distribution of questions"]
                         },
                         {
@@ -32,11 +32,11 @@ const TestDevDept = () => {
                         },
                         {
                             title: "Multi-Level Quality Review",
-                            icon: <ShieldCheck className="text-[#1D64D0]" />,
+                            icon: <ShieldCheck className="text-[#0D9488]" />,
                             points: ["Draft -> Review -> Error Check", "Ensuring clarity & fairness", "No ambiguous questions"]
                         },
                         {
-                            title: "AI-Assisted Validation Team",
+                            title: "Data Validation Team",
                             icon: <UserCheck className="text-purple-500" />,
                             points: ["Structure & timing verification", "Question balance checks", "OMR compatibility validation"]
                         }
@@ -45,11 +45,11 @@ const TestDevDept = () => {
                             <div className="w-12 h-12 lg:w-14 lg:h-14 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                 {item.icon}
                             </div>
-                            <h3 className="text-lg lg:text-xl font-bold text-[#0B4F97] mb-6 leading-tight min-h-[3rem]">{item.title}</h3>
+                            <h3 className="text-lg lg:text-xl font-bold text-[#0F766E] mb-6 leading-tight min-h-[3rem]">{item.title}</h3>
                             <ul className="space-y-3 lg:space-y-4">
                                 {item.points.map((p, j) => (
                                     <li key={j} className="flex items-start gap-3">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-blue-200 mt-1.5 shrink-0"></div>
+                                        <div className="w-1.5 h-1.5 rounded-full bg-teal-200 mt-1.5 shrink-0"></div>
                                         <span className="text-[11px] lg:text-xs font-semibold text-slate-600 leading-relaxed">{p}</span>
                                     </li>
                                 ))}
@@ -66,7 +66,7 @@ const TestDevDept = () => {
                             "Multi-Stage Quality Checks",
                             "Designed for Rank Improvement"
                         ].map((b, i) => (
-                            <div key={i} className="flex items-center gap-2 text-[#0B4F97] font-bold text-xs lg:text-sm whitespace-nowrap">
+                            <div key={i} className="flex items-center gap-2 text-[#0F766E] font-bold text-xs lg:text-sm whitespace-nowrap">
                                 <ShieldCheck size={18} className="text-green-500 shrink-0" />
                                 {b}
                             </div>
@@ -74,10 +74,10 @@ const TestDevDept = () => {
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                        <button className="px-8 py-4 bg-[#0B4F97] text-white rounded-xl font-black text-sm lg:text-base hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 w-full sm:w-auto">
+                        <button className="px-8 py-4 bg-[#0F766E] text-white rounded-xl font-black text-sm lg:text-base hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 w-full sm:w-auto">
                             View Sample Test Paper
                         </button>
-                        <button className="px-8 py-4 bg-white text-[#0B4F97] border-2 border-slate-200 rounded-xl font-black text-sm lg:text-base hover:bg-slate-50 transition-all w-full sm:w-auto">
+                        <button className="px-8 py-4 bg-white text-[#0F766E] border-2 border-slate-200 rounded-xl font-black text-sm lg:text-base hover:bg-slate-50 transition-all w-full sm:w-auto">
                             Try a Demo Test (Free)
                         </button>
                     </div>

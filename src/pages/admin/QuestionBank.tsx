@@ -494,7 +494,7 @@ const AdminQuestionBank = () => {
                     </button>
                     <button
                         onClick={() => setIsCreating(true)}
-                        className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
+                        className="flex items-center gap-2 px-6 py-2.5 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition-colors shadow-lg shadow-teal-500/20"
                     >
                         <Plus size={20} /> Add Question
                     </button>
@@ -506,12 +506,12 @@ const AdminQuestionBank = () => {
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100"
+                    className="bg-gradient-to-br from-teal-50 to-indigo-50 rounded-2xl p-6 border border-teal-100"
                 >
                     <h2 className="text-lg font-bold text-slate-800 mb-4">Question Bank Statistics</h2>
                     <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                         <div className="bg-white rounded-xl p-4 text-center">
-                            <div className="text-3xl font-bold text-blue-600">{stats.total}</div>
+                            <div className="text-3xl font-bold text-teal-600">{stats.total}</div>
                             <div className="text-sm text-slate-500 mt-1">Total Questions</div>
                         </div>
                         <div className="bg-white rounded-xl p-4 text-center">
@@ -523,7 +523,7 @@ const AdminQuestionBank = () => {
                             <div className="text-sm text-slate-500 mt-1">Chemistry</div>
                         </div>
                         <div className="bg-white rounded-xl p-4 text-center">
-                            <div className="text-2xl font-bold text-orange-600">{stats.bySubject['Mathematics'] || 0}</div>
+                            <div className="text-2xl font-bold text-teal-600">{stats.bySubject['Mathematics'] || 0}</div>
                             <div className="text-sm text-slate-500 mt-1">Mathematics</div>
                         </div>
                         <div className="bg-white rounded-xl p-4 text-center">
@@ -544,13 +544,13 @@ const AdminQuestionBank = () => {
                             placeholder="Search questions..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500"
+                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-teal-500"
                         />
                     </div>
                     <select
                         value={filterSubject}
                         onChange={(e) => setFilterSubject(e.target.value)}
-                        className="px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 bg-white"
+                        className="px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-teal-500 bg-white"
                     >
                         <option value="all">All Subjects</option>
                         <option value="Physics">Physics</option>
@@ -560,7 +560,7 @@ const AdminQuestionBank = () => {
                     <select
                         value={filterType}
                         onChange={(e) => setFilterType(e.target.value)}
-                        className="px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 bg-white"
+                        className="px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-teal-500 bg-white"
                     >
                         <option value="all">All Types</option>
                         <option value="MCQ">MCQ</option>
@@ -569,7 +569,7 @@ const AdminQuestionBank = () => {
                     <select
                         value={filterDifficulty}
                         onChange={(e) => setFilterDifficulty(e.target.value)}
-                        className="px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 bg-white"
+                        className="px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-teal-500 bg-white"
                     >
                         <option value="all">All Difficulties</option>
                         <option value="Easy">Easy</option>
@@ -579,7 +579,7 @@ const AdminQuestionBank = () => {
                     <select
                         value={filterExam}
                         onChange={(e) => setFilterExam(e.target.value)}
-                        className="px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 bg-white"
+                        className="px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-teal-500 bg-white"
                     >
                         <option value="all">All Exams</option>
                         <option value="JEE">JEE</option>
@@ -622,7 +622,7 @@ const AdminQuestionBank = () => {
                                         <td className="px-6 py-4">
                                             <span className={`px-2 py-1 rounded text-xs font-bold ${q.subject === 'Physics' ? 'bg-green-100 text-green-700' :
                                                 q.subject === 'Chemistry' ? 'bg-purple-100 text-purple-700' :
-                                                    'bg-orange-100 text-orange-700'
+                                                    'bg-teal-100 text-teal-700'
                                                 }`}>
                                                 {q.subject}
                                             </span>
@@ -631,7 +631,7 @@ const AdminQuestionBank = () => {
                                         <td className="px-6 py-4 text-sm text-slate-600">{q.topic || '-'}</td>
                                         <td className="px-6 py-4 text-sm text-slate-600">{q.examCategory || 'General'}</td>
                                         <td className="px-6 py-4">
-                                            <span className={`px-2 py-1 rounded text-xs font-bold ${q.type === 'MCQ' ? 'bg-blue-100 text-blue-700' : 'bg-amber-100 text-amber-700'
+                                            <span className={`px-2 py-1 rounded text-xs font-bold ${q.type === 'MCQ' ? 'bg-teal-100 text-teal-700' : 'bg-teal-100 text-teal-700'
                                                 }`}>
                                                 {q.type}
                                             </span>
@@ -641,7 +641,7 @@ const AdminQuestionBank = () => {
                                             <div className="flex items-center justify-end gap-2">
                                                 <button
                                                     onClick={() => handleEdit(q)}
-                                                    className="text-slate-400 hover:text-blue-600 transition-colors"
+                                                    className="text-slate-400 hover:text-teal-600 transition-colors"
                                                     title="Edit question"
                                                 >
                                                     <Edit2 size={18} />
@@ -903,7 +903,7 @@ const AdminQuestionBank = () => {
 
                                 <button
                                     type="submit"
-                                    className="w-full py-2.5 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                                    className="w-full py-2.5 bg-teal-600 text-white font-bold rounded-lg hover:bg-teal-700 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                                     disabled={isSubmitting}
                                 >
                                     {isSubmitting ? <Loader2 className="animate-spin" size={20} /> : <Plus size={20} />}
@@ -1206,7 +1206,7 @@ const AdminQuestionBank = () => {
 
                                 <button
                                     type="submit"
-                                    className="w-full py-2.5 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2"
+                                    className="w-full py-2.5 bg-teal-600 text-white font-bold rounded-lg hover:bg-teal-700 flex items-center justify-center gap-2"
                                 >
                                     <Save size={18} /> Update Question
                                 </button>
@@ -1315,7 +1315,7 @@ const AdminQuestionBank = () => {
                                                 </div>
                                                 <div className="w-full bg-slate-200 rounded-full h-2">
                                                     <div
-                                                        className="bg-blue-600 h-2 rounded-full transition-all"
+                                                        className="bg-teal-600 h-2 rounded-full transition-all"
                                                         style={{ width: `${uploadProgress}%` }}
                                                     />
                                                 </div>

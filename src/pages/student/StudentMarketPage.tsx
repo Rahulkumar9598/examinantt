@@ -101,7 +101,7 @@ const StudentMarketPage = () => {
                     <select
                         value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}
-                        className="px-6 py-3 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 bg-white text-slate-700 font-bold shadow-sm transition-all cursor-pointer"
+                        className="px-6 py-3 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-teal-500/10 focus:border-teal-500 bg-white text-slate-700 font-bold shadow-sm transition-all cursor-pointer"
                     >
                         <option value="All">All Categories</option>
                         <option value="NEET">NEET UG</option>
@@ -109,13 +109,13 @@ const StudentMarketPage = () => {
                         <option value="SSC">SSC Exams</option>
                     </select>
                     <div className="relative flex-1 sm:w-80">
-                        <Search size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-orange-500 transition-colors" />
+                        <Search size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-teal-500 transition-colors" />
                         <input
                             type="text"
                             placeholder="Find your goal..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-12 pr-6 py-3 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 transition-all font-semibold shadow-sm"
+                            className="w-full pl-12 pr-6 py-3 border-2 border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-teal-500/10 focus:border-teal-500 transition-all font-semibold shadow-sm"
                         />
                     </div>
                 </div>
@@ -123,7 +123,7 @@ const StudentMarketPage = () => {
 
             {isLoading ? (
                 <div className="flex justify-center py-20">
-                    <Loader2 className="animate-spin text-blue-600" size={40} />
+                    <Loader2 className="animate-spin text-teal-600" size={40} />
                 </div>
             ) : filteredTests.length === 0 ? (
                 <div className="text-center py-20 text-slate-500">
@@ -156,14 +156,14 @@ const StudentMarketPage = () => {
                         ) : (
                             <button
                                 onClick={() => handleBuy(series)}
-                                className="w-full relative group/btn h-16 rounded-[1.5rem] bg-slate-900 hover:bg-orange-600 shadow-2xl shadow-slate-900/10 active:scale-[0.98] transition-all duration-500 flex items-center justify-center gap-3 overflow-hidden"
+                                className="w-full relative group/btn h-16 rounded-[1.5rem] bg-slate-900 hover:bg-teal-600 shadow-2xl shadow-slate-900/10 active:scale-[0.98] transition-all duration-500 flex items-center justify-center gap-3 overflow-hidden"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite]" />
                                 <span className="relative z-10 flex items-center justify-center gap-2 text-white font-black text-xs uppercase tracking-[0.2em]">
                                     {isFree ? 'Enroll for Free' : `Access Now for ₹${series.pricing.amount}`}
                                     <ArrowRight size={20} className="group-hover/btn:translate-x-2 transition-transform duration-300" />
                                 </span>
-                                <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
+                                <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-teal-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
                             </button>
                         );
 

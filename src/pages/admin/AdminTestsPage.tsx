@@ -76,7 +76,7 @@ const AdminTestsPage = () => {
                 <div className="flex items-center gap-3">
                     <button
                         onClick={() => navigate('/admin-dashboard/create-test')}
-                        className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
+                        className="flex items-center gap-2 px-6 py-2.5 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition-colors shadow-lg shadow-teal-500/20"
                     >
                         <Plus size={20} />
                         Create New Test
@@ -94,7 +94,7 @@ const AdminTestsPage = () => {
                             placeholder="Search tests by name..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500"
+                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-teal-500"
                         />
                     </div>
                 </div>
@@ -153,7 +153,7 @@ const AdminTestsPage = () => {
                                             <div className="flex items-center justify-end gap-2">
                                                 <button
                                                     onClick={() => navigate(`/dashboard/attempt/${test.id}`)}
-                                                    className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                                                    className="p-2 text-slate-400 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors"
                                                     title="Preview Test"
                                                 >
                                                     <Eye size={18} />

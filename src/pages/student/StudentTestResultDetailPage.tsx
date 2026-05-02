@@ -209,7 +209,7 @@ const StudentTestResultDetailPage = () => {
     if (isLoading) {
         return (
             <div className="flex items-center justify-center min-h-screen">
-                <Loader2 className="animate-spin text-blue-600" size={40} />
+                <Loader2 className="animate-spin text-teal-600" size={40} />
             </div>
         );
     }
@@ -223,7 +223,7 @@ const StudentTestResultDetailPage = () => {
                 <div className="flex gap-4">
                     <button
                         onClick={() => window.location.reload()}
-                        className="px-6 py-2 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition-colors"
+                        className="px-6 py-2 bg-teal-600 text-white rounded-lg font-bold hover:bg-teal-700 transition-colors"
                     >
                         Try Again
                     </button>
@@ -246,7 +246,7 @@ const StudentTestResultDetailPage = () => {
             <div className="hidden print:block mb-10 text-center border-b-4 border-double border-slate-900 pb-8">
                 <div className="flex flex-col items-center">
                     <h1 className="text-5xl font-black text-slate-900 tracking-[0.2em] mb-2">DHItantra</h1>
-                    <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-amber-500 mb-4"></div>
+                    <div className="w-24 h-1 bg-gradient-to-r from-teal-500 to-teal-500 mb-4"></div>
                     <p className="text-slate-500 font-black uppercase tracking-[0.4em] text-[10px]">Official Performance Statement</p>
                 </div>
                 
@@ -305,7 +305,7 @@ const StudentTestResultDetailPage = () => {
             {/* Stats Overview */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4">
-                    <div className="p-3 bg-blue-50 text-blue-600 rounded-xl">
+                    <div className="p-3 bg-teal-50 text-teal-600 rounded-xl">
                         <Award size={24} />
                     </div>
                     <div>
@@ -358,7 +358,7 @@ const StudentTestResultDetailPage = () => {
 
                 <div className="p-6 border-b border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
                     <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
-                        <BookOpen size={20} className="text-blue-500" />
+                        <BookOpen size={20} className="text-teal-500" />
                         Question Analysis
                     </h2>
 
@@ -466,7 +466,7 @@ const StudentTestResultDetailPage = () => {
                                         )}
 
                                         {q.explanation && (
-                                            <div className="mt-4 p-4 bg-blue-50 rounded-xl border border-blue-100 text-blue-800 text-sm">
+                                            <div className="mt-4 p-4 bg-teal-50 rounded-xl border border-teal-100 text-teal-800 text-sm">
                                                 <p className="font-bold mb-1 flex items-center gap-2">
                                                     <BookOpen size={16} /> Explanation:
                                                 </p>

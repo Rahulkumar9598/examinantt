@@ -149,15 +149,15 @@ const StudentTestResultsPage = () => {
     const getScoreColor = (score: number, total: number) => {
         const percentage = (score / total) * 100;
         if (percentage >= 80) return 'text-green-600 bg-green-50';
-        if (percentage >= 60) return 'text-blue-600 bg-blue-50';
-        if (percentage >= 40) return 'text-orange-600 bg-orange-50';
+        if (percentage >= 60) return 'text-teal-600 bg-teal-50';
+        if (percentage >= 40) return 'text-teal-600 bg-teal-50';
         return 'text-red-600 bg-red-50';
     };
 
     if (isLoading) {
         return (
             <div className="flex items-center justify-center min-h-screen">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600"></div>
             </div>
         );
     }
@@ -175,11 +175,11 @@ const StudentTestResultsPage = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg"
+                    className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-lg"
                 >
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-blue-100 text-sm font-medium">Total Tests</p>
+                            <p className="text-teal-100 text-sm font-medium">Total Tests</p>
                             <h3 className="text-4xl font-bold mt-2">{stats.totalAttempts}</h3>
                         </div>
                         <BookOpen size={40} className="opacity-80" />
@@ -220,11 +220,11 @@ const StudentTestResultsPage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
-                    className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-6 text-white shadow-lg"
+                    className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-lg"
                 >
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-orange-100 text-sm font-medium">Time Spent</p>
+                            <p className="text-teal-100 text-sm font-medium">Time Spent</p>
                             <h3 className="text-2xl font-bold mt-2">{formatDuration(stats.totalTimeSpent)}</h3>
                         </div>
                         <Clock size={40} className="opacity-80" />
@@ -245,7 +245,7 @@ const StudentTestResultsPage = () => {
                         <p className="text-slate-500 mb-6">Start your first test to see results here</p>
                         <button
                             onClick={() => navigate('/dashboard/market')}
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-500/20"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 shadow-lg shadow-teal-500/20"
                         >
                             <Target size={20} />
                             Browse Tests
@@ -291,14 +291,14 @@ const StudentTestResultsPage = () => {
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 text-center">
-                                                <span className="font-semibold text-blue-600">{accuracy}%</span>
+                                                <span className="font-semibold text-teal-600">{accuracy}%</span>
                                             </td>
                                             <td className="px-6 py-4 text-center text-sm text-slate-600">
                                                 {attempt.duration ? formatDuration(attempt.duration) : 'N/A'}
                                             </td>
                                             <td className="px-6 py-4 text-right">
                                                 <button
-                                                    className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-semibold text-sm"
+                                                    className="inline-flex items-center gap-1 text-teal-600 hover:text-teal-700 font-semibold text-sm"
                                                     onClick={() => navigate(`/dashboard/results/${attempt.id}`)}
                                                 >
                                                     View Details
@@ -328,9 +328,9 @@ const StudentTestResultsPage = () => {
 
                     <button
                         onClick={() => navigate('/dashboard/tests')}
-                        className="p-6 bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 rounded-2xl hover:shadow-lg transition-shadow group"
+                        className="p-6 bg-gradient-to-br from-teal-50 to-cyan-50 border-2 border-teal-200 rounded-2xl hover:shadow-lg transition-shadow group"
                     >
-                        <Zap className="text-blue-600 mb-3 group-hover:scale-110 transition-transform" size={32} />
+                        <Zap className="text-teal-600 mb-3 group-hover:scale-110 transition-transform" size={32} />
                         <h3 className="font-bold text-slate-800 mb-1">Practice More</h3>
                         <p className="text-sm text-slate-600">Continue improving your skills</p>
                     </button>

@@ -123,7 +123,7 @@ const StudentResourcesPage = () => {
     const getIcon = (type: string) => {
         switch (type) {
             case 'pdf': return <FileText size={24} className="text-red-500" />;
-            case 'video': return <Video size={24} className="text-blue-500" />;
+            case 'video': return <Video size={24} className="text-teal-500" />;
             default: return <ExternalLink size={24} className="text-emerald-500" />;
         }
     };
@@ -164,7 +164,7 @@ const StudentResourcesPage = () => {
                         placeholder="Search topics, notes..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500"
+                        className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
                     />
                 </div>
                 <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
@@ -173,7 +173,7 @@ const StudentResourcesPage = () => {
                             key={cat}
                             onClick={() => setSelectedCategory(cat)}
                             className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors ${selectedCategory === cat
-                                ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'
+                                ? 'bg-teal-600 text-white shadow-lg shadow-teal-500/20'
                                 : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
                                 }`}
                         >
@@ -186,7 +186,7 @@ const StudentResourcesPage = () => {
             {/* Resources Grid */}
             {isLoading ? (
                 <div className="flex justify-center py-20">
-                    <Loader2 className="animate-spin text-blue-600" size={40} />
+                    <Loader2 className="animate-spin text-teal-600" size={40} />
                 </div>
             ) : filteredResources.length === 0 ? (
                 <div className="text-center py-20">
@@ -213,7 +213,7 @@ const StudentResourcesPage = () => {
                                 </div>
 
                                 <div className="flex items-start gap-4 mb-4">
-                                    <div className="p-3 bg-slate-50 rounded-xl group-hover:bg-blue-50 transition-colors">
+                                    <div className="p-3 bg-slate-50 rounded-xl group-hover:bg-teal-50 transition-colors">
                                         {getIcon(resource.type)}
                                     </div>
                                     <div>
@@ -232,7 +232,7 @@ const StudentResourcesPage = () => {
                                             href={resource.url}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="w-full flex items-center justify-center gap-2 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-all group-hover:shadow-lg group-hover:shadow-blue-500/20"
+                                            className="w-full flex items-center justify-center gap-2 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-all group-hover:shadow-lg group-hover:shadow-teal-500/20"
                                         >
                                             {resource.type === 'video' ? 'Watch Video' : resource.type === 'pdf' ? 'Open PDF' : 'Visit Link'}
                                             <ExternalLink size={16} />
@@ -241,7 +241,7 @@ const StudentResourcesPage = () => {
                                         <button
                                             onClick={() => handleBuy(resource)}
                                             disabled={buyingId === resource.id}
-                                            className="w-full flex items-center justify-center gap-2 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20 disabled:opacity-70"
+                                            className="w-full flex items-center justify-center gap-2 py-3 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition-all shadow-lg shadow-teal-500/20 disabled:opacity-70"
                                         >
                                             {buyingId === resource.id ? <Loader2 className="animate-spin" size={18} /> : <Lock size={18} />}
                                             Unlock Premium

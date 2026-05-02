@@ -68,7 +68,7 @@ const BasicInfoStep = ({ formData, updateFormData }: BasicInfoStepProps) => {
                     value={formData.name || ''}
                     onChange={(e) => updateFormData({ name: e.target.value })}
                     placeholder="e.g., JEE Mains Mock Test #1"
-                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 />
             </div>
 
@@ -81,7 +81,7 @@ const BasicInfoStep = ({ formData, updateFormData }: BasicInfoStepProps) => {
                     <select
                         value={formData.seriesId || ''}
                         onChange={handleSeriesChange}
-                        className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white ${!formData.seriesId ? 'border-amber-300 bg-amber-50' : 'border-slate-300'
+                        className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-white ${!formData.seriesId ? 'border-teal-300 bg-teal-50' : 'border-slate-300'
                             }`}
                         required
                     >
@@ -102,7 +102,7 @@ const BasicInfoStep = ({ formData, updateFormData }: BasicInfoStepProps) => {
                     <select
                         value={formData.testType || 'practice'}
                         onChange={(e) => updateFormData({ testType: e.target.value as any })}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 bg-white"
                     >
                         <option value="practice">Practice Test</option>
                         <option value="mock">Mock Test</option>
@@ -120,7 +120,7 @@ const BasicInfoStep = ({ formData, updateFormData }: BasicInfoStepProps) => {
                     <select
                         value={(formData as any).courseClass || ''}
                         onChange={(e) => updateFormData({ courseClass: e.target.value } as any)}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 bg-white"
                     >
                         <option value="">Select Class</option>
                         {availableClasses.map(c => (
@@ -137,7 +137,7 @@ const BasicInfoStep = ({ formData, updateFormData }: BasicInfoStepProps) => {
                     <select
                         value={(formData as any).subject || ''}
                         onChange={(e) => updateFormData({ subject: e.target.value } as any)}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 bg-white"
                     >
                         <option value="">Select Subject</option>
                         {availableSubjects.map(s => (

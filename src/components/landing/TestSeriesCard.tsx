@@ -31,12 +31,12 @@ const TestSeriesCard = ({
 
     const themeConfig = {
         blue: {
-            bg: 'bg-blue-50/50',
-            border: 'border-blue-100',
-            text: 'text-blue-600',
-            glow: 'shadow-blue-500/20',
-            gradient: 'from-blue-600 to-indigo-600',
-            iconBg: 'bg-blue-100/50'
+            bg: 'bg-teal-50/50',
+            border: 'border-teal-100',
+            text: 'text-teal-600',
+            glow: 'shadow-teal-500/20',
+            gradient: 'from-teal-600 to-indigo-600',
+            iconBg: 'bg-teal-100/50'
         },
         green: {
             bg: 'bg-emerald-50/50',
@@ -47,12 +47,12 @@ const TestSeriesCard = ({
             iconBg: 'bg-emerald-100/50'
         },
         orange: {
-            bg: 'bg-orange-50/50',
-            border: 'border-orange-100',
-            text: 'text-orange-600',
-            glow: 'shadow-orange-500/20',
-            gradient: 'from-orange-600 to-amber-600',
-            iconBg: 'bg-orange-100/50'
+            bg: 'bg-teal-50/50',
+            border: 'border-teal-100',
+            text: 'text-teal-600',
+            glow: 'shadow-teal-500/20',
+            gradient: 'from-teal-600 to-teal-600',
+            iconBg: 'bg-teal-100/50'
         }
     };
 
@@ -78,7 +78,7 @@ const TestSeriesCard = ({
                     
                     {isNew && (
                         <div className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 text-white rounded-full text-[9px] font-black uppercase tracking-widest shadow-lg">
-                            <Sparkles size={12} className="text-amber-400" />
+                            <Sparkles size={12} className="text-teal-400" />
                             <span>New Launch</span>
                         </div>
                     )}
@@ -109,7 +109,7 @@ const TestSeriesCard = ({
                     </div>
                     <div className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-4 border border-slate-100 group-hover:bg-white group-hover:border-slate-200 transition-all duration-300 shadow-sm">
                         <div className="flex items-center gap-3">
-                            <div className="p-2 rounded-xl bg-amber-50 text-amber-600">
+                            <div className="p-2 rounded-xl bg-teal-50 text-teal-600">
                                 <Users size={20} />
                             </div>
                             <div>
@@ -147,7 +147,7 @@ const TestSeriesCard = ({
                 <div className="mt-auto pt-8 border-t border-slate-100 flex items-center justify-between">
                     <div>
                         <div className="flex items-center gap-2 mb-1.5">
-                            <Award size={14} className="text-amber-500" />
+                            <Award size={14} className="text-teal-500" />
                             <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Verified Content</span>
                         </div>
                         <div className="flex items-baseline gap-3">
@@ -176,7 +176,7 @@ const TestSeriesCard = ({
                 ) : (
                     <button
                         onClick={onExplore}
-                        className="w-full relative group/btn h-16 rounded-[1.5rem] bg-slate-900 hover:bg-blue-600 shadow-2xl shadow-slate-900/10 active:scale-[0.98] transition-all duration-500 flex items-center justify-center gap-3 overflow-hidden"
+                        className="w-full relative group/btn h-16 rounded-[1.5rem] bg-slate-900 hover:bg-teal-600 shadow-2xl shadow-slate-900/10 active:scale-[0.98] transition-all duration-500 flex items-center justify-center gap-3 overflow-hidden"
                     >
                         {/* Shimmer Effect */}
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite]" />

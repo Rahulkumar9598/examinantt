@@ -43,7 +43,7 @@ const TestSettingsStep = ({ formData, updateFormData }: TestSettingsStepProps) =
                         value={settings.duration}
                         onChange={(e) => updateSettings('duration', Number(e.target.value))}
                         min="1"
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500"
                     />
                     <p className="text-xs text-slate-500 mt-1">{Math.floor(settings.duration / 60)}h {settings.duration % 60}m</p>
                 </div>
@@ -58,7 +58,7 @@ const TestSettingsStep = ({ formData, updateFormData }: TestSettingsStepProps) =
                         value={settings.marksPerQuestion}
                         onChange={(e) => updateSettings('marksPerQuestion', Number(e.target.value))}
                         min="1"
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500"
                     />
                 </div>
             </div>
@@ -73,7 +73,7 @@ const TestSettingsStep = ({ formData, updateFormData }: TestSettingsStepProps) =
                     value={settings.negativeMarking}
                     onChange={(e) => updateSettings('negativeMarking', Number(e.target.value))}
                     step="0.25"
-                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500"
                 />
                 <p className="text-xs text-slate-500 mt-1">Use negative values (e.g., -1 for 1 mark deduction)</p>
             </div>
@@ -90,7 +90,7 @@ const TestSettingsStep = ({ formData, updateFormData }: TestSettingsStepProps) =
                     min="0"
                     max="100"
                     placeholder="e.g., 40"
-                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500"
                 />
             </div>
 
@@ -104,7 +104,7 @@ const TestSettingsStep = ({ formData, updateFormData }: TestSettingsStepProps) =
                     onChange={(e) => updateSettings('instructions', e.target.value)}
                     rows={4}
                     placeholder="Enter instructions for students..."
-                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 resize-none"
+                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 resize-none"
                 />
             </div>
 
@@ -123,7 +123,7 @@ const TestSettingsStep = ({ formData, updateFormData }: TestSettingsStepProps) =
                             type="checkbox"
                             checked={settings[setting.key as keyof typeof settings] as boolean}
                             onChange={(e) => updateSettings(setting.key, e.target.checked)}
-                            className="w-5 h-5 text-blue-600 rounded"
+                            className="w-5 h-5 text-teal-600 rounded"
                         />
                         <span className="text-sm text-slate-700">{setting.label}</span>
                     </label>
@@ -131,7 +131,7 @@ const TestSettingsStep = ({ formData, updateFormData }: TestSettingsStepProps) =
             </div>
 
             {/* Summary */}
-            <div className="bg-blue-50 rounded-xl p-6">
+            <div className="bg-teal-50 rounded-xl p-6">
                 <h3 className="font-bold text-slate-800 mb-3">Test Configuration Summary</h3>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>

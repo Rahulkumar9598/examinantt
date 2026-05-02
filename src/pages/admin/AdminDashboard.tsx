@@ -62,7 +62,7 @@ const AdminDashboard = () => {
             trend: 'Registered',
             trendUp: true,
             icon: Users,
-            color: 'bg-orange-50',
+            color: 'bg-teal-50',
             glow: 'shadow-sm'
         },
         {
@@ -71,7 +71,7 @@ const AdminDashboard = () => {
             trend: 'Live & Published',
             trendUp: true,
             icon: Copy,
-            color: 'bg-orange-50',
+            color: 'bg-teal-50',
             glow: 'shadow-sm'
         },
         {
@@ -80,7 +80,7 @@ const AdminDashboard = () => {
             trend: 'Total Questions',
             trendUp: true,
             icon: HelpCircle,
-            color: 'bg-orange-50',
+            color: 'bg-teal-50',
             glow: 'shadow-sm'
         },
         {
@@ -89,7 +89,7 @@ const AdminDashboard = () => {
             trend: 'Across all subjects',
             trendUp: true,
             icon: BookOpen,
-            color: 'bg-orange-50',
+            color: 'bg-teal-50',
             glow: 'shadow-sm'
         }
     ];
@@ -107,7 +107,7 @@ const AdminDashboard = () => {
     if (isLoading) {
         return (
             <div className="min-h-screen bg-slate-50 flex justify-center items-center">
-                <Loader2 className="animate-spin text-orange-500" size={48} />
+                <Loader2 className="animate-spin text-teal-500" size={48} />
             </div>
         );
     }
@@ -125,7 +125,7 @@ const AdminDashboard = () => {
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div>
                         <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-                            Welcome Back, <span className="text-orange-600">Admin</span>
+                            Welcome Back, <span className="text-teal-600">Admin</span>
                         </h1>
                         <p className="text-slate-500 mt-1">Here's what's happening with your platform today.</p>
                     </div>
@@ -140,13 +140,13 @@ const AdminDashboard = () => {
                         <motion.div
                             key={index}
                             variants={itemVariants}
-                            className="bg-white rounded-2xl p-6 border border-slate-200 relative overflow-hidden group hover:border-orange-200 transition-all hover:shadow-lg"
+                            className="bg-white rounded-2xl p-6 border border-slate-200 relative overflow-hidden group hover:border-teal-200 transition-all hover:shadow-lg"
                         >
                             <div className="flex justify-between items-start mb-6">
-                                <div className={`p-3 rounded-xl ${stat.color} ${stat.glow} text-orange-600`}>
+                                <div className={`p-3 rounded-xl ${stat.color} ${stat.glow} text-teal-600`}>
                                     <stat.icon size={24} />
                                 </div>
-                                <div className="p-2 bg-slate-100 rounded-lg text-slate-400 group-hover:bg-orange-50 group-hover:text-orange-600 transition-colors cursor-pointer">
+                                <div className="p-2 bg-slate-100 rounded-lg text-slate-400 group-hover:bg-teal-50 group-hover:text-teal-600 transition-colors cursor-pointer">
                                     <ExternalLink size={16} />
                                 </div>
                             </div>
@@ -185,7 +185,7 @@ const AdminDashboard = () => {
                                         transition={{ duration: 0.8, delay: i * 0.1, ease: "easeOut" }}
                                         className="w-full bg-slate-100 rounded-md relative overflow-hidden group-hover:bg-slate-200 transition-all"
                                     >
-                                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-orange-500/30 to-transparent h-full opacity-50"></div>
+                                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-teal-500/30 to-transparent h-full opacity-50"></div>
                                     </motion.div>
                                     <div className="hidden group-hover:block absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded pointer-events-none whitespace-nowrap z-10">
                                         {height} Users
@@ -210,7 +210,7 @@ const AdminDashboard = () => {
                                         className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-white border border-slate-100 rounded-xl text-left group hover:bg-slate-50 hover:border-slate-200 transition-all shadow-sm hover:shadow-md"
                                     >
                                         <div className="flex items-center gap-4">
-                                            <div className="p-2.5 rounded-lg bg-orange-50 text-orange-600 group-hover:bg-orange-100 transition-colors">
+                                            <div className="p-2.5 rounded-lg bg-teal-50 text-teal-600 group-hover:bg-teal-100 transition-colors">
                                                 <action.icon size={20} />
                                             </div>
                                             <span className="font-medium text-slate-700 group-hover:text-slate-900 transition-colors">{action.label}</span>

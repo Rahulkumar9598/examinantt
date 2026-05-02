@@ -53,8 +53,8 @@ const PrivacyPolicyPage = () => {
                             <li>Communicating important updates, results, or support messages</li>
                             <li>Enhancing platform security and preventing misuse</li>
                         </ul>
-                        <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
-                            <p className="text-blue-700 font-medium">
+                        <div className="bg-teal-50 border-l-4 border-teal-500 p-4 mb-6">
+                            <p className="text-teal-700 font-medium">
                                 ❗ We do NOT sell or rent student data to any third party.
                             </p>
                         </div>

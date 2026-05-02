@@ -110,7 +110,7 @@ const StudentOMRPrintPage = () => {
         return (
             <div className="min-h-screen flex items-center justify-center bg-slate-50">
                 <div className="text-center">
-                    <Loader2 className="animate-spin text-blue-600 mx-auto mb-4" size={40} />
+                    <Loader2 className="animate-spin text-teal-600 mx-auto mb-4" size={40} />
                     <p className="text-slate-600 font-medium">Preparing OMR Sheet...</p>
                 </div>
             </div>
@@ -133,7 +133,7 @@ const StudentOMRPrintPage = () => {
                 </div>
                 <button
                     onClick={handlePrint}
-                    className="px-6 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-500/20 transition-all flex items-center gap-2"
+                    className="px-6 py-2 bg-teal-600 text-white font-bold rounded-lg hover:bg-teal-700 shadow-lg shadow-teal-500/20 transition-all flex items-center gap-2"
                 >
                     <Printer size={18} />
                     Print OMR Sheet

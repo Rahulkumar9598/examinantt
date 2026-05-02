@@ -8,7 +8,7 @@ interface PageLayoutProps {
 
 const PageLayout = ({ children }: PageLayoutProps) => {
     return (
-        <div className="font-sans antialiased bg-white text-gray-900 selection:bg-blue-100 selection:text-blue-900 min-h-screen flex flex-col">
+        <div className="font-sans antialiased bg-white text-gray-900 selection:bg-teal-100 selection:text-teal-900 min-h-screen flex flex-col">
             <Navbar />
             <main className="flex-grow pt-16">
                 {children}

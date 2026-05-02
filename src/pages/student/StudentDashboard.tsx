@@ -53,7 +53,7 @@ const StudentDashboard = () => {
 
         // 2. Setup live listener for purchases/active tests
         const purchasesRef = collection(db, 'users', currentUser.uid, 'purchases');
-        const q = query(purchasesRef, orderBy('purchaseDate', 'desc'), limit(10));
+        const q = query(purchasesRef);
         
         const unsubscribe = fsOnSnapshot(q, (snapshot) => {
             const activeData = snapshot.docs.map(doc => {
@@ -108,7 +108,7 @@ const StudentDashboard = () => {
     if (isLoading) {
         return (
             <div className="flex h-96 items-center justify-center">
-                <Loader2 className="animate-spin text-blue-600" size={40} />
+                <Loader2 className="animate-spin text-teal-600" size={40} />
             </div>
         );
     }
@@ -127,8 +127,8 @@ const StudentDashboard = () => {
                         label: 'Tests Completed',
                         value: stats.totalTests.toString(),
                         icon: Award,
-                        color: 'text-orange-500',
-                        bg: 'bg-orange-50',
+                        color: 'text-teal-500',
+                        bg: 'bg-teal-50',
                         trend: stats.testsTrend,
                         trendColor: 'text-green-600'
                     },
@@ -136,8 +136,8 @@ const StudentDashboard = () => {
                         label: 'Average Score',
                         value: `${stats.averageScore}%`,
                         icon: BarChart2,
-                        color: 'text-blue-500',
-                        bg: 'bg-blue-50',
+                        color: 'text-teal-500',
+                        bg: 'bg-teal-50',
                         trend: stats.scoreTrend,
                         trendColor: 'text-green-600'
                     },
@@ -181,15 +181,25 @@ const StudentDashboard = () => {
                     <h2 className="text-xl font-bold text-slate-800">My PYQs</h2>
                     <button
                         onClick={() => navigate('/dashboard/pyqs')}
-                        className="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center gap-1 transition-colors"
+                        className="text-teal-600 hover:text-teal-700 font-semibold text-sm flex items-center gap-1 transition-colors"
                     >
                         View All PYQs <ChevronRight size={16} />
                     </button>
                 </div>
 
-                {activeTests.filter(t => t.category?.toLowerCase().includes('pyq') || (t as any).type === 'pyq' || t.title?.toLowerCase().includes('pyq')).length > 0 ? (
+                {activeTests.filter(t => 
+                    t.category?.toLowerCase().includes('pyq') || 
+                    t.type === 'pyq' || 
+                    t.title?.toLowerCase().includes('pyq') ||
+                    (t as any).id?.toLowerCase().includes('pyq')
+                ).length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {activeTests.filter(t => t.category?.toLowerCase().includes('pyq') || (t as any).type === 'pyq' || t.title?.toLowerCase().includes('pyq')).map((pyq) => (
+                        {activeTests.filter(t => 
+                            t.category?.toLowerCase().includes('pyq') || 
+                            t.type === 'pyq' || 
+                            t.title?.toLowerCase().includes('pyq') ||
+                            (t as any).id?.toLowerCase().includes('pyq')
+                        ).map((pyq) => (
                             <div
                                 key={pyq.id}
                                 onClick={() => navigate('/dashboard/pyqs')}
@@ -229,7 +239,7 @@ const StudentDashboard = () => {
                     <h2 className="text-xl font-bold text-slate-800">Recommended Test Series</h2>
                     <button
                         onClick={() => navigate('/dashboard/market')}
-                        className="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center gap-1 transition-colors"
+                        className="text-teal-600 hover:text-teal-700 font-semibold text-sm flex items-center gap-1 transition-colors"
                     >
                         View Market <ChevronRight size={16} />
                     </button>
@@ -242,7 +252,7 @@ const StudentDashboard = () => {
                                 key={series.id}
                                 whileHover={{ y: -4 }}
                                 onClick={() => navigate('/dashboard/market')} 
-                                className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-blue-200 transition-all duration-300 cursor-pointer"
+                                className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-teal-200 transition-all duration-300 cursor-pointer"
                             >
                                 <div className="h-32 bg-gradient-to-br from-slate-800 to-slate-900 relative p-6 flex flex-col justify-between">
                                     <div className="absolute top-0 right-0 p-3 opacity-10">
@@ -253,7 +263,7 @@ const StudentDashboard = () => {
                                     </span>
                                 </div>
                                 <div className="p-5 space-y-4">
-                                    <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    <h3 className="font-bold text-lg text-slate-800 group-hover:text-teal-600 transition-colors line-clamp-1">
                                         {series.title}
                                     </h3>
                                     <div className="flex items-center gap-4 text-slate-500 text-sm">
@@ -270,7 +280,7 @@ const StudentDashboard = () => {
                                         <span className="text-2xl font-bold text-slate-800">
                                             {series.price === 0 ? 'Free' : `₹${series.price}`}
                                         </span>
-                                        <span className="px-4 py-2 bg-slate-900 text-white text-sm font-semibold rounded-lg hover:bg-blue-600 transition-colors shadow-lg shadow-slate-200">
+                                        <span className="px-4 py-2 bg-slate-900 text-white text-sm font-semibold rounded-lg hover:bg-teal-600 transition-colors shadow-lg shadow-slate-200">
                                             View Details
                                         </span>
                                     </div>
@@ -283,7 +293,7 @@ const StudentDashboard = () => {
                         <p className="text-slate-500">No recommended series found at the moment.</p>
                         <button
                             onClick={() => navigate('/dashboard/market')}
-                            className="text-blue-600 font-bold mt-2 hover:underline"
+                            className="text-teal-600 font-bold mt-2 hover:underline"
                         >
                             Browse all series
                         </button>

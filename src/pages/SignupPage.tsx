@@ -81,7 +81,7 @@ const SignupPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-indigo-50 flex items-center justify-center p-4">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -89,8 +89,8 @@ const SignupPage = () => {
                 className="bg-white w-full max-w-[1100px] rounded-3xl shadow-2xl overflow-hidden border border-slate-100 flex flex-col md:flex-row min-h-[650px]"
             >
                 {/* Left Side - Graphics */}
-                <div className="hidden md:flex flex-col w-5/12 bg-blue-600 relative overflow-hidden text-white">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-600/90 to-blue-800/90 z-10" />
+                <div className="hidden md:flex flex-col w-5/12 bg-teal-600 relative overflow-hidden text-white">
+                    <div className="absolute inset-0 bg-gradient-to-br from-teal-600/90 to-teal-800/90 z-10" />
                     <img
                         src={studentBanner}
                         alt="Student learning"
@@ -106,7 +106,7 @@ const SignupPage = () => {
                         <div className="flex items-center gap-3">
                             <div className="bg-green-500 rounded-full p-1.5 shadow-lg shadow-green-500/40"><CheckCircle size={18} className="text-white" /></div>
                             <div>
-                                <p className="text-xs text-blue-100 font-medium uppercase tracking-wide">Success Rate</p>
+                                <p className="text-xs text-teal-100 font-medium uppercase tracking-wide">Success Rate</p>
                                 <p className="font-bold text-xl">98.5%</p>
                             </div>
                         </div>
@@ -114,21 +114,21 @@ const SignupPage = () => {
 
                     <div className="relative z-20 flex flex-col justify-center h-full p-12 lg:p-14">
                         <div className="mb-8">
-                            <div className="inline-block bg-blue-500/30 backdrop-blur-md border border-blue-400/30 rounded-full px-4 py-1.5 text-xs font-bold text-blue-50 mb-6 shadow-sm">
+                            <div className="inline-block bg-teal-500/30 backdrop-blur-md border border-teal-400/30 rounded-full px-4 py-1.5 text-xs font-bold text-teal-50 mb-6 shadow-sm">
                                 🚀 Start your journey today
                             </div>
                             <h2 className="text-4xl font-extrabold leading-tight mb-6">
                                 Master Your Exams<br />with Confidence
                             </h2>
-                            <p className="text-blue-100/90 text-lg leading-relaxed">
+                            <p className="text-teal-100/90 text-lg leading-relaxed">
                                 Join thousands of students who are acing their JEE, NEET, and SSC exams.
                             </p>
                         </div>
 
                         <div className="space-y-4">
                             {['Real-time Analytics', 'Chapter-wise Mocks', 'Expert Material'].map((feature, i) => (
-                                <div key={i} className="flex items-center gap-3 text-blue-50 font-medium group">
-                                    <div className="p-1 rounded-full bg-blue-500/20 group-hover:bg-blue-500/40 transition-colors">
+                                <div key={i} className="flex items-center gap-3 text-teal-50 font-medium group">
+                                    <div className="p-1 rounded-full bg-teal-500/20 group-hover:bg-teal-500/40 transition-colors">
                                         <CheckCircle size={16} className="text-green-300" />
                                     </div>
                                     <span>{feature}</span>
@@ -143,7 +143,7 @@ const SignupPage = () => {
                     <div className="max-w-md mx-auto">
                         <div className="text-center mb-8">
                             <Link to="/" className="inline-flex items-center gap-2 mb-6 group">
-                                <span className="p-2 bg-blue-50 rounded-full group-hover:bg-blue-100 transition-colors">
+                                <span className="p-2 bg-teal-50 rounded-full group-hover:bg-teal-100 transition-colors">
                                     <img src={logo} alt="DHItantra" className="h-8 w-8 rounded-full" />
                                 </span>
                                 <span className="text-2xl font-extrabold text-slate-900 tracking-tight">
@@ -170,7 +170,7 @@ const SignupPage = () => {
                             <div className="space-y-2">
                                 <label className="text-sm font-semibold text-slate-700 block ml-1">Full Name</label>
                                 <div className="relative group">
-                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
+                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-teal-600 transition-colors">
                                         <User size={18} />
                                     </div>
                                     <input
@@ -179,7 +179,7 @@ const SignupPage = () => {
                                         value={fullName}
                                         onChange={(e) => setFullName(e.target.value)}
                                         placeholder="John Doe"
-                                        className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white transition-all text-slate-800 placeholder:text-slate-400"
+                                        className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 focus:bg-white transition-all text-slate-800 placeholder:text-slate-400"
                                     />
                                 </div>
                             </div>
@@ -187,7 +187,7 @@ const SignupPage = () => {
                             <div className="space-y-2">
                                 <label className="text-sm font-semibold text-slate-700 block ml-1">Email Address</label>
                                 <div className="relative group">
-                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
+                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-teal-600 transition-colors">
                                         <Mail size={18} />
                                     </div>
                                     <input
@@ -196,7 +196,7 @@ const SignupPage = () => {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         placeholder="you@example.com"
-                                        className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white transition-all text-slate-800 placeholder:text-slate-400"
+                                        className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 focus:bg-white transition-all text-slate-800 placeholder:text-slate-400"
                                     />
                                 </div>
                             </div>
@@ -205,7 +205,7 @@ const SignupPage = () => {
                                 <div className="space-y-2">
                                     <label className="text-sm font-semibold text-slate-700 block ml-1">State</label>
                                     <div className="relative group">
-                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
+                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-teal-600 transition-colors">
                                             <MapPin size={18} />
                                         </div>
                                         <select
@@ -215,7 +215,7 @@ const SignupPage = () => {
                                                 setState(e.target.value);
                                                 setDistrict('');
                                             }}
-                                            className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white transition-all text-slate-800 appearance-none cursor-pointer"
+                                            className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 focus:bg-white transition-all text-slate-800 appearance-none cursor-pointer"
                                         >
                                             <option value="">State</option>
                                             {STATES.map(s => <option key={s.name} value={s.name}>{s.name}</option>)}
@@ -225,7 +225,7 @@ const SignupPage = () => {
                                 <div className="space-y-2">
                                     <label className="text-sm font-semibold text-slate-700 block ml-1">District</label>
                                     <div className="relative group">
-                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
+                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-teal-600 transition-colors">
                                             <MapPin size={18} />
                                         </div>
                                         <select
@@ -233,7 +233,7 @@ const SignupPage = () => {
                                             value={district}
                                             disabled={!state}
                                             onChange={(e) => setDistrict(e.target.value)}
-                                            className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white transition-all text-slate-800 appearance-none disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                                            className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 focus:bg-white transition-all text-slate-800 appearance-none disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                                         >
                                             <option value="">District</option>
                                             {districts.map(d => <option key={d} value={d}>{d}</option>)}
@@ -246,7 +246,7 @@ const SignupPage = () => {
                                 <div className="space-y-2">
                                     <label className="text-sm font-semibold text-slate-700 block ml-1">Password</label>
                                     <div className="relative group">
-                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
+                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-teal-600 transition-colors">
                                             <Lock size={18} />
                                         </div>
                                         <input
@@ -255,7 +255,7 @@ const SignupPage = () => {
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
                                             placeholder="••••••••"
-                                            className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white transition-all text-slate-800 placeholder:text-slate-400"
+                                            className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 focus:bg-white transition-all text-slate-800 placeholder:text-slate-400"
                                         />
                                     </div>
                                 </div>
@@ -263,7 +263,7 @@ const SignupPage = () => {
                                 <div className="space-y-2">
                                     <label className="text-sm font-semibold text-slate-700 block ml-1">Confirm</label>
                                     <div className="relative group">
-                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
+                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-teal-600 transition-colors">
                                             <Lock size={18} />
                                         </div>
                                         <input
@@ -272,7 +272,7 @@ const SignupPage = () => {
                                             value={confirmPassword}
                                             onChange={(e) => setConfirmPassword(e.target.value)}
                                             placeholder="••••••••"
-                                            className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white transition-all text-slate-800 placeholder:text-slate-400"
+                                            className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 focus:bg-white transition-all text-slate-800 placeholder:text-slate-400"
                                         />
                                     </div>
                                 </div>
@@ -281,7 +281,7 @@ const SignupPage = () => {
                             <button
                                 disabled={loading}
                                 type="submit"
-                                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 mt-6"
+                                className="w-full bg-gradient-to-r from-teal-600 to-indigo-600 hover:from-teal-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-teal-500/30 hover:shadow-teal-500/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 mt-6"
                             >
                                 {loading ? <Loader2 className="animate-spin" size={20} /> : 'Create Account'}
                                 {!loading && <ChevronRight size={20} />}
@@ -291,7 +291,7 @@ const SignupPage = () => {
                         <div className="mt-8 text-center text-sm font-medium">
                             <p className="text-slate-600">
                                 Already have an account?{' '}
-                                <Link to="/login" className="text-blue-600 font-bold hover:text-blue-700 transition-colors">
+                                <Link to="/login" className="text-teal-600 font-bold hover:text-teal-700 transition-colors">
                                     Sign In
                                 </Link>
                             </p>

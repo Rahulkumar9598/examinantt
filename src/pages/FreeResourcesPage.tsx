@@ -118,7 +118,7 @@ const FreeResourcesPage = () => {
 
                     {isLoading ? (
                         <div className="flex justify-center py-20">
-                            <Loader2 className="animate-spin text-blue-600" size={40} />
+                            <Loader2 className="animate-spin text-teal-600" size={40} />
                         </div>
                     ) : resources.length === 0 ? (
                         <div className="text-center py-20 text-gray-500">No resources found.</div>
@@ -127,7 +127,7 @@ const FreeResourcesPage = () => {
                             {resources.map((resource) => (
                                 <div key={resource.id} className="border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow flex items-center justify-between group bg-white">
                                     <div className="flex items-center gap-4">
-                                        <div className="p-3 bg-gray-50 rounded-lg group-hover:bg-blue-50 transition-colors">
+                                        <div className="p-3 bg-gray-50 rounded-lg group-hover:bg-teal-50 transition-colors">
                                             {getIcon(resource.type)}
                                         </div>
                                         <div>
@@ -138,12 +138,12 @@ const FreeResourcesPage = () => {
 
                                     <div className="flex items-center gap-4">
                                         {!resource.isFree && (
-                                            <span className="text-blue-600 font-bold">₹{resource.price}</span>
+                                            <span className="text-teal-600 font-bold">₹{resource.price}</span>
                                         )}
                                         <button
                                             onClick={() => handleAction(resource)}
                                             disabled={isProcessingId === resource.id}
-                                            className="px-4 py-2 bg-slate-900 text-white rounded-lg text-sm font-bold hover:bg-blue-600 transition-colors flex items-center gap-2 disabled:opacity-70"
+                                            className="px-4 py-2 bg-slate-900 text-white rounded-lg text-sm font-bold hover:bg-teal-600 transition-colors flex items-center gap-2 disabled:opacity-70"
                                         >
                                             {isProcessingId === resource.id ? (
                                                 <Loader2 size={16} className="animate-spin" />

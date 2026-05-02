@@ -90,7 +90,7 @@ const SeriesCard = ({ purchase, attemptsMap }: { purchase: PurchasedTest, attemp
                 className="p-5 flex items-center justify-between cursor-pointer bg-slate-50/50 hover:bg-slate-50 transition-colors"
             >
                 <div className="flex items-center gap-4">
-                    <div className="p-3 bg-blue-100 text-blue-600 rounded-xl">
+                    <div className="p-3 bg-teal-100 text-teal-600 rounded-xl">
                         <BookOpen size={24} />
                     </div>
                     <div>
@@ -105,7 +105,7 @@ const SeriesCard = ({ purchase, attemptsMap }: { purchase: PurchasedTest, attemp
                         </p>
                     </div>
                 </div>
-                <button className="p-2 text-slate-400 hover:text-blue-600 transition-colors">
+                <button className="p-2 text-slate-400 hover:text-teal-600 transition-colors">
                     {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                 </button>
             </div>
@@ -120,7 +120,7 @@ const SeriesCard = ({ purchase, attemptsMap }: { purchase: PurchasedTest, attemp
                     >
                         {loadingTests ? (
                             <div className="p-8 flex justify-center">
-                                <Loader2 className="animate-spin text-blue-500" size={24} />
+                                <Loader2 className="animate-spin text-teal-500" size={24} />
                             </div>
                         ) : tests.length === 0 ? (
                             <div className="p-8 text-center text-slate-500 text-sm">
@@ -183,7 +183,7 @@ const SeriesCard = ({ purchase, attemptsMap }: { purchase: PurchasedTest, attemp
                                                     }}
                                                     className={`px-4 py-2 text-white text-sm font-bold rounded-lg transition-colors flex items-center gap-2 shadow-sm ${hasAttempted
                                                         ? 'bg-slate-800 hover:bg-slate-900 shadow-slate-500/20'
-                                                        : 'bg-blue-600 hover:bg-blue-700 shadow-blue-500/20'
+                                                        : 'bg-teal-600 hover:bg-teal-700 shadow-teal-500/20'
                                                         }`}
                                                 >
                                                     <PlayCircle size={16} />
@@ -301,7 +301,7 @@ const StudentTestsPage = () => {
             <div className="space-y-4">
                 {isLoading ? (
                     <div className="flex justify-center py-8">
-                        <Loader2 className="animate-spin text-blue-600" size={30} />
+                        <Loader2 className="animate-spin text-teal-600" size={30} />
                     </div>
                 ) : purchasedTests.length === 0 ? (
                     <div className="text-center py-20 bg-slate-50 rounded-3xl border border-dashed border-slate-300">
@@ -314,7 +314,7 @@ const StudentTestsPage = () => {
                         </p>
                         <button
                             onClick={() => navigate('/dashboard/market')}
-                            className="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
+                            className="bg-teal-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-teal-700 transition-colors shadow-lg shadow-teal-500/20"
                         >
                             Explore Market
                         </button>

@@ -150,7 +150,7 @@ const QuestionConfigStep = ({ formData, updateFormData }: QuestionConfigStepProp
                         </label>
                         <h3 className="text-3xl font-black text-slate-800 tracking-tight flex items-center gap-3">
                             {isCounting ? (
-                                <Loader2 className="animate-spin text-blue-600" size={24} />
+                                <Loader2 className="animate-spin text-teal-600" size={24} />
                             ) : (
                                 totalQuestions
                             )}
@@ -158,7 +158,7 @@ const QuestionConfigStep = ({ formData, updateFormData }: QuestionConfigStepProp
                         </h3>
                     </div>
                     {isSpecific && (
-                        <div className="px-4 py-2 bg-blue-50 text-blue-600 rounded-xl text-xs font-black uppercase tracking-widest border border-blue-100">
+                        <div className="px-4 py-2 bg-teal-50 text-teal-600 rounded-xl text-xs font-black uppercase tracking-widest border border-teal-100">
                             Manual Selection Mode
                         </div>
                     )}
@@ -185,7 +185,7 @@ const QuestionConfigStep = ({ formData, updateFormData }: QuestionConfigStepProp
                             })}
                             min="1"
                             max="300"
-                            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all font-bold"
+                            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-4 focus:ring-teal-500/10 focus:border-teal-500 transition-all font-bold"
                         />
                     </div>
                 )}
@@ -204,7 +204,7 @@ const QuestionConfigStep = ({ formData, updateFormData }: QuestionConfigStepProp
                             <div className="group">
                                 <div className="flex justify-between mb-3">
                                     <span className="text-sm font-bold text-slate-700">MCQ Questions</span>
-                                    <span className="text-sm font-black text-blue-600 bg-blue-50 px-3 py-1 rounded-lg">{mcqCount} ({mcqPercentage}%)</span>
+                                    <span className="text-sm font-black text-teal-600 bg-teal-50 px-3 py-1 rounded-lg">{mcqCount} ({mcqPercentage}%)</span>
                                 </div>
                                 <input
                                     type="range"
@@ -212,7 +212,7 @@ const QuestionConfigStep = ({ formData, updateFormData }: QuestionConfigStepProp
                                     max="100"
                                     value={mcqPercentage}
                                     onChange={(e) => handleMCQChange(Number(e.target.value))}
-                                    className="w-full h-3 bg-slate-100 rounded-full appearance-none cursor-pointer accent-blue-600 hover:bg-slate-200 transition-colors"
+                                    className="w-full h-3 bg-slate-100 rounded-full appearance-none cursor-pointer accent-teal-600 hover:bg-slate-200 transition-colors"
                                 />
                             </div>
 
@@ -234,7 +234,7 @@ const QuestionConfigStep = ({ formData, updateFormData }: QuestionConfigStepProp
                             <div className="flex h-16 rounded-2xl overflow-hidden border-4 border-slate-50 shadow-inner">
                                 <div
                                     style={{ width: `${mcqPercentage}%` }}
-                                    className="bg-blue-500 flex items-center justify-center text-white font-black text-xs uppercase tracking-tighter transition-all duration-500"
+                                    className="bg-teal-500 flex items-center justify-center text-white font-black text-xs uppercase tracking-tighter transition-all duration-500"
                                 >
                                     {mcqCount > 0 && `${mcqCount} MCQ`}
                                 </div>
@@ -252,10 +252,10 @@ const QuestionConfigStep = ({ formData, updateFormData }: QuestionConfigStepProp
 
             {/* Simple Summary for Specific Selection */}
             {isSpecific && (
-                <div className="bg-blue-600 rounded-2xl p-8 text-white shadow-xl shadow-blue-500/20">
+                <div className="bg-teal-600 rounded-2xl p-8 text-white shadow-xl shadow-teal-500/20">
                     <h3 className="text-sm font-black uppercase tracking-[0.2em] opacity-80 mb-4">Selection Summary</h3>
                     <p className="text-xl font-bold leading-relaxed">
-                        You have hand-picked <span className="text-amber-400 font-black underline decoration-2 underline-offset-4">{totalQuestions} questions</span> for this assessment. 
+                        You have hand-picked <span className="text-teal-400 font-black underline decoration-2 underline-offset-4">{totalQuestions} questions</span> for this assessment. 
                         The distribution will be fixed based on your manual selection.
                     </p>
                 </div>

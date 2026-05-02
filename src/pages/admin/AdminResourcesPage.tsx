@@ -53,7 +53,7 @@ const AdminResourcesPage = () => {
     const getIcon = (type: string) => {
         switch (type) {
             case 'pdf': return <FileText size={20} className="text-red-500" />;
-            case 'video': return <Video size={20} className="text-blue-500" />;
+            case 'video': return <Video size={20} className="text-teal-500" />;
             default: return <ExternalLink size={20} className="text-slate-500" />;
         }
     };
@@ -71,7 +71,7 @@ const AdminResourcesPage = () => {
                 </div>
                 <button
                     onClick={() => navigate('/admin-dashboard/resources/new')}
-                    className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
+                    className="flex items-center gap-2 px-6 py-2.5 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition-colors shadow-lg shadow-teal-500/20"
                 >
                     <Plus size={20} /> Add Resource
                 </button>
@@ -86,7 +86,7 @@ const AdminResourcesPage = () => {
                             placeholder="Search resources..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500"
+                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-teal-500"
                         />
                     </div>
                 </div>
@@ -129,14 +129,14 @@ const AdminResourcesPage = () => {
                                             {resource.isFree ? (
                                                 <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-bold">Free</span>
                                             ) : (
-                                                <span className="px-2 py-1 bg-amber-100 text-amber-700 rounded text-xs font-bold">
+                                                <span className="px-2 py-1 bg-teal-100 text-teal-700 rounded text-xs font-bold">
                                                     ₹ {(resource as any).price}
                                                 </span>
                                             )}
                                         </td>
                                         <td className="px-6 py-4 text-right">
                                             <div className="flex justify-end gap-2">
-                                                <a href={resource.url} target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+                                                <a href={resource.url} target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors">
                                                     <ExternalLink size={18} />
                                                 </a>
                                                 <button onClick={() => handleDelete(resource.id)} className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">

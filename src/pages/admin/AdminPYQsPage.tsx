@@ -82,7 +82,7 @@ const AdminPYQsPage = () => {
                 </div>
                 <button
                     onClick={() => navigate('/admin-dashboard/pyqs/new')}
-                    className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
+                    className="flex items-center gap-2 px-6 py-2.5 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition-colors shadow-lg shadow-teal-500/20"
                 >
                     <Plus size={20} /> Add PYQ
                 </button>
@@ -97,7 +97,7 @@ const AdminPYQsPage = () => {
                             placeholder="Search PYQs..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500"
+                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-teal-500"
                         />
                     </div>
                 </div>
@@ -124,13 +124,13 @@ const AdminPYQsPage = () => {
                                 filteredPyqs.map((pyq) => (
                                     <tr key={pyq.id} className="hover:bg-slate-50/50">
                                         <td className="px-6 py-4 font-medium text-slate-700 flex items-center gap-2">
-                                            {pyq.type === 'test' ? <PenTool size={16} className="text-purple-500" /> : <FileText size={16} className="text-blue-500" />}
+                                            {pyq.type === 'test' ? <PenTool size={16} className="text-purple-500" /> : <FileText size={16} className="text-teal-500" />}
                                             {pyq.title}
                                         </td>
                                         <td className="px-6 py-4">{pyq.category}</td>
                                         <td className="px-6 py-4">{pyq.year}</td>
                                         <td className="px-6 py-4">
-                                            <span className={`px-2 py-1 rounded-md text-xs font-bold ${pyq.type === 'test' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'}`}>
+                                            <span className={`px-2 py-1 rounded-md text-xs font-bold ${pyq.type === 'test' ? 'bg-purple-100 text-purple-700' : 'bg-teal-100 text-teal-700'}`}>
                                                 {pyq.type === 'test' ? 'Interactive' : 'PDF'}
                                             </span>
                                         </td>
@@ -144,7 +144,7 @@ const AdminPYQsPage = () => {
                                             <div className="flex justify-end gap-2">
                                                 <button 
                                                     onClick={() => navigate(`/pyqs/${pyq.id}`)} 
-                                                    className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                                                    className="p-2 text-slate-400 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition-colors"
                                                     title="View Details"
                                                 >
                                                     <Eye size={18} />

@@ -97,7 +97,7 @@ const PYQDetailsPage = () => {
     if (isLoading) {
         return (
             <div className="flex items-center justify-center min-h-screen bg-slate-50">
-                <Loader2 className="animate-spin text-blue-600" size={40} />
+                <Loader2 className="animate-spin text-teal-600" size={40} />
             </div>
         );
     }
@@ -107,7 +107,7 @@ const PYQDetailsPage = () => {
             <div className="min-h-screen flex flex-col items-center justify-center space-y-4 bg-slate-50">
                 <AlertCircle size={48} className="text-red-500" />
                 <h2 className="text-2xl font-bold text-gray-800">PYQ Not Found</h2>
-                <button onClick={() => navigate('/pyqs')} className="text-blue-600 hover:underline font-medium">
+                <button onClick={() => navigate('/pyqs')} className="text-teal-600 hover:underline font-medium">
                     Back to PYQs
                 </button>
             </div>
@@ -135,7 +135,7 @@ const PYQDetailsPage = () => {
                     >
                         <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-200">
                             <div className="flex items-center gap-3 mb-4">
-                                <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700 uppercase">
+                                <span className="px-3 py-1 rounded-full text-xs font-bold bg-teal-100 text-teal-700 uppercase">
                                     {pyq.category}
                                 </span>
                                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700">
@@ -154,7 +154,7 @@ const PYQDetailsPage = () => {
                             <h3 className="text-xl font-bold text-slate-900 mb-6">Key Features</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors">
-                                    <div className="p-2 bg-blue-100 text-blue-600 rounded-lg">
+                                    <div className="p-2 bg-teal-100 text-teal-600 rounded-lg">
                                         {pyq.type === 'test' ? <PenTool size={24} /> : <FileText size={24} />}
                                     </div>
                                     <div>

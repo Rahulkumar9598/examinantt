@@ -202,7 +202,7 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
                                 onChange={() => updateFormData({
                                     customConfig: { ...formData.customConfig || {} as any, questionSelection: 'all' }
                                 })}
-                                className="text-blue-600"
+                                className="text-teal-600"
                             />
                             <span className="text-sm font-medium text-slate-700">All Questions from Selected Chapters</span>
                         </label>
@@ -214,13 +214,13 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
                                 onChange={() => updateFormData({
                                     customConfig: { ...formData.customConfig || {} as any, questionSelection: 'specific' }
                                 })}
-                                className="text-blue-600"
+                                className="text-teal-600"
                             />
                             <span className="text-sm font-medium text-slate-700">Pick Specific Questions</span>
                         </label>
                     </div>
                     {selectedChapters.length > 0 && (
-                        <span className="text-xs font-bold text-blue-600 bg-blue-50 border border-blue-100 px-3 py-1 rounded-full">
+                        <span className="text-xs font-bold text-teal-600 bg-teal-50 border border-teal-100 px-3 py-1 rounded-full">
                             {selectedChapters.length} chapter{selectedChapters.length !== 1 ? 's' : ''} selected
                         </span>
                     )}
@@ -228,8 +228,8 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
 
                 {formData.customConfig?.questionSelection === 'specific' ? (
                     <div className="p-6 text-center">
-                        <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Search size={28} className="text-blue-500" />
+                        <div className="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Search size={28} className="text-teal-500" />
                         </div>
                         <p className="text-slate-600 font-medium mb-2">
                             {formData.customConfig.selectedQuestionIds?.length
@@ -239,7 +239,7 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
                         <p className="text-slate-400 text-sm mb-4">Open the picker to hand-pick specific questions from the question bank</p>
                         <button
                             onClick={() => setIsQuestionPickerOpen(true)}
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 font-semibold shadow-md transition-all"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-teal-600 text-white rounded-xl hover:bg-teal-700 font-semibold shadow-md transition-all"
                         >
                             <Search size={18} /> Open Question Picker
                         </button>
@@ -253,7 +253,7 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
                                     key={subject}
                                     onClick={() => setActiveSubjectTab(subject)}
                                     className={`px-6 py-3 font-semibold text-sm transition-colors whitespace-nowrap flex items-center gap-2 ${activeSubjectTab === subject
-                                        ? 'bg-blue-50 text-blue-700 border-b-2 border-blue-600'
+                                        ? 'bg-teal-50 text-teal-700 border-b-2 border-teal-600'
                                         : 'text-slate-600 hover:bg-slate-50'
                                         }`}
                                 >
@@ -267,7 +267,7 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
                         <div className="p-4 max-h-[500px] overflow-y-auto">
                             {loadingSubject === activeSubjectTab ? (
                                 <div className="flex justify-center py-12">
-                                    <Loader2 className="animate-spin text-blue-500" size={32} />
+                                    <Loader2 className="animate-spin text-teal-500" size={32} />
                                 </div>
                             ) : chapters.length === 0 ? (
                                 <div className="text-center py-12 text-slate-400">
@@ -276,7 +276,7 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
                                     <p className="text-sm mt-1">Make sure you've added chapters for this subject in the Chapters section</p>
                                     <button
                                         onClick={() => retryFetch(activeSubjectTab)}
-                                        className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 font-semibold rounded-lg hover:bg-blue-100 text-sm transition-colors border border-blue-200"
+                                        className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-teal-50 text-teal-600 font-semibold rounded-lg hover:bg-teal-100 text-sm transition-colors border border-teal-200"
                                     >
                                         <Loader2 size={14} /> Retry
                                     </button>
@@ -304,13 +304,13 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
 
                                                         <button
                                                             onClick={() => handleSelectAllChapters(activeSubjectTab, unitChapterIds, allSelected)}
-                                                            className="text-slate-500 hover:text-blue-600 transition-colors"
+                                                            className="text-slate-500 hover:text-teal-600 transition-colors"
                                                         >
                                                             {allSelected ? (
-                                                                <CheckSquare size={20} className="text-blue-600" />
+                                                                <CheckSquare size={20} className="text-teal-600" />
                                                             ) : someSelected ? (
-                                                                <div className="w-5 h-5 bg-blue-100 border-2 border-blue-600 rounded flex items-center justify-center">
-                                                                    <div className="w-2.5 h-2.5 bg-blue-600 rounded-sm" />
+                                                                <div className="w-5 h-5 bg-teal-100 border-2 border-teal-600 rounded flex items-center justify-center">
+                                                                    <div className="w-2.5 h-2.5 bg-teal-600 rounded-sm" />
                                                                 </div>
                                                             ) : (
                                                                 <Square size={20} />
@@ -338,7 +338,7 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
                                                                 <label key={chapter.id} className="flex items-center gap-3 cursor-pointer group py-1">
                                                                     <button
                                                                         onClick={() => handleChapterToggle(activeSubjectTab, chapter.id, isSelected)}
-                                                                        className={`shrink-0 transition-colors ${isSelected ? 'text-blue-600' : 'text-slate-400 group-hover:text-blue-400'}`}
+                                                                        className={`shrink-0 transition-colors ${isSelected ? 'text-teal-600' : 'text-slate-400 group-hover:text-teal-400'}`}
                                                                     >
                                                                         {isSelected ? <CheckSquare size={18} /> : <Square size={18} />}
                                                                     </button>
@@ -380,7 +380,7 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
                                                                                                 }
                                                                                             });
                                                                                         }}
-                                                                                        className="text-[10px] font-black uppercase tracking-widest text-blue-600 hover:text-blue-700 bg-blue-50 px-2 py-0.5 rounded transition-colors"
+                                                                                        className="text-[10px] font-black uppercase tracking-widest text-teal-600 hover:text-teal-700 bg-teal-50 px-2 py-0.5 rounded transition-colors"
                                                                                     >
                                                                                         {chapter.topics!.every(t => formData.customConfig?.selectedTopics?.[chapter.id]?.includes(t)) ? 'Deselect All Topics' : 'Select All Topics'}
                                                                                     </button>
@@ -394,9 +394,9 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
                                                                                                 type="checkbox"
                                                                                                 checked={isTopicSelected || false}
                                                                                                 onChange={() => handleTopicToggle(chapter.id, topic)}
-                                                                                                className="w-3.5 h-3.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500"
+                                                                                                className="w-3.5 h-3.5 text-teal-600 rounded border-slate-300 focus:ring-teal-500"
                                                                                             />
-                                                                                            <span className={`text-xs ${isTopicSelected ? 'text-blue-600 font-medium' : 'text-slate-500 group-hover/topic:text-slate-700'}`}>
+                                                                                            <span className={`text-xs ${isTopicSelected ? 'text-teal-600 font-medium' : 'text-slate-500 group-hover/topic:text-slate-700'}`}>
                                                                                                 {topic}
                                                                                             </span>
                                                                                         </label>
@@ -445,8 +445,8 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
                             <label
                                 key={subject}
                                 className={`flex items-center justify-center gap-2 p-4 border-2 rounded-xl cursor-pointer transition-all text-sm font-semibold ${selectedSubjects.includes(subject)
-                                    ? 'border-blue-600 bg-blue-50 text-blue-700'
-                                    : 'border-slate-200 hover:border-blue-300 text-slate-700 bg-white'
+                                    ? 'border-teal-600 bg-teal-50 text-teal-700'
+                                    : 'border-slate-200 hover:border-teal-300 text-slate-700 bg-white'
                                     }`}
                             >
                                 <input
@@ -456,7 +456,7 @@ const GenerationMethodStep = ({ formData, updateFormData }: GenerationMethodStep
                                     className="sr-only"
                                 />
                                 {selectedSubjects.includes(subject) ? (
-                                    <CheckSquare size={18} className="text-blue-600 shrink-0" />
+                                    <CheckSquare size={18} className="text-teal-600 shrink-0" />
                                 ) : (
                                     <Square size={18} className="text-slate-400 shrink-0" />
                                 )}

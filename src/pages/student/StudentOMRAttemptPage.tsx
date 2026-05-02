@@ -14,11 +14,11 @@ type BubbleAnswers = Record<number, string>; // serialNumber → selected option
 const OPTION_LABELS = ['A', 'B', 'C', 'D', 'E'];
 
 const SUBJECT_COLORS: Record<string, { bg: string; border: string; text: string; light: string }> = {
-    Physics:     { bg: 'bg-blue-600',   border: 'border-blue-500',   text: 'text-blue-600',   light: 'bg-blue-50' },
+    Physics:     { bg: 'bg-teal-600',   border: 'border-teal-500',   text: 'text-teal-600',   light: 'bg-teal-50' },
     Chemistry:   { bg: 'bg-green-600',  border: 'border-green-500',  text: 'text-green-600',  light: 'bg-green-50' },
     Mathematics: { bg: 'bg-purple-600', border: 'border-purple-500', text: 'text-purple-600', light: 'bg-purple-50' },
     Biology:     { bg: 'bg-rose-600',   border: 'border-rose-500',   text: 'text-rose-600',   light: 'bg-rose-50' },
-    default:     { bg: 'bg-amber-500',  border: 'border-amber-400',  text: 'text-amber-600',  light: 'bg-amber-50' },
+    default:     { bg: 'bg-teal-500',  border: 'border-teal-400',  text: 'text-teal-600',  light: 'bg-teal-50' },
 };
 
 const getColor = (subject?: string) => SUBJECT_COLORS[subject || ''] || SUBJECT_COLORS.default;
@@ -260,7 +260,7 @@ const StudentOMRAttemptPage = () => {
         return (
             <div className="min-h-screen bg-slate-50 flex items-center justify-center">
                 <div className="flex flex-col items-center gap-4">
-                    <Loader2 className="animate-spin text-amber-500" size={40} />
+                    <Loader2 className="animate-spin text-teal-500" size={40} />
                     <p className="text-slate-500 font-medium">Loading OMR test environment...</p>
                 </div>
             </div>
@@ -282,22 +282,22 @@ const StudentOMRAttemptPage = () => {
                     animate={{ scale: 1, opacity: 1 }}
                     className="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
                 >
-                    <div className="bg-gradient-to-r from-orange-600 to-amber-500 p-6 text-white text-center">
+                    <div className="bg-gradient-to-r from-teal-600 to-teal-500 p-6 text-white text-center">
                         <div className="flex flex-col items-center gap-2 mb-1">
                             <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center text-3xl mb-2 backdrop-blur-sm shadow-xl">
                                 📄
                             </div>
                             <h2 className="text-2xl font-bold">{testData?.name}</h2>
                         </div>
-                        <p className="text-orange-100 text-sm font-medium opacity-90 uppercase tracking-widest">OMR Mode • Bubble Sheet Simulation</p>
+                        <p className="text-teal-100 text-sm font-medium opacity-90 uppercase tracking-widest">OMR Mode • Bubble Sheet Simulation</p>
                     </div>
 
                     <div className="p-6 space-y-6">
                         {/* Stats */}
                         <div className="grid grid-cols-3 gap-4">
                             {[
-                                { label: 'Questions', value: totalQ, color: 'text-orange-600', bg: 'bg-orange-50' },
-                                { label: 'Duration', value: `${testData?.settings?.duration}m`, color: 'text-amber-600', bg: 'bg-amber-50' },
+                                { label: 'Questions', value: totalQ, color: 'text-teal-600', bg: 'bg-teal-50' },
+                                { label: 'Duration', value: `${testData?.settings?.duration}m`, color: 'text-teal-600', bg: 'bg-teal-50' },
                                 { label: 'Sections', value: sections.length, color: 'text-purple-600', bg: 'bg-purple-50' },
                             ].map(({ label, value, color, bg }) => (
                                 <div key={label} className={`${bg} rounded-xl p-4 text-center`}>
@@ -330,9 +330,9 @@ const StudentOMRAttemptPage = () => {
                         </div>
 
                         {/* OMR Instructions */}
-                        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
-                            <p className="font-bold text-amber-900 mb-2 text-sm">How to use OMR Mode:</p>
-                            <ul className="text-sm text-amber-800 space-y-1.5">
+                        <div className="bg-teal-50 border border-teal-200 rounded-xl p-4">
+                            <p className="font-bold text-teal-900 mb-2 text-sm">How to use OMR Mode:</p>
+                            <ul className="text-sm text-teal-800 space-y-1.5">
                                 <li>• Click on a bubble (A/B/C/D) to fill it — click again to clear</li>
                                 <li>• Numerical questions: type the value in the input box</li>
                                 <li>• Use section tabs to navigate between sections</li>
@@ -350,7 +350,7 @@ const StudentOMRAttemptPage = () => {
 
                         <button
                             onClick={() => setShowInstructions(false)}
-                            className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg shadow-amber-200"
+                            className="w-full py-3.5 bg-gradient-to-r from-teal-500 to-teal-500 text-white font-bold rounded-xl hover:from-teal-600 hover:to-teal-600 transition-all shadow-lg shadow-teal-200"
                         >
                             I Understand — Start OMR Test 📄
                         </button>
@@ -372,12 +372,12 @@ const StudentOMRAttemptPage = () => {
                     <div className="flex items-center gap-3">
                         <button
                             onClick={() => { if (window.confirm('Exit OMR Test? Progress will be lost.')) navigate('/dashboard/tests'); }}
-                            className="p-2 hover:bg-orange-50 rounded-lg text-slate-400 hover:text-orange-600 transition-colors"
+                            className="p-2 hover:bg-teal-50 rounded-lg text-slate-400 hover:text-teal-600 transition-colors"
                         >
                             <ArrowLeft size={20} />
                         </button>
                         <div>
-                            <p className="text-[10px] font-bold text-orange-600 uppercase tracking-[0.2em]">Live Exam 📄</p>
+                            <p className="text-[10px] font-bold text-teal-600 uppercase tracking-[0.2em]">Live Exam 📄</p>
                             <h1 className="text-sm md:text-base font-bold text-slate-800 leading-tight">{testData?.name}</h1>
                         </div>
                     </div>
@@ -386,8 +386,8 @@ const StudentOMRAttemptPage = () => {
                         {/* Timer */}
                         <div className={`flex items-center gap-2 font-mono text-sm font-bold px-3 py-2 rounded-lg ${
                             timeRemaining < 300 ? 'bg-red-50 text-red-600 animate-pulse' :
-                            timeRemaining < 600 ? 'bg-orange-50 text-orange-600' :
-                            'bg-amber-50 text-amber-700'
+                            timeRemaining < 600 ? 'bg-teal-50 text-teal-600' :
+                            'bg-teal-50 text-teal-700'
                         }`}>
                             <Timer size={16} />
                             <span>{formatTime(timeRemaining)}</span>
@@ -449,7 +449,7 @@ const StudentOMRAttemptPage = () => {
                 <div className="w-full xl:w-1/2 flex-shrink-0 border-r border-slate-200 bg-white flex flex-col h-[60vh] xl:h-auto overflow-hidden">
                     <div className="bg-gradient-to-r from-slate-800 to-slate-900 text-white px-4 py-3 text-xs font-bold flex justify-between items-center z-10 shadow-md">
                         <div className="flex items-center gap-2">
-                             <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse border border-white/20" />
+                             <div className="w-2 h-2 rounded-full bg-teal-500 animate-pulse border border-white/20" />
                              <span>QUESTION PAPER VIEW</span>
                         </div>
                         {testData?.omrTemplate?.questionPdfUrl && (
@@ -475,7 +475,7 @@ const StudentOMRAttemptPage = () => {
                                             {(testData.questionMappings || [])
                                                 .filter(m => m.serialNumber >= sec.questionStartIndex && m.serialNumber <= sec.questionEndIndex)
                                                 .map(m => (
-                                                    <div key={`qtext-${m.serialNumber}`} className={`p-4 rounded-xl border-2 transition-all ${highlightedQ === m.serialNumber ? 'border-amber-400 bg-amber-50 shadow-md' : 'border-slate-100 bg-slate-50'}`} id={`q-text-${m.serialNumber}`}>
+                                                    <div key={`qtext-${m.serialNumber}`} className={`p-4 rounded-xl border-2 transition-all ${highlightedQ === m.serialNumber ? 'border-teal-400 bg-teal-50 shadow-md' : 'border-slate-100 bg-slate-50'}`} id={`q-text-${m.serialNumber}`}>
                                                         <div className="flex items-start gap-4">
                                                             <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-800 text-white font-bold rounded-lg text-sm">
                                                                 {m.serialNumber}
@@ -548,7 +548,7 @@ const StudentOMRAttemptPage = () => {
                                                                 value={answers[qNum] || ''}
                                                                 onChange={e => setAnswers(prev => ({ ...prev, [qNum]: e.target.value }))}
                                                                 placeholder="Value"
-                                                                className="flex-1 px-2 py-1.5 border border-slate-200 rounded-lg text-sm font-mono text-center focus:outline-none focus:border-amber-400 bg-white"
+                                                                className="flex-1 px-2 py-1.5 border border-slate-200 rounded-lg text-sm font-mono text-center focus:outline-none focus:border-teal-400 bg-white"
                                                             />
                                                         </div>
                                                     );
@@ -681,8 +681,8 @@ const StudentOMRAttemptPage = () => {
                             className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-6"
                         >
                             <div className="flex items-center gap-3 mb-4">
-                                <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
-                                    <AlertCircle className="text-amber-600" size={24} />
+                                <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center">
+                                    <AlertCircle className="text-teal-600" size={24} />
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-slate-800">Submit OMR Test?</h3>

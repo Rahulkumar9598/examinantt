@@ -74,13 +74,13 @@ const TestSeriesPage = () => {
                         <motion.div 
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-50 border border-orange-100 text-orange-600 text-xs font-black uppercase tracking-widest mb-6"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-50 border border-teal-100 text-teal-600 text-xs font-black uppercase tracking-widest mb-6"
                         >
                             < Zap size={14} fill="currentColor" />
                             Premium Test Series
                         </motion.div>
                         <h1 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">
-                            Ace Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-600">Future.</span>
+                            Ace Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-600">Future.</span>
                         </h1>
                         <p className="text-lg text-slate-500 max-w-2xl mx-auto font-medium">
                             Expert-crafted test series for JEE, NEET, and Board Exams. Select your category to begin your journey to success.
@@ -103,7 +103,7 @@ const TestSeriesPage = () => {
                                             px-8 py-4 rounded-2xl font-black text-sm transition-all duration-300
                                             ${!selectedClass 
                                                 ? 'bg-slate-900 text-white shadow-xl shadow-slate-900/20 scale-105' 
-                                                : 'bg-white text-slate-600 border border-slate-200 hover:border-orange-300 hover:text-orange-600'}
+                                                : 'bg-white text-slate-600 border border-slate-200 hover:border-teal-300 hover:text-teal-600'}
                                         `}
                                     >
                                         All Classes
@@ -119,7 +119,7 @@ const TestSeriesPage = () => {
                                                 px-8 py-4 rounded-2xl font-black text-sm transition-all duration-300
                                                 ${selectedClass === c 
                                                     ? 'bg-slate-900 text-white shadow-xl shadow-slate-900/20 scale-105' 
-                                                    : 'bg-white text-slate-600 border border-slate-200 hover:border-orange-300 hover:text-orange-600'}
+                                                    : 'bg-white text-slate-600 border border-slate-200 hover:border-teal-300 hover:text-teal-600'}
                                             `}
                                         >
                                             Class {c}
@@ -141,8 +141,8 @@ const TestSeriesPage = () => {
                                         className={`
                                             px-6 py-3 rounded-xl font-bold text-xs transition-all duration-300
                                             ${selectedClass && !selectedSubject 
-                                                ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/20' 
-                                                : 'bg-white text-slate-500 border border-slate-100 hover:border-orange-200 hover:text-orange-500'}
+                                                ? 'bg-teal-600 text-white shadow-lg shadow-teal-600/20' 
+                                                : 'bg-white text-slate-500 border border-slate-100 hover:border-teal-200 hover:text-teal-500'}
                                         `}
                                     >
                                         All Subjects
@@ -154,8 +154,8 @@ const TestSeriesPage = () => {
                                             className={`
                                                 px-6 py-3 rounded-xl font-bold text-xs transition-all duration-300
                                                 ${selectedSubject === s 
-                                                    ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/20' 
-                                                    : 'bg-white text-slate-500 border border-slate-100 hover:border-orange-200 hover:text-orange-500'}
+                                                    ? 'bg-teal-600 text-white shadow-lg shadow-teal-600/20' 
+                                                    : 'bg-white text-slate-500 border border-slate-100 hover:border-teal-200 hover:text-teal-500'}
                                             `}
                                         >
                                             {s}
@@ -170,7 +170,7 @@ const TestSeriesPage = () => {
                     <div className="relative">
                         {isLoading ? (
                             <div className="flex flex-col items-center justify-center py-24">
-                                <Loader2 className="animate-spin text-orange-500 mb-4" size={48} />
+                                <Loader2 className="animate-spin text-teal-500 mb-4" size={48} />
                                 <span className="text-xs font-black text-slate-400 uppercase tracking-widest">Loading Courses...</span>
                             </div>
                         ) : series.length === 0 ? (
@@ -190,7 +190,7 @@ const TestSeriesPage = () => {
                                     <div className="flex items-center justify-between px-6 mb-8">
                                         <span className="text-xs font-black text-slate-400 uppercase tracking-widest">Featured Courses (Top 9)</span>
                                         <div className="h-px flex-1 bg-slate-100 mx-8" />
-                                        <div className="text-xs font-bold text-orange-600 bg-orange-50 px-4 py-1.5 rounded-full border border-orange-100">
+                                        <div className="text-xs font-bold text-teal-600 bg-teal-50 px-4 py-1.5 rounded-full border border-teal-100">
                                             {series.length} Total
                                         </div>
                                     </div>

@@ -72,13 +72,13 @@ const OMRQuestionAssignStep = ({ formData, updateFormData }: OMRQuestionAssignSt
             <div className="bg-slate-50 rounded-xl p-4 border border-slate-200">
                 <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-semibold text-slate-700 flex items-center gap-2">
-                        <KeyRound size={16} className="text-amber-500" /> Answer Key Progress
+                        <KeyRound size={16} className="text-teal-500" /> Answer Key Progress
                     </span>
-                    <span className="text-sm font-bold text-amber-600">{totalFilled} / {totalQ} filled</span>
+                    <span className="text-sm font-bold text-teal-600">{totalFilled} / {totalQ} filled</span>
                 </div>
                 <div className="w-full bg-slate-200 rounded-full h-2">
                     <div
-                        className="bg-amber-500 h-2 rounded-full transition-all duration-500"
+                        className="bg-teal-500 h-2 rounded-full transition-all duration-500"
                         style={{ width: totalQ > 0 ? `${(totalFilled / totalQ) * 100}%` : '0%' }}
                     />
                 </div>
@@ -117,7 +117,7 @@ const OMRQuestionAssignStep = ({ formData, updateFormData }: OMRQuestionAssignSt
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-3">
-                                        <span className={`text-xs font-bold px-2 py-1 rounded-full ${secFilled === sec.questionCount ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
+                                        <span className={`text-xs font-bold px-2 py-1 rounded-full ${secFilled === sec.questionCount ? 'bg-green-100 text-green-700' : 'bg-teal-100 text-teal-700'}`}>
                                             {secFilled}/{sec.questionCount} filled
                                         </span>
                                         {!isNumerical && (
@@ -127,7 +127,7 @@ const OMRQuestionAssignStep = ({ formData, updateFormData }: OMRQuestionAssignSt
                                                         key={opt}
                                                         type="button"
                                                         onClick={(e) => { e.stopPropagation(); setAllForSection(sec, opt); }}
-                                                        className="px-2 py-0.5 bg-white border border-slate-300 text-xs rounded hover:bg-amber-100 hover:border-amber-400 transition-colors font-semibold"
+                                                        className="px-2 py-0.5 bg-white border border-slate-300 text-xs rounded hover:bg-teal-100 hover:border-teal-400 transition-colors font-semibold"
                                                         title={`Set all to ${opt}`}
                                                     >
                                                         All {opt}
@@ -151,7 +151,7 @@ const OMRQuestionAssignStep = ({ formData, updateFormData }: OMRQuestionAssignSt
                                                                 value={m.questionText || ''}
                                                                 onChange={(e) => updateMapping(m.serialNumber, { questionText: e.target.value })}
                                                                 placeholder="Type question description and options here..."
-                                                                className="w-full pl-10 pr-3 py-3 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-amber-400 min-h-[80px]"
+                                                                className="w-full pl-10 pr-3 py-3 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-teal-400 min-h-[80px]"
                                                             />
                                                         </div>
                                                         <div className="w-full md:w-48 flex items-center gap-2 mt-2 md:mt-0">
@@ -161,7 +161,7 @@ const OMRQuestionAssignStep = ({ formData, updateFormData }: OMRQuestionAssignSt
                                                                 value={m.correctOption || ''}
                                                                 onChange={(e) => updateMapping(m.serialNumber, { correctOption: e.target.value })}
                                                                 placeholder="Value"
-                                                                className="flex-1 px-2 py-2 border border-slate-200 rounded-lg text-sm text-center font-mono focus:outline-none focus:border-amber-400"
+                                                                className="flex-1 px-2 py-2 border border-slate-200 rounded-lg text-sm text-center font-mono focus:outline-none focus:border-teal-400"
                                                             />
                                                         </div>
                                                     </div>
@@ -177,7 +177,7 @@ const OMRQuestionAssignStep = ({ formData, updateFormData }: OMRQuestionAssignSt
                                                                 value={m.questionText || ''}
                                                                 onChange={(e) => updateMapping(m.serialNumber, { questionText: e.target.value })}
                                                                 placeholder="Type question description and options here..."
-                                                                className="w-full pl-10 pr-3 py-3 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-amber-400 min-h-[80px]"
+                                                                className="w-full pl-10 pr-3 py-3 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-teal-400 min-h-[80px]"
                                                             />
                                                         </div>
                                                         <div className="flex flex-col gap-2 mt-2 md:mt-0 items-center">
@@ -189,8 +189,8 @@ const OMRQuestionAssignStep = ({ formData, updateFormData }: OMRQuestionAssignSt
                                                                         type="button"
                                                                         onClick={() => updateMapping(m.serialNumber, { correctOption: m.correctOption === opt ? '' : opt })}
                                                                         className={`w-8 h-8 rounded-full text-xs font-bold border-2 transition-all ${m.correctOption === opt
-                                                                                ? 'bg-amber-500 border-amber-500 text-white shadow-md'
-                                                                                : 'bg-white border-slate-300 text-slate-600 hover:border-amber-400'
+                                                                                ? 'bg-teal-500 border-teal-500 text-white shadow-md'
+                                                                                : 'bg-white border-slate-300 text-slate-600 hover:border-teal-400'
                                                                             }`}
                                                                     >
                                                                         {opt}

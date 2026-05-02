@@ -160,7 +160,7 @@ const StudentAnalyticsPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <motion.div variants={itemVariants} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
                     <div className="flex items-center gap-4 mb-4">
-                        <div className="p-3 bg-blue-100 text-blue-600 rounded-xl">
+                        <div className="p-3 bg-teal-100 text-teal-600 rounded-xl">
                             <BookOpen size={24} />
                         </div>
                         <div>
@@ -184,7 +184,7 @@ const StudentAnalyticsPage = () => {
 
                 <motion.div variants={itemVariants} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
                     <div className="flex items-center gap-4 mb-4">
-                        <div className="p-3 bg-orange-100 text-orange-600 rounded-xl">
+                        <div className="p-3 bg-teal-100 text-teal-600 rounded-xl">
                             <Award size={24} />
                         </div>
                         <div>
@@ -212,7 +212,7 @@ const StudentAnalyticsPage = () => {
                 <motion.div variants={itemVariants} className="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col">
                     <div className="flex justify-between items-center mb-6">
                         <h3 className="font-bold text-slate-800 flex items-center gap-2">
-                            <TrendingUp size={20} className="text-blue-600" />
+                            <TrendingUp size={20} className="text-teal-600" />
                             Performance Trend
                         </h3>
                         <span className="text-xs font-semibold px-2 py-1 bg-slate-100 text-slate-500 rounded">Progress over time</span>
@@ -267,7 +267,7 @@ const StudentAnalyticsPage = () => {
                 {/* Subject Mastery Radar */}
                 <motion.div variants={itemVariants} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col">
                     <h3 className="font-bold text-slate-800 mb-6 flex items-center gap-2">
-                        <Target size={20} className="text-orange-500" />
+                        <Target size={20} className="text-teal-500" />
                         Subject Mastery
                     </h3>
                     <div className="h-72 w-full flex items-center justify-center">
@@ -308,7 +308,7 @@ const StudentAnalyticsPage = () => {
                         <h3 className="font-bold text-slate-800">Historical Performance</h3>
                         <button 
                             onClick={() => window.print()}
-                            className="text-xs font-bold text-blue-600 hover:underline print:hidden"
+                            className="text-xs font-bold text-teal-600 hover:underline print:hidden"
                         >
                             Download Report
                         </button>
@@ -341,7 +341,7 @@ const StudentAnalyticsPage = () => {
                                         return (
                                             <tr key={attempt.id} className="hover:bg-slate-50/50 transition-colors group">
                                                 <td className="px-6 py-4">
-                                                    <div className="font-bold text-slate-700 group-hover:text-blue-600 transition-colors">
+                                                    <div className="font-bold text-slate-700 group-hover:text-teal-600 transition-colors">
                                                         {attempt.testTitle}
                                                     </div>
                                                 </td>
@@ -370,7 +370,7 @@ const StudentAnalyticsPage = () => {
                                                 <td className="px-6 py-4 text-right">
                                                     <button 
                                                         onClick={() => navigate(`/dashboard/results/${attempt.id}`)}
-                                                        className="text-blue-600 hover:text-blue-700 font-bold text-xs flex items-center gap-1 justify-end ml-auto"
+                                                        className="text-teal-600 hover:text-teal-700 font-bold text-xs flex items-center gap-1 justify-end ml-auto"
                                                     >
                                                         Details
                                                         <ArrowRight size={14} />

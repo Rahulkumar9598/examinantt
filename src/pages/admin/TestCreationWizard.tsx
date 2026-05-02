@@ -189,7 +189,7 @@ const TestCreationWizard = ({ seriesId, onComplete, onCancel }: TestCreationWiza
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${index < currentStep
                                         ? 'bg-green-500 text-white'
                                         : index === currentStep
-                                            ? 'bg-blue-600 text-white'
+                                            ? 'bg-teal-600 text-white'
                                             : 'bg-slate-200 text-slate-500'
                                         }`}>
                                         {index < currentStep ? <Check size={20} /> : index + 1}
@@ -236,7 +236,7 @@ const TestCreationWizard = ({ seriesId, onComplete, onCancel }: TestCreationWiza
                             <button
                                 onClick={handleSaveDraft}
                                 disabled={isSaving}
-                                className="px-6 py-2.5 border border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                className="px-6 py-2.5 border border-teal-600 text-teal-600 font-semibold rounded-lg hover:bg-teal-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                             >
                                 {isSaving ? <Loader2 className="animate-spin" size={20} /> : 'Save Draft'}
                             </button>
@@ -263,7 +263,7 @@ const TestCreationWizard = ({ seriesId, onComplete, onCancel }: TestCreationWiza
                             <button
                                 onClick={handleNext}
                                 disabled={!canProceed()}
-                                className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                className="flex items-center gap-2 px-6 py-2.5 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                             >
                                 Next <ArrowRight size={20} />
                             </button>

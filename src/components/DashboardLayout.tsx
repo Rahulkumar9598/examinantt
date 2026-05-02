@@ -95,7 +95,7 @@ const DashboardLayout = ({ children, role }: DashboardLayoutProps) => {
                 {/* Logo Area */}
                 <div className="px-6 py-8 flex items-center gap-3">
                     <div className="relative group">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-orange-600 to-amber-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-200"></div>
+                        <div className="absolute -inset-1 bg-gradient-to-r from-teal-600 to-teal-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-200"></div>
                         <img src={logo} alt="Logo" className={`relative w-10 h-10 rounded-full shadow-lg p-0.5 ${isDarkTheme ? 'bg-[#0B0F19]' : 'bg-white'}`} />
                     </div>
                     <div>
@@ -127,8 +127,8 @@ const DashboardLayout = ({ children, role }: DashboardLayoutProps) => {
                             className={({ isActive }) => `
                                 relative group flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 font-medium overflow-hidden
                                 ${isActive
-                                    ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-white shadow-lg shadow-orange-500/20 translate-x-1'
-                                    : `${isDarkTheme ? 'text-slate-400 hover:bg-slate-800/50 hover:text-white' : 'text-slate-600 hover:bg-slate-50 hover:text-orange-600'} hover:translate-x-1`
+                                    ? 'bg-gradient-to-r from-teal-600 to-teal-600 text-white shadow-lg shadow-teal-500/20 translate-x-1'
+                                    : `${isDarkTheme ? 'text-slate-400 hover:bg-slate-800/50 hover:text-white' : 'text-slate-600 hover:bg-slate-50 hover:text-teal-600'} hover:translate-x-1`
                                 }
                             `}
                         >
@@ -136,7 +136,7 @@ const DashboardLayout = ({ children, role }: DashboardLayoutProps) => {
                                 <>
                                     {/* Active State Glow */}
                                     {isActive && (
-                                        <div className="absolute inset-0 bg-gradient-to-r from-orange-400/20 to-transparent mix-blend-overlay"></div>
+                                        <div className="absolute inset-0 bg-gradient-to-r from-teal-400/20 to-transparent mix-blend-overlay"></div>
                                     )}
 
                                     <span className={`relative z-10 transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}>
@@ -196,7 +196,7 @@ const DashboardLayout = ({ children, role }: DashboardLayoutProps) => {
                                 <p className={`text-sm font-semibold leading-none ${isDarkTheme ? 'text-white' : 'text-slate-700'}`}>{currentUser?.displayName || 'User'}</p>
                                 <p className={`text-xs mt-1 ${isDarkTheme ? 'text-slate-500' : 'text-slate-500'}`}>{role === 'admin' ? 'Administrator' : 'Student'}</p>
                             </div>
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white font-bold shadow-md shadow-orange-500/20 ring-2 ring-white/10">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center text-white font-bold shadow-md shadow-teal-500/20 ring-2 ring-white/10">
                                 {currentUser?.email?.charAt(0).toUpperCase() || 'U'}
                             </div>
                         </div>

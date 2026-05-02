@@ -15,7 +15,7 @@ const NotFound = () => {
                 <div className="relative inline-block mb-8">
                     <div className="text-[150px] font-bold text-slate-200 leading-none">404</div>
                     <div className="absolute inset-0 flex items-center justify-center">
-                        <Search size={64} className="text-blue-500 drop-shadow-xl" />
+                        <Search size={64} className="text-teal-500 drop-shadow-xl" />
                     </div>
                 </div>
 
@@ -34,7 +34,7 @@ const NotFound = () => {
                     </button>
                     <button
                         onClick={() => navigate('/')}
-                        className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-500/20 transition-all"
+                        className="flex items-center justify-center gap-2 px-6 py-3 bg-teal-600 text-white font-medium rounded-xl hover:bg-teal-700 shadow-lg shadow-teal-500/20 transition-all"
                     >
                         <Home size={18} />
                         Home Page

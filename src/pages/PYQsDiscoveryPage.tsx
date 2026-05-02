@@ -69,7 +69,7 @@ const PYQsDiscoveryPage = () => {
         <PageLayout>
             <div className="bg-[#0A0A0A] min-h-screen text-white overflow-hidden relative">
                 {/* Background Blobs */}
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-600/10 rounded-full blur-[120px] pointer-events-none"></div>
                 <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none"></div>
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
@@ -79,7 +79,7 @@ const PYQsDiscoveryPage = () => {
                         className="text-center mb-20"
                     >
                         <h1 className="text-5xl md:text-6xl font-black mb-6 tracking-tight">
-                            Master Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Past Exams</span>
+                            Master Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400">Past Exams</span>
                         </h1>
                         <p className="text-xl text-zinc-400 max-w-2xl mx-auto font-medium">
                             Premium repository of Previous Year Questions. Practice with the most authentic data used by top rankers.
@@ -92,7 +92,7 @@ const PYQsDiscoveryPage = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         className="max-w-2xl mx-auto mb-20 relative group"
                     >
-                        <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
+                        <div className="absolute -inset-1 bg-gradient-to-r from-teal-600 to-indigo-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
                         <div className="relative">
                             <Search size={22} className="absolute left-5 top-1/2 -translate-y-1/2 text-zinc-500" />
                             <input
@@ -100,14 +100,14 @@ const PYQsDiscoveryPage = () => {
                                 placeholder="Search by subject, year or exam name..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-14 pr-6 py-5 bg-zinc-900/80 backdrop-blur-xl border border-white/10 rounded-2xl text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all font-medium text-lg shadow-2xl"
+                                className="w-full pl-14 pr-6 py-5 bg-zinc-900/80 backdrop-blur-xl border border-white/10 rounded-2xl text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50 transition-all font-medium text-lg shadow-2xl"
                             />
                         </div>
                     </motion.div>
 
                     {isLoading ? (
                         <div className="flex justify-center py-20">
-                            <Loader2 className="animate-spin text-blue-500" size={48} />
+                            <Loader2 className="animate-spin text-teal-500" size={48} />
                         </div>
                     ) : filteredPyqs.length === 0 ? (
                         <div className="text-center py-20 text-zinc-500 font-bold text-xl">
@@ -127,10 +127,10 @@ const PYQsDiscoveryPage = () => {
                                     whileHover={{ y: -8, transition: { duration: 0.2 } }}
                                     className="bg-zinc-900/40 backdrop-blur-md rounded-[32px] p-8 border border-white/5 hover:border-white/20 transition-all flex flex-col group relative"
                                 >
-                                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent rounded-[32px] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-transparent rounded-[32px] opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                     
                                     <div className="flex justify-between items-start mb-8 relative z-10">
-                                        <div className={`p-4 rounded-2xl ${pyq.type === 'test' ? 'bg-indigo-500/10 text-indigo-400' : 'bg-blue-500/10 text-blue-400'} border border-white/5`}>
+                                        <div className={`p-4 rounded-2xl ${pyq.type === 'test' ? 'bg-indigo-500/10 text-indigo-400' : 'bg-teal-500/10 text-teal-400'} border border-white/5`}>
                                             {pyq.type === 'test' ? <PenTool size={28} /> : <FileText size={28} />}
                                         </div>
                                         <span className="bg-white/5 text-zinc-400 text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest border border-white/10">
@@ -138,10 +138,10 @@ const PYQsDiscoveryPage = () => {
                                         </span>
                                     </div>
 
-                                    <h3 className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-blue-400 transition-colors relative z-10">{pyq.title}</h3>
+                                    <h3 className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-teal-400 transition-colors relative z-10">{pyq.title}</h3>
                                     
                                     <div className="flex items-center gap-3 mb-8 relative z-10">
-                                        <span className="py-1 px-3 bg-blue-600/20 text-blue-400 rounded-lg text-sm font-bold border border-blue-500/20">{pyq.year}</span>
+                                        <span className="py-1 px-3 bg-teal-600/20 text-teal-400 rounded-lg text-sm font-bold border border-teal-500/20">{pyq.year}</span>
                                         <span className="text-zinc-500 font-medium text-sm">
                                             {pyq.type === 'test' ? 'CBT Mock' : 'Rich PDF'}
                                         </span>

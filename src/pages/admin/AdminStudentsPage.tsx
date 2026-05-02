@@ -197,7 +197,7 @@ const AdminStudentsPage = () => {
                     </button>
                     <button
                         onClick={() => setIsInviteModalOpen(true)}
-                        className="px-4 py-2 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
+                        className="px-4 py-2 bg-teal-600 text-white font-medium rounded-xl hover:bg-teal-700 transition-colors shadow-lg shadow-teal-500/20"
                     >
                         Invite Student
                     </button>
@@ -213,14 +213,14 @@ const AdminStudentsPage = () => {
                             placeholder="Search by name, email..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500"
+                            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-teal-500"
                         />
                     </div>
                     <div className="flex gap-2">
                         <select
                             value={statusFilter}
                             onChange={(e) => setStatusFilter(e.target.value as any)}
-                            className="px-4 py-2 border border-slate-200 rounded-lg bg-white text-slate-600 focus:outline-none focus:border-blue-500 cursor-pointer"
+                            className="px-4 py-2 border border-slate-200 rounded-lg bg-white text-slate-600 focus:outline-none focus:border-teal-500 cursor-pointer"
                         >
                             <option value="All">All Status</option>
                             <option value="active">Active</option>
@@ -244,7 +244,7 @@ const AdminStudentsPage = () => {
                             {isLoading ? (
                                 <tr>
                                     <td colSpan={5} className="py-12 text-center">
-                                        <Loader2 className="animate-spin inline text-blue-600" size={32} />
+                                        <Loader2 className="animate-spin inline text-teal-600" size={32} />
                                     </td>
                                 </tr>
                             ) : filteredStudents.length === 0 ? (
@@ -290,7 +290,7 @@ const AdminStudentsPage = () => {
                                                 {student.status === 'active' ? 'Active' : 'Blocked'}
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4 text-blue-600 font-bold">
+                                        <td className="px-6 py-4 text-teal-600 font-bold">
                                             {student.testsTaken || 0}
                                         </td>
                                         <td className="px-6 py-4 text-slate-500 text-sm opacity-60">
@@ -343,7 +343,7 @@ const AdminStudentsPage = () => {
 
                 {/* Simple Pagination - Just load more for v1 */}
                 {/* <div className="p-4 border-t border-slate-200 flex justify-center">
-                    <button className="text-sm font-medium text-blue-600 hover:underline">Load More</button>
+                    <button className="text-sm font-medium text-teal-600 hover:underline">Load More</button>
                 </div> */}
             </div>
 
@@ -360,7 +360,7 @@ const AdminStudentsPage = () => {
                         >
                             <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xl">
+                                    <div className="w-12 h-12 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold text-xl">
                                         {selectedStudent.displayName?.charAt(0) || selectedStudent.email.charAt(0).toUpperCase()}
                                     </div>
                                     <div>
@@ -376,12 +376,12 @@ const AdminStudentsPage = () => {
                             <div className="flex-1 overflow-y-auto p-6 space-y-6">
                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                     <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
-                                        <BarChart3 className="mx-auto text-blue-600 mb-2" size={24} />
+                                        <BarChart3 className="mx-auto text-teal-600 mb-2" size={24} />
                                         <div className="text-xl font-bold">{selectedStudent.testsTaken || 0}</div>
                                         <div className="text-[10px] uppercase font-bold text-slate-400">Exams Taken</div>
                                     </div>
                                     <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
-                                        <Calendar className="mx-auto text-orange-600 mb-2" size={24} />
+                                        <Calendar className="mx-auto text-teal-600 mb-2" size={24} />
                                         <div className="text-sm font-bold">{new Date(selectedStudent.joinedDate).toLocaleDateString()}</div>
                                         <div className="text-[10px] uppercase font-bold text-slate-400">Joined</div>
                                     </div>
@@ -398,19 +398,19 @@ const AdminStudentsPage = () => {
                                         <FileText size={18} /> Test Attempt History
                                     </h4>
                                     {isLoadingAttempts ? (
-                                        <div className="flex justify-center py-10"><Loader2 className="animate-spin text-blue-600" /></div>
+                                        <div className="flex justify-center py-10"><Loader2 className="animate-spin text-teal-600" /></div>
                                     ) : studentAttempts.length === 0 ? (
                                         <div className="text-center py-10 bg-slate-50 rounded-xl border border-dashed border-slate-200 text-slate-400 font-medium">No attempts recorded yet.</div>
                                     ) : (
                                         <div className="space-y-3">
                                             {studentAttempts.map((attempt: any) => (
-                                                <div key={attempt.id} className="p-4 bg-white border border-slate-200 rounded-xl flex justify-between items-center transition-all hover:border-blue-300 shadow-sm">
+                                                <div key={attempt.id} className="p-4 bg-white border border-slate-200 rounded-xl flex justify-between items-center transition-all hover:border-teal-300 shadow-sm">
                                                     <div>
                                                         <div className="font-bold text-slate-800">{attempt.testTitle}</div>
                                                         <div className="text-xs text-slate-500">Attempted: {new Date(attempt.attemptDate?.toDate()).toLocaleString()}</div>
                                                     </div>
                                                     <div className="text-right">
-                                                        <div className="text-lg font-extrabold text-blue-600">{attempt.score}</div>
+                                                        <div className="text-lg font-extrabold text-teal-600">{attempt.score}</div>
                                                         <div className="text-[10px] font-bold text-slate-400 uppercase">Score</div>
                                                     </div>
                                                 </div>
@@ -465,7 +465,7 @@ const AdminStudentsPage = () => {
                                         required
                                         value={inviteFormData.displayName}
                                         onChange={(e) => setInviteFormData({ ...inviteFormData, displayName: e.target.value })}
-                                        className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500"
+                                        className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
                                         placeholder="Enter student name"
                                     />
                                 </div>
@@ -476,7 +476,7 @@ const AdminStudentsPage = () => {
                                         required
                                         value={inviteFormData.email}
                                         onChange={(e) => setInviteFormData({ ...inviteFormData, email: e.target.value })}
-                                        className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500"
+                                        className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
                                         placeholder="student@example.com"
                                     />
                                 </div>
@@ -491,7 +491,7 @@ const AdminStudentsPage = () => {
                                     <button
                                         type="submit"
                                         disabled={isSubmittingInvite}
-                                        className="flex-1 px-4 py-2 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20 disabled:opacity-50"
+                                        className="flex-1 px-4 py-2 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition-colors shadow-lg shadow-teal-500/20 disabled:opacity-50"
                                     >
                                         {isSubmittingInvite ? 'Adding...' : 'Add Student'}
                                     </button>
@@ -525,7 +525,7 @@ const AdminStudentsPage = () => {
                                         required
                                         value={editingStudent.displayName || ''}
                                         onChange={(e) => setEditingStudent({ ...editingStudent, displayName: e.target.value })}
-                                        className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500"
+                                        className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
                                         placeholder="Full Name"
                                     />
                                 </div>
@@ -536,7 +536,7 @@ const AdminStudentsPage = () => {
                                         required
                                         value={editingStudent.email}
                                         onChange={(e) => setEditingStudent({ ...editingStudent, email: e.target.value })}
-                                        className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500"
+                                        className="w-full px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
                                         placeholder="student@example.com"
                                     />
                                 </div>
@@ -551,7 +551,7 @@ const AdminStudentsPage = () => {
                                     <button
                                         type="submit"
                                         disabled={isSubmittingInvite}
-                                        className="flex-1 px-4 py-2 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20 disabled:opacity-50"
+                                        className="flex-1 px-4 py-2 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition-colors shadow-lg shadow-teal-500/20 disabled:opacity-50"
                                     >
                                         {isSubmittingInvite ? 'Saving...' : 'Save Changes'}
                                     </button>

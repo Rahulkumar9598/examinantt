@@ -19,7 +19,7 @@ const LandingPage = () => {
     const navigate = useNavigate();
     const [testSeries, setTestSeries] = useState<TestSeries[]>([]);
     const [loading, setLoading] = useState(true);
-    
+
     // Dynamic Filtering State
     const [availableClasses, setAvailableClasses] = useState<string[]>([]);
     const [availableSubjects, setAvailableSubjects] = useState<string[]>([]);
@@ -62,10 +62,10 @@ const LandingPage = () => {
     // Dynamic Filter Logic for Test Series
     const filteredSeries = testSeries.filter((item) => {
         if (!selectedClass && !selectedSubject) return true;
-        
+
         const matchesClass = !selectedClass || getCourseClass(item) === selectedClass;
         const matchesSubject = !selectedSubject || normalizeText(getSubject(item)) === normalizeText(selectedSubject);
-        
+
         return matchesClass && matchesSubject;
     });
 
@@ -79,34 +79,31 @@ const LandingPage = () => {
     };
 
     return (
-        <div className="font-sans antialiased bg-white text-slate-900 selection:bg-[#1D64D0] selection:text-white">
-            <Navbar />
+        <div className="font-sans antialiased bg-slate-50 text-slate-900 selection:bg-[#0D9488] selection:text-white relative min-h-screen">
+            {/* Global Background Decorations */}
+            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[800px] bg-teal-100/30 rounded-full blur-[120px]"></div>
+                <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-emerald-50/40 rounded-full blur-[100px]"></div>
+                <div className="absolute bottom-0 left-[-10%] h-[500px] w-[500px] rounded-full bg-indigo-50/30 blur-[120px]" />
+                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-20" />
+            </div>
+
+            <div className="relative z-10">
+                <Navbar />
 
             {/* 1 & 2. Hero & Banner Section */}
             <HeroSection onGetStarted={scrollToTestSeries} />
 
             <LeaderboardSection />
 
-            {/* 4. AI Analysis and Real Exam Simulation Demo */}
-            <AISimulationSection />
-
-            {/* 3. Trending Test series / PYQs (Resources) */}
-            <PYQSection />
-
-            {/* Test Series Section */}
-            <section id="test-series" className="relative overflow-hidden py-24 bg-slate-50/30 scroll-mt-24">
-                {/* Premium Background Elements */}
-                <div className="absolute inset-0 z-0">
-                    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-20" />
-                    <div className="absolute top-[-10%] right-[-10%] h-[500px] w-[500px] rounded-full bg-blue-100/30 blur-[120px]" />
-                    <div className="absolute bottom-[-10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-indigo-100/30 blur-[120px]" />
-                </div>
+            {/* 3. Test Series Section (Moved up) */}
+            <section id="test-series" className="relative py-24 scroll-mt-24">
 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     {/* HEADER */}
                     <div className="text-center mb-16 md:mb-20">
-                        <span className="inline-block text-xs font-semibold text-[#1D64D0] bg-[#1D64D0]/10 px-4 py-1.5 rounded-full tracking-wide mb-4">
+                        <span className="inline-block text-xs font-semibold text-[#0D9488] bg-[#0D9488]/10 px-4 py-1.5 rounded-full tracking-wide mb-4">
                             Practice & Preparation
                         </span>
 
@@ -118,12 +115,12 @@ const LandingPage = () => {
                             Practice with curated mock tests designed to boost your exam performance and confidence.
                         </p>
 
-                        <div className="w-16 h-1 bg-gradient-to-r from-[#1D64D0] to-indigo-600 mx-auto mt-6 rounded-full"></div>
+                        <div className="w-16 h-1 bg-gradient-to-r from-[#0D9488] to-indigo-600 mx-auto mt-6 rounded-full"></div>
                     </div>
 
                     {/* Premium Filter Section */}
                     <div className="relative mb-20 z-10">
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -134,34 +131,32 @@ const LandingPage = () => {
                                     <h4 className="text-xl font-black text-slate-900 mb-2">Find Your Course</h4>
                                     <p className="text-sm text-slate-500 font-medium">Filter by class and subject to find the perfect test series for you.</p>
                                 </div>
-                                
+
                                 <div className="w-full lg:w-2/3 flex flex-col md:flex-row gap-6">
                                     <div className="flex-1 space-y-3">
                                         <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Select Class</label>
                                         <div className="flex flex-wrap gap-2">
-                                                <button
-                                                    onClick={() => setSelectedClass('')}
-                                                    className={`px-6 py-2.5 rounded-2xl text-sm font-black transition-all duration-300 border ${
-                                                        selectedClass === '' 
-                                                        ? 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-200 scale-105' 
-                                                        : 'bg-white text-slate-600 border-slate-100 hover:border-blue-200 hover:bg-blue-50'
+                                            <button
+                                                onClick={() => setSelectedClass('')}
+                                                className={`px-6 py-2.5 rounded-2xl text-sm font-black transition-all duration-300 border ${selectedClass === ''
+                                                        ? 'bg-teal-600 text-white border-teal-600 shadow-lg shadow-teal-200 scale-105'
+                                                        : 'bg-white text-slate-600 border-slate-100 hover:border-teal-200 hover:bg-teal-50'
                                                     }`}
-                                                >
-                                                    All Classes
-                                                </button>
-                                                {availableClasses.map(c => (
-                                                    <button
-                                                        key={c}
-                                                        onClick={() => setSelectedClass(c)}
-                                                        className={`px-6 py-2.5 rounded-2xl text-sm font-black transition-all duration-300 border ${
-                                                            selectedClass === c 
-                                                            ? 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-200 scale-105' 
-                                                            : 'bg-white text-slate-600 border-slate-100 hover:border-blue-200 hover:bg-blue-50'
+                                            >
+                                                All Classes
+                                            </button>
+                                            {availableClasses.map(c => (
+                                                <button
+                                                    key={c}
+                                                    onClick={() => setSelectedClass(c)}
+                                                    className={`px-6 py-2.5 rounded-2xl text-sm font-black transition-all duration-300 border ${selectedClass === c
+                                                            ? 'bg-teal-600 text-white border-teal-600 shadow-lg shadow-teal-200 scale-105'
+                                                            : 'bg-white text-slate-600 border-slate-100 hover:border-teal-200 hover:bg-teal-50'
                                                         }`}
-                                                    >
-                                                        Class {c}
-                                                    </button>
-                                                ))}
+                                                >
+                                                    Class {c}
+                                                </button>
+                                            ))}
                                             {availableClasses.length === 0 && (
                                                 <div className="text-slate-300 text-sm italic py-2">Loading classes...</div>
                                             )}
@@ -175,14 +170,14 @@ const LandingPage = () => {
                                                 value={selectedSubject}
                                                 onChange={(e) => setSelectedSubject(e.target.value)}
                                                 disabled={!selectedClass}
-                                                className="w-full appearance-none rounded-2xl border border-slate-100 bg-white/80 backdrop-blur-sm px-5 py-3.5 text-slate-800 font-bold focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm group-hover:border-blue-200"
+                                                className="w-full appearance-none rounded-2xl border border-slate-100 bg-white/80 backdrop-blur-sm px-5 py-3.5 text-slate-800 font-bold focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm group-hover:border-teal-200"
                                             >
                                                 <option value="">{selectedClass ? 'All Subjects' : 'Select class first'}</option>
                                                 {availableSubjects.map(s => (
                                                     <option key={s} value={s}>{s}</option>
                                                 ))}
                                             </select>
-                                            <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-hover:text-blue-500 transition-colors">
+                                            <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-hover:text-teal-500 transition-colors">
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
                                             </div>
                                         </div>
@@ -195,7 +190,7 @@ const LandingPage = () => {
                     {/* CONTENT */}
                     {loading ? (
                         <div className="flex justify-center py-20">
-                            <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-[#1D64D0]"></div>
+                            <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-[#0D9488]"></div>
                         </div>
                     ) : filteredSeries.length > 0 ? (
 
@@ -234,6 +229,12 @@ const LandingPage = () => {
                 </div>
             </section>
 
+            {/* PYQ Section */}
+            <PYQSection />
+
+            {/* AI Analysis and Real Exam Simulation Demo (Moved down) */}
+            <AISimulationSection />
+
             {/* 5. Test development Dept */}
             <TestDevDept />
 
@@ -242,6 +243,7 @@ const LandingPage = () => {
 
             {/* 7. Footer */}
             <Footer />
+            </div>
         </div>
     );
 };

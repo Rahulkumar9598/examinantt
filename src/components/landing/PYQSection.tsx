@@ -43,22 +43,22 @@ const PYQSection = () => {
     const categories = Object.keys(groupedPyqs);
 
     return (
-        <section id="resources" className="py-8 px-4 sm:px-6 lg:px-8 bg-white">
+        <section id="resources" className="py-8 px-4 sm:px-6 lg:px-8 bg-transparent">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-12 sm:mb-16">
-                    <span className="inline-block py-1 px-3 rounded-full bg-[#F0F6FF] text-[#1D64D0] text-sm font-bold uppercase tracking-wide mb-4 border border-blue-100">Resources</span>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0B4F97] mb-4 tracking-tighter">Explore PYQs (Free)</h2>
-                    <p className="text-[#1D64D0] font-black text-base sm:text-lg uppercase tracking-widest opacity-60">
+                    <span className="inline-block py-1 px-3 rounded-full bg-[#F0F6FF] text-[#0D9488] text-sm font-bold uppercase tracking-wide mb-4 border border-teal-100">Resources</span>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0F766E] mb-4 tracking-tighter">Explore PYQs (Free)</h2>
+                    <p className="text-[#0D9488] font-black text-base sm:text-lg uppercase tracking-widest opacity-60">
                         Access previous year questions
                     </p>
                 </div>
 
                 {isLoading ? (
                     <div className="flex justify-center py-20">
-                        <Loader2 className="animate-spin text-[#1D64D0]" size={40} />
+                        <Loader2 className="animate-spin text-[#0D9488]" size={40} />
                     </div>
                 ) : categories.length === 0 ? (
-                    <div className="text-center py-20 text-slate-400 italic bg-[#F0F6FF] rounded-3xl border-2 border-dashed border-blue-100 mx-4">
+                    <div className="text-center py-20 text-slate-400 italic bg-[#F0F6FF] rounded-3xl border-2 border-dashed border-teal-100 mx-4">
                         No previous year questions available yet.
                     </div>
                 ) : (
@@ -67,15 +67,15 @@ const PYQSection = () => {
                             return (
                                 <div key={cat} className="bg-white rounded-2xl p-6 lg:p-8 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.05)] border border-slate-100 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300 flex flex-col">
                                     {/* Top Border Accent */}
-                                    <div className="absolute top-0 left-0 w-full h-1.5 bg-[#1D64D0]"></div>
+                                    <div className="absolute top-0 left-0 w-full h-1.5 bg-[#0D9488]"></div>
 
-                                    <h3 className="text-xl lg:text-2xl font-black text-[#0B4F97] mb-2 group-hover:text-[#1D64D0] transition-colors uppercase tracking-tight">{cat} PYQs</h3>
+                                    <h3 className="text-xl lg:text-2xl font-black text-[#0F766E] mb-2 group-hover:text-[#0D9488] transition-colors uppercase tracking-tight">{cat} PYQs</h3>
                                     <p className="text-xs text-slate-400 mb-6 font-black uppercase tracking-widest">Authentic Papers</p>
 
                                     <ul className="space-y-3 mb-8 flex-grow">
                                         {groupedPyqs[cat].map((item, i) => (
                                             <li key={i} className="text-slate-600 flex items-center gap-2 text-sm font-semibold line-clamp-1">
-                                                <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#1D64D0]"></span>
+                                                <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#0D9488]"></span>
                                                 {item}
                                             </li>
                                         ))}
@@ -83,7 +83,7 @@ const PYQSection = () => {
 
                                     <button
                                         onClick={() => navigate('/pyqs')}
-                                        className="w-full py-4 rounded-xl border-2 border-[#1D64D0] text-[#1D64D0] font-black text-sm uppercase tracking-widest hover:bg-[#1D64D0] hover:text-white transition-all flex items-center justify-center gap-2"
+                                        className="w-full py-4 rounded-xl border-2 border-[#0D9488] text-[#0D9488] font-black text-sm uppercase tracking-widest hover:bg-[#0D9488] hover:text-white transition-all flex items-center justify-center gap-2"
                                     >
                                         Explore More <ArrowRight size={18} />
                                     </button>

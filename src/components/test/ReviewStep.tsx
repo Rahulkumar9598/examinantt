@@ -41,8 +41,8 @@ const ReviewStep = ({ formData }: ReviewStepProps) => {
                     Question Configuration
                 </h3>
                 <div className="grid grid-cols-3 gap-4">
-                    <div className="bg-blue-50 p-4 rounded-lg text-center">
-                        <div className="text-2xl font-bold text-blue-600">{formData.questionConfig?.totalQuestions}</div>
+                    <div className="bg-teal-50 p-4 rounded-lg text-center">
+                        <div className="text-2xl font-bold text-teal-600">{formData.questionConfig?.totalQuestions}</div>
                         <div className="text-sm text-slate-600">Total Questions</div>
                     </div>
                     <div className="bg-purple-50 p-4 rounded-lg text-center">
@@ -65,7 +65,7 @@ const ReviewStep = ({ formData }: ReviewStepProps) => {
                 {formData.autoConfig && formData.autoConfig.subjects && (
                     <div className="flex gap-2">
                         {formData.autoConfig.subjects.map(subject => (
-                            <span key={subject} className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
+                            <span key={subject} className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm font-semibold">
                                 {subject}
                             </span>
                         ))}
@@ -105,7 +105,7 @@ const ReviewStep = ({ formData }: ReviewStepProps) => {
                         <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs">Show Solutions</span>
                     )}
                     {formData.settings?.shuffleQuestions && (
-                        <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">Shuffle Questions</span>
+                        <span className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-xs">Shuffle Questions</span>
                     )}
                 </div>
             </div>

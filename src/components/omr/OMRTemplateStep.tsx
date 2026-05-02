@@ -76,12 +76,12 @@ const OMRTemplateStep = ({ formData, updateFormData }: OMRTemplateStepProps) => 
             {/* Preset Selector */}
             <div>
                 <label className="block text-sm font-semibold text-slate-700 mb-3 flex items-center gap-2">
-                    <Zap size={16} className="text-amber-500" /> Quick Preset
+                    <Zap size={16} className="text-teal-500" /> Quick Preset
                 </label>
                 <div className="grid grid-cols-3 gap-4">
                     {Object.entries(PRESET_LABELS).map(([key, { label, emoji, color }]) => {
                         const colorMap: Record<string, string> = {
-                            blue: selectedPreset === key ? 'border-blue-600 bg-blue-50 shadow-md shadow-blue-100' : 'border-slate-200 hover:border-blue-300',
+                            blue: selectedPreset === key ? 'border-teal-600 bg-teal-50 shadow-md shadow-teal-100' : 'border-slate-200 hover:border-teal-300',
                             green: selectedPreset === key ? 'border-green-600 bg-green-50 shadow-md shadow-green-100' : 'border-slate-200 hover:border-green-300',
                             purple: selectedPreset === key ? 'border-purple-600 bg-purple-50 shadow-md shadow-purple-100' : 'border-slate-200 hover:border-purple-300',
                         };
@@ -107,7 +107,7 @@ const OMRTemplateStep = ({ formData, updateFormData }: OMRTemplateStepProps) => 
             {sections.length > 0 && (
                 <div className="grid grid-cols-3 gap-4">
                     {[
-                        { label: 'Total Questions', value: totalQ, color: 'text-blue-700', bg: 'bg-blue-50' },
+                        { label: 'Total Questions', value: totalQ, color: 'text-teal-700', bg: 'bg-teal-50' },
                         { label: 'Total Marks', value: totalMarks, color: 'text-green-700', bg: 'bg-green-50' },
                         { label: 'Sections', value: sections.length, color: 'text-purple-700', bg: 'bg-purple-50' },
                     ].map(({ label, value, color, bg }) => (
@@ -154,7 +154,7 @@ const OMRTemplateStep = ({ formData, updateFormData }: OMRTemplateStepProps) => 
                                                 type="text"
                                                 value={sec.name}
                                                 onChange={(e) => updateSection(idx, { name: e.target.value })}
-                                                className="w-full px-2 py-1 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-amber-400"
+                                                className="w-full px-2 py-1 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-teal-400"
                                             />
                                         </td>
                                         <td className="px-4 py-3">
@@ -169,14 +169,14 @@ const OMRTemplateStep = ({ formData, updateFormData }: OMRTemplateStepProps) => 
                                                         questionEndIndex: sec.questionStartIndex + count - 1,
                                                     });
                                                 }}
-                                                className="w-16 px-2 py-1 border border-slate-200 rounded-lg text-sm text-center focus:outline-none focus:border-amber-400"
+                                                className="w-16 px-2 py-1 border border-slate-200 rounded-lg text-sm text-center focus:outline-none focus:border-teal-400"
                                             />
                                         </td>
                                         <td className="px-4 py-3 text-center">
                                             <select
                                                 value={sec.optionsPerQuestion}
                                                 onChange={(e) => updateSection(idx, { optionsPerQuestion: parseInt(e.target.value) })}
-                                                className="px-2 py-1 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-amber-400"
+                                                className="px-2 py-1 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-teal-400"
                                             >
                                                 <option value={0}>Numerical</option>
                                                 <option value={4}>4 (A-D)</option>
@@ -190,7 +190,7 @@ const OMRTemplateStep = ({ formData, updateFormData }: OMRTemplateStepProps) => 
                                                 min={0}
                                                 step={0.5}
                                                 onChange={(e) => updateSection(idx, { marksCorrect: parseFloat(e.target.value) || 0 })}
-                                                className="w-16 px-2 py-1 border border-slate-200 rounded-lg text-sm text-center focus:outline-none focus:border-amber-400"
+                                                className="w-16 px-2 py-1 border border-slate-200 rounded-lg text-sm text-center focus:outline-none focus:border-teal-400"
                                             />
                                         </td>
                                         <td className="px-4 py-3 text-center">
@@ -200,7 +200,7 @@ const OMRTemplateStep = ({ formData, updateFormData }: OMRTemplateStepProps) => 
                                                 max={0}
                                                 step={0.25}
                                                 onChange={(e) => updateSection(idx, { marksWrong: parseFloat(e.target.value) || 0 })}
-                                                className="w-16 px-2 py-1 border border-slate-200 rounded-lg text-sm text-center focus:outline-none focus:border-amber-400"
+                                                className="w-16 px-2 py-1 border border-slate-200 rounded-lg text-sm text-center focus:outline-none focus:border-teal-400"
                                             />
                                         </td>
                                         <td className="px-4 py-3 text-center text-slate-500 text-xs font-mono">
@@ -229,7 +229,7 @@ const OMRTemplateStep = ({ formData, updateFormData }: OMRTemplateStepProps) => 
                     <button
                         type="button"
                         onClick={addSection}
-                        className="flex items-center gap-2 px-4 py-2 bg-amber-500 text-white font-semibold rounded-lg hover:bg-amber-600 transition-colors mx-auto"
+                        className="flex items-center gap-2 px-4 py-2 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition-colors mx-auto"
                     >
                         <Plus size={16} /> Add First Section
                     </button>
@@ -246,7 +246,7 @@ const OMRTemplateStep = ({ formData, updateFormData }: OMRTemplateStepProps) => 
                     onChange={(e) =>
                         updateFormData({ settings: { ...formData.settings, duration: parseInt(e.target.value) || 180, showResultsImmediately: formData.settings?.showResultsImmediately ?? true } })
                     }
-                    className="w-40 px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none"
+                    className="w-40 px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none"
                 />
             </div>
 
@@ -259,7 +259,7 @@ const OMRTemplateStep = ({ formData, updateFormData }: OMRTemplateStepProps) => 
                     onChange={(e) =>
                         updateFormData({ settings: { ...formData.settings, duration: formData.settings?.duration || 180, showResultsImmediately: e.target.checked } })
                     }
-                    className="w-4 h-4 accent-amber-500"
+                    className="w-4 h-4 accent-teal-500"
                 />
                 <label htmlFor="showResults" className="text-sm font-medium text-slate-700 cursor-pointer">
                     Show results immediately after submission

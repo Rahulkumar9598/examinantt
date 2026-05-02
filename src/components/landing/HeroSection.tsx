@@ -8,7 +8,7 @@
 //         <section className="relative min-h-screen flex flex-col lg:block overflow-hidden bg-white pt-16 lg:pt-20">
 //             {/* Background Split Decor - Only for Desktop */}
 //             <div className="absolute inset-0 hidden lg:flex flex-row">
-//                 <div className="w-[42%] bg-[#0B4F97] relative h-full">
+//                 <div className="w-[42%] bg-[#0F766E] relative h-full">
 //                     <div className="absolute inset-0 opacity-10 pointer-events-none overflow-hidden">
 //                         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[600px] h-[600px] border-[40px] border-white rounded-full blur-[100px]"></div>
 //                     </div>
@@ -20,18 +20,18 @@
 //                 <div className="grid lg:grid-cols-12 flex-grow">
 
 //                     {/* Left Banner Content (Navy on Mobile, Overlay on Desktop) */}
-//                     <div className="lg:col-span-5 bg-[#0B4F97] lg:bg-transparent text-white px-4 sm:px-6 py-12 lg:py-20 lg:pr-12">
+//                     <div className="lg:col-span-5 bg-[#0F766E] lg:bg-transparent text-white px-4 sm:px-6 py-12 lg:py-20 lg:pr-12">
 //                         {/* Redundant Logo removed on mobile, kept on desktop for split layout feel */}
 
 
 //                         <div className="space-y-6 lg:space-y-8">
 //                             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-[1.1] tracking-tight">
 //                                 An AI-Powered <br />
-//                                 <span className="text-blue-300">Semi-Offline</span> <br />
+//                                 <span className="text-teal-300">Semi-Offline</span> <br />
 //                                 Mock Test Platform
 //                             </h2>
 
-//                             <p className="text-blue-100/80 text-base lg:text-lg max-w-sm leading-relaxed">
+//                             <p className="text-teal-100/80 text-base lg:text-lg max-w-sm leading-relaxed">
 //                                 Practice online. Mark on real OMR sheets. <br className="hidden sm:block" />
 //                                 <span className="text-white font-semibold">Get AI-driven performance analysis.</span>
 //                             </p>
@@ -43,9 +43,9 @@
 //                                     "Expert-Curated Question Papers",
 //                                     "Smart Performance & Mistake Analysis"
 //                                 ].map((item, i) => (
-//                                     <li key={i} className="flex items-start gap-3 text-sm font-medium group text-blue-50/90">
-//                                         <div className="bg-blue-400/20 p-1 rounded-full group-hover:bg-blue-400/40 transition-colors">
-//                                             <CheckCircle size={14} className="text-blue-300 shrink-0" />
+//                                     <li key={i} className="flex items-start gap-3 text-sm font-medium group text-teal-50/90">
+//                                         <div className="bg-teal-400/20 p-1 rounded-full group-hover:bg-teal-400/40 transition-colors">
+//                                             <CheckCircle size={14} className="text-teal-300 shrink-0" />
 //                                         </div>
 //                                         <span className="pt-0.5">{item}</span>
 //                                     </li>
@@ -53,7 +53,7 @@
 //                             </ul>
 
 //                             <div className="pt-6 lg:pt-10">
-//                                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-300 mb-4 opacity-70">Prepared for:</p>
+//                                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-teal-300 mb-4 opacity-70">Prepared for:</p>
 //                                 <div className="flex gap-3 sm:gap-4">
 //                                     {['NEET', 'JEE', 'SSC'].map(cat => (
 //                                         <span key={cat} className="px-4 lg:px-5 py-2 bg-white/10 rounded-xl text-[10px] sm:text-xs font-black backdrop-blur-md border border-white/10 tracking-widest uppercase hover:bg-white/20 hover:scale-105 transition-all cursor-default">
@@ -67,16 +67,16 @@
 
 //                     {/* Right Content Area (White background) */}
 //                     <div className="lg:col-span-7 bg-white px-4 sm:px-6 py-12 lg:py-20 lg:pl-10">
-//                         <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 border border-blue-100 rounded-full text-[10px] font-black text-[#1D64D0] uppercase tracking-[0.2em] mb-6 lg:mb-8">
+//                         <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-teal-50 border border-teal-100 rounded-full text-[10px] font-black text-[#0D9488] uppercase tracking-[0.2em] mb-6 lg:mb-8">
 //                             Next Gen Testing Environment
 //                         </div>
 
-//                         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-black text-[#0B4F97] leading-[1.1] mb-6 lg:mb-8 tracking-tighter">
+//                         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-black text-[#0F766E] leading-[1.1] mb-6 lg:mb-8 tracking-tighter">
 //                             Practice That <br className="hidden sm:block" />
 //                             Makes You <br className="hidden sm:block" />
-//                             <span className="text-[#1D64D0] relative inline-block">
+//                             <span className="text-[#0D9488] relative inline-block">
 //                                 Exam-Ready.
-//                                 <div className="absolute -bottom-1 lg:-bottom-2 left-0 w-full h-1.5 lg:h-2 bg-blue-100 -z-10 rounded-full"></div>
+//                                 <div className="absolute -bottom-1 lg:-bottom-2 left-0 w-full h-1.5 lg:h-2 bg-teal-100 -z-10 rounded-full"></div>
 //                             </span>
 //                         </h1>
 
@@ -87,13 +87,13 @@
 //                         <div className="flex flex-col sm:flex-row gap-4 lg:gap-5 mb-12 lg:mb-16">
 //                             <button
 //                                 onClick={() => navigate('/signup')}
-//                                 className="px-8 lg:px-10 py-4 lg:py-5 bg-[#1D64D0] hover:bg-blue-700 text-white rounded-[15px] lg:rounded-[20px] font-black text-lg lg:text-xl shadow-2xl shadow-blue-500/30 transition-all flex items-center justify-center gap-3 active:scale-95 group"
+//                                 className="px-8 lg:px-10 py-4 lg:py-5 bg-[#0D9488] hover:bg-teal-700 text-white rounded-[15px] lg:rounded-[20px] font-black text-lg lg:text-xl shadow-2xl shadow-teal-500/30 transition-all flex items-center justify-center gap-3 active:scale-95 group"
 //                             >
 //                                 Get Started
 //                                 <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
 //                             </button>
 //                             <button
-//                                 className="px-8 lg:px-10 py-4 lg:py-5 bg-white text-[#1D64D0] border-2 border-[#1D64D0] rounded-[15px] lg:rounded-[20px] font-black text-lg lg:text-xl hover:bg-blue-50 transition-all flex items-center justify-center active:scale-95"
+//                                 className="px-8 lg:px-10 py-4 lg:py-5 bg-white text-[#0D9488] border-2 border-[#0D9488] rounded-[15px] lg:rounded-[20px] font-black text-lg lg:text-xl hover:bg-teal-50 transition-all flex items-center justify-center active:scale-95"
 //                             >
 //                                 Try Demo Test (Free)
 //                             </button>
@@ -106,7 +106,7 @@
 //                                         <img src={`https://i.pravatar.cc/100?u=${i}`} alt="user" className="w-full h-full object-cover" />
 //                                     </div>
 //                                 ))}
-//                                 <div className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border-[2px] lg:border-[3px] border-white bg-[#1D64D0] flex items-center justify-center text-[10px] lg:text-xs font-bold text-white shadow-lg">
+//                                 <div className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border-[2px] lg:border-[3px] border-white bg-[#0D9488] flex items-center justify-center text-[10px] lg:text-xs font-bold text-white shadow-lg">
 //                                     +10k
 //                                 </div>
 //                             </div>
@@ -115,7 +115,7 @@
 //                                     {[1, 2, 3, 4, 5].map(i => <Star key={i} size={14} className="lg:size-[18px]" fill="currentColor" />)}
 //                                 </div>
 //                                 <p className="text-[10px] lg:text-sm text-slate-500 font-bold uppercase tracking-wider">
-//                                     Trusted by <span className="text-[#0B4F97] font-black">10,000+</span> Aspirants
+//                                     Trusted by <span className="text-[#0F766E] font-black">10,000+</span> Aspirants
 //                                 </p>
 //                             </div>
 //                         </div>
@@ -130,6 +130,7 @@
 // ---------------------------------------------------------------------------------------------
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 type HeroSectionProps = {
     onGetStarted?: () => void;
@@ -139,7 +140,6 @@ const features = [
     'Real Exam-Like OMR Practice',
     'Time-Scheduled Mock Tests',
     'Expert-Curated Question Papers',
-    'Smart Performance & Mistake Analysis',
 ];
 
 const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
@@ -151,129 +151,76 @@ const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
     };
 
     return (
-        <section className="relative overflow-hidden bg-white">
-            <div className="absolute inset-0 hidden lg:flex">
-                <div className="w-[42%] bg-[#0B4F97] relative h-full">
-                    <div className="absolute inset-0 opacity-10 pointer-events-none overflow-hidden">
-                        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[600px] h-[600px] border-40 border-white rounded-full blur-[100px]"></div>
-                    </div>
-                </div>
-                <div className="w-[58%] bg-white h-full"></div>
-            </div>
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-transparent">
 
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid lg:grid-cols-12 min-h-screen">
-                    <div className="lg:col-span-5 bg-[#0B4F97] text-white px-6 sm:px-8 py-14 lg:py-24 flex items-center">
-                        <div className="max-w-xl">
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-                                An AI-Powered <br />
-                                <span className="text-blue-300">Semi-Offline</span> <br />
-                                Mock Test Platform
-                            </h2>
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-teal-100 rounded-full text-xs font-bold uppercase tracking-[0.15em] text-[#0D9488] mb-8 shadow-sm"
+                >
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                    </span>
+                    Next Generation Learning
+                </motion.div>
 
-                            <p className="text-blue-100/90 text-base sm:text-lg max-w-xl mt-6 leading-relaxed">
-                                Practice online. Mark on real OMR sheets. <br className="hidden sm:block" />
-                                <span className="text-white font-semibold">Get AI-driven performance analysis.</span>
-                            </p>
+                <motion.h1 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-slate-900 leading-[1.1] tracking-tight max-w-4xl mx-auto mb-8"
+                >
+                    Master Your Exams with <br className="hidden sm:block" />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0F766E] to-[#14B8A6]">
+                        Precision Practice.
+                    </span>
+                </motion.h1>
 
-                            <ul className="space-y-3 mt-8">
-                                {features.map((item, index) => (
-                                    <li key={index} className="flex items-start gap-3 text-sm text-blue-100/90 font-medium">
-                                        <div className="p-1 rounded-full bg-white/10 mt-1">
-                                            <CheckCircle size={16} className="text-blue-200" />
-                                        </div>
-                                        <span>{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                <motion.p 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="text-lg sm:text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto mb-10"
+                >
+                    A comprehensive hybrid mock test platform designed to simulate the real exam environment. Practice online, mark on OMR, and get detailed analytics.
+                </motion.p>
 
-                            <div className="mt-10">
-                                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-200 mb-4 opacity-80">
-                                    Prepared for:
-                                </p>
-                                <div className="flex flex-wrap gap-3">
-                                    {['NEET', 'JEE', 'SSC'].map((exam) => (
-                                        <span
-                                            key={exam}
-                                            className="px-4 py-2 rounded-2xl bg-white/10 border border-white/20 text-xs sm:text-sm font-black uppercase tracking-widest"
-                                        >
-                                            {exam}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14"
+                >
+                    <button
+                        onClick={handleGetStarted}
+                        className="w-full sm:w-auto px-8 py-4 bg-[#0F766E] hover:bg-[#0D9488] text-white rounded-xl font-bold text-lg shadow-lg shadow-teal-500/20 transition-all flex items-center justify-center gap-2 group"
+                    >
+                        Start Practicing Now
+                        <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                    </button>
+                    <button className="w-full sm:w-auto px-8 py-4 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold text-lg hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm">
+                        View Demo Test
+                    </button>
+                </motion.div>
+
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-sm font-semibold text-slate-600"
+                >
+                    {features.map((feature, i) => (
+                        <div key={i} className="flex items-center gap-2">
+                            <CheckCircle size={18} className="text-[#14B8A6]" />
+                            {feature}
                         </div>
-                    </div>
+                    ))}
+                </motion.div>
 
-                    <div className="lg:col-span-7 bg-white px-6 sm:px-8 py-14 lg:py-24 flex flex-col justify-center">
-                        <div className="max-w-2xl mx-auto">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-100 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-[#1D64D0] mb-6">
-                                Next Gen Testing Environment
-                            </div>
 
-                            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-[#0B4F97] leading-tight tracking-tight mb-6">
-                                Practice That <br className="hidden sm:block" />
-                                Makes You <br className="hidden sm:block" />
-                                <span className="text-[#1D64D0] relative inline-flex">
-                                    Exam-Ready.
-                                    <span className="absolute -bottom-1 left-0 w-full h-2 bg-blue-100 rounded-full -z-10"></span>
-                                </span>
-                            </h1>
-
-                            <p className="text-base sm:text-lg text-slate-500 leading-relaxed max-w-xl mb-10">
-                                Not just test-ready. We bridge the gap between simple practice and the high-pressure environment of the real exam.
-                            </p>
-
-                            <div className="flex flex-col sm:flex-row gap-4 mb-14">
-                                <button
-                                    onClick={handleGetStarted}
-                                    className="w-full sm:w-auto px-8 py-4 bg-[#1D64D0] hover:bg-blue-700 text-white rounded-[15px] font-black text-lg transition-all"
-                                >
-                                    Get Started
-                                    <ArrowRight size={20} className="inline-block ml-2" />
-                                </button>
-                                <button className="w-full sm:w-auto px-8 py-4 bg-white border-2 border-[#1D64D0] text-[#1D64D0] rounded-[15px] font-black text-lg hover:bg-blue-50 transition-all">
-                                    Try Demo Test (Free)
-                                </button>
-                            </div>
-
-                            <div className="bg-slate-50 rounded-3xl p-6 shadow-sm border border-slate-100">
-                                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                                    <div className="flex items-center gap-4">
-                                        <div className="flex -space-x-3">
-                                            {[1, 2, 3, 4].map((i) => (
-                                                <img
-                                                    key={i}
-                                                    src={`https://i.pravatar.cc/100?u=${i}`}
-                                                    alt="user"
-                                                    className="w-10 h-10 rounded-full border-2 border-white shadow-sm"
-                                                />
-                                            ))}
-                                            <div className="w-10 h-10 rounded-full bg-[#1D64D0] text-white flex items-center justify-center text-xs font-bold border-2 border-white">
-                                                +10k
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className="flex gap-1">
-                                                {[1, 2, 3, 4, 5].map((i) => (
-                                                    <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
-                                                ))}
-                                            </div>
-                                            <p className="text-xs text-slate-500 font-semibold uppercase tracking-[0.15em] mt-1">
-                                                Trusted by <span className="text-[#0B4F97]">10,000+</span> Aspirants
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <span className="text-xs sm:text-sm bg-white px-3 py-2 rounded-full text-slate-600 border border-slate-200">
-                                        Next Gen Testing Environment
-                                    </span>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
     );
