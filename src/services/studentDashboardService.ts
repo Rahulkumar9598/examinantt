@@ -29,6 +29,15 @@ export interface RecommendedSeries {
     };
 }
 
+export interface RecommendedPYQ {
+    id: string;
+    title: string;
+    price: number;
+    category: string;
+    year: string;
+    type: string;
+}
+
 export interface ActiveTest {
     id: string; // purchaseId or seriesId
     testId: string; // underlying series/test id
@@ -145,6 +154,36 @@ export const getRecommendedSeries = async (): Promise<RecommendedSeries[]> => {
 
     } catch (error) {
         console.error("Error fetching recommendations:", error);
+        return [];
+    }
+};
+
+// Get recommended PYQs
+export const getRecommendedPYQs = async (): Promise<RecommendedPYQ[]> => {
+    try {
+        const q = query(collection(db, 'pyqs'), limit(6));
+        const snapshot = await getDocs(q);
+
+        const pyqs = snapshot.docs.map(doc => {
+            const data = doc.data();
+            return {
+                id: doc.id,
+                title: data.title || 'Untitled PYQ',
+                price: data.price || 0,
+                category: data.category || 'General',
+                year: data.year || 'N/A',
+                type: data.type || 'pdf',
+                createdAt: data.createdAt
+            } as RecommendedPYQ & { createdAt?: any };
+        });
+
+        return pyqs.sort((a: any, b: any) => {
+            const timeA = a.createdAt?.seconds || a.createdAt || 0;
+            const timeB = b.createdAt?.seconds || b.createdAt || 0;
+            return (timeB as number) - (timeA as number);
+        });
+    } catch (error) {
+        console.error("Error fetching recommended PYQs:", error);
         return [];
     }
 };

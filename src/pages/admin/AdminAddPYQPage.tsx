@@ -1,17 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Save, Link as LinkIcon, PenTool, Loader2 } from 'lucide-react';
+import { ArrowLeft, Save, Link as LinkIcon } from 'lucide-react';
 import { db } from '../../firebase';
-import { collection, addDoc, serverTimestamp, query, getDocs } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useAuth } from '../../contexts/AuthContext';
 
 const AdminAddPYQPage = () => {
     const navigate = useNavigate();
     const { currentUser } = useAuth() || {};
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [tests, setTests] = useState<{ id: string; title: string }[]>([]);
-    const [isLoadingTests, setIsLoadingTests] = useState(true);
+    const [questions, setQuestions] = useState([
+        { text: '', options: ['', '', '', ''], correctOption: 0 }
+    ]);
 
     const [formData, setFormData] = useState<{
         title: string;
@@ -31,41 +32,55 @@ const AdminAddPYQPage = () => {
         price: '0'
     });
 
-
-
-    useEffect(() => {
-        const fetchTests = async () => {
-            try {
-                const q = query(collection(db, 'testSeries')); // Removed orderBy
-                const snapshot = await getDocs(q);
-                console.log("Fetched tests count:", snapshot.size);
-
-                const fetchedTests = snapshot.docs.map(doc => {
-                    const data = doc.data();
-                    // Fallback waterfall
-                    const displayTitle = data.title || data.name || data.testName || `Test ID: ${doc.id}`;
-                    console.log("Mapped test:", { id: doc.id, title: displayTitle });
-                    return {
-                        id: doc.id,
-                        title: displayTitle
-                    };
-                });
-                setTests(fetchedTests);
-            } catch (error: any) {
-                console.error("Error fetching tests:", error);
-                alert("Error fetching tests: " + error.message);
-            } finally {
-                setIsLoadingTests(false);
-            }
-        };
-
-        fetchTests();
-    }, []);
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
         try {
+            let finalTestId = '';
+
+            if (formData.type === 'test') {
+                // Validate questions
+                if (questions.length === 0) {
+                    throw new Error("Please add at least one question.");
+                }
+                for (let i = 0; i < questions.length; i++) {
+                    const q = questions[i];
+                    if (!q.text.trim()) throw new Error(`Question ${i + 1} text is empty.`);
+                    if (q.options.some(opt => !opt.trim())) throw new Error(`Question ${i + 1} has empty options.`);
+                }
+
+                // 1. Save all questions to 'questions' collection
+                const qIds = await Promise.all(questions.map(async (q) => {
+                    const qDoc = await addDoc(collection(db, 'questions'), {
+                        text: q.text,
+                        options: q.options,
+                        correctAnswer: q.options[q.correctOption], // Store the actual text of correct option or index, depending on standard. Let's store index as string or text. Assuming tests use text.
+                        correctOptionIndex: q.correctOption,
+                        type: 'MCQ',
+                        subject: formData.category,
+                        createdAt: serverTimestamp()
+                    });
+                    return qDoc.id;
+                }));
+
+                // 2. Create the test document
+                const testDoc = await addDoc(collection(db, 'tests'), {
+                    name: formData.title,
+                    testType: 'practice',
+                    questionIds: qIds,
+                    settings: {
+                        duration: questions.length * 2, // 2 mins per question default
+                        marksPerQuestion: 4,
+                        negativeMarking: -1,
+                        showSolutions: true
+                    },
+                    status: 'published',
+                    createdAt: serverTimestamp(),
+                    createdBy: currentUser?.uid || 'admin'
+                });
+                finalTestId = testDoc.id;
+            }
+
             const pyqData: any = {
                 title: formData.title,
                 category: formData.category,
@@ -79,7 +94,7 @@ const AdminAddPYQPage = () => {
             if (formData.type === 'pdf') {
                 pyqData.fileUrl = formData.fileUrl;
             } else {
-                pyqData.testId = formData.testId;
+                pyqData.testId = finalTestId;
             }
 
             await addDoc(collection(db, 'pyqs'), pyqData);
@@ -203,44 +218,76 @@ const AdminAddPYQPage = () => {
                             </div>
                         </motion.div>
                     ) : (
-                        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
-                            <label className="block text-sm font-bold text-slate-700 mb-2">
-                                Select Test to Link ({tests.length} available)
-                            </label>
-                            {isLoadingTests ? (
-                                <div className="flex items-center gap-2 text-slate-500 py-3 pl-4 border border-slate-200 rounded-xl bg-slate-50">
-                                    <Loader2 className="animate-spin" size={20} /> Loading available tests...
-                                </div>
-                            ) : (
-                                <div className="relative">
-                                    <PenTool size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                                    <select
-                                        required
-                                        value={formData.testId}
-                                        onChange={e => setFormData({ ...formData, testId: e.target.value })}
-                                        className="w-full pl-12 pr-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all font-medium appearance-none bg-white"
+                        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="space-y-6">
+                            <div className="flex items-center justify-between">
+                                <label className="block text-sm font-bold text-slate-700">Questions ({questions.length})</label>
+                            </div>
+                            
+                            {questions.map((q, qIndex) => (
+                                <div key={qIndex} className="p-6 bg-slate-50 border border-slate-200 rounded-2xl relative">
+                                    <button 
+                                        type="button" 
+                                        onClick={() => setQuestions(questions.filter((_, i) => i !== qIndex))}
+                                        className="absolute top-4 right-4 text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors"
                                     >
-                                        <option value="" className="text-slate-500">-- Select a Test --</option>
-                                        <option value="debug" className="text-red-500 font-bold bg-slate-100">DEBUG: Hardcoded Option</option>
-
-                                        {tests.length === 0 && (
-                                            <option value="" disabled className="text-slate-400 italic">No tests found in database</option>
-                                        )}
-
-                                        {tests.map(test => (
-                                            <option key={test.id} value={test.id} className="text-slate-900 font-medium py-1">
-                                                {test.title}
-                                            </option>
+                                        Remove
+                                    </button>
+                                    
+                                    <div className="mb-4">
+                                        <label className="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Question {qIndex + 1}</label>
+                                        <textarea
+                                            required
+                                            value={q.text}
+                                            onChange={e => {
+                                                const newQ = [...questions];
+                                                newQ[qIndex].text = e.target.value;
+                                                setQuestions(newQ);
+                                            }}
+                                            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all font-medium min-h-[100px]"
+                                            placeholder="Enter question text here..."
+                                        />
+                                    </div>
+                                    
+                                    <div className="space-y-3">
+                                        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Options (Select correct one)</label>
+                                        {q.options.map((opt, optIndex) => (
+                                            <div key={optIndex} className="flex items-center gap-3">
+                                                <input
+                                                    type="radio"
+                                                    name={`correct-${qIndex}`}
+                                                    checked={q.correctOption === optIndex}
+                                                    onChange={() => {
+                                                        const newQ = [...questions];
+                                                        newQ[qIndex].correctOption = optIndex;
+                                                        setQuestions(newQ);
+                                                    }}
+                                                    className="w-5 h-5 text-purple-600 focus:ring-purple-500 cursor-pointer"
+                                                />
+                                                <input
+                                                    type="text"
+                                                    required
+                                                    value={opt}
+                                                    onChange={e => {
+                                                        const newQ = [...questions];
+                                                        newQ[qIndex].options[optIndex] = e.target.value;
+                                                        setQuestions(newQ);
+                                                    }}
+                                                    className={`w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all ${q.correctOption === optIndex ? 'border-purple-300 bg-purple-50/30' : 'border-slate-200 bg-white'}`}
+                                                    placeholder={`Option ${optIndex + 1}`}
+                                                />
+                                            </div>
                                         ))}
-                                    </select>
-                                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
-                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
                                     </div>
                                 </div>
-                            )}
-                            <p className="text-sm text-slate-500 mt-2 ml-1">
-                                💡 Select one of your created tests to use as this PYQ.
-                            </p>
+                            ))}
+                            
+                            <button
+                                type="button"
+                                onClick={() => setQuestions([...questions, { text: '', options: ['', '', '', ''], correctOption: 0 }])}
+                                className="w-full py-4 border-2 border-dashed border-purple-200 text-purple-600 font-bold rounded-2xl hover:bg-purple-50 hover:border-purple-300 transition-colors flex items-center justify-center gap-2"
+                            >
+                                + Add Another Question
+                            </button>
                         </motion.div>
                     )}
 

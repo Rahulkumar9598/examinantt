@@ -65,8 +65,6 @@ const PYQDetailsPage = () => {
         fetchPYQ();
     }, [id, currentUser]);
 
-    const location = import('react-router-dom').then(m => m.useLocation); // We will import useLocation properly
-    // Actually, we can just use window.location.pathname
     const handleEnroll = async () => {
         if (!currentUser) {
             navigate('/login', { state: { returnTo: window.location.pathname } });
