@@ -8,6 +8,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 ## Firebase setup
+.
 
 1. Firebase Console → Create/Select project → Add app (Web) and copy the config values.
 2. Create/edit local `.env` with these Vite env vars:
