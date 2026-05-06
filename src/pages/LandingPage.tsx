@@ -143,7 +143,7 @@ const LandingPage = () => {
                                                         ? 'bg-teal-600 text-white border-teal-600 shadow-lg shadow-teal-200 scale-105'
                                                         : 'bg-white text-slate-600 border-slate-100 hover:border-teal-200 hover:bg-teal-50'
                                                     }`}
-                                                    
+
                                             >
                                                 All Classes
                                             </button>
@@ -158,6 +158,7 @@ const LandingPage = () => {
                                                 >
                                                     Class {c}
                                                 </button>
+                                                
                                             ))}
                                             {availableClasses.length === 0 && (
                                                 <div className="text-slate-300 text-sm italic py-2">Loading classes...</div>
